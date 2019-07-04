@@ -1,0 +1,119 @@
+\chapter{Zusammenfassung}
+\section{Quickstart Guide}
+\label{sec:qg}
+\begin{figure}[h]
+	\centering
+	\def\svgwidth{0.8\textwidth}
+	\input{Bilder/Versuchsaufbau.pdf_tex}
+	\caption{Versuchsaufbau}
+	\label{img:verbau}
+\end{figure}
+
+In dieser Sektion geht es um einen möglichst schnellen Versuchsstart mit der entwickelten Vorverzerrungsplatine. In Abbildung \ref{img:verbau} ist schematisch der Versuchsaufbau dargestellt:
+
+\begin{itemize}
+\item Der unpolarisierte Ausgang des \ac{DFB}-Lasers wird mittels eines Polarisationsstellers für das \ac{MZM} polarisiert. Zum Finden der richtigen Polarisationsrichtung wird der Ausgang des \ac{MZM} entweder an einen optischen Leistungsmesser angeschlossen oder, falls der optische Empfänger angeschlossen ist, elektrisch ein Maximum der Ausgangsleistung gesucht.
+\item Die zwei Bias-Tee-Glieder werden jeweils an beide differentielle Eingänge des \ac{MZM} geschaltet.
+\item Zur Kennlinienmessung-, oder zum Betrieb ohne Vorverzerrung werden sowohl der \ac{AC}- als auch \ac{DC}-Eingang eines Bias-Tees mit $\SI{50}{\ohm}$ abgeschlossen. Der \ac{DC}-Offset zur Festlegung des Nullpunktes kann mittels des \ac{DC}-Eingangs des zweiten Bias-Tee eingestellt werden. Hier wird auch der \ac{AC} Eingang verwendet.
+\item Der \ac{DC}-Offset kann entweder durch Auswertung der Kennlinie mittels Oszilloskop und Funktionsgenerator, oder mittels der \ac{IM2} durch Messender und Spectrumanalyzer optimiert werden. Ist bei der Kennlinienmessung die Kennlinie punktsymmetrisch zum Ursprung oder ist das \ac{IM2} minimal, so ist der \ac{DC}-Offset richtig eingestellt.
+\item Nach der Glasfaserstrecke am Ausgang des \ac{MZM} wird optische Leistung mittels des optischen Empfängers in elektrische Spannung gewandelt. Am $\SI{50}{\ohm}$-Ausgang des Empfängers kann die \ac{HF} abgegriffen werden. Da es keine negative Leistung gibt, ist auch die Spannung am Empfänger immer positiv. Somit muss mit einem \ac{DC}-Offset am Ausgang gerechnet werden.
+\item Zur Inbetriebnahme der Vorverzerrungsplatine wird das \ac{MZM}, wie in Abbildung \ref{img:verbau} zu sehen, differentiell angesprochen. Der Eingang der Platine wird mit der \ac{HF}-Quelle verbunden und es müssen noch einige Versorgungsspannungen angelegt werden. Hierzu wurde eine provisorische Spannungsversorgung entwickelt:
+\begin{itemize}
+\item $\SI{6}{\volt}$ Versorgungsspannung (gelbes Kabel)
+\item Masse (braunes Kabel)
+\item Als Startwert für \textit{Vb2} (weißes Kabel) wird $\SI{0,{}6}{\volt}$ eingestellt.
+\item Der Ruhestrom von jedem Verstärker soll $\SI{50}{\milli\ampere}$ betragen. Die Spannung \textit{Vb1} (grünes Kabel) wird also so eingestellt, dass ein Gesamtstrom von $\SI{100}{\milli\ampere}$ fließt. Durch die Spannungsteiler zur Erstellung der Basisspannungen fließen $\SI{10}{\milli\ampere}$. \textit{Vb1} ist folglich richtig eingestellt, wenn aus dem Labornetzteil $\SI{110}{\milli\ampere}$ fließen. Man fängt mit niedriger Spannung an und dreht langsam hoch. Ungefähr $\SI{1,{}45}{\volt}$ können als Referenz angesehen werden.
+\end{itemize}
+\item Die \ac{HF}-Eingangsleistung kann grob auf $\SI{-5}{\decibelm}$ gestellt werden, muss aber je nach gewünschter Messung justiert werden.
+\item Zur Justage von \textit{Vb2} gibt es zwei sinnvolle Möglichkeiten:
+\begin{itemize}
+\item \textbf{Zeitbereich}: Es wird wieder mittels Funktionsgenerator und Oszilloskop die Kennlinie ausgewertet. Ist diese augenscheinlich linear, so ist \textit{Vb2} richtig eingestellt.
+\item \textbf{Frequenzbereich}: Es wird eine Zweitonmessung zur Bestimmung des \ac{IM3} durchgeführt. Hierzu muss ein sinnvoller Pegel für die Messsender gefunden werden, bei dem der \ac{IMA} zwischen $\SI{60}{\decibel}$ und $\SI{20}{\decibel}$ liegt. Die ideale Basisspannung \textit{Vb2} ist dann gefunden, wenn die \ac{IM3} minimal und somit der \ac{OIP3} maximal ist. Es bietet sich eine Mittenfrequenz von $\SI{10}{\mega\hertz}$ an.
+\end{itemize}
+\end{itemize}
+
+\section{Ergebnisse}
+\subsection{Kennlinie}
+\begin{figure}[H]
+\raggedright
+    \subfigure[Kennlinienmessung ohne Vorverzerrung]{\includegraphics[width=0.49\textwidth]{scope_25.png}} 
+\raggedleft
+    \subfigure[Kennlinienmessung mit Vorverzerrung]{\includegraphics[width=0.49\textwidth]{scope_286.png}} 
+\caption{Kennlinienmessung} 
+\label{img:kenn}
+\end{figure}
+
+In Abbildung \ref{img:kenn} ist die erfolgreiche Linearisierung der Kennlinie zu sehen. Es wurde bei gleicher Laserleistung ($\SI{800}{\mu\watt}$) und ähnlicher Spitze-Spitze-Spannung am Ausgang ($\approx\SI{125}{\milli\volt}$) eine augenscheinlich höhere Linearität erreicht. Diese Aussage lässt sich allerdings nur durch eine spektrale Messung quantifizieren.
+
+\subsection{S-Parameter}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=\textwidth]{NA-mess2.pdf}
+	\caption{Streuparameter der Vorverzerrungsplatine}
+	\label{img:svor}
+\end{figure}
+
+In Abbildung \ref{img:svor} ist die Streuparametermessung der Vorverzerrungsplatine zu sehen. Zu beachten ist, dass bei dieser Messung nur einer der beiden differentiellen Ausgänge gemessen werden kann. Die tatsächliche Ausgangsleistung ist wegen dem doppelten Spannungspegel vier mal so hoch, also plus $\SI{6}{\decibel}$.\\
+S11, also der Reflexionsparameter, deutet auf eine nicht optimale $\SI{50}{\ohm}$-Anpassung hin.\\
+Die Messung ist der Simulation in Abbildung \ref{img:verem} sehr ähnlich. Auf Grund des Eingangstrafos ist die Flanke am Ende des Frequenzbandes steiler.
+
+\subsection{Zweitonintermodulation}
+
+\begin{figure}[H]
+\raggedright
+    \subfigure[Intermodulationsmessung ohne Vorverzerrung]{\includegraphics[width=0.49\textwidth]{nicht-vorverzerrt.jpg}} 
+\raggedleft
+    \subfigure[Intermodulationsmessung mit Vorverzerrung]{\includegraphics[width=0.49\textwidth]{vorverzerrt.jpg}} 
+\caption{Intermodulationsmessung} 
+\label{img:inter}
+\end{figure}
+
+Zur Evaluation der Vorverzerrungsplatine wurde, in Abbildung \ref{img:inter} dargestellt, eine \ac{OIP3}-Messung durchgeführt. Ohne Vorverzerrung ergibt sich ein \ac{OIP3} von:
+
+\begin{equation}
+\text{OIP3}_1 = \SI{-22,{}35}{\decibelm}+\frac{\SI{30,{}05}{\decibelm}}{2}=\SI{-7,{}3}{\decibelm}
+\end{equation}
+
+Mit Vorverzerrung:
+
+\begin{equation}
+\text{OIP3}_2 = \SI{-22}{\decibelm}+\frac{\SI{59,{}45}{\decibelm}}{2}=\SI{7,{}7}{\decibelm}
+\end{equation}
+
+Es wurde also eine Verbesserung von $\SI{15}{\decibel}$ erreicht.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.4\textwidth]{OIP3-verb.pdf}
+	\caption{Verbesserung des \ac{OIP3} über die Frequenz}
+	\label{img:verboip3}
+\end{figure}
+
+Durch die begrenzte spektrale Bandbreite ist auch der effektive Bereich bei etwa $\SI{10}{\mega\hertz}$ zu Ende. In Abbildung \ref{img:verboip3} ist die relative Verbesserung des \ac{OIP3}s zu sehen.
+
+\subsection{Dreitonintermodulation}
+
+\begin{figure}[H]
+\raggedright
+    \subfigure[ohne Vorverzerrung]{\includegraphics[width=0.49\textwidth]{dt1-ohne.jpg}} 
+\raggedleft
+    \subfigure[mit Vorverzerrung]{\includegraphics[width=0.49\textwidth]{dt2-mit.jpg}} 
+\caption{Dreitonintermodulationsmessung} 
+\label{img:inter3}
+\end{figure}
+
+Auch bei der Dreitonmessung konnte eine ersichtliche Verbesserung im Intermodulationsverhalten erzielt werden.
+
+\subsection{Abschätzung des technischen Potentials der Ergebnisse}
+
+Bei einer Singlemodenglasfaser für $\SI{1550}{\nano\meter}$ ist mit einer Dämpfung von $\ge\SI{0,{}22}{\decibel\per\kilo\meter}$ zu rechnen. Die maximal sinnvoll einkoppelbare Lichtleistung ist durch die Brillouin-Streuung \cite{brill} begrenzt. Durch eine Verbesserung des \ac{OIP3} um $\SI{15}{\decibel}$ würde sich die maximale Reichweite bis zur nächsten Station also um $\sfrac{\SI{15}{\decibel}}{\SI{0,{}22}{\decibel\per\kilo\meter}}=\SI{68}{\kilo\meter}$ erhöhen.
+
+\section{Ausblick}
+
+Das hier beschriebene Verfahren könnte einerseits durch eine andere Bauteilauswahl oder durch eine andere Verschaltung dieser in seiner spektralen Performance verbessert werden. Es wäre z.B. interessant die hier entworfenen Doppel-Emitterverstärker zu einem Gegentaktverstärker abzuändern. Möglicherweise ergibt sich so eine bessere Topologie und somit eine höhere Bandbreite.\\
+Auch eine andere Bauteilwahl sollte bedacht werden. Man müsste hierfür aber bei speziellen \ac{HF}-Distributoren nachschauen ob man breitbandigere Transistoren kaufen kann. Der Footprint des verwendeten npn-Transistors ist für ein Design ohne Emitterwiderstand ausgelegt, was bei der benötigten Verschaltung ein Problem darstellt. So kann das Layout der Platine nicht ideal \ac{HF}-tauglich ausgeführt werden.\\
+Bei einem breitbandigerem Verstärker/Verzerrer wird der Eingangstrafo ein Problem. Der aktuell verwendete \ac{HF}-Trafo hat ein Frequenzband von $\SI{0{,}06}{\mega\hertz}$ bis $\SI{400}{\mega\hertz}$, was eine Kennlinienmessung im Zeitbereich erlaubt. Für höhere Bandbreiten müsste man auch mit einer höheren unteren Grenzfrequenz rechen.\\
+Der \ac{AC}-Block mittels Drosseln am Kollektor stellt ein weiteres Problem dar. Auf Grund des insgesamt niedrigen Frequenzbereiches wurden hier dedizierte Induktivitäten verwendet. Bei hohen Frequenzen kommt es hier zu Serienresonanzen auf Grund parasitärer Kapazitäten.\\
+Andererseits wäre eine automatisierte Adaption des \textit{DC-Bias} und der \textit{Vb2}- Spannung denkbar. Von Vorteil ist hier, dass man bei einer automatischen Adaption mittels Pilotsignal \textit{DC-Bias} und \textit{Vb2} unabhängig einstellen kann. Man würde das in Sektion \ref{sec:qg} beschriebene Verfahren automatisieren.\\
+Es könnte auch sinnvoll sein, das in Sektion \ref{sec:anmuad} vorgeschlagene Verfahren zu realisieren und schlussendlich die erzielte Performance zu vergleichen.
