@@ -1,7 +1,61 @@
 \chapter{Theoretical Background}
 
-\section{The Antenna}
+This chapter will give a brief overview about the underlying theoretical background in the fields of antenna theory, spatial sampling and will some methods to derive the \ac{TRP} out of spherical measurements.
 
+\section{Antenna Field Regions}
+\begin{figure}[H]
+\centering
+\def\svgwidth{0.6\textwidth}
+\input{Bilder/AntennaApature.pdf_tex}
+\caption{An arbitrary radiating aperture in the $xy$ plane. \cite{7942128}}
+\label{arbaperturexy}
+\end{figure}
+
+\ac{FF}-distance and \ac{NF}-distance are derivable from the phase fluctuation due to the maximum diameter of the antennas aperture \cite{7942128} in a distance $R$ from the antennas phase center. The phase fluctuation is given by the different length of $r$ and $R$, as you can see in figure \ref{arbaperturexy}. The maximum runtime difference is found at the minimum radius of the circle enclosing the aperture at $\sfrac{D}{2}$. The field boundaries are derived from the Taylor series of the function of the phase in dot $P$. \cite{7942128}
+
+
+\subsection{Near-Field}
+
+The reactive \acf{NF} is according to \cite{balanis} \glqq that portion of the near-field region immediately surrounding the antenna wherein the reactive field predominates.\grqq{ }The Boundary of that field region is derived for big apertures by a line source and the underlying phase fluctuation of  $\Delta\phi = \sfrac{\pi}{8} \ \widehat{=}\  22.5^\circ$. The boundary is:
+\begin{equation}
+r_{\text{NF}} = 0.62\sqrt{\frac{D^3}{\lambda}}
+\end{equation}
+After that the radiating \ac{NF} (Fresnel) -region follows, which is defined as \glqq that region of the field of an antenna between the reactive near-field region and the far-field region wherein radiation fields predominate and wherein the angular field distribution is dependent upon the distance from the antenna.\grqq
+
+\subsection{Far-Field}
+
+The fraunhofer distance is derived from optical considerations. The commonly used terminology is \acf{FF}-Distance. According to \cite{balanis} the \ac{FF}-distance is \glqq that region of the field of an antenna where the angular field distribution is essentially independent of the distance from the antenna.\grqq \\
+The amount of independency is derived from the phase fluctuation in the distance $r_{\text{FF}}$ \cite{19510}:
+
+\begin{equation}
+\Delta\phi = \frac{\pi D^2}{4\lambda\cdot r_{\text{FF}}} ,\ D\gg\lambda 
+\end{equation}
+
+The commonly used maximum phase fluctuation is $\Delta\phi = \sfrac{\pi}{8} \ \widehat{=}\  22.5^\circ$. With that the well know formula
+\begin{equation}
+r_{\text{FF}} = \frac{2D^2}{\lambda}
+\end{equation}
+
+can be derived.
+
+\subsection{Derat Distance}
+
+The Derat distance is that distance, in which the main beam of an antenna is in \ac{FF} condition. For the understanding of the Derat distance $r_{\text{Dr}}$ other considerations need to take place: It is about spherical modes described by spherical Hankel functions  of the second kind. \cite{8393926} \cite{hansen}\\
+In \cite{8393926} it is shown, that higher order modes than 
+
+\begin{equation}
+N = \lceil 1.0252\cdot\left(\frac{\pi D}{\lambda}\right)^{0.8633} \rceil
+\end{equation}
+
+have a maximum influence to the \ac{EIRP} of $\SI{0.5}{\decibel}$. With that the Derat distance can be derived to:
+
+\begin{equation}
+r_{\text{Dr}} = \lambda\left(\frac{\pi D}{\lambda}\right)^{0.8633}\left(0.1673\left(\frac{\pi D}{\lambda}\right)^{0.8633}+0.1632\right)
+\end{equation}
+
+\subsection{Example: Standard Gain Horn}
+
+$\SI{20}{\decibel}$ \ac{SGH} at $\SI{28}{\giga\hertz}$
 
 \section{Spatial Sampling Approaches}
 
