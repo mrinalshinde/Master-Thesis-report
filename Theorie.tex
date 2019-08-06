@@ -12,50 +12,81 @@ This chapter will give a brief overview about the underlying theoretical backgro
 \end{figure}
 
 There are three commonly known antenna regions, the reactive \ac{NF}, the radiating \ac{NF} and the \ac{FF}, divided by tow boundaries, the Fresnel distance (blue) and the Fraunhofer distance (yellow). These distances are shown in figure \ref{fig:antennafieldreg}, where the aperture diameter of an arbitrary antenna is on the x-axis and the distance form it is on the y-axis. The third line, the Derat distance (red) was introduced by Benoit Derat. \cite{8393926} All distances will be explained in the following.\\
-\ac{FF}-distance and \ac{NF}-distance are derivable from the phase fluctuation due to the maximum diameter of the antennas aperture \cite{7942128} in a distance $R$ from the antennas phase center. The phase fluctuation is given by the different length of $r$ and $R$, as you can see in figure \ref{fig:arbaperturexy}. The maximum runtime difference is found at the minimum radius of the circle enclosing the aperture at $\sfrac{D}{2}$. The field boundaries are derived from the Taylor series of the function of the phase in dot $P$. \cite{7942128}
+\ac{FF}-distance and \ac{NF}-distance are derivable from the phase fluctuation due to the maximum diameter of the antennas aperture \cite{7942128} in a distance $r$ from the antennas phase center. The phase fluctuation is given by the different length of $r$ and $R$, as you can see in figure \ref{fig:arbaperturexy}. The maximum runtime difference is found at the minimum radius of the circle enclosing the aperture at $\sfrac{D}{2}$. The field boundaries are derived from the Taylor series of the function of the phase in dot $P$. Fresnel and Fraunhofer distance, the boundaries between reactive \ac{NF}, radiating \ac{NF} (Fresnel-Region) and the \ac{FF} (Fraunhofer-Region), are analogue to their optical counterpart. \cite{7942128} \cite{balanis}
 
 \begin{figure}[H]
 \centering
 \def\svgwidth{0.6\textwidth}
 \input{Bilder/AntennaApature.pdf_tex}
-\caption{An arbitrary radiating aperture in the $xy$ plane. \cite{7942128}}
+\caption{An arbitrary radiating aperture in the $yz$ plane. \cite{7942128}}
 \label{fig:arbaperturexy}
 \end{figure}
 
-\subsection{Near-Field}
+$R$ can be written as: \cite{balanis}
 
-The reactive \acf{NF} is according to \cite{balanis} \glqq that portion of the near-field region immediately surrounding the antenna wherein the reactive field predominates.\grqq{ }In other words, the reactive \ac{NF} is that portion of an antennas field were you would expect direct coupling. The boundary of that field region is derived for big apertures by a line source and the underlying phase fluctuation of  $\Delta\phi = \sfrac{\pi}{8} \ \widehat{=}\  22.5^\circ$. The boundary is \cite{8393926}:
 \begin{equation}
-r_{\text{NF}} = 0.62\sqrt{\frac{D^3}{\lambda}}
+R = \sqrt{\left(x^2+y^2+z^2\right)-\left(2zz'-z^{\prime\, 2}\right)}=\sqrt{r^2-\left(2rz'\sin \theta -z^{\prime\, 2}\right)}
 \end{equation}
-After that the radiating \ac{NF} (Fresnel) -region follows, which is defined as \glqq that region of the field of an antenna between the reactive near-field region and the far-field region wherein radiation fields predominate and wherein the angular field distribution is dependent upon the distance from the antenna.\grqq
+
+Using the binomial expansion, $R$ can be written as:
+
+\begin{equation}
+R = r - z'\sin\theta + \frac{1}{r}\left(\frac{z^{\prime\, 2}}{2}\cos ^2 \theta\right) + \frac{1}{r^2}\left(\frac{z^{\prime\, 3}}{2}\sin\theta\cos^2\theta\right) + \dots
+\end{equation}
 
 \subsection{Far-Field}
 
-The fraunhofer distance is derived from optical considerations. The commonly used terminology is \acf{FF}-distance. According to \cite{balanis} the \ac{FF}-distance is \glqq that region of the field of an antenna where the angular field distribution is essentially independent of the distance from the antenna.\grqq \\
-The amount of independency is derived from the phase fluctuation in the distance $r_{\text{FF}}$ \cite{19510}:
+According to \cite{balanis} the \ac{FF}-distance is \glqq that region of the field of an antenna where the angular field distribution is essentially independent of the distance from the antenna.\grqq{ }That means that the antennas pattern is mostly independent from the distance to the antenna.\\
+For the \ac{FF} assumption it is convenient to use the two most significant terms of the binomial expansion $R\approx r - z'\sin\theta$. Hence the error of that truncation can be expressed as the maximum of the third most significant term:
 
 \begin{equation}
-\Delta\phi = \frac{\pi D^2}{4\lambda\cdot r_{\text{FF}}} ,\ D\gg\lambda 
+\frac{1}{r}\left(\frac{z^{\prime\, 2}}{2}\cos ^2 \theta\right)_\text{max} = \frac{z^{\prime\, 2}}{2r} \quad , \quad \theta = 0
+\label{eq:dphi1}
 \end{equation}
 
-The commonly used maximum phase fluctuation is $\Delta\phi = \sfrac{\pi}{8} \ \widehat{=}\  22.5^\circ$. With that the well known formula
+Introducing the angular wavenumber $k=\sfrac{2\pi}{\lambda}$ and $z'=\sfrac{D}{2}$, formula \ref{eq:dphi1} can be written as:
+
+
 \begin{equation}
-r_{\text{FF}} = \frac{2D^2}{\lambda}
+\Delta\phi = \frac{k\cdot z^{\prime\, 2}}{2r} =\frac{\frac{2\pi}{\lambda}\cdot \left(\frac{D}{2}\right)^2}{2r} = \frac{\pi D^2}{4\lambda\cdot r}
 \end{equation}
 
-can be derived.
+With the often used phase error of $\Delta\phi = \sfrac{\pi}{8} \ \widehat{=}\  22.5^\circ$ the well known \ac{FF}-distance-formula $r_{\text{Fr}}$ can be derived:
+
+\begin{equation}
+\frac{\pi}{8} = \frac{\pi D^2}{4\lambda\cdot r_{\text{Fr}}} \quad \Leftrightarrow \quad r_{\text{Fr}} = \frac{2D^2}{\lambda}
+\end{equation}
+
+This equation is valid for $D > \lambda$. \cite{balanis}
+
+\subsection{Near-Field}
+
+The radiating \ac{NF} (Fresnel) -region is defined \cite{balanis} as \glqq that region of the field of an antenna between the reactive near-field region and the far-field region wherein radiation fields predominate and wherein the angular field distribution is dependent upon the distance from the antenna.\grqq{ }That means that the antennas pattern is dependent from the distance to the antenna.\\
+In the radiating \ac{NF} the deviation from the third most significant term is more then $\sfrac{\pi}{8}$, so it is no longer negligible. With the derivation of the next term the maximum deviation is found:
+
+\begin{align}
+\frac{\partial}{\partial\theta}\left(\frac{1}{r^2}\left(\frac{z^{\prime\, 3}}{2}\sin\theta\cos^2\theta\right)\right) = \frac{z^{\prime\, 3}}{2r^2}\cos\theta\left(\cos^2\theta-2\sin^2\theta\right) = 0 \quad \Leftrightarrow\\ 
+\theta_1 = \frac{\pi}{2},\ \theta_2=2\arctan\left(\sqrt{5-2\sqrt{6}}\right) \quad \Leftrightarrow
+\end{align}
+
+By introducing the angular wavenumber $k=\sfrac{2\pi}{\lambda}$, the minimum sphere diameter $D$ that $z'=\sfrac{D}{2}$ and the phase error of $\Delta\phi = \sfrac{\pi}{8} \ \widehat{=}\  22.5^\circ$ the \ac{NF} (Fresnel)-distance-formula $r_{\text{NF}}$ can be derived:
+
+\begin{equation}
+\Delta\phi = \frac{\pi}{8} = \frac{kz^{\prime\, 3}}{2r_{\text{NF}}^2}\sin\theta_2\cos^2\theta_2= \frac{\pi D^3}{12\sqrt{3}\cdot\lambda r_{\text{NF}}^2} \quad \Leftrightarrow \quad r_{\text{NF}}=0.62\sqrt{\frac{D^3}{\lambda}}
+\end{equation}
+
+The region directly surrounding the antenna in front of this boundary is called reactive \ac{NF} and it is according to \cite{balanis} \glqq that portion of the near-field region immediately surrounding the antenna wherein the reactive field predominates.\grqq{ }In other words, the reactive \ac{NF} is that portion of an antennas field were you would expect direct coupling.
 
 \subsection{Derat Distance}
 
-The Derat distance is that distance, in which the main beam of an antenna is in \ac{FF} condition. For the understanding of the Derat distance $r_{\text{Dr}}$ other considerations need to take place: It is about spherical modes described by spherical Hankel functions  of the second kind. \cite{8393926} \cite{hansen}\\
+The Derat distance was introduced by Benoit Derat in \cite{8393926} and it is that distance, in which the main beam of an antenna is in \ac{FF} condition. For the understanding of the Derat distance $r_{\text{Dr}}$ other considerations need to take place: It is about spherical modes described by spherical Hankel functions  of the second kind. \cite{8393926} \cite{hansen}\\
 In \cite{8393926} it is shown, that higher order modes than 
 
 \begin{equation}
 N = \lceil 1.0252\cdot\left(\frac{\pi D}{\lambda}\right)^{0.8633} \rceil
 \end{equation}
 
-have a maximum influence to the \ac{EIRP} of $\SI{0.5}{\decibel}$. With that the Derat distance can be derived to:
+have a maximum influence to the \ac{EIRP} in main direction of $\SI{0.5}{\decibel}$. With that the Derat distance can be derived to:
 
 \begin{equation}
 r_{\text{Dr}} = \lambda\left(\frac{\pi D}{\lambda}\right)^{0.8633}\left(0.1673\left(\frac{\pi D}{\lambda}\right)^{0.8633}+0.1632\right)
@@ -76,7 +107,7 @@ r_{\text{Dr}} = \lambda\left(\frac{\pi D}{\lambda}\right)^{0.8633}\left(0.1673\l
 \end{figure}
 
 To clarify the introduced distances they will be proofed based on a $\SI{20}{\decibel}$ \ac{SGH} at $\SI{28}{\giga\hertz}$. If you look in the annex at figure \ref{fig:fielddist} you see the front view of this horn with the underlying field distribution. The polarisation is in $y$-direction, so the $yz$-plane is called E-plane and the $xz$-plane is called H-plane from here on.\\
-In figure \ref{fig:beamcpmp} the normalized wave impedance (a) and the normalized phase between E- and H-field components over the distance to the phase center are plotted. To clarify the designations the directions are plotted in (c). The data has been produces by CST\texttrademark , a full wave simulation tool. Complex data in $x$, $y$, and $z$ direction was exported to Matlab\texttrademark and there post processed.\\
+In figure \ref{fig:beamcpmp} the normalized wave impedance (a) and the normalized phase between E- and H-field components over the distance to the phase center are plotted. To clarify the designations the directions are plotted in (c). The data has been produces by CST\texttrademark , a full wave simulation tool. Complex data in $x$, $y$, and $z$ direction was exported to Matlab\texttrademark{ } and there post processed.\\
 Also the field boundaries from the sections above are plotted with dashed lines. For deriving the boundaries only the opening of the horn in the E-plane was taken to account. This is rational because the field distribution and thus the usage of the aperture is known, refer to figure \ref{fig:fielddist}. As you can see in the E-plane the aperture is fully used. But if the field distribution is unknown the smallest circle enclosing the aperture has to be taken.\\
 In \ref{fig:beamcpmp} (a) the normalized wave impedance of the different angels (refer to (c)) is plotted over the distance from the antennas phase center. \ref{fig:beamcpmp} (b) shows analogue to (a) the phase between E- and H-field.\\
 The main lobe (blue line) is from Derat-distance on in \ac{FF} condition. On the one hand side the wave impedance reached its endvalue of $\SI{377}{\ohm}$ and on the other hand E- and H-fields are coherent. Considering the side lobes it can be seen that in the reactive \ac{NF} the field conditions are very unstable, whereas the fields in the radiating \ac{NF} become more stable. In the \ac{FF} the field values are continually decreasing the offset from their final value.\\
@@ -90,8 +121,6 @@ was taken to account. At Derat distance ($\approx\SI{100}{\milli\meter}$) the er
 
 \section{Spatial Sampling Approaches}
 
-
-\section{Antenna Field Regions}
 \begin{figure}[H]
 \centering
 \def\svgwidth{0.6\textwidth}

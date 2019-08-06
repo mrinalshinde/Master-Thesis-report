@@ -1,4 +1,4 @@
-%% Creator: Inkscape 0.91, www.inkscape.org
+%% Creator: Inkscape inkscape 0.92.4, www.inkscape.org
 %% PDF/EPS/PS + LaTeX output extension by Johan Engelen, 2010
 %% Accompanies image file 'AntennaApature.pdf' (pdf, eps, ps)
 %%
@@ -35,8 +35,10 @@
     \renewcommand\transparent[1]{}%
   }%
   \providecommand\rotatebox[2]{#2}%
+  \newcommand*\fsize{\dimexpr\f@size pt\relax}%
+  \newcommand*\lineheight[1]{\fontsize{\fsize}{#1\fsize}\selectfont}%
   \ifx\svgwidth\undefined%
-    \setlength{\unitlength}{196.32989502bp}%
+    \setlength{\unitlength}{196.37676951bp}%
     \ifx\svgscale\undefined%
       \relax%
     \else%
@@ -48,21 +50,23 @@
   \global\let\svgwidth\undefined%
   \global\let\svgscale\undefined%
   \makeatother%
-  \begin{picture}(1,0.77000276)%
+  \begin{picture}(1,0.76981896)%
+    \lineheight{1}%
+    \setlength\tabcolsep{0pt}%
     \put(0,0){\includegraphics[width=\unitlength,page=1]{AntennaApature.pdf}}%
-    \put(0.3115891,0.37368191){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$D$}}}%
-    \put(0.07996502,0.0031486){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$z$}}}%
-    \put(0.77353529,0.25629121){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$x$}}}%
-    \put(0.41337265,0.7461122){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$y$}}}%
-    \put(0.58625071,0.63086037){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$r$}}}%
-    \put(0.66216434,0.49914368){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$R$}}}%
-    \put(-0.00235772,0.20689757){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{Phase Center}}}%
+    \put(0.31151472,0.37359271){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}$D$\end{tabular}}}}%
+    \put(0.07994593,0.00314785){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}$x$\end{tabular}}}}%
+    \put(0.77335065,0.25623004){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}$y$\end{tabular}}}}%
+    \put(0.41327398,0.74593411){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}$z$\end{tabular}}}}%
+    \put(0.58611078,0.63070979){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}$R$\end{tabular}}}}%
+    \put(0.66200628,0.49902453){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}$r$\end{tabular}}}}%
+    \put(-0.00235716,0.20684818){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}Phase Center\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=2]{AntennaApature.pdf}}%
-    \put(0.7406062,0.6720219){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$P\left( x,y,z\right)$}}}%
-    \put(0.47260988,0.33720443){\color[rgb]{0.1372549,0.12156863,0.1254902}\makebox(0,0)[lb]{\smash{$\Theta $}}}%
-    \put(0.7207016,0.41780395){\color[rgb]{0.1372549,0.12156863,0.1254902}\makebox(0,0)[lb]{\smash{Wavefront}}}%
+    \put(0.74042942,0.67186148){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}$P\left( x,y,z\right)$\end{tabular}}}}%
+    \put(0.47249707,0.33712394){\color[rgb]{0.1372549,0.12156863,0.1254902}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}$\Theta $\end{tabular}}}}%
+    \put(0.72052957,0.41770422){\color[rgb]{0.1372549,0.12156863,0.1254902}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}Wavefront\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=3]{AntennaApature.pdf}}%
-    \put(0.40973488,0.2764798){\color[rgb]{0.1372549,0.12156863,0.1254902}\makebox(0,0)[lb]{\smash{Aperture}}}%
-    \put(0.40102432,0.49914368){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$\left( x',y',0\right)$}}}%
+    \put(0.40963708,0.2764138){\color[rgb]{0.1372549,0.12156863,0.1254902}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}Aperture\end{tabular}}}}%
+    \put(0.4009286,0.49902453){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}$\left( 0,y',z'\right)$\end{tabular}}}}%
   \end{picture}%
 \endgroup%
