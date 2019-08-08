@@ -1,4 +1,4 @@
-%% Creator: Inkscape 0.91, www.inkscape.org
+%% Creator: Inkscape inkscape 0.92.4, www.inkscape.org
 %% PDF/EPS/PS + LaTeX output extension by Johan Engelen, 2010
 %% Accompanies image file 'KoordinateSystem.pdf' (pdf, eps, ps)
 %%
@@ -35,8 +35,10 @@
     \renewcommand\transparent[1]{}%
   }%
   \providecommand\rotatebox[2]{#2}%
+  \newcommand*\fsize{\dimexpr\f@size pt\relax}%
+  \newcommand*\lineheight[1]{\fontsize{\fsize}{#1\fsize}\selectfont}%
   \ifx\svgwidth\undefined%
-    \setlength{\unitlength}{435.57840765bp}%
+    \setlength{\unitlength}{410.91544082bp}%
     \ifx\svgscale\undefined%
       \relax%
     \else%
@@ -48,19 +50,19 @@
   \global\let\svgwidth\undefined%
   \global\let\svgscale\undefined%
   \makeatother%
-  \begin{picture}(1,0.93478518)%
+  \begin{picture}(1,0.79742672)%
+    \lineheight{1}%
+    \setlength\tabcolsep{0pt}%
     \put(0,0){\includegraphics[width=\unitlength,page=1]{KoordinateSystem.pdf}}%
-    \put(0.42310553,0.39207087){\color[rgb]{0,0,0}\rotatebox{13.64873295}{\makebox(0,0)[lb]{\smash{Direction}}}}%
+    \put(0.61030441,0.3725669){\color[rgb]{0,0,0}\rotatebox{14.752576}{\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}\footnotesize{Direction}\end{tabular}}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=2]{KoordinateSystem.pdf}}%
-    \put(0.3374376,0.32177334){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$\Phi$}}}%
+    \put(0.57666466,0.29207319){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}$\Phi$\end{tabular}}}}%
+    \put(0.44514175,0.29663736){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}$\Theta$\end{tabular}}}}%
+    \put(-0.00083179,0.28710976){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}\footnotesize{Elevation}\end{tabular}}}}%
+    \put(0.23349182,0.00465804){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}\footnotesize{Azimuth}\end{tabular}}}}%
+    \put(0.95631895,0.3865438){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}$y$\end{tabular}}}}%
+    \put(0.59005945,0.77869947){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}$z$\end{tabular}}}}%
+    \put(0.15076189,0.08849346){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{0}\smash{\begin{tabular}[t]{l}$x$\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=3]{KoordinateSystem.pdf}}%
-    \put(0.35073375,0.42188201){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$\Theta$}}}%
-    \put(0,0){\includegraphics[width=\unitlength,page=4]{KoordinateSystem.pdf}}%
-    \put(0.4448491,0.80081725){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{Elevation}}}%
-    \put(0,0){\includegraphics[width=\unitlength,page=5]{KoordinateSystem.pdf}}%
-    \put(0.78587391,0.20958684){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{Azimuth}}}%
-    \put(0.95879222,0.38974073){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$x$}}}%
-    \put(0.27136088,0.9171183){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$y$}}}%
-    \put(0.02472658,0.00404679){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$z$}}}%
   \end{picture}%
 \endgroup%

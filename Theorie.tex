@@ -123,13 +123,40 @@ was taken to account. At Derat distance ($\approx\SI{100}{\milli\meter}$) the er
 
 \begin{figure}[H]
 \centering
-\def\svgwidth{0.6\textwidth}
+\def\svgwidth{0.4\textwidth}
 \input{Bilder/KoordinateSystem.pdf_tex}
 \caption{The underling coordinate system}
 \label{coordinates}
 \end{figure}
 
+In figure \ref{coordinates} the used coordinate system is depicted. In comparison with a globe the latitude is described by the elevation with the symbol $\Theta$ and the longitude is described by the azimuth with the symbol $\Phi$. The value range of $\Theta$ and $\Phi$ is:
+
+\begin{equation}
+-\frac{\pi}{2} \leq \Theta <\frac{\pi}{2}\, ,\quad -\pi \leq \Phi < \pi
+\end{equation}
+
+Hereinafter different spatial sampling approaches for this sphere are introduced. For the development of a sampling grid a sampling frequency is necessary and will be introduced in the next section.
+
 \subsection{Derivation of the Spatial Sampling considering the Array Factor}
+
+Ether the sampling frequency in elevation or in azimuth is depend on the aperture of the \ac{DUT} and the wavelength. To investigating the necessary sampling frequency an one dimensional $\sfrac{\lambda}{2}$ array of isotropic radiators was taken to account. With the number of elements $N$, the element spacing $d = \sfrac{\lambda}{2}$ and the wavelength $\lambda$ the antenna pattern is derivable: \cite{litze}
+
+\begin{equation}
+\begin{vmatrix}\Gamma\left(\theta\right)\end{vmatrix}^2 = \Biggl|\frac{\sin\left(\frac{\pi M d}{\lambda \sin\left(\theta\right)}\right)}{\sin\left(\frac{\pi d}{\lambda \sin\left(\theta\right)}\right)}\Biggl|^2 = \Biggl|\frac{\sin\left(\frac{\pi M}{2 \sin\left(\theta\right)}\right)}{\sin\left(\frac{\pi}{2 \sin\left(\theta\right)}\right)}\Biggl|^2
+\end{equation}
+
+\begin{figure}
+  \centering
+  \subfigure[Two elements: Pattern]{\includegraphics[width=0.32\textwidth]{Matlab/NoNumEl2.eps}}
+  \centering
+  \subfigure[Six elements: Pattern]{\includegraphics[width=0.32\textwidth]{Matlab/NoNumEl6.eps}}
+  \centering
+  \subfigure[100 elements: Pattern]{\includegraphics[width=0.32\textwidth]{Matlab/NoNumEl100.eps}}
+\caption{Pattern of $N$-element array with $\sfrac{\lambda}{2}$-spacing}
+\label{fig:evolvpattern2}
+\end{figure}
+
+The resulting pattern is depicted in figure \ref{fig:evolvpattern2} and in annex \ref{fig:evolvpattern} (a little larger).
 
 \subsection{Constant Step}
 Constant Step, Constant Step with swept Azimuth,
