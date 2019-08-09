@@ -156,14 +156,116 @@ Ether the sampling frequency in elevation or in azimuth is depend on the apertur
 \label{fig:evolvpattern2}
 \end{figure}
 
-The resulting pattern is depicted in figure \ref{fig:evolvpattern2} and in annex \ref{fig:evolvpattern} (a little larger).
+The resulting pattern is depicted in figure \ref{fig:evolvpattern2} and in annex \ref{fig:evolvpattern} (a little larger).\\
+In \cite{hansen} it is suggested to use the sampling increment of:
 
-\subsection{Constant Step}
-Constant Step, Constant Step with swept Azimuth,
+\begin{equation}
+\Delta\Theta' = \frac{2\pi}{2N+1}\ , \quad \Delta\Phi'=\frac{2\pi}{2M+1}
+\end{equation}
+
+In which $N$ is the highest significant wave mode on the minimum sphere enclosing the antennas aperture and $M$ is the highest significant wave mode on the minimum cylinder. With the sphere radius $r_S$, the cylinder radius $r_C$ and the angular wavenumber $k = \sfrac{2\pi}{\lambda}$ they are calculated as follows:
+
+\begin{equation}
+N = kr_S+10\ , \quad M = kr_C+10
+\end{equation}
+
+The resulting formula is for example for the elevation:
+
+\begin{equation}
+\Delta\Theta_{\text{ref}} = \lim_{r_S \to \infty}\Delta\Theta' = \lim_{r_S \to \infty} \frac{2\pi}{2\left(kr_S+10\right)+1} = \frac{\lambda}{2\cdot r_S}
+\end{equation}
+
+Analogue to that in azimuth:
+
+\begin{equation}
+\Delta\Phi_{\text{ref}} = \frac{\lambda}{2\cdot r_C}
+\end{equation}
+
+These angle increments were also introduced in \cite{2018arXiv180310993F} and are called reference angle increments.
+
+\begin{figure}
+  \centering
+  \subfigure[Two elements: Mode spectra]{\includegraphics[width=0.32\textwidth]{Matlab/SpNumEl2.eps}}
+  \centering
+  \subfigure[Six elements: Mode spectra]{\includegraphics[width=0.32\textwidth]{Matlab/SpNumEl6.eps}}
+  \centering
+  \subfigure[100 elements: Mode spectra]{\includegraphics[width=0.32\textwidth]{Matlab/SpNumEl100.eps}}
+\caption{Mode spectra of $N$-element array with $\sfrac{\lambda}{2}$-spacing}
+\label{fig:evolvpattern3}
+\end{figure}
+
+To illustrate these angle increments the one dimensional array of isotropic radiators is taken. Evaluating the array factor of a $d = \sfrac{\lambda}{n}$ -array with $N$ elements the reference angel becomes very short:
+
+\begin{equation}
+\Delta\Phi_{\text{ref}} = \frac{n}{N-1}
+\label{eq:1dinc}
+\end{equation}
+
+With the \ac{FFT} over the angle of the antenna patterns in figure \ref{fig:evolvpattern2} the mode spectra can be derived and is seen in figure \ref{fig:evolvpattern3} (or \ref{fig:evolvpattern} in annex).\\
+When an arbitrary signal is sampled, the spectrum is mirrored at the sampling frequency. Choosing a sampling frequency lower than twice the highest occurring frequency in the sampled signal causes an irretrievable error. This is called the Nyquist-Shannon sampling theorem.\\
+For that sake the dashed lines are:
+
+\begin{equation}
+\color{blue}\left(2\Delta\Phi_{\text{ref}}\right)^{-1}\color{black},\ \color{cyan}\left(2\Delta\Phi'\right)^{-1}\color{black}\ \text{and}\ \color{green}\text{first mode} > \SI{-40}{\decibel} \color{black}
+\end{equation}
+
+Similar to that the dashed lines in figure \ref{fig:evolvpattern2} are the first sampling points using the derived sampling frequency.\\
+The issue is now to find the sampling frequency that the sampling error is independent from the aperture of the antenna. As depicted in figure \ref{fig:evolvpattern3} the sampling frequency introduced by \cite{hansen} is to strict for small apertures. On the other hand the reference angle introduced by \cite{2018arXiv180310993F} is to inaccurate for small apertures. Because of that a new factor was taken:
+
+\begin{equation}
+\text{CrefA} = \frac{\Delta\Phi_{\text{ref}}\cdot\left(\text{first mode} > \SI{-40}{\decibel}\right)}{2}
+\end{equation} 
+
+This factor is plotted in \ref{fig:crefa}. It is dependent of the aperture.
+
+\begin{figure}
+\centering
+\includegraphics[width=0.41\textwidth]{Matlab/CrefA.eps}
+\caption{Correction factor for reference angle}
+\label{fig:crefa}
+\end{figure}
+
+So the error due to sampling is independent from the antennas aperture.\\
+For further reduction of points a second factor is introduced, the Sparsity Factor SF. At $\text{SF}=2$ every second skipped. With all that the angle increments for spherical sampling is:
+
+\begin{equation}
+\Delta\Theta = \text{SF}\cdot\text{CrefA}\cdot\frac{\lambda}{2r_S}\ ,\quad\Delta\Phi = \text{SF}\cdot\text{CrefA}\cdot\frac{\lambda}{2r_C}
+\end{equation}
+
+\subsection{Constant Step Size Grid}
+
+
+\begin{figure}[h]
+  \centering
+  \subfigure[without sinTF]{\includegraphics[width=0.49\textwidth]{Matlab/GridCoStPolar.eps}}
+  \centering
+  \subfigure[with sinTF]{\includegraphics[width=0.49\textwidth]{Matlab/GridCoStSinPolar.eps}}
+\caption{$\SI{15}{\degree}$ -Constant Step Size Grid}
+\label{fig:cssg}
+\end{figure}
+
+The straight forward way to a spherical measurement is using a \ac{CSSG} depicted in figure \ref{fig:cssg} (a). The advantage is the easy feasibility with any positioner. Ether the azimuth can be sweep on every latitude circle or the elevation is swept on every longitude circle. On the other hand the measurement density is higher on the poles as on equator.\\
+To meet that the theta dependent number of azimuth points was introduced e.g. by \cite{ctiaat}. It is applied as follows:
+
+\begin{align}
+N_{\text{max}} = \frac{2\pi}{\Delta\Phi}\\
+N\left(\Theta\right)=\lceil N_{\text{max}}\cdot\cos\left(\Theta\right)\rceil\\
+\Delta\Phi\left(\Theta\right) = \frac{2\pi}{N\left(\Theta\right)}
+\end{align}
+
+It is only possible to sweep the elevation when this type of grid is used.\\
+For a better comparison of the grids, also in Cartesian presentation, which is interesting for the positioner, they are depicted in figure \ref{fig:gridcomp} in the annex. The red line is a suggested sequence.
 
 \subsection{Constant Density}
 
-Constant Density
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.5\textwidth]{Matlab/GridCoDePolar.eps}
+\caption{Constant Density Grid with 264 Measurementpoints}
+\label{fig:cdg}
+\end{figure}
+
+The \ac{CDG} depicted in figure \ref{fig:cdg} \todo{hier weiterschreiben}
 
 \subsection{Other}
 
