@@ -102,7 +102,7 @@ r_{\text{Dr}} = \lambda\left(\frac{\pi D}{\lambda}\right)^{0.8633}\left(0.1673\l
   \subfigure[Phase]{\includegraphics[width=0.49\textwidth]{Matlab/NormPhaseHorn.eps}}
   \centering
   \subfigure[Antenna Pattern E-Plane]{\includegraphics[width=0.3\textwidth]{Matlab/ePlanePattern.eps}}
-\caption{Beam comparison of a $\SI{20}{\decibel}$ \ac{SGH} at $\SI{28}{\giga\hertz}$}
+\caption{Beam comparison of a $\SI{20}{\decibel}$ SGH at $\SI{28}{\giga\hertz}$}
 \label{fig:beamcpmp}
 \end{figure}
 
@@ -206,17 +206,15 @@ When an arbitrary signal is sampled, the spectrum is mirrored at the sampling fr
 For that sake the dashed lines are:
 
 \begin{equation}
-\color{blue}\left(2\Delta\Phi_{\text{ref}}\right)^{-1}\color{black},\ \color{cyan}\left(2\Delta\Phi'\right)^{-1}\color{black}\ \text{and}\ \color{green}\text{first mode} > \SI{-40}{\decibel} \color{black}
+\color{blue}\left(\Delta\Phi_{\text{ref}}\right)^{-1}\color{black},\ \color{cyan}\left(\Delta\Phi'\right)^{-1}\color{black}\ \text{and}\ \color{green}\text{first mode} > \SI{-40}{\decibel} \color{black}
 \end{equation}
 
 Similar to that the dashed lines in figure \ref{fig:evolvpattern2} are the first sampling points using the derived sampling frequency.\\
-The issue is now to find the sampling frequency that the sampling error is independent from the aperture of the antenna. As depicted in figure \ref{fig:evolvpattern3} the sampling frequency introduced by \cite{hansen} is to strict for small apertures. On the other hand the reference angle introduced by \cite{2018arXiv180310993F} is to inaccurate for small apertures. Because of that a new factor was taken:
+The issue is now to find the sampling frequency that the sampling error is independent from the aperture of the antenna. As depicted in figure \ref{fig:evolvpattern3} the sampling frequency introduced by \cite{hansen} is to strict for small apertures. On the other hand the reference angle introduced by \cite{2018arXiv180310993F} is to inaccurate for small apertures. Because of that a new factor is taken:
 
 \begin{equation}
 \text{CrefA} = \frac{\Delta\Phi_{\text{ref}}\cdot\left(\text{first mode} > \SI{-40}{\decibel}\right)}{2}
 \end{equation} 
-
-This factor is plotted in \ref{fig:crefa}. It is dependent of the aperture.
 
 \begin{figure}
 \centering
@@ -225,8 +223,8 @@ This factor is plotted in \ref{fig:crefa}. It is dependent of the aperture.
 \label{fig:crefa}
 \end{figure}
 
-So the error due to sampling is independent from the antennas aperture.\\
-For further reduction of points a second factor is introduced, the Sparsity Factor SF. At $\text{SF}=2$ every second skipped. With all that the angle increments for spherical sampling is:
+This factor is plotted in figure \ref{fig:crefa}. It is dependent of the aperture. With that the error due to sampling is independent from the antennas aperture.\\
+For further reduction of points a second factor is introduced, the Sparsity Factor SF. At $\text{SF}=2$ every second measurement point skipped. With all that the angle increments for spherical sampling is:
 
 \begin{equation}
 \Delta\Theta = \text{SF}\cdot\text{CrefA}\cdot\frac{\lambda}{2r_S}\ ,\quad\Delta\Phi = \text{SF}\cdot\text{CrefA}\cdot\frac{\lambda}{2r_C}
@@ -259,13 +257,33 @@ For a better comparison of the grids, also in Cartesian presentation, which is i
 \subsection{Constant Density}
 
 \begin{figure}[h]
-\centering
-\includegraphics[width=0.5\textwidth]{Matlab/GridCoDePolar.eps}
+  \centering
+  \subfigure[Polar Coordinates]{\includegraphics[width=0.49\textwidth]{Matlab/GridCoDePolar.eps}}
+  \centering
+  \subfigure[Cartesian Coordinates]{\includegraphics[width=0.49\textwidth]{Matlab/GridCoDeCart.eps}}
 \caption{Constant Density Grid with 264 Measurementpoints}
 \label{fig:cdg}
 \end{figure}
 
-The \ac{CDG} depicted in figure \ref{fig:cdg} \todo{hier weiterschreiben}
+The \ac{CDG} depicted in figure \ref{fig:cdg} was produces by a charged particle algorithm. It works by minimising the cumulated potential energy of all measurement dots considered as charged particles. The potential energy is minimal, when all points are evenly distributed over the sphere.\\ 
+Deriving the optimal measurement sequence is a \ac{TSP}. It is solved by the Matlab toolbox introduced in \cite{tsp} viewing the angles as Cartesian coordinates. This is sensible for the positioner. Because the positioning in Azimuth is faster than in Elevation, the elevation distance is weighted five times more. Furthermore the periodicity is taken to account, so that the distance between tow points $\text{P}_n$ and $\text{P}_m$ is:
+
+\begin{equation}
+\Delta\Theta_{mn} = 5\left(\Theta_{\text{P}_n}-\Theta_{\text{P}_m}\right)\ ,\quad \Delta\Phi_{mn} = \text{min}\left(|\Phi_{\text{P}_n}-\Phi_{\text{P}_m}|\, ,\ 2\pi-|\Phi_{\text{P}_n}-\Phi_{\text{P}_m}|\right)
+\end{equation}
+
+With that the quadratic distance Matrix $D$ can be derived using euclidean distance with $d_{mn} = \sqrt{\Delta\Theta_{mn}^2+\Delta\Phi_{mn}^2}$ out of $N$ Points:
+
+\begin{equation}
+D = \begin{bmatrix}
+ 0 & d_{12} & \dots & d_{1N}\\
+ d_{21} & 0 & \dots & d_{2N}\\
+ \vdots & \vdots & \ddots & \vdots\\
+ d_{N1} & d_{N2} & \dots & 0
+\end{bmatrix}
+\end{equation}
+
+The cumulated distance for $N = 264$ is converged after around one million iterations. The result is depicted in figure \ref{fig:cdg} (b).
 
 \subsection{Other}
 

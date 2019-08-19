@@ -1,0 +1,76 @@
+%% Creator: Inkscape inkscape 0.92.4, www.inkscape.org
+%% PDF/EPS/PS + LaTeX output extension by Johan Engelen, 2010
+%% Accompanies image file 'detectorSetting.pdf' (pdf, eps, ps)
+%%
+%% To include the image in your LaTeX document, write
+%%   \input{<filename>.pdf_tex}
+%%  instead of
+%%   \includegraphics{<filename>.pdf}
+%% To scale the image, write
+%%   \def\svgwidth{<desired width>}
+%%   \input{<filename>.pdf_tex}
+%%  instead of
+%%   \includegraphics[width=<desired width>]{<filename>.pdf}
+%%
+%% Images with a different path to the parent latex file can
+%% be accessed with the `import' package (which may need to be
+%% installed) using
+%%   \usepackage{import}
+%% in the preamble, and then including the image with
+%%   \import{<path to file>}{<filename>.pdf_tex}
+%% Alternatively, one can specify
+%%   \graphicspath{{<path to file>/}}
+%% 
+%% For more information, please see info/svg-inkscape on CTAN:
+%%   http://tug.ctan.org/tex-archive/info/svg-inkscape
+%%
+\begingroup%
+  \makeatletter%
+  \providecommand\color[2][]{%
+    \errmessage{(Inkscape) Color is used for the text in Inkscape, but the package 'color.sty' is not loaded}%
+    \renewcommand\color[2][]{}%
+  }%
+  \providecommand\transparent[1]{%
+    \errmessage{(Inkscape) Transparency is used (non-zero) for the text in Inkscape, but the package 'transparent.sty' is not loaded}%
+    \renewcommand\transparent[1]{}%
+  }%
+  \providecommand\rotatebox[2]{#2}%
+  \newcommand*\fsize{\dimexpr\f@size pt\relax}%
+  \newcommand*\lineheight[1]{\fontsize{\fsize}{#1\fsize}\selectfont}%
+  \ifx\svgwidth\undefined%
+    \setlength{\unitlength}{319.01290398bp}%
+    \ifx\svgscale\undefined%
+      \relax%
+    \else%
+      \setlength{\unitlength}{\unitlength * \real{\svgscale}}%
+    \fi%
+  \else%
+    \setlength{\unitlength}{\svgwidth}%
+  \fi%
+  \global\let\svgwidth\undefined%
+  \global\let\svgscale\undefined%
+  \makeatother%
+  \begin{picture}(1,1.02678503)%
+    \lineheight{1}%
+    \setlength\tabcolsep{0pt}%
+    \put(0,0){\includegraphics[width=\unitlength,page=1]{detectorSetting.pdf}}%
+    \put(0.03214834,0.00378364){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\footnotesize{Displayed sample}\end{tabular}}}}%
+    \put(0.10518824,0.99413565){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\footnotesize{Samples}\end{tabular}}}}%
+    \put(0.0172967,0.77322151){\color[rgb]{0,0,0}\rotatebox{90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\footnotesize{Video Voltage}\end{tabular}}}}}%
+    \put(0.01917536,0.42601194){\color[rgb]{0,0,0}\rotatebox{90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\footnotesize{A}\end{tabular}}}}}%
+    \put(0.82379423,0.00787966){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\footnotesize{$f$}\end{tabular}}}}%
+    \put(0.19510258,0.46941978){\color[rgb]{0.92941176,0.10980392,0.14117647}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\footnotesize{Max Peak}\end{tabular}}}}%
+    \put(0.82379423,0.53312072){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\footnotesize{$f$}\end{tabular}}}}%
+    \put(0.19510258,0.36051004){\color[rgb]{0.96470588,0.52941176,0.07058824}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\footnotesize{RMS}\end{tabular}}}}%
+    \put(0.19510258,0.32573962){\color[rgb]{0.44705882,0.39215686,0.72156863}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\footnotesize{AV}\end{tabular}}}}%
+    \put(0.19510258,0.1833467){\color[rgb]{0,0.67843137,0.9372549}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\footnotesize{Sample}\end{tabular}}}}%
+    \put(0.03979738,0.14105797){\color[rgb]{0,0.65098039,0.31372549}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\footnotesize{Min Peak}\end{tabular}}}}%
+    \put(0.57672838,0.37497041){\color[rgb]{0.92941176,0.10980392,0.14117647}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\footnotesize{Max Peak}\end{tabular}}}}%
+    \put(0.4925541,0.31678601){\color[rgb]{0.96470588,0.52941176,0.07058824}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\footnotesize{RMS}\end{tabular}}}}%
+    \put(0.4925541,0.29066237){\color[rgb]{0.44705882,0.39215686,0.72156863}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\footnotesize{AV}\end{tabular}}}}%
+    \put(0.19510258,0.25872418){\color[rgb]{0,0.36862745,0.54117647}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\footnotesize{Auto Peak}\end{tabular}}}}%
+    \put(0.57672838,0.25991163){\color[rgb]{0,0.67843137,0.9372549}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\footnotesize{Sample}\end{tabular}}}}%
+    \put(0.42040583,0.19329278){\color[rgb]{0,0.36862745,0.54117647}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\footnotesize{Auto Peak}\end{tabular}}}}%
+    \put(0.42983371,0.10304762){\color[rgb]{0,0.65098039,0.31372549}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\footnotesize{Min Peak}\end{tabular}}}}%
+  \end{picture}%
+\endgroup%
