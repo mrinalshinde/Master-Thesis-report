@@ -23,7 +23,46 @@ emissions, parasitic emissions, intermodulation products and frequency conversio
 \end{itemize}
 
 \section{Legal Emission Limits USA vs. EU}
+\label{sec:legem}
+
+
+\begin{figure}[h]
+\centering
+\def\svgwidth{0.8\textwidth}
+\input{Bilder/EmissionMask.pdf_tex}
+\caption{Spurious Emissions Mask}
+\label{fig:sem}
+\end{figure}
 
 \cite{ceptercrec}\cite{ansi} \cite{fcc}
 
-\label{sec:legem}
+\begin{table}[h]
+\centering
+\caption{Legal Emission Limits}
+\label{tab:legusa}
+\begin{tabular}{|c|c|c|c|}
+\hline
+$f_c$  &  $f_l$ & $f_h$ & $p_e$ \\\hline
+\multicolumn{4}{|c|}{\textbf{USA}} \\\hline
+$\SI{9}{\kilo\hertz}-\SI{10}{\giga\hertz}$ & $\SI{9}{\kilo\hertz}$ & $10f_c\ \text{or}\ \SI{40}{\giga\hertz}$ & $\SI{-13}{\decibelm\per\mega\hertz}$ \\\hline
+$\SI{10}{\giga\hertz}-\SI{30}{\giga\hertz}$ & $\SI{9}{\kilo\hertz}$ & $5f_c\ \text{or}\ \SI{100}{\giga\hertz}$ & $\SI{-13}{\decibelm\per\mega\hertz}\ \text{or}\ 1\% \text{EBW}$ \\\hline
+$\SI{30}{\giga\hertz}-\dots$ & $\SI{9}{\kilo\hertz}$ & $5f_c\ \text{or}\ \SI{200}{\giga\hertz}$ & $\SI{-13}{\decibelm\per\mega\hertz}\ \text{or}\ 1\% \text{EBW}$ \\\hline
+\multicolumn{4}{|c|}{\textbf{EU}} \\\hline
+$\SI{9}{\kilo\hertz}-\SI{100}{\mega\hertz}$ & $\SI{9}{\kilo\hertz}$ & $\SI{1}{\giga\hertz}$ & $\SI{-36}{\decibelm\per \SI{100}{\kilo\hertz}}$ \\\hline
+$\SI{100}{\mega\hertz}-\SI{300}{\mega\hertz}$ & $\SI{9}{\kilo\hertz}$ & $10f_c$ & $\SI{-36}{\decibelm\per \SI{100}{\kilo\hertz}}$ \\\hline
+$\SI{300}{\mega\hertz}-\SI{600}{\mega\hertz}$ & $\SI{30}{\mega\hertz}$ & $\SI{3}{\giga\hertz}$ & $\SI{-36}{\decibelm\per \SI{100}{\kilo\hertz}}$ \\\hline
+$\SI{600}{\mega\hertz}-\SI{1}{\giga\hertz}$ & $\SI{30}{\mega\hertz}$ & $5f_c$ & $\SI{-36}{\decibelm\per \SI{100}{\kilo\hertz}}$ \\\hline
+$\SI{1}{\giga\hertz}-\SI{5.2}{\giga\hertz}$ & $\SI{30}{\mega\hertz}$ & $5f_c$ & $\SI{-30}{\decibelm\per\mega\hertz}$ \\\hline
+$\SI{5.2}{\giga\hertz}-\SI{7.25}{\giga\hertz}$ & $\SI{30}{\mega\hertz}$ & $\SI{26}{\giga\hertz}$ & $\SI{-30}{\decibelm\per\mega\hertz}$ \\\hline
+$\SI{7.25}{\giga\hertz}-\dots$ & $\SI{30}{\mega\hertz}$ & $2f_c$ & $\SI{-13}{\decibelm\per\mega\hertz}\ \text{and}\ \SI{-10}{\decibelm\per \SI{100}{\kilo\hertz}}$ \\\hline
+\end{tabular}
+\end{table}
+
+
+
+
+
+
+
+
+
