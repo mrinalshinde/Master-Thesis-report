@@ -57,8 +57,8 @@
     \put(0.5387364,0.16219951){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\small{OOB}\end{tabular}}}}%
     \put(0.2973554,0.16141959){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\small{OOB}\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=2]{EmissionMask.pdf}}%
-    \put(0.29524141,0.10691148){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\small{$2.5\cdot\text{OB}$}\end{tabular}}}}%
-    \put(0.47493627,0.10632381){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\small{$2.5\cdot\text{OB}$}\end{tabular}}}}%
+    \put(0.29524141,0.10691148){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\small{$2.5\cdot\text{OBW}$}\end{tabular}}}}%
+    \put(0.47493627,0.10632381){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\small{$2.5\cdot\text{OBW}$}\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=3]{EmissionMask.pdf}}%
     \put(0.42220456,0.54809473){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\small{OBW}\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=4]{EmissionMask.pdf}}%
@@ -73,7 +73,8 @@
     \put(0.02092491,0.68732781){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\small{$P$}\end{tabular}}}}%
     \put(0.14281203,0.11172255){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\small{$f_l$}\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=6]{EmissionMask.pdf}}%
-    \put(0.57922788,0.49642279){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\small{$\SI{26}{\decibelm}$}\end{tabular}}}}}%
-    \put(0.30091441,0.49832179){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\small{$\SI{26}{\decibelm}$}\end{tabular}}}}}%
+    \put(0.58534437,0.46584078){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\small{$\SI{26}{\decibel}$}\end{tabular}}}}}%
+    \put(0.29479792,0.46584078){\color[rgb]{0,0,0}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\small{$\SI{26}{\decibel}$}\end{tabular}}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=7]{EmissionMask.pdf}}%
   \end{picture}%
 \endgroup%

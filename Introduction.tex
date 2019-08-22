@@ -1,6 +1,6 @@
 \chapter{Introduction}
 
-Blabla \cite{2018arXiv180310993F} \cite{keysightota} \cite{inproceedings} \cite{6375745} \cite{balanis} \cite{19510} \cite{1446714} \\
+In this chapter the motivation and aim of this work is phrased. Furthermore the current emission limits and the necessaries terms are presented.
 
 \section{Motivation}
 
@@ -8,35 +8,28 @@ Blabla \cite{2018arXiv180310993F} \cite{keysightota} \cite{inproceedings} \cite{
 
 \section{Aim}
 
-The aim of this work is to find a optimal solution for conformance  \ac{TRP}-measurements using \acp{AC}. In dependence of the dimension of the \ac{DUT} a ideal grid and a perfect measurement distance for a wanted precision must be found. To achieve that, theoretical knowledge must be projected on simulations and the outcome must be proofed in real measurements.
+The aim of this work is to find an optimal solution for conformance  \ac{TRP}-measurements using \acp{AC}. In dependence of the dimension of the \ac{DUT} a ideal grid and a perfect measurement distance for a wanted precision must be found. To achieve that, theoretical knowledge must be projected on simulations and the outcome must be proofed in real measurements.
 
-\section{Terms}
-
-To make sure that every reader knows the most important terms in this document, they will be declared regarding \cite{seitur} and \cite{ctiaat} here:
-
-\begin{itemize}
-\item An \textbf{\acf{UnE}} consists of \acl{SE} and \acl{OOB}.
-\item A \textbf{\acf{SE}} is an emission on a frequency, or frequencies, which are outside the necessary bandwidth and the level of which may be reduced without affecting the corresponding transmission of information. \acl{SE} include harmonic
-emissions, parasitic emissions, intermodulation products and frequency conversion products but exclude \aclp{OOB}.
-\item A \textbf{\acf{OOB}} is an emission on a frequency or frequencies immediately outside the necessary bandwidth which results from the modulation process, but excluding \aclp{SE}.
-\item \textbf{\acf{TRP}} is the average spherical \ac{EIRP}. Or in other words the power that an isotropic radiator, with the same input, would emit in every direction.
-\end{itemize}
-
-\section{Legal Emission Limits USA vs. EU}
+\section{Legal Emission Limits}
 \label{sec:legem}
 
+In this section the official \ac{EM} emission limits are acknowledged by the example of the \ac{USA} and the \ac{EU}. For example the \ac{3GPP} or the \ac{IEEE} develop a new telecommunication standard. Than the \ac{ITU} formulates a recommendation about the emission limits for the national committees. These committees, in the \ac{EU} the \ac{CEPT} and in the \ac{USA} the \ac{FCC}, formulate with the help of other subcommittees, e.g. \ac{ETSI} (\ac{EU}) or \ac{ANSI} (\ac{USA}), limits which become law.\\
+To quantify emission limits the following terms are declared regarding \cite{seitur} and \cite{ctiaat}:
 
-\begin{figure}[h]
-\centering
-\def\svgwidth{0.8\textwidth}
-\input{Bilder/EmissionMask.pdf_tex}
-\caption{Spurious Emissions Mask}
-\label{fig:sem}
-\end{figure}
+\begin{itemize}
+\item An \textbf{\acf{UnE}} consists of \ac{SE} and \ac{OOB}.
+\item A \textbf{\acf{SE}} is an emission on a frequency, or frequencies, which are outside the necessary bandwidth and the level of which may be reduced without affecting the corresponding transmission of information. \acl{SE} include harmonic
+emissions, parasitic emissions, intermodulation products and frequency conversion products but exclude \aclp{OOB}.
+\item An \textbf{\acf{OOB}} is an emission on a frequency or frequencies immediately outside the necessary bandwidth which results from the modulation process, but excluding \aclp{SE}.
+\item The \textbf{\acf{OBW}} is the bandwidth of the intended radiation.
+\item The \textbf{\acf{EBW}} is used by the \ac{FCC} and describes a bandwidth which is surrendered out of that tow points in the spectra lying $\SI{26}{\decibel}$ under the power of the \ac{OBW}. 
+\item \textbf{\acf{TRP}} is the \ac{OTA} equivalent for measuring connected and describes all power radiated by a device. It is the average spherical \ac{EIRP}.
+\end{itemize}
 
-\cite{ceptercrec}\cite{ansi} \cite{fcc}
 
-\begin{table}[h]
+In table \ref{tab:legusa} the emission limits from \cite{ceptercrec}, \cite{ansi} and \cite{fcc} are summarized. The used terms are illustrated in figure \ref{fig:sem}.
+
+\begin{table}
 \centering
 \caption{Legal Emission Limits}
 \label{tab:legusa}
@@ -58,6 +51,13 @@ $\SI{7.25}{\giga\hertz}-\dots$ & $\SI{30}{\mega\hertz}$ & $2f_c$ & $\SI{-13}{\de
 \end{tabular}
 \end{table}
 
+\begin{figure}
+\centering
+\def\svgwidth{0.8\textwidth}
+\input{Bilder/EmissionMask.pdf_tex}
+\caption{Spurious Emissions Mask}
+\label{fig:sem}
+\end{figure}
 
 
 

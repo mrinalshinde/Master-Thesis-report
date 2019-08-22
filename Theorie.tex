@@ -1,6 +1,6 @@
 \chapter{Theoretical Background}
 
-This chapter will give a brief overview about the underlying theoretical background in the fields of antenna theory, spatial sampling and will introduce some methods of integration to derive the \ac{TRP} out of spherical \ac{EIRP}-data.
+This chapter will give a brief overview about the underlying theoretical background in the fields of antenna theory, spatial sampling, will introduce some methods of integration to derive the \ac{TRP} out of spherical \ac{EIRP}-data and will establish the needed stochastic for the used statistic.
 
 \section{Antenna Field Regions}
 
@@ -61,7 +61,7 @@ This equation is valid for $D > \lambda$. \cite{balanis}
 
 \subsection{Near-Field}
 
-The radiating \ac{NF} (Fresnel) -region is defined \cite{balanis} as \glqq that region of the field of an antenna between the reactive near-field region and the far-field region wherein radiation fields predominate and wherein the angular field distribution is dependent upon the distance from the antenna.\grqq{ }That means that the antennas pattern is dependent from the distance to the antenna.\\
+The radiating \ac{NF} (Fresnel) -region is defined by \cite{balanis} as \glqq that region of the field of an antenna between the reactive near-field region and the far-field region wherein radiation fields predominate and wherein the angular field distribution is dependent upon the distance from the antenna.\grqq{ }That means that the antennas pattern is dependent from the distance to the antenna.\\
 In the radiating \ac{NF} the deviation from the third most significant term is more then $\sfrac{\pi}{8}$, so it is no longer negligible. With the derivation of the next term the maximum deviation is found:
 
 \begin{align}
@@ -69,7 +69,7 @@ In the radiating \ac{NF} the deviation from the third most significant term is m
 \theta_1 = \frac{\pi}{2},\ \theta_2=2\arctan\left(\sqrt{5-2\sqrt{6}}\right) \quad \Leftrightarrow
 \end{align}
 
-By introducing the angular wavenumber $k=\sfrac{2\pi}{\lambda}$, the minimum sphere diameter $D$ that $z'=\sfrac{D}{2}$ and the phase error of $\Delta\phi = \sfrac{\pi}{8} \ \widehat{=}\  22.5^\circ$ the \ac{NF} (Fresnel)-distance-formula $r_{\text{NF}}$ can be derived:
+By introducing the angular wavenumber $k=\sfrac{2\pi}{\lambda}$, the minimum sphere diameter $D$, so that $z'=\sfrac{D}{2}$ and the phase error of $\Delta\phi = \sfrac{\pi}{8} \ \widehat{=}\  22.5^\circ$ the \ac{NF} (Fresnel)-distance-formula $r_{\text{NF}}$ can be derived:
 
 \begin{equation}
 \Delta\phi = \frac{\pi}{8} = \frac{kz^{\prime\, 3}}{2r_{\text{NF}}^2}\sin\theta_2\cos^2\theta_2= \frac{\pi D^3}{12\sqrt{3}\cdot\lambda r_{\text{NF}}^2} \quad \Leftrightarrow \quad r_{\text{NF}}=0.62\sqrt{\frac{D^3}{\lambda}}
@@ -109,7 +109,7 @@ r_{\text{Dr}} = \lambda\left(\frac{\pi D}{\lambda}\right)^{0.8633}\left(0.1673\l
 To clarify the introduced distances they will be proofed based on a $\SI{20}{\decibel}$ \ac{SGH} at $\SI{28}{\giga\hertz}$. If you look in the annex at figure \ref{fig:fielddist} you see the front view of this horn with the underlying field distribution. The polarisation is in $y$-direction, so the $yz$-plane is called E-plane and the $xz$-plane is called H-plane from here on.\\
 In figure \ref{fig:beamcpmp} the normalized wave impedance (a) and the normalized phase between E- and H-field components over the distance to the phase center are plotted. To clarify the designations the directions are plotted in (c). The data has been produces by CST\texttrademark , a full wave simulation tool. Complex data in $x$, $y$, and $z$ direction was exported to Matlab\texttrademark{ } and there post processed.\\
 Also the field boundaries from the sections above are plotted with dashed lines. For deriving the boundaries only the opening of the horn in the E-plane was taken to account. This is rational because the field distribution and thus the usage of the aperture is known, refer to figure \ref{fig:fielddist}. As you can see in the E-plane the aperture is fully used. But if the field distribution is unknown the smallest circle enclosing the aperture has to be taken.\\
-In \ref{fig:beamcpmp} (a) the normalized wave impedance of the different angels (refer to (c)) is plotted over the distance from the antennas phase center. \ref{fig:beamcpmp} (b) shows analogue to (a) the phase between E- and H-field.\\
+In figure \ref{fig:beamcpmp} (a) the normalized wave impedance of the different angels (refer to (c)) is plotted over the distance from the antennas phase center. Figure \ref{fig:beamcpmp} (b) shows analogue to (a) the phase between E- and H-field.\\
 The main lobe (blue line) is from Derat-distance on in \ac{FF} condition. On the one hand side the wave impedance reached its endvalue of $\SI{377}{\ohm}$ and on the other hand E- and H-fields are coherent. Considering the side lobes it can be seen that in the reactive \ac{NF} the field conditions are very unstable, whereas the fields in the radiating \ac{NF} become more stable. In the \ac{FF} the field values are continually decreasing the offset from their final value.\\
 In figure \ref{fig:devantennap} in the annex the resulting antenna patterns in different radii are depicted as well in Cartesian coordinates (a) as in Polar coordinates (b). The assumption 
 
@@ -201,7 +201,7 @@ To illustrate these angle increments the one dimensional array of isotropic radi
 \label{eq:1dinc}
 \end{equation}
 
-With the \ac{FFT} over the angle of the antenna patterns in figure \ref{fig:evolvpattern2} the mode spectra can be derived and is seen in figure \ref{fig:evolvpattern3} (or \ref{fig:evolvpattern} in annex).\\
+With the \ac{FFT} over the angle of the antenna patterns from figure \ref{fig:evolvpattern2} the mode spectra can be derived and is seen in figure \ref{fig:evolvpattern3} (or \ref{fig:evolvpattern} in annex).\\
 When an arbitrary signal is sampled, the spectrum is mirrored at the sampling frequency. Choosing a sampling frequency lower than twice the highest occurring frequency in the sampled signal causes an irretrievable error. This is called the Nyquist-Shannon sampling theorem.\\
 For that sake the dashed lines are:
 
@@ -210,7 +210,7 @@ For that sake the dashed lines are:
 \end{equation}
 
 Similar to that the dashed lines in figure \ref{fig:evolvpattern2} are the first sampling points using the derived sampling frequency.\\
-The issue is now to find the sampling frequency that the sampling error is independent from the aperture of the antenna. As depicted in figure \ref{fig:evolvpattern3} the sampling frequency introduced by \cite{hansen} is to strict for small apertures. On the other hand the reference angle introduced by \cite{2018arXiv180310993F} is to inaccurate for small apertures. Because of that a new factor is taken:
+The issue is now to find the sampling frequency that the sampling error is independent from the aperture of the antenna. As depicted in figure \ref{fig:evolvpattern3} the sampling frequency introduced by \cite{hansen} is to strict for small apertures. On the other hand the reference angle introduced by \cite{2018arXiv180310993F} is to inaccurate for small apertures. Because of that a new factor \ac{CrefA} is taken:
 
 \begin{equation}
 \text{CrefA} = \frac{\Delta\Phi_{\text{ref}}\cdot\left(\text{first mode} > \SI{-40}{\decibel}\right)}{2}
@@ -219,12 +219,12 @@ The issue is now to find the sampling frequency that the sampling error is indep
 \begin{figure}
 \centering
 \includegraphics[width=0.41\textwidth]{Matlab/CrefA.eps}
-\caption{Correction factor for reference angle}
+\caption{Correction Factor Reference Angle}
 \label{fig:crefa}
 \end{figure}
 
 This factor is plotted in figure \ref{fig:crefa}. It is dependent of the aperture. With that the error due to sampling is independent from the antennas aperture.\\
-For further reduction of points a second factor is introduced, the Sparsity Factor SF. At $\text{SF}=2$ every second measurement point skipped. With all that the angle increments for spherical sampling is:
+For further reduction of points a second factor is introduced, the \acf{SF}. At $\text{SF}=2$ every second measurement point skipped. With all that the angle increments for spherical sampling is:
 
 \begin{equation}
 \Delta\Theta = \text{SF}\cdot\text{CrefA}\cdot\frac{\lambda}{2r_S}\ ,\quad\Delta\Phi = \text{SF}\cdot\text{CrefA}\cdot\frac{\lambda}{2r_C}
@@ -242,7 +242,7 @@ For further reduction of points a second factor is introduced, the Sparsity Fact
 \label{fig:cssg}
 \end{figure}
 
-The straight forward way to a spherical measurement is using a \ac{CSSG} depicted in figure \ref{fig:cssg} (a). The advantage is the easy feasibility with any positioner. Ether the azimuth can be sweep on every latitude circle or the elevation is swept on every longitude circle. On the other hand the measurement density is higher on the poles as on equator.\\
+The straight forward way to a spherical measurement is using a \ac{CSSG} depicted in figure \ref{fig:cssg} (a). The advantage is the easy feasibility with any positioner. Ether the azimuth can be sweep on every latitude circle or the elevation is swept on every longitude circle. On the other hand the measurement density is higher on the poles as on the equator.\\
 To meet that the theta dependent number of azimuth points was introduced e.g. by \cite{ctiaat}. It is applied as follows:
 
 \begin{align}
@@ -251,8 +251,7 @@ N\left(\Theta\right)=\lceil N_{\text{max}}\cdot\cos\left(\Theta\right)\rceil\\
 \Delta\Phi\left(\Theta\right) = \frac{2\pi}{N\left(\Theta\right)}
 \end{align}
 
-It is only possible to sweep the elevation when this type of grid is used.\\
-For a better comparison of the grids, also in Cartesian presentation, which is interesting for the positioner, they are depicted in figure \ref{fig:gridcomp} in the annex. The red line is a suggested sequence.
+It is only possible to sweep the azimuth when this type of grid is used. For a better comparison of the grids, also in Cartesian presentation, which is interesting for the positioner, they are depicted in figure \ref{fig:gridcomp} in the annex. The red line is a suggested sequence.
 
 \subsection{Constant Density}
 
@@ -287,15 +286,30 @@ The cumulated distance for $N = 264$ is converged after around one million itera
 
 \subsection{Other}
 
-Spiral Scan
-Cardinal Cuts with or without Pattern Multiplication
+There are other grid types, which are mainly based on the already introduced grids. First there are Cardinal cuts, here a measurement is carried out along the equator and one, tow or more orthogonal meridians. If the alignment is right a technique called \acf{PM} can be used to calculate the complete antenna pattern out of the cardinal cuts. The problem here is that a symmetry is assumed which is always wrong if the direction of main beam and the orientation of the pattern is unknown. \cite{2018arXiv180310993F}\\
+An other spatial sampling approach is the Spiral Scan. It is developed by \ac{RS} and can be used for a pre scan to find the maximum \ac{EIRP} direction. \todo{literatur}
 
 \section{Total Radiated Power Integrals in Comparison}
 
+The easiest way to derive the \ac{TRP} is if Cardinal cuts or a \ac{CDG} was taken to compute the mean of all \ac{EIRP} samples. For other grids the quadrature needs to done as follows. \cite{trp}
+
 \subsection{Sinus Theta}
+
+The straight forward way is to transform the integral over a spherical surface $S$
+
+\begin{equation}
+\text{TRP} = \frac{1}{4\pi}  \oiint_S \text{EIRP}\left(\theta,\phi\right)\cdot\sin\theta\cdot d\theta d\phi
+\end{equation}
+
+to a sum:
+
+\begin{equation}
+\text{TRP} = \frac{\pi}{2NM}\sum^{N-1}_{i=1}
+\end{equation}
+
+\subsection{Clenshaw-Curtis}
 
 \subsection{Jacobi}
 
-\subsection{Clenshaw-Curtis}
 
 \section{Statistics and Regression}
