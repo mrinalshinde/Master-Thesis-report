@@ -233,9 +233,9 @@ For further reduction of points a second factor is introduced, the \acf{SF}. At 
 
 \begin{figure}[h]
   \centering
-  \subfigure[without sinTF]{\includegraphics[width=0.49\textwidth]{Matlab/GridCoStPolar.eps}}
+  \subfigure[independent azimuth step size]{\includegraphics[width=0.49\textwidth]{Matlab/GridCoStPolar.eps}}
   \centering
-  \subfigure[with sinTF]{\includegraphics[width=0.49\textwidth]{Matlab/GridCoStSinPolar.eps}}
+  \subfigure[dependent azimuth step size]{\includegraphics[width=0.49\textwidth]{Matlab/GridCoStSinPolar.eps}}
 \caption{$\SI{15}{\degree}$ -Constant Step Size Grid}
 \label{fig:cssg}
 \end{figure}
@@ -289,7 +289,7 @@ An other spatial sampling approach is the Spiral Scan. It is developed by \ac{RS
 
 \section{Total Radiated Power Integrals in Comparison}
 
-The easiest way to derive the \ac{TRP} is if Cardinal cuts or a \ac{CDG} was taken to compute the mean of all \ac{EIRP} samples. For other grids the quadrature needs to done as follows. \cite{trp}
+The easiest way to derive the \ac{TRP} is if Cardinal cuts or a \ac{CDG} was taken to compute the mean of all \ac{EIRP} samples. For other grids the quadrature needs to be done as follows. \cite{trp}
 
 \subsection{Sine Theta}
 
@@ -299,26 +299,41 @@ The straight forward way is to transform the integral over a spherical surface $
 \text{TRP} = \frac{1}{4\pi}  \oiint_S \text{EIRP}\left(\theta,\phi\right)\cdot\sin\theta\cdot d\theta d\phi
 \end{equation}
 
-to a sum, this is called quadrature: \cite{trp} \cite{ctiaat}
+to a sum, this is called quadrature. The easiest approach is carried out by discretizing the integral Argument:  \cite{ctiaat}
 
 \begin{equation}
-\text{TRP} = \frac{\pi}{2NM}\sum^{N-1}_{i=1}\sum^{M-1}_{j=0}\left(\text{EIRP}_\theta\left(\theta_i,\phi_j\right)+\text{EIRP}_\phi\left(\theta_i,\phi_j\right)\right)\cdot\sin\left(\theta_i\right)
+\frac{1}{4\pi}\cdot\sin\theta\cdot d\theta\cdot d\phi \ \Rightarrow\ \frac{1}{4\pi}\cdot \Delta\theta\cdot \Delta\phi\cdot\sin\theta = \frac{1}{4\pi}\cdot \frac{\pi}{N}\cdot \frac{2\pi}{M}\cdot\sin\theta=\frac{\pi}{2NM}\cdot\sin\theta
+\end{equation}
+
+With that the quadrature is:
+
+\begin{equation}
+\text{TRP}_{\sin\theta} = \frac{\pi}{2NM}\sum^{N-1}_{i=1}\sum^{M-1}_{j=0}\left(\text{EIRP}_\theta\left(\theta_i,\phi_j\right)+\text{EIRP}_\phi\left(\theta_i,\phi_j\right)\right)\cdot\sin\left(\theta_i\right)
 \label{eq:trpsumsin}
 \end{equation}
 
-$N$ is the number of angular intervals in $\theta$ (elevation), $M$ is the number of angular intervals in $\phi$ (azimuth) and the \ac{EIRP} is split in its horizontal ($\text{EIRP}_\phi$) and its vertical ($\text{EIRP}_\theta$) part. This quadrature is called sine theta. Because the sine of $0$ and $\pi$ is $0$ the summation in elevation is from $i=1$ to $N-1$.
+$N$ is the number of angular intervals in $\theta=\left[0,\pi\right]$ (elevation), $M$ is the number of angular intervals in $\phi=\left[0,2\pi\right]$ (azimuth), the indices $i=\left[0,N\right]$, $j=\left[0,M\right]$ and the \ac{EIRP} is split in its horizontal ($\text{EIRP}_\phi$) and its vertical ($\text{EIRP}_\theta$) part. This quadrature is called sine theta.
 
 \subsection{Clenshaw-Curtis}
 
-Other weights instead of $\sin\left(\theta_i\right)$ can be introduced and the \ac{TRP} formula \ref{eq:trpsumsin} develops to:
+Because the sine theta quadrature is not accurate for spars measurements and the measurement points at the poles are weighted with $0$ an other weighting scheme is used, \ac{CC}-quadrature. The weights W of this quadrature is computed by expending the integrand with Chebyshev polynomials. With that formula \ref{eq:trpsumsin} develops to: \cite{trp}
 
 \begin{equation}
-\text{TRP} = \frac{\pi}{2NM}\sum^{N-1}_{i=1}\sum^{M-1}_{j=0}\left(\text{EIRP}_\theta\left(\theta_i,\phi_j\right)+\text{EIRP}_\phi\left(\theta_i,\phi_j\right)\right)\cdot\text{W}\left(\theta_i\right)
+\text{TRP}_{\text{CC}} = \frac{1}{2M}\sum^{N-1}_{i=1}\sum^{M-1}_{j=0}\left(\text{EIRP}_\theta\left(\theta_i,\phi_j\right)+\text{EIRP}_\phi\left(\theta_i,\phi_j\right)\right)\cdot\text{W}\left(\theta_i\right)
 \label{eq:trpsumcc}
 \end{equation}
- 
 
 \subsection{Jacobi}
 
+The Jacobi quadrature uses the area of triangles on the spherical surface between the measurement points. The average \ac{EIRP} of a triangle is computed and weighted by the area $A_i$ of it. The result is normed with the complete surface area. With that for every triangle $i=\left[1,N\right]$ the \ac{TRP} quadrature is: \cite{trp}
+
+\begin{equation}
+\text{TRP}_{\text{J}} = \frac{\sum^N_{i=1}A_i\left(\frac{\text{EIRP}_{0,i}+\text{EIRP}_{1,i}+\text{EIRP}_{2,i}}{3}\right)}{\sum^N_{i=1}A_i}
+\end{equation}
+
+\subsection{Comparing the Quadratures}
+
+Sine Theta- and \ac{CC} quadratures are only applicable for \acp{CDG} and with slight optimizations also for \acp{CDG} with less dense measurements at the poles. Whereas the Jacobi quadrature can be used for arbitrary grids.\\
+In \cite{trp2} it is investigated which quadrature leads to the most accurate result with the same number of points. The result is that the \ac{CC}-quadrature is the optimal quadrature.
 
 \section{Statistics and Regression}
