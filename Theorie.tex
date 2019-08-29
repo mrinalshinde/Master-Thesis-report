@@ -55,6 +55,7 @@ With the typically tolerated phase error of $\Delta\phi = \sfrac{\pi}{8} \ \wide
 
 \begin{equation}
 \frac{\pi}{8} = \frac{\pi D^2}{4\lambda\cdot r_{\text{Fr}}} \quad \Leftrightarrow \quad r_{\text{Fr}} = \frac{2D^2}{\lambda}
+\label{eq:ff}
 \end{equation}
 
 This equation is valid for $D > \lambda$. \cite{balanis}
@@ -287,7 +288,8 @@ The cumulated distance for $N = 264$ is converged after around one million itera
 There are other grid types, which are mainly based on the already introduced grids. First there are Cardinal cuts, here a measurement is carried out along the equator and one, tow or more orthogonal meridians. If the alignment is right a technique called \acf{PM} can be used to calculate the complete antenna pattern out of the cardinal cuts. The problem here is that a symmetry is assumed which is always wrong if the direction of main beam and the orientation of the pattern is unknown. \cite{2018arXiv180310993F}\\
 An other spatial sampling approach is the Spiral Scan. It is developed by \ac{RS} and can be used for a pre scan to find the maximum \ac{EIRP} direction. Here elevation and azimuth is swept. \cite{ctiaat}
 
-\section{Total Radiated Power Integrals in Comparison}
+\section{Total Radiated Power Quadratures in Comparison}
+\label{sec:quadrature}
 
 The easiest way to derive the \ac{TRP} is if Cardinal cuts or a \ac{CDG} was taken to compute the mean of all \ac{EIRP} samples. For other grids the quadrature needs to be done as follows. \cite{trp}
 
@@ -297,6 +299,7 @@ The straight forward way is to transform the integral over a spherical surface $
 
 \begin{equation}
 \text{TRP} = \frac{1}{4\pi}  \oiint_S \text{EIRP}\left(\theta,\phi\right)\cdot\sin\theta\cdot d\theta d\phi
+\label{eq:trpint}
 \end{equation}
 
 to a sum, this is called quadrature. The easiest approach is carried out by discretizing the integral Argument:  \cite{ctiaat}
@@ -334,6 +337,6 @@ The Jacobi quadrature uses the area of triangles on the spherical surface betwee
 \subsection{Comparing the Quadratures}
 
 Sine Theta- and \ac{CC} quadratures are only applicable for \acp{CDG} and with slight optimizations also for \acp{CDG} with less dense measurements at the poles. Whereas the Jacobi quadrature can be used for arbitrary grids.\\
-In \cite{trp2} it is investigated which quadrature leads to the most accurate result with the same number of points. The result is that the \ac{CC}-quadrature is the optimal quadrature.
+In \cite{trp2} it is investigated which quadrature leads to the most accurate result with the same number of points. The result is that \ac{CC}- and Jacobi quadratures are equally accurate.
 
 \section{Statistics and Regression}
