@@ -63,15 +63,55 @@ $S_2\left(\Omega\right)$  is the surface enclosing the probe at the position giv
 
 \begin{equation}
 \text{TMP}=\oiint_\Sigma P_\text{meas}\left(\Omega\right)d\Omega = \oiint_\Sigma \frac{\big|\oiint_{S_2\left(\Omega\right)}\left(E_1\times H_2 - E_2\times H_1\right)dS\big|^2}{8\oiint_{S_2\left(\Omega\right)}\operatorname{Re}\left[E_2\times H_2^*\right]dS} d\Omega
+\label{eq:trpint}
 \end{equation}  
 
 \subsection{Implementation}
 
-For the all quadratures a $\SI{5}{\degree}$ \ac{CSSG} was used. There are four main steps for the implementation of this simulation:
+For the all quadratures a $\SI{5}{\degree}$ \ac{CSSG} was used. There are three main steps for the implementation of this simulation:
 
 \begin{enumerate}
-\item The $E$- and $H$-field of the probe antenna is computed via CST\texttrademark{} by the integral solver at the $\SI{5}{\degree}$ \ac{CSSG}.
-\item bla2
+\item The $E$- and $H$-field of the probe antenna is computed via CST Microwave Studio\texttrademark{} by the integral solver at the $\SI{5}{\degree}$ \ac{CSSG}. If the antenna is more complex and thus unsolvable for the integral solver, the time-domain solver is taken and the antennas characteristics are exported as a \ac{NF}-source which than can be simulated by integral solver. With the integral solver it's possible to compute $E$ and $H$ field components at arbitrary points in the surrounding volume.
+\item Referring to equation \ref{eq:trpint} a \ac{TMP}-measurement-simulation consists of the outer integral over the measurement sphere $\Sigma$ and the inner integral over the minimum sphere surrounding the probe $S_2$. This means that for every solid angle $\Omega$ the \ac{EM}-field from the \ac{DUT}-antenna on every sphere $S_2$ needs to be computed. The \ac{CSSG} from sphere $S_2$ is always radial aligned, so that the \ac{EM}-field of the probe antenna is valid for every $\Omega$. With $\Delta\phi=\Delta\theta=\SI{5}{\degree}$ this results in
+\begin{equation}
+N_\text{TMP}=\left(\left(\frac{\SI{180}{\degree}}{\Delta\theta}+1\right)\cdot\frac{\SI{360}{\degree}}{\Delta\phi}\right)^2=2664^2=7,096,896
+\end{equation}
+measurement points. This is not feasible with the integral solver from CST Microwave Studio\texttrademark{}. Because of that the \ac{NF}-data is fed in to the \ac{FIAFTA}. Occupying the \ac{FIAFTA} the \ac{EM}-field-calculation at every point in the volume is carried out more efficient.\cite{mypaper} \cite{fiafta}
+\item The resulting field data is exported to Matlab\texttrademark{}. There the quadrature of the integral from equation \ref{eq:trpint} is solved and the simulated measurement result is gained.
 \end{enumerate} 
+
+For different radii $R$ step two and three are iterated. Furthermore the minimum radius is given by the sum of the radii $R$ of $S_1$ and $S_2$.
+
+\subsection{Set up}
+
+For a universal guideline to choose the optimal measurement distance and probe antenna for \ac{TRP}-measurements some sample antennas must be tested.
+
+\begin{figure}[h]
+  \centering
+  \subfigure[Rendering Picture]{\includegraphics[height=6cm]{Antennas/Vivaldi.png}}
+  \centering
+  \subfigure[Pattern]{\includegraphics[height=6cm]{Antennas/vivaldi_3D.png}}
+\caption{R\&{}S Vivladi TC-TA85CP}
+\label{fig:vivpro}
+\end{figure}
+
+\begin{figure}[h]
+  \centering
+  \subfigure[Rendering Picture]{\includegraphics[height=6cm]{Antennas/Horn.png}}
+  \centering
+  \subfigure[Pattern]{\includegraphics[height=6cm]{Antennas/horn_3D.png}}
+\caption{$\SI{20}{\decibel}$ SGH}
+\label{fig:hornpro}
+\end{figure}
+
+\begin{figure}[h]
+  \centering
+  \subfigure[Rendering Picture]{\includegraphics[height=6cm]{Antennas/OEWG.png}}
+  \centering
+  \subfigure[Pattern]{\includegraphics[height=6cm]{Antennas/oewg_3D.png}}
+\caption{OEWG}
+\label{fig:oewgpro}
+\end{figure}
+
 
 \section{Measurement}
