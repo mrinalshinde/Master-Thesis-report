@@ -95,4 +95,21 @@ Choosing the correct detector setting is dependent of the expected signal. If a 
 
 For a coarse pre scan a Peak-detector is normally used and if something is found a fine scan is carried out with \ac{RMS}-detector at the interesting frequencies.
 
+\section{Describing Antennas Characteristics}
+
+The main parts of \ac{OTA} measurements are antennas. Describing these there are some important terms to have in mind: \cite{balanis}
+
+\begin{itemize}
+\item\textbf{Directivity}: The directivity $D$ is the \ac{EIRP} divided by the \ac{TRP}.
+\begin{equation}
+D = \frac{\text{EIRP}}{\text{TRP}}
+\end{equation}
+The directivity of an antenna is \ac{EIRP} in main direction divided by \ac{TRP}.
+\item\textbf{Gain}: An antennas gain $G$ is \glqq the ratio of the intensity, in a given direction, to the radiation intensity that would be obtained if the power accepted by the antenna were radiated isotropically.\grqq{} Hence the efficiency $e_0=e_re_ce_d=\sfrac{P_\text{rad}}{P_\text{feed}}$, consistent of the reflection $e_r$, the conduction efficiency $e_c$ and the dielectric efficiency $e_d$, describing the ratio between radiated and feeded power, of the antenna is used:
+\begin{equation}
+G = e_0\cdot D=e_0\cdot\frac{\text{EIRP}}{\text{TRP}}
+\end{equation}
+The realized gain is further reduced by the mismatch of the antennas impedance. \cite{ieeeantenna}
+\end{itemize}
+
 

@@ -3,6 +3,33 @@
 
 \begin{figure}[h]
   \centering
+  \subfigure[Rendering Picture]{\includegraphics[height=6cm]{Antennas/Horn.png}}
+  \centering
+  \subfigure[Pattern]{\includegraphics[height=6cm]{Antennas/horn_3D.png}}
+\caption{$\SI{20}{\decibel}$ SGH}
+\label{fig:hornpro}
+\end{figure}
+
+\begin{figure}[h]
+  \centering
+  \subfigure[Rendering Picture]{\includegraphics[height=6cm]{Antennas/10x1-array.png}}
+  \centering
+  \subfigure[Pattern]{\includegraphics[height=6cm]{Antennas/10x1-array_3D.png}}
+\caption{10x1 Patch array developed in \cite{7481205}}
+\label{fig:10x1a}
+\end{figure}
+
+\begin{figure}[h]
+  \centering
+  \subfigure[Rendering Picture]{\includegraphics[height=6cm]{Antennas/OEWG.png}}
+  \centering
+  \subfigure[Pattern]{\includegraphics[height=6cm]{Antennas/oewg_3D.png}}
+\caption{OEWG}
+\label{fig:oewgpro}
+\end{figure}
+
+\begin{figure}[h]
+  \centering
   \subfigure[Rendering Picture]{\includegraphics[height=6cm]{Antennas/patch.png}}
   \centering
   \subfigure[Pattern]{\includegraphics[height=6cm]{Antennas/patch_3D.png}}
@@ -22,6 +49,13 @@
   \subfigure[Hertz Dipole]{\includegraphics[width=0.49\textwidth]{Antennas/dipole-hertz_3D.png}}
 \caption{Patterns of other antennas}
 \label{fig:othera}
+\end{figure}
+
+\begin{figure}
+\centering
+\includegraphics[width=0.49\textwidth]{Antennas/OEWG-Imp1_3D.png}
+\caption{Antenna pattern of OEWG implementation one}
+\label{fig:oewgimpone}
 \end{figure}
 
 \begin{figure}
@@ -96,4 +130,23 @@
 \includegraphics[width=\textwidth]{DANL.png}
 \caption{DANL of R\&{}S spectrum analyzers \cite{rsfsw}}
 \label{fig:danl}
+\end{figure}
+
+
+\begin{figure}[h]
+  \centering
+  \subfigure[TMP over measurement distance]{\includegraphics[width=0.49\textwidth]{Matlab/trpDistPaATMP.eps}}
+  \centering
+  \subfigure[Main EIRP over measurement distance]{\includegraphics[width=0.49\textwidth]{{Matlab/trpDistPaAEIRP.eps}}}
+\caption{Simulation result: DUT 10x1 Patch Array}
+\label{fig:trpdistpaa}
+\end{figure}
+
+\begin{figure}[h]
+  \centering
+  \subfigure[TMP over measurement distance]{\includegraphics[width=0.49\textwidth]{Matlab/trpDistH2TMP.eps}}
+  \centering
+  \subfigure[Main EIRP over measurement distance]{\includegraphics[width=0.49\textwidth]{{Matlab/trpDistH2EIRP.eps}}}
+\caption{Simulation result: DUT 2x2 $\SI{20}{\decibel}$ SGH Array}
+\label{fig:trpdisth2}
 \end{figure}

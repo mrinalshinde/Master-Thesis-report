@@ -71,7 +71,7 @@ $S_2\left(\Omega\right)$  is the surface enclosing the probe at the position giv
 For the all quadratures a $\SI{5}{\degree}$ \ac{CSSG} was used. There are three main steps for the implementation of this simulation:
 
 \begin{enumerate}
-\item The $E$- and $H$-field of the probe antenna is computed via CST Microwave Studio\texttrademark{} by the integral solver at the $\SI{5}{\degree}$ \ac{CSSG}. If the antenna is more complex and thus unsolvable for the integral solver, the time-domain solver is taken and the antennas characteristics are exported as a \ac{NF}-source which than can be simulated by integral solver. With the integral solver it's possible to compute $E$ and $H$ field components at arbitrary points in the surrounding volume.
+\item The $E$- and $H$-field of the probe antenna is computed via CST Microwave Studio\texttrademark{} by the integral solver at the $\SI{5}{\degree}$ \ac{CSSG}. If the antenna is more complex and thus unsolvable for the integral solver, the time-domain solver is taken and the antennas characteristics are exported as a \ac{NF}-source which than can be simulated by integral solver. With the integral solver it's possible to compute $E$ and $H$ field components at arbitrary points in the surrounding volume. This needs to be done for horizontal and vertical polarisation.
 \item Referring to equation \ref{eq:trpint} a \ac{TMP}-measurement-simulation consists of the outer integral over the measurement sphere $\Sigma$ and the inner integral over the minimum sphere surrounding the probe $S_2$. This means that for every solid angle $\Omega$ the \ac{EM}-field from the \ac{DUT}-antenna on every sphere $S_2$ needs to be computed. The \ac{CSSG} from sphere $S_2$ is always radial aligned, so that the \ac{EM}-field of the probe antenna is valid for every $\Omega$. With $\Delta\phi=\Delta\theta=\SI{5}{\degree}$ this results in
 \begin{equation}
 N_\text{TMP}=\left(\left(\frac{\SI{180}{\degree}}{\Delta\theta}+1\right)\cdot\frac{\SI{360}{\degree}}{\Delta\phi}\right)^2=2664^2=7,096,896
@@ -84,7 +84,7 @@ For different radii $R$ step two and three are iterated. Furthermore the minimum
 
 \subsection{Set up}
 
-For a universal guideline to choose the optimal measurement distance and probe antenna for \ac{TRP}-measurements some sample antennas must be tested.
+For a universal guideline to choose the optimal measurement distance and probe antenna for \ac{TRP}-measurements some sample antennas must be tested as probe and as \ac{DUT}. The \ac{NF} behaviour of an antenna is mostly independent for every antenna.
 
 \begin{figure}[h]
   \centering
@@ -95,23 +95,85 @@ For a universal guideline to choose the optimal measurement distance and probe a
 \label{fig:vivpro}
 \end{figure}
 
-\begin{figure}[h]
+To show the effects of the different field region high gain/aperture antennas are used as \ac{DUT}; as probe also low gain antennas are used. \ac{DUT} antennas:
+
+\begin{itemize}
+\item $\SI{20}{\decibel}$ \ac{SGH} LB-28-20 by A-Info depicted in figure \ref{fig:hornpro}.
+\item Array of 2x2 $\SI{20}{\decibel}$ \acp{SGH} with $\SI{27}{\decibeli}$ directivity; the pattern is depicted in figure \ref{fig:othera} (b).
+\item 10x1 Patch Array from \cite{7481205}, depicted in figure \ref{fig:10x1a} with $\SI{16}{\decibeli}$ directivity
+\end{itemize}
+
+Probe antennas:
+
+\begin{itemize}
+\item Hertz dipole with $\SI{1.76}{\decibeli}$ Directivity; Pattern in figure \ref{fig:othera} (d).
+\item $\sfrac{\lambda}{2}$-dipole with $\SI{2.15}{\decibeli}$ Directivity; Pattern in figure \ref{fig:othera} (c).
+\item R\&{}S Patch antenna with $\SI{4}{\decibeli}$ directivity depicted in figure \ref{fig:patchpro}.
+\item \ac{OEWG} with $\SI{6}{\decibeli}$ directivity depicted in figure \ref{fig:oewgpro}.
+\item \ac{RS} Vivladi TC-TA85CP with $\SI{14}{\decibeli}$ directivity depicted in figure \ref{fig:vivpro}.
+\item $\SI{20}{\decibel}$ \ac{SGH} LB-28-20 by A-Info depicted in figure \ref{fig:hornpro}.
+\item $\SI{26}{\decibel}$ \ac{SGH} in figure \ref{fig:othera} (a).
+\end{itemize}
+
+All physical existing antennas are depicted with there simulation model on the left (a) and there directivity pattern on the right (b). Other impractical antennas such as the $\SI{26}{\decibel}$ \ac{SGH}, simulated by a big waveguide port, the 2x2 $\SI{20}{\decibel}$ \ac{SGH} array, the $\sfrac{\lambda}{2}$-dipole, which is at \ac{mmW} wavelength not realisable, and the Hertz-dipole are only depicted with there pattern in \ref{fig:othera}.\\
+The \ac{RS} Vivladi TC-TA85CP is the standard probe antenna at \ac{RS} with a frequency range from $\SI{4}{\giga\hertz}$ to $\SI{87}{\giga\hertz}$, a gain between $\SI{10}{\decibel}$ and $\SI{20}{\decibel}$ and especially the possibility of measuring both polarisations at the same time with a cross-polarization rejection of greater $\SI{20}{\decibel}$. This is the reason why this antenna is placed in the document and the other antennas in the annex.\\
+The $\SI{20}{\decibel}$ \ac{SGH} LB-28-20 by A-Info is normally used to calibrate the measurement setup. It is well known with a lot of empirical data. The underlying WR28-waveguide allows a frequency range from $\SI{26.5}{\giga\hertz}$ to $\SI{40}{\giga\hertz}$. An Patch antenna is currently in development at \ac{RS}, it was also used for this simulation and measurement but because it is currently not published no further details will be given in this document, except that it has a directivity of $\SI{5}{\decibeli}$, a realized gain of $\SI{3.5}{\decibel}$ and the figure \ref{fig:patchpro}. So in this document it's just called the patch. 
+
+\subsection{Result}
+
+\begin{figure}
   \centering
-  \subfigure[Rendering Picture]{\includegraphics[height=6cm]{Antennas/Horn.png}}
+  \subfigure[TMP over measurement distance]{\includegraphics[width=0.49\textwidth]{Matlab/trpDistVivTMP.eps}}
   \centering
-  \subfigure[Pattern]{\includegraphics[height=6cm]{Antennas/horn_3D.png}}
-\caption{$\SI{20}{\decibel}$ SGH}
-\label{fig:hornpro}
+  \subfigure[Main EIRP over measurement distance]{\includegraphics[width=0.49\textwidth]{{Matlab/trpDistVivEIRP.eps}}}
+\caption{Simulation result: DUT $\SI{20}{\decibel}$ SGH}
+\label{fig:trpdistviv}
 \end{figure}
 
-\begin{figure}[h]
-  \centering
-  \subfigure[Rendering Picture]{\includegraphics[height=6cm]{Antennas/OEWG.png}}
-  \centering
-  \subfigure[Pattern]{\includegraphics[height=6cm]{Antennas/oewg_3D.png}}
-\caption{OEWG}
-\label{fig:oewgpro}
-\end{figure}
+In figure \ref{fig:trpdistviv} the simulation results of the \ac{SGH}-simulation is depicted with Fraunhofer- and Derat-distance as dashed lines. The simulated \ac{TMP} measured with the low directivity probes (Herz Dipole, $\sfrac{\lambda}{2}$-Dipole, Patch, \ac{OEWG}) has it's buckling point at Derat-distance, whereas the \ac{EIRP} in main direction is unstable. Because the \ac{TRP} quadrature is a spatial average this noise is cancelled. For higher directivity antennas (Vivaldi, $\SI{20}{\decibel}$ SGH and $\SI{26}{\decibel}$ SGH) the \ac{EIRP} is more stable and it can be seen that the shape of the curves become similar to \ac{TMP}, because most of the power is radiated in main direction. The error in \ac{EIRP} main direction is for the \ac{OEWG}, the vivaldi and the $\SI{20}{\decibel}$ \ac{SGH} at $\SI{0.5}{\decibel}$. Because of the direct interaction between probe and \ac{DUT} predictions in the \ac{NF} range are difficult (compare figures \ref{fig:trpdistviv}, \ref{fig:trpdistpaa} and \ref{fig:trpdisth2}).\\
+Low directivity antenna probing leads in terms of \ac{TMP} till Derat-distance to a maximum error of $\SI{0.5}{\decibel}$. The \ac{EIRP} in main direction is dependent of the mode pattern of \ac{DUT} and probe whereby the differences in \ac{NF} can become greater than expected from figure \ref{fig:devantennap}. All in all the main statement of this simulation is, that low directivity probes allow a shorter rangelenth than \ac{FF}-distance for \ac{TMP} measurements. The actual distance must be verified individually for the wanted precision and probe antenna. \ac{NF}-probing with low directivity probes can also increase dynamic range. The \ac{OEWG} has a directivity of $\SI{6}{\decibeli}$ and with the $\SI{20}{\decibel}$ SGH the error of $\approx \SI{0.1}{\decibel}$ is reached at Derat distance $r_\text{Dr, SGH}=\SI{21.3}{\centi\meter}$, while the Vivaldi probe has the same error at about $r=\SI{100}{\centi\meter}$ that results in a dynamic gain of 
 
+\begin{equation}
+G_d = G_\text{OEWG}-G_\text{viv}+(F_\text{FSPL, viv}-F_\text{FSPL, OEWG})=\SI{5.4}{\decibel}.
+\end{equation}
 
 \section{Measurement}
+
+\begin{figure}
+\centering
+\includegraphics[width=0.8\textwidth]{big-chamber.jpeg}
+\caption{OTA Measurement for minimum rangelength measurement series; DUT: $\SI{20}{\decibel}$ SGH; probe: Patch}
+\label{fig:otameas}
+\end{figure}
+
+To proof the introduced simulation to investigating \ac{NF} probing for \ac{TRP} measurements this test is done in a \ac{WPTC} depicted in figure \ref{fig:otameas}, located in the \ac{RS} headquarters in Munich using a \ac{RS} \ac{VNA} 67.
+
+\subsection{Implementation}
+
+ Because of the high cable loss resulting from long cables caused by the big chamber a $\SI{40}{\decibel}$ azimuth amplifier is used. Only the A-Info $\SI{20}{\decibel}$ \ac{SGH} was used as \ac{DUT} on the azimuth table with it's aperture in the center of rotation. This adds an other $\SI{3}{\centi\meter}$ radius to the phase center. Occupying a low gain probe such as the Patch, the maximum range length of about $\SI{1.1}{\meter}$ and a \ac{RBW} of $\SI{100}{\hertz}$ results in a dynamic range of about $\SI{20}{\decibel}$. This is not pleasant to plot the pattern, but it's sufficient to compute an adequate \ac{TMP}. To adjust the radius a aluminium profile is used refer to figure \ref{fig:otameas}. Because of the mounting at azimuth the elevation can only be measured from $\theta_\text{min}=\SI{0}{\degree}$ and $\theta_\text{max}=\SI{85}{\degree}$ which is sufficient (compare figure \ref{fig:hornpro}). As in the simulation a $\SI{5}{\degree}$-\ac{CSSG} is used with swept azimuth and therefore hardware triggering from the positioner to the \ac{VNA}. So that one \ac{TRP} measurement takes around $\SI{5}{\min}$.
+
+\subsection{Set Up}
+
+\begin{figure}[h]
+  \centering
+  \subfigure[WR28 OEWG 1]{\includegraphics[width=0.3\textwidth]{OEWG-Imp1.jpg}}
+  \centering
+  \subfigure[WR28 OEWG 2]{\includegraphics[width=0.3\textwidth]{OEWG.jpg}}
+  \centering
+  \subfigure[Mounted Patch antenna]{\includegraphics[width=0.3\textwidth]{Patch.jpg}}
+\caption{Real implementation of probe antennas}
+\label{fig:realprobe}
+\end{figure}
+
+The minimum and maximal measurement sphere radius varies because of the probe mounting from around $\SI{10}{\centi\meter}$ to $\SI{115}{\centi\meter}$. The measurement is carried out by using the $\SI{20}{\decibel}$ \ac{SGH} LB-28-20 by A-Info (figure \ref{fig:hornpro}), the Vivaldi (figure \ref{fig:vivpro}), the Patch (figure \ref{fig:realprobe} (c)) and the two \ac{OEWG} implementations (figure \ref{fig:realprobe} (a) and (b)). There some issues with the probe implementations depicted in figure \ref{fig:realprobe}:
+
+\begin{enumerate}[label=(\alph*)]
+\item Because no WR28 \ac{OEWG} antenna was available, a WR28 wave guide adapter and a \ac{SGH} mounting was first taken. With the metal in front of the aperture the \ac{FF} pattern differs from a real \ac{OEWG} and the directivity increases by around $\SI{4}{\decibel}$, refer to figure \ref{fig:oewgimpone}.
+\item With an other mounting
+\item 3
+\end{enumerate}
+
+\subsection{Result}
+
+
+
