@@ -122,7 +122,7 @@ was taken to account. At Derat distance ($\approx\SI{100}{\milli\meter}$) the er
 
 \section{Spatial Sampling Approaches}
 
-\begin{figure}[H]
+\begin{figure}[h]
 \centering
 \def\svgwidth{0.4\textwidth}
 \input{Bilder/KoordinateSystem.pdf_tex}
@@ -139,6 +139,7 @@ In figure \ref{coordinates} the used coordinate system is depicted. In compariso
 Hereinafter different spatial sampling approaches for this sphere are introduced. For the development of a sampling grid a sampling frequency is necessary and will be introduced in the next section.
 
 \subsection{Derivation of the Spatial Sampling considering the Array Factor}
+\label{sec:spasa}
 
 The Array Factor is \glqq The radiation pattern of an array antenna when each array element is considered to radiate isotropically.\grqq{} \cite{ieeeantenna}. The sampling frequency in either elevation or in azimuth is dependent on the aperture of the \ac{DUT} and the wavelength. To investigate the necessary sampling frequency an one dimensional $\sfrac{\lambda}{2}$ array of isotropic radiators was taken in account. With the number of elements $N$, the element spacing $d = \sfrac{\lambda}{2}$ and the wavelength $\lambda$ the antenna pattern is derivable: \cite{litze}
 
@@ -227,6 +228,7 @@ For further reduction of points a second factor is introduced, the \acf{SF}. At 
 
 \begin{equation}
 \Delta\Theta = \text{SF}\cdot\text{CrefA}\cdot\frac{\lambda}{2r_S}\ ,\quad\Delta\Phi = \text{SF}\cdot\text{CrefA}\cdot\frac{\lambda}{2r_C}
+\label{eq:angle}
 \end{equation}
 
 \subsection{Constant Step Size Grid}
@@ -288,10 +290,10 @@ The cumulated distance for $N = 264$ is converged after around one million itera
 There are other grid types, which are mainly based on the already introduced grids. First there are Cardinal cuts, here a measurement is carried out along the equator and one, tow or more orthogonal meridians. If the alignment is right a technique called \acf{PM} can be used to calculate the complete antenna pattern out of the cardinal cuts. The problem here is that a symmetry is assumed which is always wrong if the direction of main beam and the orientation of the pattern is unknown. \cite{2018arXiv180310993F}\\
 An other spatial sampling approach is the Spiral Scan. It is developed by \ac{RS} and can be used for a pre scan to find the maximum \ac{EIRP} direction. Here elevation and azimuth is swept. \cite{ctiaat}
 
-\section{Total Radiated Power Quadratures in Comparison}
+\section{Total Radiated Power Quadratures}
 \label{sec:quadrature}
 
-The easiest way to derive the \ac{TRP} is if Cardinal cuts or a \ac{CDG} was taken to compute the mean of all \ac{EIRP} samples. For other grids the quadrature needs to be done as follows. \cite{trp}
+The easiest way to derive the \ac{TRP} is if Cardinal cuts or a \ac{CDG} was taken, to compute the mean of all \ac{EIRP} samples. For other grids the quadrature needs to be done as follows. \cite{trp}
 
 \subsection{Sine Theta}
 
@@ -319,7 +321,7 @@ $N$ is the number of angular intervals in $\theta=\left[0,\pi\right]$ (elevation
 
 \subsection{Clenshaw-Curtis}
 
-Because the sine theta quadrature is not accurate for spars measurements and the measurement points at the poles are weighted with $0$ an other weighting scheme is used, \ac{CC}-quadrature. The weights W of this quadrature is computed by expending the integrand with Chebyshev polynomials. With that formula \ref{eq:trpsumsin} develops to: \cite{trp}
+Because the sine theta quadrature is not accurate for spars measurements and the measurement points at the poles are neglected, an other weighting scheme is used, the \ac{CC}-quadrature. The weights W of this quadrature is computed by expending the integrand with Chebyshev polynomials. With that formula \ref{eq:trpsumsin} develops to: \cite{trp}
 
 \begin{equation}
 \text{TRP}_{\text{CC}} = \frac{1}{2M}\sum^{N-1}_{i=1}\sum^{M-1}_{j=0}\left(\text{EIRP}_\theta\left(\theta_i,\phi_j\right)+\text{EIRP}_\phi\left(\theta_i,\phi_j\right)\right)\cdot\text{W}\left(\theta_i\right)
@@ -340,3 +342,123 @@ Sine Theta- and \ac{CC} quadratures are only applicable for \acp{CDG} and with s
 In \cite{trp2} it is investigated which quadrature leads to the most accurate result with the same number of points. The result is that \ac{CC}- and Jacobi quadratures are equally accurate.
 
 \section{Statistics and Regression}
+
+This section shall give a brief introduction in the field of statistics and regression, which is necessary for the spatial sampling simulation. First statistical terms, than methods to display scatterings and multidimensional regressions are introduced.
+
+\subsection{Metrics to Describe Distributions}
+
+To describe a one dimensional scattering $h$ with $N$ samples $x$ and the cumulative frequency $H$, these terms are regularly used: \cite{dffs}
+
+\begin{itemize}
+\item The commonly most used and known term s the \textbf{Arithmetic Mean}, which is vulnerable by outliers and computed as:
+\begin{equation}
+\bar x = \frac{1}{N}\sum_{n=1}^N x_N
+\end{equation}
+\item The \textbf{Median} is that value lying in the middle of a distribution, so that $H\left( x\right) = 0.5$. It is computed by sorting the samples by value and, if the number of samples is even taking the mean of the two samples in the middle, or if the number of samples is odd taking the middle value.
+\item The \textbf{Variance} of a distribution is the sum of squared error. This metric is strongly vulnerable by outliers. The computation is as follows:
+\begin{equation}
+s^2 = \frac{1}{N-1}\sum_{n=1}^N\left( x_n-\bar{x}\right)^2
+\end{equation}
+\item The \textbf{$p$-Quantile} is analogue to the Median, is that value of a sorted sample vector where $P$ percent of the distributions values is reached, hence $H\left( x\right) = p$.
+\item A more stable metric for scattering as the variance is the \textbf{\ac{IQR}}, this describes the range between two quantiles.
+\end{itemize}
+
+\subsection{Display a Distribution}
+
+The commonly known way to display a distribution is a bar diagram. There the value of range is split in $M$ bars displaying the values in the $x$-axis and the probability of each bucket on the $y$-axis. An other way to display a distribution is the box-plot, where only the minimal, maximal, $\SI{25}{\percent}$-quantile, median and $\SI{75}{\percent}$-quantile value is plotted.
+
+\subsection{Distribution Functions}
+There are all sorts of scattering distributions e.q. even distribution, Weibull distribution, Rayleigh distribution but the most prominent distribution is the normal distribution by Gauss:
+
+\begin{equation}
+f\left( x \right) = \frac{1}{\sigma\sqrt{2\pi}}e^{-\frac{1}{2}\left(\frac{x-\mu}{\sigma}\right)^2}
+\end{equation}
+
+Assuming that $\sigma = s$ and $\mu = \bar{x}$ this function can also be plotted and used for predictions.
+
+ \subsection{Regression of multidimensional Datasets}
+ 
+Assuming a input variable vector $\vec{x}$, a coefficient set $\vec{b}$ and a result $y$ an arbitrary polynomial can be written as: \cite{sip}
+
+\begin{equation}
+y = \vec{x}\cdot\vec{b}=\begin{bmatrix}
+1 & x_1 & x_2 & \dots & x_M
+\end{bmatrix} \cdot \begin{bmatrix}
+b_0 \\ b_1 \\ b_2 \\ \vdots \\ b_M
+\end{bmatrix}
+\end{equation}
+
+With $N$ samples this system is overdetermined which leads to an error vector $\vec{e}$. Than the resulting polynomial is:
+
+\begin{equation}
+\vec{y}=X\cdot \vec{b}+\vec{e}=\begin{bmatrix}
+y_1 \\ y_2 \\ \vdots \\ y_N
+\end{bmatrix} = \begin{bmatrix}
+1 & x_{11} & x_{12} & \dots & x_{1M} \\
+1 & x_{21} & x_{22} & \dots & x_{2M} \\
+\vdots & \vdots & \vdots & \ddots & \vdots \\
+1 & x_{N1} & x_{N2} & \dots & x_{NM}
+\end{bmatrix} \cdot \begin{bmatrix}
+b_0 \\ b_1 \\ b_2 \\ \vdots \\ b_M
+\end{bmatrix} + \begin{bmatrix}
+e_1 \\ e_2 \\ \vdots \\ e_N
+\end{bmatrix}
+\end{equation}
+
+The sum square error
+
+\begin{equation}
+S = \vec{e}^{\mathsf T}\cdot\vec{e}=\left(\vec{y}-X\cdot\vec{b}\right)^{\mathsf T}\cdot\left(\vec{y}-X\cdot\vec{b}\right)
+\end{equation}
+
+is minimized by 
+
+\begin{equation}
+\nabla_{\vec{b}}\cdot S = 0
+\end{equation}
+
+leading to the well known \ac{LS}-method
+
+\begin{equation}
+\hat{b}_\text{LS}=\left(X^{\mathsf T} X\right)^{-1} X^{\mathsf T}\vec{y}.
+\end{equation}
+
+The input matrix $X$ can also be optimized by taking combinations or powers of different dependent parameters.\\
+A frequent problem is that the significance of the parameters in $\vec{b}$ is unknown, hence to unnecessary high number of parameters and inaccurate regressions. Therefore the hypothesis that $b_m=0$ is checked. The parameters in vector $\vec{b}$ are t-distributed. First the covariance matrix of the independent variable $\vec{y}$ is estimated: \cite{dffs}
+
+\begin{equation}
+C = \left(X^{\mathsf T} X\right)^{-1}\frac{1}{N-M-1}\cdot\left(\vec{y}^{\mathsf T}\cdot\vec{y}-\vec{b}^{\mathsf T}\cdot X^{\mathsf T}\cdot \vec{y}\right) = \begin{bmatrix}
+c_0 & 0 & \dots & 0 \\
+0 & c_1 & \dots & 0 \\
+\vdots & \vdots & \ddots & \vdots \\
+0 & 0 & \dots & c_M  
+\end{bmatrix}
+\end{equation}
+
+With the variances $c_m$ of each parameter and the variance of $\vec{y}$ $s$, the $p$-value can be computed with $F_t$, the \ac{CDF} of the t-distribution with $N-1$ degrees of freedom:
+
+\begin{equation}
+p_m = F_t\left(\frac{b_m}{c_m\cdot s}\right)
+\end{equation}
+
+Normally a significance value of $\alpha = \SI{5}{\percent}$ is chosen. If the $p$-value is inside the interval $p_m=\left[\sfrac{\alpha}{2},\ 1-\sfrac{\alpha}{2}\right]$ the hypothesis is valid and parameter $m$ can be discarded.
+
+To estimate the confidence interval for the mean of a regression at a point $x_0$ the variance at dot $x_0$ must be estimated: \cite{dffs}
+
+\begin{equation}
+s_{\hat{y}_0}^2 = \frac{1}{N-M-1}\cdot\left(\vec{y}^{\mathsf T}\cdot\vec{y}-\vec{b}^{\mathsf T}\cdot X^{\mathsf T}\cdot \vec{y}\right)\cdot \vec{x}_0^{\mathsf T}\cdot \left(X^{\mathsf T} X\right)^{-1} \cdot \vec{x}_0
+\end{equation}
+
+Choosing a confidence value $\gamma = \SI{95}{\percent}$, the two parameters $k_1$ and $k_2$ can be derived with the inverse \ac{CDF} $F^{-1}$ with $N-M-1$ degrees of freedom:
+
+\begin{equation}
+k_1 = F^{-1}\left(\frac{1-\gamma}{2}\right),\ k_2 = F^{-1}\left(\frac{1+\gamma}{2}\right)
+\end{equation}
+
+And the prediction interval is
+
+\begin{equation}
+\mu_y\left(\vec{x}_0^{\mathsf T}\right) =\left[ y\left(\vec{x}_0^{\mathsf T}\right)-k_2\cdot s_{\hat{y}_0},\ y\left(\vec{x}_0^{\mathsf T}\right)-k_1\cdot s_{\hat{y}_0}\right]
+\end{equation}
+
+

@@ -86,7 +86,7 @@ For different radii $R$ step two and three are iterated. Furthermore the minimum
 
 For a universal guideline to choose the optimal measurement distance and probe antenna for \ac{TRP}-measurements some sample antennas must be tested as probe and as \ac{DUT}. The \ac{NF} behaviour of an antenna is mostly independent for every antenna.
 
-\begin{figure}[h]
+\begin{figure}
   \centering
   \subfigure[Rendering Picture]{\includegraphics[height=6cm]{Antennas/Vivaldi.png}}
   \centering
@@ -150,7 +150,7 @@ To proof the introduced simulation to investigating \ac{NF} probing for \ac{TRP}
 
 \subsection{Implementation}
 
- Because of the high cable loss resulting from long cables caused by the big chamber a $\SI{40}{\decibel}$ azimuth amplifier is used. Only the A-Info $\SI{20}{\decibel}$ \ac{SGH} was used as \ac{DUT} on the azimuth table with it's aperture in the center of rotation. This adds an other $\SI{3}{\centi\meter}$ radius to the phase center. Occupying a low gain probe such as the Patch, the maximum range length of about $\SI{1.1}{\meter}$ and a \ac{RBW} of $\SI{100}{\hertz}$ results in a dynamic range of about $\SI{20}{\decibel}$. This is not pleasant to plot the pattern, but it's sufficient to compute an adequate \ac{TMP}. To adjust the radius a aluminium profile is used refer to figure \ref{fig:otameas}. Because of the mounting at azimuth the elevation can only be measured from $\theta_\text{min}=\SI{0}{\degree}$ and $\theta_\text{max}=\SI{85}{\degree}$ which is sufficient (compare figure \ref{fig:hornpro}). As in the simulation a $\SI{5}{\degree}$-\ac{CSSG} is used with swept azimuth and therefore hardware triggering from the positioner to the \ac{VNA}. So that one \ac{TRP} measurement takes around $\SI{5}{\min}$.
+ Because of the high cable loss resulting from long cables caused by the big chamber a $\SI{40}{\decibel}$ azimuth amplifier is used. Only the A-Info $\SI{20}{\decibel}$ \ac{SGH} was used as \ac{DUT} on the azimuth table with it's aperture in the center of rotation. This adds an other $\SI{3}{\centi\meter}$ radius to the phase center. Occupying a low gain probe such as the Patch, the maximum range length of about $\SI{1.1}{\meter}$ and a \ac{RBW} of $\SI{100}{\hertz}$ results in a dynamic range of about $\SI{20}{\decibel}$. This is not pleasant to plot the pattern, but it's sufficient to compute an adequate \ac{TMP}. To adjust the radius a aluminium profile is used refer to figure \ref{fig:otameas}. Because of the mounting at azimuth the elevation can only be measured from $\theta_\text{min}=\SI{0}{\degree}$ and $\theta_\text{max}=\SI{85}{\degree}$ which is sufficient (compare figure \ref{fig:hornpro}). As in the simulation a $\SI{5}{\degree}$-\ac{CSSG} is used with swept azimuth and therefore hardware triggering from the positioner to the \ac{VNA}. So that one \ac{TRP} measurement takes around $\SI{2}{\min}$.
 
 \subsection{Set Up}
 
@@ -165,15 +165,30 @@ To proof the introduced simulation to investigating \ac{NF} probing for \ac{TRP}
 \label{fig:realprobe}
 \end{figure}
 
-The minimum and maximal measurement sphere radius varies because of the probe mounting from around $\SI{10}{\centi\meter}$ to $\SI{115}{\centi\meter}$. The measurement is carried out by using the $\SI{20}{\decibel}$ \ac{SGH} LB-28-20 by A-Info (figure \ref{fig:hornpro}), the Vivaldi (figure \ref{fig:vivpro}), the Patch (figure \ref{fig:realprobe} (c)) and the two \ac{OEWG} implementations (figure \ref{fig:realprobe} (a) and (b)). There some issues with the probe implementations depicted in figure \ref{fig:realprobe}:
+The minimum and maximal measurement sphere radius varies because of the probe mounting from around $\SI{10}{\centi\meter}$ to $\SI{115}{\centi\meter}$. From $\SI{10}{\centi\meter}$ to $\SI{16}{\centi\meter}$ radius $\SI{1}{\centi\meter}$, from $\SI{16}{\centi\meter}$ to $\SI{20}{\centi\meter}$ $\SI{2}{\centi\meter}$ and than $\SI{5}{\centi\meter}$ radius increment is taken. The measurement is carried out by using the $\SI{20}{\decibel}$ \ac{SGH} LB-28-20 by A-Info (figure \ref{fig:hornpro}), the Vivaldi (figure \ref{fig:vivpro}), the Patch (figure \ref{fig:realprobe} (c)) and the two \ac{OEWG} implementations (figure \ref{fig:realprobe} (a) and (b)) as probe and the $\SI{20}{\decibel}$ \ac{SGH} as \ac{DUT}. There some issues with the probe implementations depicted in figure \ref{fig:realprobe}:
 
 \begin{enumerate}[label=(\alph*)]
 \item Because no WR28 \ac{OEWG} antenna was available, a WR28 wave guide adapter and a \ac{SGH} mounting was first taken. With the metal in front of the aperture the \ac{FF} pattern differs from a real \ac{OEWG} and the directivity increases by around $\SI{4}{\decibel}$, refer to figure \ref{fig:oewgimpone}.
-\item With an other mounting
-\item 3
+\item With an other mounting the aperture is free from additional metal. The problem is here, that the metal plate surrounding the opening of the wave guide reflects the \ac{EM} waves emitted to it. This leads to standing waves in the \ac{NF}.
+\item The patch is a omnidirectional radiator (refer to figure \ref{fig:patchpro}). With the absorbers the directivity of this antenna is rising, because the \ac{TRP} is sinking by absorbing the backwards orientated radiation. Additionally the patch antenna is placed on a ground plane, which leads similar to the wave guide adapter to standing waves.
 \end{enumerate}
 
 \subsection{Result}
+
+\begin{figure}
+  \centering
+  \subfigure[TMP over measurement distance]{\includegraphics[width=0.49\textwidth]{Matlab/measSGHTMP.eps}}
+  \centering
+  \subfigure[Main EIRP over measurement distance]{\includegraphics[width=0.49\textwidth]{{Matlab/measSGHEIRP.eps}}}
+\caption{Measurement result: DUT $\SI{20}{\decibel}$ SGH}
+\label{fig:meastrpdistviv}
+\end{figure}
+
+As described in the section above there are some issues with both \ac{OEWG} implementations and the patch antenna. That explains the unexpected course of these graphs. The exception would be that the directivity of the probe antennas is positively correlated with the measured \ac{TMP} error. This is seen in figure \ref{fig:meastrpdistviv} (a) between \ac{SGH} and Vivaldi antenna.\\
+Direct interaction/coupling between the probe and the \ac{DUT} could not be simulated. This explains the generally higher error level. It has a very big impact on probes with flat metal surfaces tangential to the \ac{DUT}. These metal surfaces lead to standing waves and thereby to a greater measurement result. This effect is mostly seen in figure \ref{fig:meastrpdistviv} (a) by the second \ac{OEWG} implementation and the patch, which have less error in \ac{FF} while the curves sharply rise at Fraunhofer distance.\\
+Viewing the \ac{EIRP} in the main lobe, this phenomena is also recognisable. Also the shape of the curve of the \ac{SGH} is similar to the simulation. A real statement must be made in the future by using a real \ac{OEWG} probe without any tangential area and repeat the measurement. The patch antenna would need to be redesigned for \ac{NF} probing. A simpler solution could be to design a new mount for the patch antenna with a small angle offset to scatter the mirrored wave away from the \ac{DUT}.
+
+
 
 
 

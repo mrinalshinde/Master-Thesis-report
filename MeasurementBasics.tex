@@ -86,7 +86,14 @@ With the detector a certain sample in a given interval is chosen, compare figure
 \item The \textcolor[RGB]{114,100,184}{AV-detector} computes the average of the signal to display.
 \end{itemize}
 
-Choosing the correct detector setting is dependent of the expected signal. If a stochastic signal (noise) is to be found, the \ac{RMS}-detector is always the right choice. If it is harmonic, the Max Peak-detector is right. There are two major problems:
+\begin{figure}
+\centering
+\includegraphics[width=0.8\textwidth]{Matlab/CompareDet.eps}
+\caption{TRP measurement of noise with different detector settings}
+\label{fig:trpmeasnoise}
+\end{figure}
+
+Choosing the correct detector setting is dependent of the expected signal. If a stochastic signal (noise) is to be found, the \ac{RMS}-detector is always the right choice. If it is harmonic, the Max Peak-detector is right. This phenomenon is depicted in figure \ref{fig:trpmeasnoise}, where a \ac{TRP} measurement of a wideband white noise was accomplished. This measurement was done with a \ac{RBW} of $\SI{1}{\mega\hertz}$ and a sweep time of $\SI{4}{\milli\second}$. With \ac{RMS} detector the outcome is independent from the number of points, while the peak detector is because of the greater possibility for a great values dependent of the number of points. There are two major problems:
 
 \begin{enumerate}
 \item By using the Peak-detector for measuring stochastic signals the minimum error is $\SI{2.5}{\decibel}$ when the frequency intervals are short (a lot of display points).
@@ -97,7 +104,7 @@ For a coarse pre scan a Peak-detector is normally used and if something is found
 
 \section{Describing Antennas Characteristics}
 
-The main parts of \ac{OTA} measurements are antennas. Describing these there are some important terms to have in mind: \cite{balanis}
+In this section the main terms for describing antennas performance are introduced: \cite{balanis}
 
 \begin{itemize}
 \item\textbf{Directivity}: The directivity $D$ is the \ac{EIRP} divided by the \ac{TRP}.
@@ -109,7 +116,7 @@ The directivity of an antenna is \ac{EIRP} in main direction divided by \ac{TRP}
 \begin{equation}
 G = e_0\cdot D=e_0\cdot\frac{\text{EIRP}}{\text{TRP}}
 \end{equation}
-The realized gain is further reduced by the mismatch of the antennas impedance. \cite{ieeeantenna}
+\item \textbf{Realized Gain} is further reduced by the mismatch of the antennas impedance. \cite{ieeeantenna}
 \end{itemize}
 
 
