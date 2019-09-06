@@ -141,7 +141,7 @@ Hereinafter different spatial sampling approaches for this sphere are introduced
 \subsection{Derivation of the Spatial Sampling considering the Array Factor}
 \label{sec:spasa}
 
-The Array Factor is \glqq The radiation pattern of an array antenna when each array element is considered to radiate isotropically.\grqq{} \cite{ieeeantenna}. The sampling frequency in either elevation or in azimuth is dependent on the aperture of the \ac{DUT} and the wavelength. To investigate the necessary sampling frequency an one dimensional $\sfrac{\lambda}{2}$ array of isotropic radiators was taken in account. With the number of elements $N$, the element spacing $d = \sfrac{\lambda}{2}$ and the wavelength $\lambda$ the antenna pattern is derivable: \cite{litze}
+The \ac{AF} is \glqq The radiation pattern of an array antenna when each array element is considered to radiate isotropically.\grqq{} \cite{ieeeantenna}. The sampling frequency in either elevation or in azimuth is dependent on the aperture of the \ac{DUT} and the wavelength. To investigate the necessary sampling frequency an one dimensional $\sfrac{\lambda}{2}$ array of isotropic radiators was taken in account. With the number of elements $N$, the element spacing $d = \sfrac{\lambda}{2}$ and the wavelength $\lambda$ the antenna pattern is derivable: \cite{litze}
 
 \begin{equation}
 \begin{vmatrix}\Gamma\left(\theta\right)\end{vmatrix}^2 = \Biggl|\frac{\sin\left(\frac{\pi M d}{\lambda \sin\left(\theta\right)}\right)}{\sin\left(\frac{\pi d}{\lambda \sin\left(\theta\right)}\right)}\Biggl|^2 = \Biggl|\frac{\sin\left(\frac{\pi M}{2 \sin\left(\theta\right)}\right)}{\sin\left(\frac{\pi}{2 \sin\left(\theta\right)}\right)}\Biggl|^2
@@ -173,7 +173,7 @@ The resulting pattern is depicted in figure \ref{fig:evolvpattern2} and in annex
 In \cite{hansen} it is suggested to use the sampling increment of:
 
 \begin{equation}
-\Delta\Theta' = \frac{2\pi}{2N+1}\ , \quad \Delta\Phi'=\frac{2\pi}{2M+1}
+\Delta\Theta_\text{Hansen} = \frac{2\pi}{2N+1}\ , \quad \Delta\Phi_\text{Hansen}=\frac{2\pi}{2M+1}
 \end{equation}
 
 Where $N$ is the highest significant wave mode on the minimum sphere enclosing the antennas aperture and $M$ is the highest significant wave mode on the minimum cylinder. With the sphere radius $r_S$, the cylinder radius $r_C$ and the angular wavenumber $k = \sfrac{2\pi}{\lambda}$ they are calculated as follows:
@@ -194,7 +194,7 @@ And the azimuth is:
 \Delta\Phi_{\text{ref}} = \frac{\lambda}{2\cdot r_C}
 \end{equation}
 
-These angle increments were also introduced in \cite{2018arXiv180310993F} and are called reference angle increments. To illustrate these angle increments the one dimensional array of isotropic radiators is taken. Evaluating the array factor of a $d = \sfrac{\lambda}{n}$ -array with $N$ elements the reference angle becomes very short:
+These angle increments were also introduced in \cite{2018arXiv180310993F} and are called reference angle increments. To illustrate these angle increments the one dimensional array of isotropic radiators is taken. Evaluating the \ac{AF} of a $d = \sfrac{\lambda}{n}$ -array with $N$ elements the reference angle becomes very short:
 
 \begin{equation}
 \Delta\Phi_{\text{ref}} = \frac{n}{N-1}
@@ -206,7 +206,7 @@ When an arbitrary signal is sampled, the spectrum is mirrored at the sampling fr
 For that sake the dashed lines are:
 
 \begin{equation}
-\color{blue}\left(\Delta\Phi_{\text{ref}}\right)^{-1}\color{black},\ \color{cyan}\left(\Delta\Phi'\right)^{-1}\color{black}\ \text{and}\ \color{green}\text{first mode} > \SI{-40}{\decibel} \color{black}
+\color{blue}\left(\Delta\Phi_{\text{ref}}\right)^{-1}\color{black},\ \color{cyan}\left(\Delta\Phi_\text{Hansen}\right)^{-1}\color{black}\ \text{and}\ \color{green}\text{first mode} > \SI{-40}{\decibel} \color{black}
 \end{equation}
 
 Similar to that the dashed lines in figure \ref{fig:evolvpattern2} are the first sampling points using the derived sampling frequency.\\
@@ -368,7 +368,7 @@ s^2 = \frac{1}{N-1}\sum_{n=1}^N\left( x_n-\bar{x}\right)^2
 The commonly known way to display a distribution is a bar diagram. There the value of range is split in $M$ bars displaying the values in the $x$-axis and the probability of each bucket on the $y$-axis. An other way to display a distribution is the box-plot, where only the minimal, maximal, $\SI{25}{\percent}$-quantile, median and $\SI{75}{\percent}$-quantile value is plotted.
 
 \subsection{Distribution Functions}
-There are all sorts of scattering distributions e.q. even distribution, Weibull distribution, Rayleigh distribution but the most prominent distribution is the normal distribution by Gauss:
+There are all sorts of scattering distributions e.q. even distribution, Weibull distribution, Rayleigh distribution, ... but the most prominent distribution is the normal distribution by Gauss:
 
 \begin{equation}
 f\left( x \right) = \frac{1}{\sigma\sqrt{2\pi}}e^{-\frac{1}{2}\left(\frac{x-\mu}{\sigma}\right)^2}
@@ -381,7 +381,7 @@ Assuming that $\sigma = s$ and $\mu = \bar{x}$ this function can also be plotted
 Assuming a input variable vector $\vec{x}$, a coefficient set $\vec{b}$ and a result $y$ an arbitrary polynomial can be written as: \cite{sip}
 
 \begin{equation}
-y = \vec{x}\cdot\vec{b}=\begin{bmatrix}
+y\left(\vec{x}\right) = \vec{x}^{\mathsf T}\cdot\vec{b}=\begin{bmatrix}
 1 & x_1 & x_2 & \dots & x_M
 \end{bmatrix} \cdot \begin{bmatrix}
 b_0 \\ b_1 \\ b_2 \\ \vdots \\ b_M
@@ -428,17 +428,17 @@ A frequent problem is that the significance of the parameters in $\vec{b}$ is un
 
 \begin{equation}
 C = \left(X^{\mathsf T} X\right)^{-1}\frac{1}{N-M-1}\cdot\left(\vec{y}^{\mathsf T}\cdot\vec{y}-\vec{b}^{\mathsf T}\cdot X^{\mathsf T}\cdot \vec{y}\right) = \begin{bmatrix}
-c_0 & 0 & \dots & 0 \\
-0 & c_1 & \dots & 0 \\
+c_{00} & c_{01} & \dots & c_{0M} \\
+c_{10} & c_{11} & \dots & c_{1M} \\
 \vdots & \vdots & \ddots & \vdots \\
-0 & 0 & \dots & c_M  
+c_{M0} & c_{M1} & \dots & c_{MM}  
 \end{bmatrix}
 \end{equation}
 
 With the variances $c_m$ of each parameter and the variance of $\vec{y}$ $s$, the $p$-value can be computed with $F_t$, the \ac{CDF} of the t-distribution with $N-1$ degrees of freedom:
 
 \begin{equation}
-p_m = F_t\left(\frac{b_m}{c_m\cdot s}\right)
+p_m = F_t\left(\frac{b_m}{c_{mm}\cdot s}\right)
 \end{equation}
 
 Normally a significance value of $\alpha = \SI{5}{\percent}$ is chosen. If the $p$-value is inside the interval $p_m=\left[\sfrac{\alpha}{2},\ 1-\sfrac{\alpha}{2}\right]$ the hypothesis is valid and parameter $m$ can be discarded.
@@ -458,7 +458,7 @@ k_1 = F^{-1}\left(\frac{1-\gamma}{2}\right),\ k_2 = F^{-1}\left(\frac{1+\gamma}{
 And the prediction interval is
 
 \begin{equation}
-\mu_y\left(\vec{x}_0^{\mathsf T}\right) =\left[ y\left(\vec{x}_0^{\mathsf T}\right)-k_2\cdot s_{\hat{y}_0},\ y\left(\vec{x}_0^{\mathsf T}\right)-k_1\cdot s_{\hat{y}_0}\right]
+\mu_y\left(\vec{x}_0\right) =\left[ y\left(\vec{x}_0\right)-k_2\cdot s_{\hat{y}_0},\ y\left(\vec{x}_0\right)-k_1\cdot s_{\hat{y}_0}\right]
 \end{equation}
 
 
