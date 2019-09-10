@@ -84,13 +84,13 @@ The Derat distance was introduced by Benoit Derat in \cite{8393926} and it is th
 In \cite{8393926} it is shown, that higher order modes than 
 
 \begin{equation}
-N = \lceil 1.0252\cdot\left(\frac{\pi D}{\lambda}\right)^{0.8633} \rceil
+N = \Bigg\lceil 1.0252\cdot\left(\frac{\pi D}{\lambda}\right)^{0.8633} \Bigg\rceil
 \end{equation}
 
-have a maximum influence to the \ac{EIRP} in main direction of $\SI{0.5}{\decibel}$. With that the Derat distance can be derived to:
+have a maximum influence to the \ac{EIRP} in main direction of $\SI{0.5}{\decibel}$. $\lceil\cdot\rceil$ means rounding up. With that the Derat distance can be derived to:
 
 \begin{equation}
-r_{\text{Dr}} = \lambda\left(\frac{\pi D}{\lambda}\right)^{0.8633}\left(0.1673\left(\frac{\pi D}{\lambda}\right)^{0.8633}+0.1632\right)
+r_{\text{Dr}} = \lambda\left(\frac{\pi D}{\lambda}\right)^{0.8633}\cdot\left(0.1673\left(\frac{\pi D}{\lambda}\right)^{0.8633}+0.1632\right)
 \end{equation}
 
 \subsection{Example: Standard Gain Horn}
@@ -141,7 +141,7 @@ Hereinafter different spatial sampling approaches for this sphere are introduced
 \subsection{Derivation of the Spatial Sampling considering the Array Factor}
 \label{sec:spasa}
 
-The \ac{AF} is \glqq The radiation pattern of an array antenna when each array element is considered to radiate isotropically.\grqq{} \cite{ieeeantenna}. The sampling frequency in either elevation or in azimuth is dependent on the aperture of the \ac{DUT} and the wavelength. To investigate the necessary sampling frequency an one dimensional $\sfrac{\lambda}{2}$ array of isotropic radiators was taken in account. With the number of elements $N$, the element spacing $d = \sfrac{\lambda}{2}$ and the wavelength $\lambda$ the antenna pattern is derivable: \cite{litze}
+The \ac{AF} is \glqq the radiation pattern of an array antenna when each array element is considered to radiate isotropically\grqq{} \cite{ieeeantenna}. The sampling frequency in either elevation or in azimuth is dependent on the aperture of the \ac{DUT} and the wavelength. To investigate the necessary sampling frequency an one dimensional $\sfrac{\lambda}{2}$ array of isotropic radiators was taken in account. With the number of elements $N$, the element spacing $d = \sfrac{\lambda}{2}$ and the wavelength $\lambda$ the antenna pattern is derivable: \cite{litze}
 
 \begin{equation}
 \begin{vmatrix}\Gamma\left(\theta\right)\end{vmatrix}^2 = \Biggl|\frac{\sin\left(\frac{\pi M d}{\lambda \sin\left(\theta\right)}\right)}{\sin\left(\frac{\pi d}{\lambda \sin\left(\theta\right)}\right)}\Biggl|^2 = \Biggl|\frac{\sin\left(\frac{\pi M}{2 \sin\left(\theta\right)}\right)}{\sin\left(\frac{\pi}{2 \sin\left(\theta\right)}\right)}\Biggl|^2
@@ -213,7 +213,7 @@ Similar to that the dashed lines in figure \ref{fig:evolvpattern2} are the first
 The issue is now to find the sampling frequency at which the sampling error is independent from the aperture of the antenna. As depicted in figure \ref{fig:evolvpattern3} the sampling frequency introduced by \cite{hansen} is too strict for small apertures. On the other hand the reference angle introduced by \cite{2018arXiv180310993F} is to inaccurate for small apertures. Because of that a new factor \ac{CrefA} is taken:
 
 \begin{equation}
-\text{CrefA} = \frac{\Delta\Phi_{\text{ref}}\cdot\left(\text{first mode} > \SI{-40}{\decibel}\right)}{2}
+\text{CrefA} = \left(\Delta\Phi_{\text{ref}}\cdot\left(\text{first mode} > \SI{-40}{\decibel}\right)\right)^{-1}
 \end{equation} 
 
 \begin{figure}
@@ -223,11 +223,11 @@ The issue is now to find the sampling frequency at which the sampling error is i
 \label{fig:crefa}
 \end{figure}
 
-This factor is plotted in figure \ref{fig:crefa}. It is dependent of the aperture. With that the error due to sampling is independent from the antennas aperture.\\
-For further reduction of points a second factor is introduced, the \acf{SF}. At $\text{SF}=2$ every second measurement point skipped. With all that the angle increments for spherical sampling is:
+This factor is plotted in figure \ref{fig:crefa}. It is dependent of the aperture. With that the error due to sampling is independent from the antennas aperture. Less than $\SI{-40}{\decibel}$ in the mode spectra is defined for the sampling angle increment in \cite{hansen}.\\
+For further reduction of points a second factor is introduced, the \acf{SF}. At $\text{SF}=2$ every second measurement point is skipped. With all that the angle increments for spherical sampling is:
 
 \begin{equation}
-\Delta\Theta = \text{SF}\cdot\text{CrefA}\cdot\frac{\lambda}{2r_S}\ ,\quad\Delta\Phi = \text{SF}\cdot\text{CrefA}\cdot\frac{\lambda}{2r_C}
+\Delta\Theta = \text{SF}\cdot\text{CrefA}\left(\sfrac{2r_S}{\lambda}\right)\cdot\frac{\lambda}{2r_S}\ ,\quad\Delta\Phi = \text{SF}\cdot\text{CrefA}\left(\sfrac{2r_C}{\lambda}\right)\cdot\frac{\lambda}{2r_C}
 \label{eq:angle}
 \end{equation}
 
@@ -266,7 +266,7 @@ It is only possible to sweep the azimuth when this type of grid is used. For eas
 \end{figure}
 
 The \ac{CDG} depicted in figure \ref{fig:cdg} was produces and generated by a charged particle algorithm. It works by minimising the cumulated potential energy of all measurement dots considered as charged particles. The potential energy is minimal, when all points are evenly distributed over the sphere.\\ 
-Deriving the optimal measurement sequence is a \ac{TSP}. It is solved by the Matlab toolbox introduced in \cite{tsp} viewing the angles as Cartesian coordinates. This path os optimized for the positioner to move as efficient as possible. Because the positioning in Azimuth is faster than in Elevation, the elevation distance is weighted five times more. Furthermore the periodicity is taken to account, so that the distance between tow points $\text{P}_n$ and $\text{P}_m$ is:
+Deriving the optimal measurement sequence is a \ac{TSP}. It is solved by the Matlab toolbox introduced in \cite{tsp} viewing the angles as Cartesian coordinates. This path is optimized for the positioner to move as efficient as possible. Because the positioning in Azimuth is faster than in Elevation, the elevation distance is weighted five times more. Furthermore the periodicity is taken to account, so that the distance between tow points $\text{P}_n$ and $\text{P}_m$ is:
 
 \begin{equation}
 \Delta\Theta_{mn} = 5\left(\Theta_{\text{P}_n}-\Theta_{\text{P}_m}\right)\ ,\quad \Delta\Phi_{mn} = \text{min}\left(|\Phi_{\text{P}_n}-\Phi_{\text{P}_m}|\, ,\ 2\pi-|\Phi_{\text{P}_n}-\Phi_{\text{P}_m}|\right)
@@ -321,7 +321,7 @@ $N$ is the number of angular intervals in $\theta=\left[0,\pi\right]$ (elevation
 
 \subsection{Clenshaw-Curtis}
 
-Because the sine theta quadrature is not accurate for spars measurements and the measurement points at the poles are neglected, an other weighting scheme is used, the \ac{CC}-quadrature. The weights W of this quadrature is computed by expending the integrand with Chebyshev polynomials. With that formula \ref{eq:trpsumsin} develops to: \cite{trp}
+Because the sine theta quadrature is not accurate for spars measurements and the measurement points at the poles are neglected, an other weighting scheme is used, the \ac{CC}-quadrature. For the sine theta quadrature the integrating surface is constantly interpolated (compare equation \ref{eq:trpsumsin}). The \ac{CC} quadrature is more accurate using the weights W computed by expending the integrand with Chebyshev polynomials. With that formula \ref{eq:trpsumsin} develops to: \cite{trp}
 
 \begin{equation}
 \text{TRP}_{\text{CC}} = \frac{1}{2M}\sum^{N-1}_{i=1}\sum^{M-1}_{j=0}\left(\text{EIRP}_\theta\left(\theta_i,\phi_j\right)+\text{EIRP}_\phi\left(\theta_i,\phi_j\right)\right)\cdot\text{W}\left(\theta_i\right)
@@ -354,12 +354,12 @@ To describe a one dimensional scattering $h$ with $N$ samples $x$ and the cumula
 \begin{equation}
 \bar x = \frac{1}{N}\sum_{n=1}^N x_N
 \end{equation}
-\item The \textbf{Median} is that value lying in the middle of a distribution, so that $H\left( x\right) = 0.5$. It is computed by sorting the samples by value and, if the number of samples is even taking the mean of the two samples in the middle, or if the number of samples is odd taking the middle value.
-\item The \textbf{Variance} of a distribution is the sum of squared error. This metric is strongly vulnerable by outliers. The computation is as follows:
+\item The \textbf{Median} is that value lying in the middle of a distribution, so that $H\left( x\right) = 0.5$. It is computed by sorting the samples by value and, if the number of samples is even, taking the mean of the two samples in the middle, or if the number of samples is odd taking the middle value.
+\item The \textbf{Variance} of a distribution is the sum of squared error, normalized by the number of samples. This metric is strongly vulnerable by outliers. The computation is as follows:
 \begin{equation}
 s^2 = \frac{1}{N-1}\sum_{n=1}^N\left( x_n-\bar{x}\right)^2
 \end{equation}
-\item The \textbf{$p$-Quantile} is analogue to the Median, is that value of a sorted sample vector where $P$ percent of the distributions values is reached, hence $H\left( x\right) = p$.
+\item The \textbf{$p$-Quantile} is analogue to the Median, that value of a sorted sample vector where $P$ percent of the distributions values is reached, hence $H\left( x\right) = p$.
 \item A more stable metric for scattering as the variance is the \textbf{\ac{IQR}}, this describes the range between two quantiles.
 \end{itemize}
 
@@ -435,7 +435,7 @@ c_{M0} & c_{M1} & \dots & c_{MM}
 \end{bmatrix}
 \end{equation}
 
-With the variances $c_m$ of each parameter and the variance of $\vec{y}$ $s$, the $p$-value can be computed with $F_t$, the \ac{CDF} of the t-distribution with $N-1$ degrees of freedom:
+With the variances $c_{mm}$ of each parameter and the variance of $\vec{y}$ $s$, the $p$-value can be computed with $F_t$, the \ac{CDF} of the t-distribution with $N-1$ degrees of freedom:
 
 \begin{equation}
 p_m = F_t\left(\frac{b_m}{c_{mm}\cdot s}\right)
@@ -449,16 +449,17 @@ To estimate the confidence interval for the mean of a regression at a point $x_0
 s_{\hat{y}_0}^2 = \frac{1}{N-M-1}\cdot\left(\vec{y}^{\mathsf T}\cdot\vec{y}-\vec{b}^{\mathsf T}\cdot X^{\mathsf T}\cdot \vec{y}\right)\cdot \vec{x}_0^{\mathsf T}\cdot \left(X^{\mathsf T} X\right)^{-1} \cdot \vec{x}_0
 \end{equation}
 
-Choosing a confidence value $\gamma = \SI{95}{\percent}$, the two parameters $k_1$ and $k_2$ can be derived with the inverse \ac{CDF} $F^{-1}$ with $N-M-1$ degrees of freedom:
+Choosing a confidence value $\gamma = \SI{95}{\percent}$, the two parameters $k_1$ and $k_2$ can be derived with the inverse \ac{CDF} $F_t^{-1}$ with $N-M-1$ degrees of freedom:
 
 \begin{equation}
 k_1 = F^{-1}\left(\frac{1-\gamma}{2}\right),\ k_2 = F^{-1}\left(\frac{1+\gamma}{2}\right)
 \end{equation}
 
-And the prediction interval is
+And the confidence interval is:
 
 \begin{equation}
 \mu_y\left(\vec{x}_0\right) =\left[ y\left(\vec{x}_0\right)-k_2\cdot s_{\hat{y}_0},\ y\left(\vec{x}_0\right)-k_1\cdot s_{\hat{y}_0}\right]
+\label{eq:conv}
 \end{equation}
 
 

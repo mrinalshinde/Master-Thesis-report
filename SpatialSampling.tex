@@ -80,7 +80,7 @@ X = \begin{bmatrix}
 \label{eq:parammatrix}
 \end{equation}
 
-with $M=7$ parameters. The D-optimal design is used because out of other documents e.q. \cite{2018arXiv180310993F} a course assumption to the significant parameters can be derived and thereby not every interaction needs to be tested. It is assumed that the \ac{SF} has also a quadratic dependency and that the linear interactions between the number of elements is also significant. With that a minimum number of samples is $N_\text{min}=1.5\cdot\left(M+1\right)=12$ \cite{dffs}. So a statistical experimental design can be derived using the Matlab\texttrademark{} \textit{cordexch(...)} with the input of the potency matrix of the regression
+with $M=7$ parameters. The D-optimal design is used because out of other documents e.q. \cite{2018arXiv180310993F} a course assumption to the significant parameters can be derived and thereby not every interaction needs to be tested. It is assumed that the \ac{SF} has also a quadratic dependency and that the linear interactions between the number of elements is also significant. With that a minimum number of samples is $N_\text{min}=1.5\cdot\left(M+1\right)=12$ \cite{dffs}. So a statistical experimental design can be derived using the Matlab\texttrademark{} \textit{cordexch(...)}-function with the input of the potency matrix of the regression
 
 \begin{equation}
 P = \begin{bmatrix}
@@ -117,7 +117,7 @@ X^\prime = \begin{bmatrix}
 \end{bmatrix},
 \end{equation}
 
-where $1$ stands for the maximum value of the respective variable, analogue $-1$ for minimum and $0$ for middle. To generate a better regression and better possibilities of post processing a experimental design was generated sweeping every input parameter:
+where $1$ stands for the maximum value of the respective variable, analogue $-1$ for minimum and $0$ for middle. To generate a better regression and better possibilities of post processing the experimental design was extended by sweeping every input parameter:
 
 \begin{itemize}
 \item The \ac{SF} is swept in the interval $\text{SF}=\left[0.5,2.5\right]$ using $25$ samples.
@@ -126,8 +126,8 @@ where $1$ stands for the maximum value of the respective variable, analogue $-1$
 \item The number of $z$ elements is swept in the interval $N_z=\left[2,22\right]$ using $6$ samples.
 \end{itemize}
 
-This results in a experimental design with $N=25\cdot 3\cdot 4\cdot 6=1800$ samples. The total number of \ac{TRP} processions and pattern generations is thereby $N_\text{TRP}=1800\cdot 4000 = 7.200.000$, not including some reference samples to verify the computed regression.\\
-Furthermore a comparison between \ac{CSSG} and \ac{CDG} shall be accomplished. Therefore the \ac{SF} needs to be projected on a \ac{CDG}. This is accomplished by computing the number of sampling points on the measurement sphere at $\text{CTF}=0$ and generating a \ac{CDG} with that number of points with the charged particle algorithm. The sampling is achieved by a $\SI{0.2}{\degree}$-\ac{CDG} and rounding the \ac{CDG} sample points to $k\cdot 0.2, k\in \mathbb{N}$. The quadrature to derive the \ac{TRP} is the mean of all samples.
+This results in a experimental design with $N=25\cdot 3\cdot 4\cdot 6=1800$ samples. The total number of \ac{TRP} processions and pattern generations is thereby $N_\text{TRP}=1800\cdot 4000 = 7.200.000$, not including some reference samples to verify the computed regression. The computation is accomplished by using the parallel \textit{for}-loop by Matlab\texttrademark{} occupying all virtual CPUs of a system. Even so the overall duration is in the framework of several weeks.\\
+Furthermore a comparison between \ac{CSSG} and \ac{CDG} shall be accomplished. Therefore the \ac{SF} needs to be projected on a \ac{CDG}. This is accomplished by computing the number of sampling points on the measurement sphere at $\text{CTF}=0$ and generating a \ac{CDG} with that number of points with the charged particle algorithm. The sampling is achieved by a $\SI{0.2}{\degree}$-\ac{CDG} rounding the \ac{CDG} sample points to $k\cdot 0.2, k\in \mathbb{N}$. The quadrature to derive the \ac{TRP} is the mean of all samples.
 
 \section{Result}
 
@@ -140,18 +140,30 @@ Furthermore a comparison between \ac{CSSG} and \ac{CDG} shall be accomplished. T
 \label{fig:simressf}
 \end{figure}
 
-The marginal probability of the resulting \acp{TRP} from the simulation is depicted in figure \ref{fig:sparssim3}. There are two major areas, primarily the scattering of the \ac{TRP} is mostly independent from the \ac{SF}, secondary the \ac{TRP} is dependent from \ac{SF}. It seems that the \ac{TRP} is independent from all other input parameters.
+The marginal probability of the resulting \acp{IQR} \acp{TRP} from the simulation is depicted in figure \ref{fig:sparssim3}. There are two major areas, primarily the scattering of the \ac{TRP} is mostly independent from the \ac{SF}, secondary the \ac{TRP} is dependent from \ac{SF}. It seems that the \ac{TRP} is independent from all other input parameters.
 
 \subsection{Regression}
 
 The regression of the \ac{TRP} equation is done as described in section \ref{sec:regod} using the parameter matrix $X$ from equation \ref{eq:parammatrix}. The regression is carried out using the \textit{regstats(...)}-function by Matlab\texttrademark{}. Starting with this polynomial the \ac{CTF} is with a $p$-Value of $\SI{23}{\percent}$ not significant, the coefficient of determination is $\SI{77}{\percent}$. Discarding the \ac{CTF} and repeating the regression leads to also $\SI{77}{\percent}$ coefficient of determination and the constant term is not significant with a $p$-Value of $\SI{13}{\percent}$. The next discarded coefficient is the numbers of elements in $y$ with a  $p$-Value of $\SI{3.6}{\percent}$ leading to a coefficient of determination of $\SI{77}{\percent}$. Discarding the array size coefficients leads to a coefficient of determination of $\SI{55}{\percent}$. This could be caused by a small buck at the implementation of the simulation. For the \ac{CrefA} computing of the elevation angle increment, not the diameter of the array was taken but the maximum edge length, which leads to a slight dependency.\\
-With the same approach the constant part is accounted. Also here a slight dependency from array size is found, discarding this leads to the combined function:
+With the same approach the constant part is accounted. Also here a slight dependency from array size is found. Both effects are visualized by plotting the marginal probability with box plots in figure \ref{fig:sparssimbox}. Only using the \ac{SF} for regression results in:
 
 \begin{equation}
-\text{TMP}\left(\text{SF}\right)=\begin{cases} -3.6\cdot\text{SF}+\frac{3.6}{\si{\decibel}}\cdot\text{SF}^2 & \text{for} SF>1.1\\
-5.1\cdot 10^{-3}\si{\decibel}+4.9\cdot 10^{-2}\cdot \text{SF} & \text{for} SF\le 1.1\end{cases}
+\text{TMP}\left(\text{SF}\right)=\begin{cases} -3.6\cdot\text{SF}+\frac{3.6}{\si{\decibel}}\cdot\text{SF}^2 & \text{for}\ SF>1.1\\
+5.1\cdot 10^{-3}\si{\decibel}+4.9\cdot 10^{-2}\cdot \text{SF} & \text{for}\ SF\le 1.1\end{cases}
 \end{equation}
 
-and is plotted in figure \ref{fig:simressf} (a).
+and is plotted in figure \ref{fig:simressf} (a). Also the $\SI{95}{\percent}$ confidence interval for the \ac{IQR} is plotted in figure \ref{fig:simressf} (a) in red. The scattering in the low \ac{SF} is low compared to the scattering of the \ac{IQR} in the higher \ac{SF} range. The method to compute the confidence interval is described in equation \ref{eq:conv}. The scattering of the \ac{IQR} is additionally displayed via box plot in figure \ref{fig:simressf} (b). The mean \ac{TRP} is always close to zero, regard figure \ref{fig:sparssimboxmean}. To verify the regression some additional validation data is generated. As depicted in figure \ref{fig:simressf} the scattering is similar as the main data.
 
-\subsection{CSSG vs. CDG}
+\subsection{Comparison of CSSG and CDG}
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.49\textwidth]{Matlab/spars-sim3.eps}
+\caption{The CDG compared to the CSSG}
+\label{fig:cdg}
+\end{figure}
+
+The computational effort for \acp{CDG} is with this implementation very high caused by the fine $\SI{0.2}{\degree}$ sampling grid. Therefore less samples have bin computed. The result is depicted in figure \ref{fig:cdg}. It is shown, that for uniform arrays the performance of the \ac{CDG} is better than the \ac{CSSG} regarding figure \ref{fig:cdg}. For non uniform arrays the performance is worse or equal than \ac{CSSG}. This is caused e.q. for a rectangular array by unnecessary high sampling density in azimuth and sparse sampling in elevation. This leads for the same number of points to a similar or worse result. In addition using the \ac{CTF} the number of measurement points is in the \ac{CSSG} and non uniform array case lower than the \ac{CDG} would be.
+
+
+
