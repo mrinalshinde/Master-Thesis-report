@@ -75,7 +75,7 @@ The \ac{QZ} size for \acp{CATR} is mainly dependent of the size of the used mirr
 \caption{Comparison of Detector Settings \cite{funsspec}}
 \label{fig:detset}
 \end{figure}
-\todo{hier weiterlesen}
+
 With the detector a certain sample in a given interval is chosen, compare figure \ref{fig:detset}. There are six main settings for the detector: \cite{funsspec}
 \begin{itemize}
 \item The \textcolor[RGB]{237,28,36}{Max Peak-detector} takes the maximum value in the given interval.
@@ -93,7 +93,7 @@ With the detector a certain sample in a given interval is chosen, compare figure
 \label{fig:trpmeasnoise}
 \end{figure}
 
-Choosing the correct detector setting is dependent of the expected signal. If a stochastic signal (noise) is to be found, the \ac{RMS}-detector is always the right choice. If it is harmonic, the Max Peak-detector is right. This phenomenon is depicted in figure \ref{fig:trpmeasnoise}, where a \ac{TRP} measurement of a wideband white noise was accomplished. This measurement was done with a \ac{RBW} of $\SI{1}{\mega\hertz}$ and a sweep time of $\SI{4}{\milli\second}$. With \ac{RMS} detector the outcome is independent from the number of points, while the peak detector is because of the greater possibility for a great values dependent of the number of points. There are two major problems:
+Choosing the correct detector setting is dependent of the expected signal. If a stochastic signal (noise) is to be found, the \ac{RMS}-detector is always the right choice. If it is harmonic, the Max Peak-detector is right. This phenomenon is depicted in figure \ref{fig:trpmeasnoise}, where a \ac{TRP} measurement of a wideband white noise was accomplished. This measurement was done with a \ac{RBW} of $\SI{1}{\mega\hertz}$ and a sweep time of $\SI{4}{\milli\second}$. With \ac{RMS} detector the outcome is independent from the number of points, while the peak detector is, because of the greater possibility for a great values in broader intervals, dependent of the number of points. This leads to two major issues:
 
 \begin{enumerate}
 \item By using the Peak-detector for measuring stochastic signals the minimum error is $\SI{2.5}{\decibel}$ when the frequency intervals are short (a lot of display points).
@@ -107,12 +107,12 @@ For a coarse pre scan a Peak-detector is normally used and if something is found
 In this section the main terms for describing antennas performance are introduced: \cite{balanis}
 
 \begin{itemize}
-\item\textbf{Directivity}: The directivity $D$ is the \ac{EIRP} divided by the \ac{TRP}.
+\item An antennas \textbf{Directivity} is \glqq the ratio of the radiation intensity in a given direction from the antenna to the radiation intensity averaged over all directions\grqq{} \cite{ieeeantenna}. Hence the directivity $D$ is the \ac{EIRP} divided by the \ac{TRP}.
 \begin{equation}
 D = \frac{\text{EIRP}}{\text{TRP}}
 \end{equation}
 The directivity of an antenna is \ac{EIRP} in main direction divided by \ac{TRP}.
-\item\textbf{Gain}: An antennas gain $G$ is \glqq the ratio of the intensity, in a given direction, to the radiation intensity that would be obtained if the power accepted by the antenna were radiated isotropically.\grqq{} Hence the efficiency $e_0=e_re_ce_d=\sfrac{P_\text{rad}}{P_\text{feed}}$, consistent of the reflection $e_r$, the conduction efficiency $e_c$ and the dielectric efficiency $e_d$, describing the ratio between radiated and feeded power, of the antenna is used:
+\item An antennas \textbf{Gain} $G$ is \glqq the ratio of the intensity, in a given direction, to the radiation intensity that would be obtained if the power accepted by the antenna were radiated isotropically\grqq{} \cite{ieeeantenna}. Hence the efficiency $e_0=e_re_ce_d=\sfrac{P_\text{rad}}{P_\text{feed}}$, consistent of the reflection $e_r$, the conduction efficiency $e_c$ and the dielectric efficiency $e_d$, describing the ratio between radiated and feeded power, of the antenna is used:
 \begin{equation}
 G = e_0\cdot D=e_0\cdot\frac{\text{EIRP}}{\text{TRP}}
 \end{equation}
