@@ -1,6 +1,6 @@
 \chapter{Statistical Simulation for Spatial Sampling}
 
-The angle increment was derived in section \ref{sec:spasa} and is presented in equation \ref{eq:angle}. To find a compromise between measurement speed and accuracy a perfect trade off in terms of aliasing error has to be found.
+The angle increment was derived in section \ref{sec:spasa} and is presented in equation \ref{eq:angle}. To find a compromise between measurement speed and accuracy a perfect trade off in terms of aliasing error has to be found. For a perfect adjustment of the measurement uncertainty dependent of the \ac{SF} the measurement error shall be independent from the devices aperture.
 
 \section{Implementation}
 
@@ -29,7 +29,7 @@ For more sparse sampling at the poles the \ac{CTF} with a value range of $\text{
 N_\Phi\left(\Theta\right) = \bigg\lceil\frac{2\pi}{\Delta\Phi^\prime}\left(1-\text{CTF}+\text{CTF}\cdot\cos\right(\Theta\left)\right)\bigg\rceil
 \end{equation}
 
-For easier computation $N_\Phi\left(\Theta\right)$ is round to 
+If the \ac{CTF} is independent from the resulting uncertainty, than $\text{CTF}=1$ can be chosen and thereby measurement samples saved. For easier computation $N_\Phi\left(\Theta\right)$ is round to 
 
 \begin{equation}
 N_\text{round} = \bigg\lceil \frac{N_\Phi^\prime}{k} \bigg\rceil, \ k \in \mathbb{N}
@@ -144,7 +144,7 @@ The marginal probability of the resulting \ac{TRP} \acp{IQR} from the simulation
 
 \subsection{Regression}
 
-The regression of the \ac{TRP} equation is done as described in section \ref{sec:regod} using the parameter matrix $X$ from equation \ref{eq:parammatrix}. The regression is done separately for the two areas. Starting with $SF\le 1$. With the parameter matrix $X$, the \ac{COD} is $\SI{48}{\percent}$ and the least significant parameter is the interaction between the array sizes with $p = \SI{47}{\percent}$. In the following both array size parameters are also discarded because of their low significance leading to a \ac{COD} of $\SI{48}{\percent}$, with all parameters significant. So the \ac{CTF} has a slight impact on the resulting regression with a coefficient of $b_3=\SI{3.3e-2}{\decibel}$. This corresponds to the maximum introduced additional error of $b_3\cdot\text{CTF}_\text{max}=b_3\cdot 1$, so the error is negligible. Setting $b_3 = 0$ leads to an \ac{COD} of $\SI{42}{\percent}$.\\
+The regression of the \ac{TRP} equation is done as described in section \ref{sec:regod} using the parameter matrix $X$ from equation \ref{eq:parammatrix}. The regression is done separately for the two areas. Starting with $\text{SF}\le 1$. With the parameter matrix $X$, the \ac{COD} is $\SI{48}{\percent}$ and the least significant parameter is the interaction between the array sizes with $p = \SI{47}{\percent}$. In the following both array size parameters are also discarded because of their low significance leading to a \ac{COD} of $\SI{48}{\percent}$, with all parameters significant. So the \ac{CTF} has a slight impact on the resulting regression with a coefficient of $b_3=\SI{3.3e-2}{\decibel}$. This corresponds to the maximum introduced additional error of $b_3\cdot\text{CTF}_\text{max}=b_3\cdot 1$, so the error is negligible. Setting $b_3 = 0$ leads to an \ac{COD} of $\SI{42}{\percent}$.\\
 Starting the regression of the second area with $\text{SF} > 1$ also with the parameter matrix $X$ leads to a \ac{COD} of $\SI{92}{\percent}$. There the least significant parameter is the \ac{CTF} with $p = \SI{65}{\percent}$. Further stepwise discarding of the least significant parameters leads to a \ac{SF} dependent function with residual dependency to the two dimensional array size. Discarding the array size gives a \ac{COD} of $\SI{84}{\percent}$. Further discarding of the quadratic \ac{SF} parameter has not a big impact and the \ac{COD} is unchanged. The resulting function is thus:
 
 \begin{equation}
@@ -156,6 +156,12 @@ Starting the regression of the second area with $\text{SF} > 1$ also with the pa
 It has been shown that, for the because of the lower error interesting first area, the array size is not significant for the scattering. This proves, that the \ac{CrefA} approach is working. Furthermore it has been shown that the \ac{CTF} has a very little impact on the measurement error and can thereby be neglected, so that with the \ac{CTF} the number of measurement points can be effectively reduced. Also in the second area the \ac{CTF} and the array dimensions are mainly insignificant, which is intended. This findings are also proofed by the marginal probabilities plotted in the annex in the figures \ref{fig:sparssim3} and \ref{fig:sparssimbox}.\\
 The marginal probability of the means of each scattering for all parameter combination is plotted in figure \ref{fig:sparssimboxmean}. The mean of the scatterings if the mean measurement \ac{TRP} is for $\text{SF} \le 1$ distributed around zero and the value range is always in the vicinity of some $\SI{1e-3}{\decibel}$.\\
 The $\SI{95}{\percent}$ confidence interval of the regression is plotted in figure \ref{fig:simressf} in yellow. It is computed as in equation \ref{eq:conv} described. It is also split in two parts.
+
+\subsection{Comparison of Different Reference Angles}
+
+The same simulation is carried out by using the reference angle introduced by \cite{hansen} in equation \ref{eq:refahansen}. The resulting marginal probability distribution is plotted in figure \ref{fig:sparssimboxhansen}. Because of the tendencially smaller sampling interval, refer to figure \ref{fig:evolvpattern3}, the \ac{IQR} of the \ac{TRP} distributions is lower. This leads to a unnecessary high sampling density. Also the regression parameters show that a residual dependency is present, combined with a lower coefficient of determination as in the \ac{CrefA} sampling density approach from above:\\
+For $\text{SF}\le 1$, starting with the regression from equation \ref{eq:parammatrix}, the significant parameters are the \ac{CTF}, the number of elements in $y$ and the \ac{SF} with a \ac{COD} of $\SI{24}{\percent}$. Discarding all parameters except the \ac{CTF} leads to a \ac{COD} of $\SI{21}{\percent}$, so the \ac{TRP} \ac{IQR} is mainly independent from \ac{SF}.\\
+For $\text{SF}\ge 1$, starting with the regression from equation \ref{eq:parammatrix}, the significant parameters are the number of elements in $y$, the number of elements in $z$ and the \ac{SF} with a \ac{COD} of $\SI{71}{\percent}$. Discarding the array size parameters leads to a \ac{COD} of $\SI{54}{\percent}$, showing the significant residual correlation between array size and \ac{TRP} \ac{IQR}.
 
 \subsection{Comparison of CSSG and CDG}
 
