@@ -5,13 +5,13 @@ The achieved findings of this work shall be described in this chapter. Furthermo
 \section{OTA Basics}
 
 Every part of an \acf{OTA} \acf{TRP} measurement contributes to the resulting measurement error. The very first step is to establish a tolerable error. With that the \acf{QZ} size of the \ac{OTA} chamber can be determined. This depends of the probe and the chamber it self.\\
-The next error source is thermal noise, which leads to a needed dynamic range and thereby to a received power. The measurement error induced by noise can be computed as 
+The next error source is thermal noise, which leads to a needed dynamic range and thereby to a \acf{LB}. The measurement error induced by noise can be computed as 
 
 \begin{equation}
 e = 10\log_{10}\left(1+10^{\frac{\text{SNR}}{10}}\right).
 \end{equation}
 
-For example a \acf{SNR} of $>\SI{10}{\decibel}$ leads to a measurement error $<\SI{0.5}{\decibel}$. The received power is dependent from the radiated \ac{EIRP}, the \acf{FSPL} and the probes realized gain. To increase dynamic range a \acf{LNA} or a mixer at the probe can be used. The \ac{SNR} is further reduced by the \acf{NF} of the used equipment. A typical modern spectrum analyzer has a \ac{NF} of $\approx\SI{15}{\decibel}$ for example. to increase the \ac{SNR} the \ac{FSPL} should be minimized by occupying the shortest sensible measurement range.
+For example a \acf{SNR} of $>\SI{10}{\decibel}$ leads to a measurement error $<\SI{0.5}{\decibel}$. The received power is dependent from the radiated \ac{EIRP}, the \acf{FSPL} and the probes realized gain. To increase dynamic range a \acf{LNA} or a mixer at the probe can be used. The \ac{SNR} is further reduced by the noise figure of the used equipment. A typical modern spectrum analyzer has a noise figure of $\approx\SI{15}{\decibel}$ for example. to increase the \ac{SNR} the \ac{FSPL} should be minimized by occupying the shortest sensible measurement range.
 
 \section{Measurement Distance}
 

@@ -1,6 +1,6 @@
 \chapter{Theoretical Background}
 
-This chapter will give a brief overview about the underlying theoretical background in the fields of antenna theory, spatial sampling, will introduce some methods of integration to derive the \ac{TRP} out of spherical \ac{EIRP}-data and will establish the needed stochastic for the used statistic.
+This chapter will give a brief overview about the underlying theoretical background in the fields of antenna theory, spatial sampling, will introduce quadrature methods for deriving the \ac{TRP} out of spherical \ac{EIRP} data and will establish the needed stochastic for the used statistic.
 
 \section{Antenna Field Regions}
 
@@ -11,7 +11,7 @@ This chapter will give a brief overview about the underlying theoretical backgro
 \label{fig:antennafieldreg}
 \end{figure}
 
-There are three commonly known antenna regions, the reactive \ac{NF}, the radiating \ac{NF} and the \ac{FF}, divided by two boundaries, the Fresnel distance (blue) and the Fraunhofer distance (yellow). These distances are shown in figure \ref{fig:antennafieldreg}, where the aperture diameter of an arbitrary antenna is on the x-axis and the distance form it is on the y-axis. The third line, the Derat distance (red) was introduced by Benoit Derat in \cite{8393926}.\\
+There are three commonly known antenna field regions, the reactive \ac{NF}, the radiating \ac{NF} and the \ac{FF}, divided by two boundaries, the Fresnel distance (blue) and the Fraunhofer distance (yellow). These distances are shown in figure \ref{fig:antennafieldreg}, where the aperture diameter of an arbitrary antenna is on the x-axis and the distance form it is on the y-axis. The third line, the Derat distance (red), was introduced by Benoit Derat in \cite{8393926}.\\
 \ac{FF}-distance and \ac{NF}-distance are derivable from the phase fluctuation due to the maximum diameter of the antennas aperture \cite{7942128} in a distance $r$ from the antennas phase center. The phase fluctuation is given by the different length of $r$ and $R$, as you can see in figure \ref{fig:arbaperturexy}. The maximum runtime difference is found at the minimum radius of the circle enclosing the aperture at $\sfrac{D}{2}$. The field boundaries are derived from the Taylor series of the function of the phase in dot $P$. Fresnel and Fraunhofer distance, the boundaries between reactive \ac{NF}, radiating \ac{NF} (Fresnel-Region) and the \ac{FF} (Fraunhofer-Region), are analogue to their optical counterpart. \cite{7942128} \cite{balanis}
 
 \begin{figure}[H]
@@ -48,13 +48,13 @@ Introducing the angular wavenumber $k=\sfrac{2\pi}{\lambda}$ and $z'=\sfrac{D}{2
 
 
 \begin{equation}
-\Delta\phi = \frac{k\cdot z^{\prime\, 2}}{2r} =\frac{\frac{2\pi}{\lambda}\cdot \left(\frac{D}{2}\right)^2}{2r} = \frac{\pi D^2}{4\lambda\cdot r}
+\Delta\theta = \frac{k\cdot z^{\prime\, 2}}{2r} =\frac{\frac{2\pi}{\lambda}\cdot \left(\frac{D}{2}\right)^2}{2r} = \frac{\pi D^2}{4\lambda\cdot r}
 \end{equation}
 
-With the typically tolerated phase error of $\Delta\phi = \sfrac{\pi}{8} \ \widehat{=}\  22.5^\circ$ the well known \ac{FF}-distance-formula $r_{\text{Fr}}$ can be derived:
+With the typically tolerated phase error of $\Delta\theta = \sfrac{\pi}{8} \ \widehat{=}\  22.5^\circ$ the well known \ac{FF}-distance-formula $r_{\text{FF}}$ can be derived:
 
 \begin{equation}
-\frac{\pi}{8} = \frac{\pi D^2}{4\lambda\cdot r_{\text{Fr}}} \quad \Leftrightarrow \quad r_{\text{Fr}} = \frac{2D^2}{\lambda}
+\frac{\pi}{8} = \frac{\pi D^2}{4\lambda\cdot r_{\text{FF}}} \quad \Leftrightarrow \quad r_{\text{FF}} = \frac{2D^2}{\lambda}
 \label{eq:ff}
 \end{equation}
 
@@ -76,7 +76,7 @@ By introducing the angular wavenumber $k=\sfrac{2\pi}{\lambda}$, the minimum sph
 \Delta\phi = \frac{\pi}{8} = \frac{kz^{\prime\, 3}}{2r_{\text{NF}}^2}\sin\theta_2\cos^2\theta_2= \frac{\pi D^3}{12\sqrt{3}\cdot\lambda r_{\text{NF}}^2} \quad \Leftrightarrow \quad r_{\text{NF}}=0.62\sqrt{\frac{D^3}{\lambda}}
 \end{equation}
 
-The region directly surrounding the antenna in front of this boundary is called reactive \ac{NF} and it is according to \cite{balanis} \glqq that portion of the near-field region immediately surrounding the antenna wherein the reactive field predominates.\grqq{ }In other words, the reactive \ac{NF} is that portion of an antennas field were you would expect direct coupling.
+The region directly surrounding the antenna in front of this boundary is called reactive \ac{NF} and it is according to \cite{balanis} \glqq that portion of the near-field region immediately surrounding the antenna wherein the reactive field predominates.\grqq{ }In other words, the reactive \ac{NF} is that portion of an antennas field were direct coupling is expected.
 
 \subsection{Derat Distance}
 
@@ -95,7 +95,7 @@ r_{\text{Dr}} = \lambda\left(\frac{\pi D}{\lambda}\right)^{0.8633}\cdot\left(0.1
 
 \subsection{Example: Standard Gain Horn}
 
-\begin{figure}[H]
+\begin{figure}[h]
 \centering
   \centering
   \subfigure[Wave impedance]{\includegraphics[width=0.49\textwidth]{Matlab/NormWaveImpHorn.eps}}
@@ -109,11 +109,10 @@ r_{\text{Dr}} = \lambda\left(\frac{\pi D}{\lambda}\right)^{0.8633}\cdot\left(0.1
 \label{fig:beamcpmp}
 \end{figure}
 
-To clarify the introduced distances they will be proved based on a $\SI{20}{\decibel}$ \ac{SGH} at $\SI{28}{\giga\hertz}$. If you look in the annex at figure \ref{fig:fielddist} you see the front view of this horn with the underlying field distribution. The polarisation is in $y$-direction, so the $yz$-plane is called E-plane and the $xz$-plane is called H-plane from here on.\\
-In figure \ref{fig:beamcpmp} the normalized wave impedance (a) and the normalized phase between E- and H-field components over the distance to the phase center are plotted. To clarify the designations the directions are plotted in (d). The data have been generated by CST\texttrademark , a full wave simulation tool. Complex data in $x$, $y$, and $z$ direction was exported and post processed to Matlab\texttrademark{}.\\
-Also the field boundaries from the sections above are plotted with dashed lines. For deriving the boundaries only the opening of the horn in the E-plane was taken to account. This makes sense because the field distribution and thus the usage of the aperture is known, refer to figure \ref{fig:fielddist}. As you can see in the E-plane the aperture is fully used. But if the field distribution is unknown the smallest circle enclosing the aperture has to be taken.\\
-In figure \ref{fig:beamcpmp} (a) the normalized wave impedance of the different angels (refer to (c)) is plotted over the distance from the antennas phase center. Figure \ref{fig:beamcpmp} (b) shows analogue to (a) the phase between E- and H-field.\\
-The main lobe (blue line) is from Derat-distance on in \ac{FF} condition. On the one hand the wave impedance reached its end value of $\SI{377}{\ohm}$ and on the other hand E- and H-fields are coherent. Considering the side lobes it can be seen that in the reactive \ac{NF} the field conditions are very unstable, whereas the fields in the radiating \ac{NF} become more stable. In the \ac{FF} the field values are continually decreasing the offset from their final value.\\
+To clarify the introduced distances they will be proved based on a $\SI{20}{\decibel}$ \ac{SGH} at $\SI{28}{\giga\hertz}$. The front view of this horn with the underlying field distribution is plotted in figure \ref{fig:fielddist} in the annex. The polarisation is in $y$-direction, so the $yz$-plane is called E-plane and the $xz$-plane is called H-plane from here on.\\
+In figure \ref{fig:beamcpmp} the normalized wave impedance (a), the normalized phase between E- and H-field components (b) and the normalized \ac{EIRP} (c) over the distance to the phase center are plotted. To clarify the designations the directions are plotted in (d). The data have been generated by CST\texttrademark , a full wave simulation tool. Complex data in $x$, $y$, and $z$ direction was exported and post processed to Matlab\texttrademark{}.\\
+Also the field boundaries from the sections above are plotted with dashed lines. For the derivation of the field boundaries only the opening of the horn in the E-plane was taken to account. This is sensible because the field distribution and thus the usage of the aperture is known, refer to figure \ref{fig:fielddist}. As it can be seen, in the E-plane the aperture is fully used. But if the field distribution is unknown, the smallest circle enclosing the aperture has to be taken.\\
+The main lobe (blue line) is from Derat-distance on in \ac{FF} condition. The wave impedance reached its end value of $120\pi\si{\ohm}\approx\SI{377}{\ohm}$, E- and H-fields are coherent and the \ac{EIRP} value converged. Considering the side lobes it can be seen that in the reactive \ac{NF} the field conditions are very unstable, whereas the fields in the radiating \ac{NF} become more stable. In the \ac{FF} the field values are continually decreasing the offset from their final value.\\
 In figure \ref{fig:devantennap} in the annex the resulting antenna patterns in different radii are depicted as well in Cartesian coordinates (a) as in Polar coordinates (b). The assumption 
 
 \begin{equation}
@@ -121,11 +120,11 @@ S = \frac{E^2}{Z_0}
 \label{eq:poynting}
 \end{equation}
 
-was taken to account. In addition analogue to (a) and (b) in (c) the \ac{EIRP} computed in different radii is plotted. At Derat distance ($\approx\SI{100}{\milli\meter}$) the error in main beam direction is about $\SI{0.5}{\decibel}$ and the antenna pattern is further evolving after the Fraunhofer distance at about $\SI{200}{\milli\meter}$.
+was taken to account. In addition analogue to (a) and (b) in (c) the \ac{EIRP} computed in different radii is plotted in figure \ref{fig:fielddist}. At Derat distance ($\approx\SI{100}{\milli\meter}$) the error in main beam direction is about $\SI{0.5}{\decibel}$ and the antenna pattern is further evolving after the Fraunhofer distance at about $\SI{200}{\milli\meter}$.
 
 \section{Spatial Sampling Approaches}
 
-\begin{figure}[h]
+\begin{figure}
 \centering
 \def\svgwidth{0.4\textwidth}
 \input{Bilder/KoordinateSystem.pdf_tex}
@@ -186,19 +185,19 @@ Where $N$ is the highest significant wave mode on the minimum sphere enclosing t
 N = kr_S+10\ , \quad M = kr_C+10
 \end{equation}
 
-For example, the resulting formula for the elevation is:
+For example, the resulting formula for the reference angle increment in elevation is calculated in \cite{2018arXiv180310993F} as
 
 \begin{equation}
-\Delta\Theta_{\text{ref}} = \lim_{r_S \to \infty}\Delta\Theta' = \lim_{r_S \to \infty} \frac{2\pi}{2\left(kr_S+10\right)+1} = \frac{\lambda}{2\cdot r_S}
+\Delta\Theta_{\text{ref}} = \lim_{r_S \to \infty}\Delta\Theta' = \lim_{r_S \to \infty} \frac{2\pi}{2\left(kr_S+10\right)+1} = \frac{\lambda}{2\cdot r_S},
 \end{equation}
 
-And the azimuth is:
+the reference angle increment in azimuth as
 
 \begin{equation}
-\Delta\Phi_{\text{ref}} = \frac{\lambda}{2\cdot r_C}
+\Delta\Phi_{\text{ref}} = \frac{\lambda}{2\cdot r_C}.
 \end{equation}
 
-These angle increments were also introduced in \cite{2018arXiv180310993F} and are called reference angle increments. To illustrate these angle increments the one dimensional array of isotropic radiators is taken. Evaluating the \ac{AF} of a $d = \sfrac{\lambda}{n}$ -array with $N$ elements the reference angle becomes very short:
+To illustrate these angle increments the one dimensional array of isotropic radiators is taken. Evaluating the \ac{AF} of a $d = \sfrac{\lambda}{n}$ -array with $N$ elements the reference angle becomes very short:
 
 \begin{equation}
 \Delta\Phi_{\text{ref}} = \frac{n}{N-1}
@@ -214,7 +213,7 @@ For that sake the dashed lines are:
 \end{equation}
 
 Similar to that the dashed lines in figure \ref{fig:evolvpattern2} are the first sampling points using the derived sampling frequency.\\
-The issue is now to find the sampling frequency at which the sampling error is independent from the aperture of the antenna. As depicted in figure \ref{fig:evolvpattern3} the sampling frequency introduced by \cite{hansen} is too strict for small apertures. On the other hand the reference angle introduced by \cite{2018arXiv180310993F} is to inaccurate for small apertures. Because of that a new factor \ac{CrefA} is taken:
+The issue is now to find the sampling frequency at which the sampling error is independent from the aperture of the antenna. As depicted in figure \ref{fig:evolvpattern3} the sampling frequency introduced by \cite{hansen} is to strict for small apertures. On the other hand the reference angle introduced by \cite{2018arXiv180310993F} is to inaccurate for small apertures. Because of that the new \ac{CrefA} is taken:
 
 \begin{equation}
 \text{CrefA} = \left(\Delta\Phi_{\text{ref}}\cdot\left(\text{first mode} > \SI{-40}{\decibel}\right)\right)^{-1}
@@ -227,7 +226,7 @@ The issue is now to find the sampling frequency at which the sampling error is i
 \label{fig:crefa}
 \end{figure}
 
-This factor is plotted in figure \ref{fig:crefa}. It is dependent of the aperture. With that the error due to sampling is independent from the antennas aperture. Less than $\SI{-40}{\decibel}$ in the mode spectra is defined for the sampling angle increment in \cite{hansen}.\\
+This factor is plotted in figure \ref{fig:crefa}. It is dependent of the aperture. With that the error due to sampling is independent from the antennas aperture. Less than $\SI{-40}{\decibel}$ in the mode spectra is defined for the reference angle increment in \cite{2018arXiv180310993F}, compare figure \ref{fig:evolvpattern3}.\\
 For further reduction of points a second factor is introduced, the \acf{SF}. At $\text{SF}=2$ every second measurement point is skipped. With all that the angle increments for spherical sampling is:
 
 \begin{equation}
@@ -321,7 +320,7 @@ With that the quadrature is:
 \label{eq:trpsumsin}
 \end{equation}
 
-$N$ is the number of angular intervals in $\theta=\left[0,\pi\right]$ (elevation), $M$ is the number of angular intervals in $\phi=\left[0,2\pi\right]$ (azimuth), the indices $i=\left[0,N\right]$, $j=\left[0,M\right]$ and the \ac{EIRP} is split in its horizontal ($\text{EIRP}_\phi$) and its vertical ($\text{EIRP}_\theta$) part. This quadrature is called sine theta.
+$N$ is the number of angular intervals in $\theta=\left[0,\pi\right[$ (elevation), $M$ is the number of angular intervals in $\phi=\left[0,2\pi\right[$ (azimuth), the indices $i=\left[0,N\right]$, $j=\left[0,M\right]$ and the \ac{EIRP} is split in its horizontal ($\text{EIRP}_\phi$) and its vertical ($\text{EIRP}_\theta$) part. This quadrature is called sine theta.
 
 \subsection{Clenshaw-Curtis}
 
@@ -354,7 +353,7 @@ This section shall give a brief introduction in the field of statistics and regr
 To describe a one dimensional scattering $h$ with $N$ samples $x$ and the cumulative frequency $H$, these terms are regularly used: \cite{dffs}
 
 \begin{itemize}
-\item The commonly most used and known term s the \textbf{Arithmetic Mean}, which is vulnerable by outliers and computed as:
+\item The commonly most used and known term is the \textbf{Arithmetic Mean}, which is vulnerable by outliers and computed as:
 \begin{equation}
 \bar x = \frac{1}{N}\sum_{n=1}^N x_N
 \end{equation}
@@ -392,7 +391,7 @@ b_0 \\ b_1 \\ b_2 \\ \vdots \\ b_M
 \end{bmatrix}
 \end{equation}
 
-With $N$ samples this system is overdetermined which leads to an error vector $\vec{e}$. Than the resulting polynomial is:
+The regression is about estimating the coefficient vector $\vec{b}$. With $N$ samples this system is overdetermined which leads to an error vector $\vec{e}$. Than the resulting polynomial is:
 
 \begin{equation}
 \vec{y}=X\cdot \vec{b}+\vec{e}=\begin{bmatrix}
@@ -447,7 +446,7 @@ p_m = F_t\left(\frac{b_m}{c_{mm}\cdot s}\right)
 
 Normally a significance value of $\alpha = \SI{5}{\percent}$ is chosen. If the $p$-value is inside the interval $p_m=\left[\sfrac{\alpha}{2},\ 1-\sfrac{\alpha}{2}\right]$ the hypothesis is valid and parameter $m$ can be discarded.
 
-To estimate the confidence interval for the mean of a regression at a point $x_0$ the variance at dot $x_0$ must be estimated: \cite{dffs}
+To estimate the confidence interval for the mean of a regression at a point $x_0$ the variance at dot $x_0$ must be computed: \cite{dffs}
 
 \begin{equation}
 s_{\hat{y}_0}^2 = \frac{1}{N-M-1}\cdot\left(\vec{y}^{\mathsf T}\cdot\vec{y}-\vec{b}^{\mathsf T}\cdot X^{\mathsf T}\cdot \vec{y}\right)\cdot \vec{x}_0^{\mathsf T}\cdot \left(X^{\mathsf T} X\right)^{-1} \cdot \vec{x}_0

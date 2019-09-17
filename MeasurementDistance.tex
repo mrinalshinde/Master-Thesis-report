@@ -16,7 +16,7 @@ This brings two major problems, first the dynamic range and second the costly me
 L_{\text{FSPL}} = 20\log_{10}\left(\frac{4\pi r_{\text{FF}} \cdot f}{c}\right)\si{\decibel} = \SI{96}{\decibel}
 \end{equation}
 
-With $\SI{15}{\decibel}$ gain from the probe antenna and a noise floor at the \ac{DUT} at $\SI{-23}{\decibelm}$ \ac{EIRP} (to have $\SI{10}{\decibel}$ dynamic range) the resulting power at the probe antenna port would be $P_{\text{Probe Port}} = \SI{-23}{\decibelm}-\SI{96}{\decibel}+\SI{15}{\decibel}=\SI{-104}{\decibelm}$. A Noise Figure of the complete measurement equipment will be at least $\SI{20}{\decibel}$ including \acp{LNA} and the \ac{VSA} (compare figure \ref{fig:danl}). With that the maximum \ac{RBW} would be 
+With $\SI{15}{\decibel}$ gain from the probe antenna and a noise floor at the \ac{DUT} at $\SI{-23}{\decibelm}$ \ac{EIRP} (to have $\SI{10}{\decibel}$ dynamic range) the resulting power at the probe antenna port would be $P_{\text{Probe Port}} = \SI{-23}{\decibelm}-\SI{96}{\decibel}+\SI{15}{\decibel}=\SI{-104}{\decibelm}$. The \ac{NF} of the complete measurement equipment will be at least $\SI{20}{\decibel}$ including \acp{LNA} and the \ac{VSA} (compare figure \ref{fig:danl}). With that the maximum \ac{RBW} would be 
 
 \begin{equation}
 \SI{-174}{\decibelm\per\hertz}+\SI{20}{\decibel}-\left(\SI{-104}{\decibelm}\right)=\SI{-50}{\decibel}\ \Rightarrow\ f_{\text{RBW}}=\SI{100}{\kilo\hertz}.
@@ -75,8 +75,8 @@ For the all quadratures a $\SI{5}{\degree}$ \ac{CSSG} is used. There are three m
 \begin{equation}
 N_\text{TMP}=\left(\left(\frac{\SI{180}{\degree}}{\Delta\theta}+1\right)\cdot\frac{\SI{360}{\degree}}{\Delta\phi}\right)^2=2664^2=7,096,896
 \end{equation}
-measurement points. This is not feasible with the integral solver from CST Microwave Studio\texttrademark{}. Because of that the \ac{NF}-data is fed in to the \ac{FIAFTA}. Occupying the \ac{FIAFTA} the \ac{EM}-field-calculation at every point in the volume is carried out more efficient.\cite{mypaper} \cite{fiafta}
-\item The resulting field data is exported to Matlab\texttrademark{}. There the quadrature of the integral from equation \ref{eq:trpint} is solved and the simulated measurement result is gained.
+measurement points. This is not feasible with the integral solver from CST Microwave Studio\texttrademark{}. Because of that the \ac{NF}-data is fed in to the \ac{FIAFTA}. Occupying the \ac{FIAFTA}, the \ac{EM}-field-calculation at every point in the volume is carried out more efficient.\cite{mypaper} \cite{fiafta}
+\item The resulting field data is exported to Matlab\texttrademark{}. There the quadrature of the integral from equation \ref{eq:trpint} is solved and the simulated measurement result is gained. The used \ac{TRP} quadrature is Jacobi.
 \end{enumerate} 
 
 For different radii $R$, step two and three are iterated. Furthermore the minimum radius $R$ is given by the sum of the radii of $S_1$ and $S_2$.
@@ -114,7 +114,7 @@ Probe antennas:
 \item $\SI{26}{\decibel}$ horn depicted in figure \ref{fig:othera} (a).
 \end{itemize}
 
-All physical existing antennas are depicted with there simulation model on the left (a) and their directivity pattern on the right (b). Other impractical antennas such as the $\SI{26}{\decibel}$ horn, simulated by a big waveguide port, the 2x2 $\SI{20}{\decibel}$ \ac{SGH} array, the $\sfrac{\lambda}{2}$-dipole, which is at \ac{mmW} wavelength not realisable, and the Hertz-dipole are only depicted with there pattern in \ref{fig:othera}.\\
+All physical existing antennas are depicted with there simulation model on the left (a) and their directivity pattern on the right (b). Other impractical antennas such as the $\SI{26}{\decibel}$ horn, simulated by a big waveguide port, the 2x2 $\SI{20}{\decibel}$ \ac{SGH} array, the $\sfrac{\lambda}{2}$-dipole, which is at \ac{mmW} wavelength not realisable, and the Hertz-dipole are only depicted with there pattern in figure \ref{fig:othera}.\\
 The \ac{RS} Vivladi TC-TA85CP is the standard probe antenna at \ac{RS} with a frequency range from $\SI{4}{\giga\hertz}$ to $\SI{87}{\giga\hertz}$, a gain between $\SI{10}{\decibel}$ and $\SI{20}{\decibel}$ and especially the possibility of measuring both polarisations at the same time with a cross-polarization rejection of greater $\SI{20}{\decibel}$. (figure \ref{fig:vivpro})\\
 The $\SI{20}{\decibel}$ \ac{SGH} LB-28-20 by A-Info is normally used to calibrate the measurement setup. It is well known with a lot of empirical data. The underlying WR28-waveguide allows a frequency range from $\SI{26.5}{\giga\hertz}$ to $\SI{40}{\giga\hertz}$. A patch antenna is currently in development at \ac{RS}, it is also used for this simulation and measurement. It is currently not published, so  no further details will be given in this document, except that it has a directivity of $\SI{5}{\decibeli}$, a realized gain of $\SI{3.5}{\decibel}$ and the pattern depicted in figure \ref{fig:patchpro}. 
 
