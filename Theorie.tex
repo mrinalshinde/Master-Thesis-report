@@ -189,6 +189,7 @@ For example, the resulting formula for the reference angle increment in elevatio
 
 \begin{equation}
 \Delta\Theta_{\text{ref}} = \lim_{r_S \to \infty}\Delta\Theta' = \lim_{r_S \to \infty} \frac{2\pi}{2\left(kr_S+10\right)+1} = \frac{\lambda}{2\cdot r_S},
+\label{eq:hansenrefa}
 \end{equation}
 
 the reference angle increment in azimuth as
@@ -239,14 +240,18 @@ For further reduction of points a second factor is introduced, the \acf{SF}. At 
 
 \begin{figure}[h]
   \centering
-  \subfigure[independent azimuth step size]{\includegraphics[width=0.49\textwidth]{Matlab/GridCoStPolar.eps}}
+  \subfigure[$\text{CTF}=0$; spherical presentation]{\includegraphics[width=0.49\textwidth]{Matlab/GridCoStPolar.eps}}
   \centering
-  \subfigure[dependent azimuth step size]{\includegraphics[width=0.49\textwidth]{Matlab/GridCoStSinPolar.eps}}
+  \subfigure[$\text{CTF}=1$; spherical presentation]{\includegraphics[width=0.49\textwidth]{Matlab/GridCoStSinPolar.eps}}
+  \centering
+  \subfigure[$\text{CTF}=0$; Cartesian presentation]{\includegraphics[width=0.49\textwidth]{Matlab/GridCoStCart.eps}}
+  \centering
+  \subfigure[$\text{CTF}=1$; Cartesian presentation]{\includegraphics[width=0.49\textwidth]{Matlab/GridCoStSinCart.eps}}
 \caption{$\SI{15}{\degree}$ -Constant Step Size Grid}
 \label{fig:cssg}
 \end{figure}
 
-The most straight forward way to a spherical measurement is using a \ac{CSSG} depicted in figure \ref{fig:cssg} (a). The advantage is the easy feasibility with any positioner. Ether the azimuth can be swept on every latitude circle or the elevation can be swept on every longitude circle. On the other hand the measurement density is higher on the poles than on the equator.\\
+The most straight forward way to a spherical measurement is using a \ac{CSSG} depicted in figure \ref{fig:cssg} (a). The advantage is the easy feasibility with any positioner. This is visual in \ref{fig:cssg} (c), where the angles are printed in Cartesian coordinates. Ether the azimuth can be swept on every latitude circle or the elevation can be swept on every longitude circle. On the other hand the measurement density is higher on the poles than on the equator.\\
 To meet that the theta dependent number of azimuth points was introduced e.g. by \cite{ctiaat}. It is applied as follows:
 
 \begin{align}
@@ -255,7 +260,7 @@ N\left(\Theta\right)=\lceil N_{\text{max}}\cdot\cos\left(\Theta\right)\rceil\\
 \Delta\Phi\left(\Theta\right) = \frac{2\pi}{N\left(\Theta\right)}
 \end{align}
 
-It is only possible to sweep the azimuth when this type of grid is used. For easier reviewing, the grid is also plotted in Certesian coordinates in figure \ref{fig:gridcomp} in the annex. The red line is a suggested sequence.
+It is only possible to sweep the azimuth when this type of grid is used. Here also the Cartesian coordinates are plotted in (d). The red line is a suggested sequence.
 
 \subsection{Constant Density}
 
