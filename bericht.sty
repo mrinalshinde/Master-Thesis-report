@@ -61,14 +61,16 @@
 % Wer etwas mehr "Kontrolle" über das Aussehen der Referenzen haben möchte, kann
 % auch das "biblatex"-Paket benutzen.
 \usepackage{etoolbox}  % http://dante.ctan.org/tex-archive/help/Catalogue/entries/etoolbox.html
-\usepackage[
-	hyperref=true,          % Klickbare Referenzen in der PDF-Datei
-        backref=true,           % In der Literaturref. die Seiten angeben, wo ein \cite dazu steht
-        bibencoding=inputenc,   % s. inputenc-Paket
-%	style=authoryear-comp,
-	style=numeric,		%fm
-        backend=bibtex,
-	sorting=nty]{biblatex}  % http://dante.ctan.org/tex-archive/help/Catalogue/entries/biblatex.html
+%\usepackage[
+%	hyperref=true,          % Klickbare Referenzen in der PDF-Datei
+%        backref=true,           % In der Literaturref. die Seiten angeben, wo ein \cite dazu steht
+%        bibencoding=inputenc,   % s. inputenc-Paket
+%%	style=authoryear-comp,
+%	style=ieee,		%fm
+%        backend=bibtex]
+%%	sorting=nty]
+%	{biblatex}  % http://dante.ctan.org/tex-archive/help/Catalogue/entries/biblatex.html
+	\usepackage[style=ieee,backend=bibtex,defernumbers=true]{biblatex}
 \renewcommand{\mkbibnamelast}[1]{\textsc{#1}}
 
 % Abstand der einzelnen Einträge in der Literaturangaben

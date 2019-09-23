@@ -1,6 +1,6 @@
 \chapter{Range Length Evaluations}
 
-This chapter is about finding the minimum range length for \ac{OTA}-\ac{TRP}-measurements. Classically \ac{OTA} conformance testing is carried out in the \ac{FF}. In the \ac{mmW} length this hence to some difficulties. To illustrate that, there is an example.
+This chapter is about finding the minimum range length for \ac{OTA}-\ac{TRP}-measurements. The range length induced measurement error is expected to be dependent of the probe antenna and the measurement distance. For that propose a simulation and a measurement was developed and carried out. Classically \ac{OTA} conformance testing is carried out in the \ac{FF}. In the \ac{mmW} length this hence to some difficulties. To illustrate that, there is an example.
 
 \section{Example: Classical OTA measurement distance}
 
@@ -39,7 +39,7 @@ As demonstrated there is the need to find a smaller range length than \ac{FF} di
 \end{figure}
 
 For this simulations three spherical surfaces are needed. First the minimal sphere enclosing the \ac{DUT} $S_1$, second the minimal sphere enclosing the probe antenna $S_2$ and third the measurement sphere $\Sigma$ with radius $R$. The origin of the coordinate system is the phase center of the \ac{DUT} ($x$, $y$ and $z$). A sub coordinate system has it's origin in the phase center of the probe and is aligned with it ($u_\phi$, $u_\theta$ and $u_r$). The \ac{EM} emission of the \ac{DUT} is described by the vector fields $E_1$ and $H_1$; the \ac{EM} emission of the probe antenna is analogue to that $E_2$ and $H_2$.\\
-The \ac{TRP} is the cumulated active power flowing through a closed surface enclosing the source. So it is the surface integral over the real part of the Poynting-Vektor \cite{mypaper}. Choosing this surface to be the in figure \ref{fig:trpmeas} depicted surface $S_1$ hence to:
+The \ac{TRP} is, as described in section \ref{sec:anch}, the cumulated active power flowing through a closed surface enclosing the source. So it is the surface integral over the real part of the Poynting-Vektor \cite{mypaper}. Choosing this surface to be the in figure \ref{fig:trpmeas} depicted surface $S_1$ hence to:
 
 \begin{equation}
 \text{TRP}=\frac{1}{2}  \oiint_{S_1} \operatorname{Re}\left[E_1	\times H_1^*\right]dS
@@ -118,9 +118,20 @@ All physical existing antennas are depicted with there simulation model on the l
 The \ac{RS} Vivladi TC-TA85CP is the standard probe antenna at \ac{RS} with a frequency range from $\SI{4}{\giga\hertz}$ to $\SI{87}{\giga\hertz}$, a gain between $\SI{10}{\decibel}$ and $\SI{20}{\decibel}$ and especially the possibility of measuring both polarisations at the same time with a cross-polarization rejection of greater $\SI{20}{\decibel}$. (figure \ref{fig:vivpro})\\
 The $\SI{20}{\decibel}$ \ac{SGH} LB-28-20 by A-Info is normally used to calibrate the measurement setup. It is well known with a lot of empirical data. The underlying WR28-waveguide allows a frequency range from $\SI{26.5}{\giga\hertz}$ to $\SI{40}{\giga\hertz}$. A patch antenna is currently in development at \ac{RS}, it is also used for this simulation and measurement. It is currently not published, so  no further details will be given in this document, except that it has a directivity of $\SI{5}{\decibeli}$, a realized gain of $\SI{3.5}{\decibel}$ and the pattern depicted in figure \ref{fig:patchpro}. 
 
-\subsection{Result}
+\subsection{Result of the Range Length Simulation}
 
-The simulation results for all three tested \acp{DUT} is plotted in figure \ref{fig:simres}. In (a), (c) and (e) the \ac{TMP} is plotted over the measurement distance and in (b), (d) and (f) the \ac{EIRP} in the main lobe of the \ac{DUT} is plotted over the measurement distance. The tendency is that, at the same distance the \ac{TMP} error of low directivity probes, such as dipole, patch and \ac{OEWG} is lower than the \ac{TMP} error of high directivity probes, such as Vivaldi and \ac{SGH}. Some similarities between the \ac{TMP} measurement of the \ac{SGH} and the patch array can be found in the course of the graphs. Concluding the \ac{TMP} error is with low directivity probing always lower then $\SI{0.5}{\decibel}$ for greater distances as Derat distance. The individual graph, as well as for the \ac{TMP} and for the \ac{EIRP} in the main lobe, is dependent of the combination of \ac{DUT} and probe. The coarse graph shape of the probe-less simulation from figure \ref{fig:beamcpmp} (c) is recognisable in this complete simulation in figure \ref{fig:simres}.
+The simulation results for all three tested \acp{DUT} is plotted in figure \ref{fig:simres}. In (a), (c) and (e) the \ac{TMP} is plotted over the measurement distance and in (b), (d) and (f) the \ac{EIRP} in the main lobe of the \ac{DUT} is plotted over the measurement distance. It is shown, that the \ac{TRP} measurement error is probe- and range length dependent. The tendency is that, at the same distance the \ac{TMP} error of low directivity probes, such as dipole, patch and \ac{OEWG} is lower than the \ac{TMP} error of high directivity probes, such as Vivaldi and \ac{SGH}. Some similarities between the \ac{TMP} measurement of the \ac{SGH} and the patch array can be found in the course of the graphs. Concluding the \ac{TMP} error is with low directivity probing always lower then $\SI{0.5}{\decibel}$ for greater distances as Derat distance. The individual graph, as well as for the \ac{TMP} and for the \ac{EIRP} in the main lobe, is dependent of the combination of \ac{DUT} and probe. The coarse graph shape of the probe-less simulation from figure \ref{fig:beamcpmp} (c) is recognisable in this complete simulation in figure \ref{fig:simres}.\\
+Dynamic range can be increased and measurement effort can be decreased by occupying low directivity probing e.q. with a \ac{OEWG}. For example choosing a \ac{OEWG} instead of the Vivaldi as probe for the \ac{SGH} \ac{TRP} measurement simulation from figure \ref{fig:simres} reduces the the range length for $\SI{0.1}{\decibel}$ measurement error from $\SI{120}{\centi\meter}$ to $\SI{22}{\centi\meter}$ resulting in 
+
+\begin{align*}
+G &= \text{FSPL}_{\text{Vivaldi},\SI{0.1}{\decibel}}-\text{FSPL}_{\text{OEWG},\SI{0.1}{\decibel}}+G_\text{OEWG}-G_\text{Vivaldi} \\
+G &= \SI{61.4}{\decibel}-\SI{49.3}{\decibel}+\SI{6}{\decibel}-\SI{14}{\decibel} = \SI{6.7}{\decibel}
+\end{align*}
+
+%G &= \SI{61.4}{\decibel}-\SI{49.3}{\decibel}+\SI{6}{\decibel}-\SI{14}{\decibel}=\SI{6.7}{\decibel}
+%\end{align*}
+
+gain in dynamic range.
 
 \begin{figure}[H]
   \centering
@@ -139,7 +150,7 @@ The simulation results for all three tested \acp{DUT} is plotted in figure \ref{
 \label{fig:simres}
 \end{figure}
 
-\section{Measurement}
+\section{Measurement to Confirm Simulation Result}
 
 \begin{figure}[H]
 \centering
@@ -187,7 +198,15 @@ The minimum and maximal measurement sphere radius varies because of the probe mo
 \end{figure}
 
 Leaving the \ac{OEWG} and the patch antenna the tendency that lower directivity probes grant less \ac{TRP} error at the same measurement distance is proved regarding the graph from $\SI{20}{\decibel}$ \ac{SGH} and Vivaldi in figure \ref{fig:meastrpdistviv} (a). Also the \ac{EIRP} in the main lobe measured by the \ac{SGH} has similar characteristics than the simulation. The \ac{OEWG}-implementation one has a similar \ac{TMP} characteristic as the Vivaldi. This is caused by the $\SI{4}{\decibel}$ higher gain induced by the mounting. Both, the \ac{OEWG} two and the patch, have similar characteristics in terms of \ac{TMP} and main \ac{EIRP} caused by the, in the previous section described scattering of the grounded planes.\\
-In the simulation it is assumed that the characteristics and behaviour of the \ac{DUT} is independent from the probe, thus the vector-EM-field in the volume is independent from the used sampling probe. This is a valid assumption for \ac{FF} or for probes with little scattering back to the \ac{DUT}. This is visual for the Vivaldi probe comparing simulation results from figure \ref{fig:simres} (a) and the measurement results in figure \ref{fig:meastrpdistviv} (a). Bigger impact is recognized comparing the graph of the \ac{SGH} probe simulation to the measurement. This can be caused by the greater amount of metal put in the \ac{NF}-volume of the \ac{DUT}. In addition the shape of the graphs of the \ac{OEWG}2 and the patch are having less \ac{TMP}-error in the \ac{FF} of the \ac{DUT}. Caused by the change of the \ac{EM} vectorfield from the \ac{DUT} the measurement result is sharply rising till it is similar with the $\SI{16}{\decibel}$ more directive \ac{SGH}. This phenomena is also visible plotting the \ac{EIRP}-pattern of the \ac{SGH} \ac{DUT} in different measurement radii. Comparing the measured pattern from the Vivaldi probe (figure \ref{fig:sghpatternvivaldi}) to the \ac{OEWG}2 (figure \ref{fig:sghpatternoewg2}) and the patch (figure \ref{fig:sghpatternpatch}) additionally to the evolving pattern over distance (compare figure \ref{fig:devantennap}) some fluctuations in the surrounding of the main lobe are recognisable. The center of rotation is chosen to be the center of the aperture $\SI{3}{\centi\meter}$ away from the phase center of the horn, leading to fine range length differences and thereby to different standing wave modes explaining the fluctuation.
+In the simulation it is assumed that the characteristics and behaviour of the \ac{DUT} is independent from the probe, thus the vector-EM-field in the volume is independent from the used sampling probe. This is a valid assumption for \ac{FF} or for probes with little scattering back to the \ac{DUT}. 
+The Vivaldi probe shows similar simulation and measurement results figure \ref{fig:simres} (a) and figure \ref{fig:meastrpdistviv} (a). Bigger impact is recognized comparing the graph of the \ac{SGH} probe simulation to the measurement. 
+There are two main reasons for that. First this can be caused by the greater amount of metal and the physical shape of it, put in the \ac{NF}-volume of the \ac{DUT}.
+It is shown in figure \ref{fig:meastrpdistviv} (a), that the \ac{OEWG}2 and the patch are having less \ac{TMP}-error in the \ac{FF} of the \ac{DUT}. In the \ac{DUT}s \ac{NF} the measurement result is sharply rising till it is similar with the $\SI{16}{\decibel}$ more directive \ac{SGH}. This is caused by the change of the \ac{EM} vectorfield from the \ac{DUT} induced by the probe. This phenomena is also visible plotting the \ac{EIRP}-pattern of the \ac{SGH} \ac{DUT} in different measurement radii. Comparing the measured antenna pattern from the Vivaldi probe (figure \ref{fig:sghpatternvivaldi}) to the \ac{OEWG}2 (figure \ref{fig:sghpatternoewg2}) and the patch (figure \ref{fig:sghpatternpatch}) shows additionally to the evolving pattern over distance (compare figure \ref{fig:devantennap}) some fluctuations in the surrounding of the main lobe. The center of rotation is chosen to be the center of the aperture $\SI{3}{\centi\meter}$ away from the phase center of the horn, leading to fine range length differences and thereby to different standing wave modes explaining the fluctuation. This fluctuation is not visible in the pattern of the Vivaldi probe from fig. \ref{fig:sghpatternvivaldi}.\\
+Second the power acceptance of the probe antennas could not be simulated. So additional to the physical shape of the antenna, the power reflected from the probe antenna causes additional interference at the \ac{DUT}
+
+\section{Conclusion}
+
+The simulation showed that low directivity probes such as the \ac{OEWG} can be used to measure the \ac{TRP} at lower distances compared to high directivity probes such as the Vivaldi antenna. The tendency is proofed by the measurement. The \ac{OEWG} measurement must be repeated due to the reasons discussed in the section above.
 
 
 
