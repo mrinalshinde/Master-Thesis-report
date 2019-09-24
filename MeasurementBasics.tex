@@ -28,14 +28,14 @@ In this section the main terms for describing antennas performance are introduce
 
 \begin{itemize}
 \item The \textbf{\acf{TRP}} is the prominent metric in the \ac{OTA} \ac{RSE} measurement in context of \ac{FR2}. It describes the total active power flowing out of an antenna through a closed surface and is calculated as described in section \ref{sec:quadrature}. A \ac{TRP} measurement is carried out by performing a calibrated \ac{EIRP} measurement (ref. \ref{sec:setupota}) at every, in section \ref{sec:spsa} introduced, spatial grid point, followed by integrating every frequency measurement sample, with one of the in section \ref{sec:quadrature} introduced quadratures, over the sphere.
-\item An antennas \textbf{Directivity} is \glqq the ratio of the radiation intensity in a given direction from the antenna to the radiation intensity averaged over all directions\grqq{} \cite{ieeeantenna}. Hence the directivity $D$ is the \ac{EIRP} divided by the \ac{TRP}.
+\item An antennas \textbf{Directivity} is \glqq the ratio of the radiation intensity in a given direction from the antenna to the radiation intensity averaged over all directions\grqq{} \cite{ieeeantenna}. Hence the directivity $D$ is the \ac{EIRP} divided by the \ac{TRP}
 \begin{equation}
-D = \frac{\text{EIRP}}{\text{TRP}}
+D = \frac{\text{EIRP}}{\text{TRP}}\,.
 \end{equation}
 The directivity of an antenna is \ac{EIRP} in main direction divided by \ac{TRP}.
-\item An antennas \textbf{Gain} $G$ is \glqq the ratio of the intensity, in a given direction, to the radiation intensity that would be obtained if the power accepted by the antenna were radiated isotropically\grqq{} \cite{ieeeantenna}. Hence the efficiency $e_0=e_re_ce_d=\sfrac{P_\text{rad}}{P_\text{feed}}$, consistent of the reflection $e_r$, the conduction efficiency $e_c$ and the dielectric efficiency $e_d$, describing the ratio between radiated and feeded power, of the antenna is used:
+\item An antennas \textbf{Gain} $G$ is \glqq the ratio of the intensity, in a given direction, to the radiation intensity that would be obtained if the power accepted by the antenna were radiated isotropically\grqq{} \cite{ieeeantenna}. Hence the efficiency $e_0=e_re_ce_d=\sfrac{P_\text{rad}}{P_\text{feed}}$, consistent of the reflection $e_r$, the conduction efficiency $e_c$ and the dielectric efficiency $e_d$, describing the ratio between radiated and feeded power, of the antenna is used
 \begin{equation}
-G = e_0\cdot D=e_0\cdot\frac{\text{EIRP}}{\text{TRP}}
+G = e_0\cdot D=e_0\cdot\frac{\text{EIRP}}{\text{TRP}}\,.
 \end{equation}
 \item \textbf{Realized Gain} is further reduced by the mismatch of the antennas impedance. \cite{ieeeantenna}
 \end{itemize}
@@ -55,15 +55,15 @@ In fig. \ref{fig:ats} the calibration of an \ac{OTA} measurement is depicted. Th
 \label{fig:resP}
 \end{figure}
 
-The \ac{LB} is the received power $P_{\text{RX}}$ with all losses and gains taken to account:
+The \ac{LB} is the received power $P_{\text{RX}}$ with all losses and gains taken to account
 
 \begin{equation}
-P_{\text{RX}} = P_{\text{TX}}-L_{\text{TX}}+G_{\text{TX}}-L_{\text{FSPL}} + G_{\text{RX}}-L_{\text{RX}}
+P_{\text{RX}} = P_{\text{TX}}-L_{\text{TX}}+G_{\text{TX}}-L_{\text{FSPL}} + G_{\text{RX}}-L_{\text{RX}}\,.
 \end{equation}
 
 The global emission limit is (ref. section \ref{sec:legem} \cite{ceptercrec}, \cite{ansi}, \cite{fcc}) $\SI{-13}{\decibelm\per\mega\hertz}$. To evaluate sufficient measurement sensibility or measurement power budget the transmit power is set in fig. \ref{fig:resP} to $P_{\text{TX}}=\SI{-13}{\decibelm}$, the transmit cable loss is set to $L_{\text{TX}} = \SI{0}{\decibel}$, the most conservative assumption for the transmit antenna gain is $ G_{\text{TX}} = \SI{0}{\decibeli}$, the \ac{FSPL} is dependant on the distance $d$ so that 
 \begin{equation}
-L_{\text{FSPL}} = 20\log_{10}\left(4\pi d \cdot\lambda^{-1}\right)\si{\decibel},
+L_{\text{FSPL}} = 20\log_{10}\left(4\pi d \cdot\lambda^{-1}\right)\si{\decibel}\,,
 \label{eq:fspl}
 \end{equation}
 the receive antenna gain (Vivaldi antenna, compare fig. \ref{fig:ats}) is about $ G_{\text{RX}} = \SI{14}{\decibeli}$ and the receive cable loss is $L_{\text{RX}}=\SI{14}{\decibel}$. The resulting received power is depicted in fig. \ref{fig:resP}. This is valid for the ATS1000 antenna test system from \ac{RS}. Cable loss increases exponentially with the frequency and the length. Using a bigger chamber would cause longer cables and with that exponentially higher cable loss. This was not considered in fig. \ref{fig:resP}, which makes it best case. For the $\SI{56}{\giga\hertz}$ line the squared cable loss was assumed. In summary, for big chambers and high frequencies additional amplifiers are required.\\
