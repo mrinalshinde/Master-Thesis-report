@@ -22,7 +22,7 @@ In literature there are three commonly known antenna field regions, the reactive
 \label{fig:arbaperturexy}
 \end{figure}
 
-$R$ is the distance from an arbitrary point on the aperture to an other arbitrary point $P$ in the volume. With $r$, the distance from the phase center of the antenna to the point $P$, $R$ can be written as \cite{balanis}
+$R$ is the distance from an arbitrary point on the aperture to another arbitrary point $P$ in the volume. With $r$, the distance from the phase center of the antenna to the point $P$, $R$ can be written as \cite{balanis}
 
 \begin{equation}
 R = \sqrt{\left(x^2+y^2+z^2\right)-\left(2zz'-z^{\prime\, 2}\right)}=\sqrt{r^2-\left(2rz'\sin \theta -z^{\prime\, 2}\right)}\,.
@@ -37,8 +37,8 @@ R = r - z'\sin\theta + \frac{1}{r}\left(\frac{z^{\prime\, 2}}{2}\cos ^2 \theta\r
 \subsection{Far-Field}
 
 According to \cite{balanis} the \ac{FF}-distance is \glqq that region of the field of an antenna where the angular field distribution is essentially independent of the distance from the antenna.\grqq{ }
-This means that the antenna's pattern is mostly independent from the distance to the antenna.\\
-For the \ac{FF} assumption it is convenient to use the two most significant terms of the binomial expansion $R\approx r - z'\sin\theta$. Hence the error of that truncation can be expressed as the maximum of the third most significant term
+This means that the antenna's pattern is mostly independent of the distance to the antenna.\\
+For the \ac{FF} assumption it is convenient to use the two most significant terms of the binomial expansion $R\approx r - z'\sin\theta$. Hence, the error of that truncation can be expressed as the maximum of the third most significant term
 
 \begin{equation}
 \frac{1}{r}\left(\frac{z^{\prime\, 2}}{2}\cos ^2 \theta\right)_\text{max} = \frac{z^{\prime\, 2}}{2r} \quad , \quad \theta = 0\,.
@@ -63,8 +63,8 @@ This equation is valid for $D > \lambda$. \cite{balanis}
 
 \subsection{Near-Field}
 
-The radiating \ac{NF} (Fresnel) -region is defined by \cite{balanis} as \glqq that region of the field of an antenna between the reactive near-field region and the far-field region wherein radiation fields predominate and wherein the angular field distribution is dependent upon the distance from the antenna.\grqq{ }This means that the antennas pattern is dependent from the distance to the antenna.\\
-In the radiating \ac{NF} the deviation from the third most significant term is more then $\sfrac{\pi}{8}$, so it is no longer negligible. With the derivation of the next term the maximum deviation is found
+The radiating \ac{NF} (Fresnel) -region is defined by \cite{balanis} as \glqq that region of the field of an antenna between the reactive near-field region and the far-field region wherein radiation fields predominate and wherein the angular field distribution is dependent upon the distance from the antenna.\grqq{ }This means that the antenna's pattern is dependent from the distance to the antenna.\\
+In the radiating \ac{NF} the deviation from the third most significant term is more than $\sfrac{\pi}{8}$, so it is no longer negligible. With the derivation of the next term the maximum deviation is found
 
 \begin{align}
 \frac{\partial}{\partial\theta}\left(\frac{1}{r^2}\left(\frac{z^{\prime\, 3}}{2}\sin\theta\cos^2\theta\right)\right) = \frac{z^{\prime\, 3}}{2r^2}\cos\theta\left(\cos^2\theta-2\sin^2\theta\right) = 0 \quad &\Leftrightarrow\\ 
@@ -77,7 +77,7 @@ By introducing the angular wavenumber $k=\sfrac{2\pi}{\lambda}$, the minimum sph
 \Delta\phi = \frac{\pi}{8} = \frac{kz^{\prime\, 3}}{2r_{\text{NF}}^2}\sin\theta_2\cos^2\theta_2= \frac{\pi D^3}{12\sqrt{3}\,\lambda r_{\text{NF}}^2} \quad \Leftrightarrow \quad r_{\text{NF}}=0.62\sqrt{\frac{D^3}{\lambda}}\,.
 \end{equation}
 
-The region directly surrounding the antenna in front of this boundary is called reactive \ac{NF} and it is according to \cite{balanis} \glqq that portion of the near-field region immediately surrounding the antenna wherein the reactive field predominates.\grqq{ }In other words, the reactive \ac{NF} is that portion of an antennas field were direct coupling is expected.
+The region directly surrounding the antenna in front of this boundary is called reactive \ac{NF} and it is according to \cite{balanis} \glqq that portion of the near-field region immediately surrounding the antenna wherein the reactive field predominates.\grqq{ }Basically, the reactive \ac{NF} is that portion of an antennas field were direct coupling is expected.
 
 \subsection{Derat Distance}
 
@@ -110,9 +110,9 @@ r_{\text{Dr}} = \lambda\left(\frac{\pi D}{\lambda}\right)^{0.8633}\cdot\left(0.1
 \label{fig:beamcpmp}
 \end{figure}
 
-To clarify the introduced distances they will be proved based on a $\SI{20}{\decibel}$ \ac{SGH} at $\SI{28}{\giga\hertz}$. The front view of this horn with the underlying field distribution is plotted in fig. \ref{fig:fielddist} in the annex. The polarisation is in $y$-direction, so the $yz$-plane is called $E$-plane and the $xz$-plane is called $H$-plane from here on.\\
+To clarify the introduced distances they will be proved based on a $\SI{20}{\decibel}$ \ac{SGH} at $\SI{28}{\giga\hertz}$. The front view of this horn with the underlying field distribution is plotted in fig. \ref{fig:fielddist} in the annex. The polarization is in $y$-direction, so the $yz$-plane is called $E$-plane and the $xz$-plane is called $H$-plane from here on.\\
 In fig. \ref{fig:beamcpmp} the normalized wave impedance (a), the normalized phase between $E$- and $H$-field components (b) and the normalized \ac{EIRP} (c) over the distance to the phase center are plotted. To clarify the designations the directions are plotted in (d). The data have been generated by CST\texttrademark , a full wave simulation tool. Complex data in $x$, $y$, and $z$ direction was exported and post processed to Matlab\texttrademark{}.\\
-Also the field boundaries from the sections above are plotted with dashed lines. For the derivation of the field boundaries only the opening of the horn in the $E$-plane was taken to account. This is reasonable because the field distribution and thus the usage of the aperture is known, refer to fig. \ref{fig:fielddist}. As it can be seen, in the $E$-plane the aperture is fully used. But if the field distribution is unknown, the smallest circle enclosing the aperture has to be taken.\\
+Also, the field boundaries from the sections above are plotted with dashed lines. For the derivation of the field boundaries only the opening of the horn in the $E$-plane was taken to account. This is reasonable because the field distribution and thus the usage of the aperture is known, refer to fig. \ref{fig:fielddist}. As it can be seen, in the $E$-plane the aperture is fully used. But if the field distribution is unknown, the smallest circle enclosing the aperture has to be taken.\\
 The main lobe (blue line in fig. \ref{fig:beamcpmp}) is from Derat-distance on in \ac{FF} condition. The wave impedance reached its end value of $120\pi\si{\ohm}\approx\SI{377}{\ohm}$, $E$- and $H$-fields are coherent and the \ac{EIRP} value converged. Considering the side lobes it can be seen that in the reactive \ac{NF} the field conditions are very unstable, whereas the fields in the radiating \ac{NF} become more stable. In the \ac{FF} the field values are continually decreasing the offset from their final value.\\
 In fig. \ref{fig:devantennap} in the annex the resulting antenna patterns in different radii are depicted as well in Cartesian coordinates (a) as in Polar coordinates (b). The assumption 
 
@@ -140,12 +140,12 @@ In fig. \ref{coordinates} the used coordinate system is depicted. In comparison 
 -\frac{\pi}{2} \leq \Theta <\frac{\pi}{2}\, ,\quad -\pi \leq \Phi < \pi\,.
 \end{equation}
 
-Hereinafter different spatial sampling approaches for this sphere are introduced. For the development of a sampling grid a sampling frequency is necessary and will be introduced in the next section.
+Below different spatial sampling approaches for this sphere are introduced. For the development of a sampling grid a sampling frequency is necessary and will be introduced in the next section.
 
 \subsection{Derivation of the Spatial Sampling considering the Array Factor}
 \label{sec:spasa}
 
-The \ac{AF} is \glqq the radiation pattern of an array antenna when each array element is considered to radiate isotropically\grqq{} \cite{ieeeantenna}. The sampling frequency in either elevation or in azimuth is dependent on the aperture of the \ac{DUT} and the wavelength. To investigate the necessary sampling frequency an one dimensional $\sfrac{\lambda}{2}$ array of isotropic radiators was taken in account. With the number of elements $N$, the element spacing $d = \sfrac{\lambda}{2}$ and the wavelength $\lambda$ the antenna pattern is derivable \cite{litze}
+The \ac{AF} is \glqq the radiation pattern of an array antenna when each array element is considered to radiate isotropically\grqq{} \cite{ieeeantenna}. The sampling frequency in either elevation or in azimuth is dependent on the aperture of the \ac{DUT} and the wavelength. To investigate the necessary sampling frequency a one dimensional $\sfrac{\lambda}{2}$ array of isotropic radiators was taken in account. With the number of elements $N$, the element spacing $d = \sfrac{\lambda}{2}$ and the wavelength $\lambda$ the antenna pattern is derivable \cite{litze}
 
 \begin{equation}
 \begin{vmatrix}\Gamma\left(\theta\right)\end{vmatrix}^2 = \Biggl|\frac{\sin\left(\frac{\pi M d}{\lambda \sin\left(\theta\right)}\right)}{\sin\left(\frac{\pi d}{\lambda \sin\left(\theta\right)}\right)}\Biggl|^2 = \Biggl|\frac{\sin\left(\frac{\pi M}{2 \sin\left(\theta\right)}\right)}{\sin\left(\frac{\pi}{2 \sin\left(\theta\right)}\right)}\Biggl|^2\,.
@@ -181,7 +181,7 @@ In \cite{hansen} it is suggested to use the sampling increment of
 \label{eq:refahansen}
 \end{equation}
 
-Where $N$ is the highest significant wave mode on the minimum sphere enclosing the antennas aperture and $M$ is the highest significant wave mode on the minimum cylinder. With the sphere radius $r_S$, the cylinder radius $r_C$ and the angular wavenumber $k = \sfrac{2\pi}{\lambda}$ they are calculated as follows
+Where $N$ is the highest significant wave mode on the minimal sphere enclosing the antennas aperture and $M$ is the highest significant wave mode on the minimal cylinder. With the sphere radius $r_S$, the cylinder radius $r_C$ and the angular wavenumber $k = \sfrac{2\pi}{\lambda}$ they are calculated as follows
 
 \begin{equation}
 N = kr_S+10\ , \quad M = kr_C+10\,.
@@ -207,7 +207,7 @@ To illustrate these angle increments the one dimensional array of isotropic radi
 \label{eq:1dinc}
 \end{equation}
 
-With the \ac{FFT} over the angle of the antenna patterns from fig. \ref{fig:evolvpattern2} the mode spectra can be derived and is seen in fig. \ref{fig:evolvpattern3} (or \ref{fig:evolvpattern} in annex). Also the pattern evolution is depicted in fig. \ref{fig:evopattern}, with the corresponding mode spectra in \ref{fig:evopatternmode}.\\
+With the \ac{FFT} over the angle of the antenna patterns from fig. \ref{fig:evolvpattern2} the mode spectra can be derived and is seen in fig. \ref{fig:evolvpattern3} (or \ref{fig:evolvpattern} in annex). Also, the pattern evolution is depicted in fig. \ref{fig:evopattern}, with the corresponding mode spectra in \ref{fig:evopatternmode}.\\
 When an arbitrary signal is sampled, the spectrum is mirrored at the sampling frequency. Choosing a sampling frequency lower than twice the highest occurring frequency in the sampled signal causes an irreversible error. This is called the Nyquist-Shannon sampling theorem.\\
 For that sake the dashed lines are
 
@@ -216,7 +216,7 @@ For that sake the dashed lines are
 \end{equation}
 
 Similar to that the dashed lines in fig. \ref{fig:evolvpattern2} are the first sampling points using the derived sampling frequency.\\
-The issue is now to find the sampling frequency at which the sampling error is independent from the aperture of the antenna. As depicted in fig. \ref{fig:evolvpattern3} the sampling frequency introduced by \cite{hansen} is to strict for small apertures. On the other hand the reference angle introduced by \cite{2018arXiv180310993F} is to inaccurate for small apertures. Because of that the new \ac{CrefA} is taken
+The issue is now to find the sampling frequency at which the sampling error is independent of the aperture of the antenna. As depicted in fig. \ref{fig:evolvpattern3} the sampling frequency introduced by \cite{hansen} is to strict for small apertures. On the other hand the reference angle introduced by \cite{2018arXiv180310993F} is to inaccurate for small apertures. Because of that the new \ac{CrefA} is taken
 
 \begin{equation}
 \text{CrefA} = \left(\Delta\Phi_{\text{ref}}\cdot\left(\text{first mode} > \SI{-40}{\decibel}\right)\right)^{-1}\,.
@@ -229,7 +229,7 @@ The issue is now to find the sampling frequency at which the sampling error is i
 \label{fig:crefa}
 \end{figure}
 
-This factor is plotted in fig. \ref{fig:crefa}. It is dependent of the aperture. With that the error due to sampling is independent from the antennas aperture. Less than $\SI{-40}{\decibel}$ in the mode spectra is defined for the reference angle increment in \cite{2018arXiv180310993F}, compare fig. \ref{fig:evolvpattern3}.\\
+This factor is plotted in fig. \ref{fig:crefa}. It is dependent upon the aperture. With that the error due to sampling is independent of the antennas' aperture. Less than $\SI{-40}{\decibel}$ in the mode spectra is defined for the reference angle increment in \cite{2018arXiv180310993F}, compare fig. \ref{fig:evolvpattern3}.\\
 For further reduction of points a second factor is introduced, the \acf{SF}. At $\text{SF}=2$ every second measurement point is skipped. With all that the angle increments for spherical sampling is
 
 \begin{equation}
@@ -253,7 +253,7 @@ For further reduction of points a second factor is introduced, the \acf{SF}. At 
 \label{fig:cssg}
 \end{figure}
 
-The most straight forward way to a spherical measurement is using a \ac{CSSG} depicted in fig. \ref{fig:cssg} (a). The advantage is the easy feasibility with any positioner. This is visual in \ref{fig:cssg} (c), where the angles are printed in Cartesian coordinates. Ether the azimuth can be swept on every latitude circle or the elevation can be swept on every longitude circle. The measurement density is higher on the poles than on the equator.\\
+The most straightforward way to a spherical measurement is using a \ac{CSSG} depicted in fig. \ref{fig:cssg} (a). The advantage is the easy feasibility with any positioner. This is visual in \ref{fig:cssg} (c), where the angles are printed in Cartesian coordinates. Either the azimuth can be swept on every latitude circle or the elevation can be swept on every longitude circle. The measurement density is higher on the poles than on the equator.\\
 To meet that the theta dependent number of azimuth points was introduced e.g. by \cite{ctiaat}. It is applied as follows
 
 \begin{align*}
@@ -275,8 +275,8 @@ It is only possible to sweep the azimuth when this type of grid is used. Here al
 \label{fig:cdg}
 \end{figure}
 
-The \ac{CDG} depicted in fig. \ref{fig:cdg} was produces and generated by a charged particle algorithm. It works by minimising the cumulated potential energy of all measurement dots considered as charged particles. The potential energy is minimal, when all points are evenly distributed over the sphere.\\ 
-Deriving the optimal measurement sequence is a \ac{TSP}. It is solved by the Matlab toolbox introduced in \cite{tsp} viewing the angles as Cartesian coordinates. This path is optimized for the positioner to move as efficient as possible. Because the positioning in Azimuth is faster than in Elevation, the elevation distance is weighted five times more. Furthermore the periodicity is taken to account, so that the distance between tow points $\text{P}_n$ and $\text{P}_m$ is
+The \ac{CDG} depicted in fig. \ref{fig:cdg} was produced and generated by a charged particle algorithm. It works by minimizing the cumulated potential energy of all measurement dots considered as charged particles. The potential energy is minimal, when all points are uniformly distributed over the sphere.\\ 
+Deriving the optimal measurement sequence is a \ac{TSP}. It is solved by the Matlab toolbox introduced in \cite{tsp} viewing the angles as Cartesian coordinates. This path is optimized for the positioner to move as efficient as possible. Because the positioning in Azimuth is faster than in Elevation, the elevation distance is weighted five times more. Furthermore, the periodicity is taken to account, so that the distance between tow points $\text{P}_n$ and $\text{P}_m$ is
 
 \begin{equation}
 \Delta\Theta_{mn} = 5\left(\Theta_{\text{P}_n}-\Theta_{\text{P}_m}\right)\ ,\quad \Delta\Phi_{mn} = \text{min}\left(|\Phi_{\text{P}_n}-\Phi_{\text{P}_m}|\, ,\ 2\pi-|\Phi_{\text{P}_n}-\Phi_{\text{P}_m}|\right)\,.
@@ -297,7 +297,7 @@ The cumulated distance for $N = 264$ is converged after around one million itera
 
 \subsection{Other}
 
-There are other grid types, which are mainly based on the already introduced grids. First there are Cardinal cuts, here a measurement is carried out along the equator and one, two or more orthogonal meridians. If the alignment is right a technique called \acf{PM} can be used to calculate the complete antenna pattern out of the cardinal cuts. The problem here is that a symmetry is assumed which is always wrong if the direction of main beam and the orientation of the pattern is unknown. \cite{2018arXiv180310993F}\\
+There are other grid types, which are mainly based on the already introduced grids. First there are Cardinal cuts, here a measurement is carried out along the equator and one, two or more orthogonal meridians. If the alignment is right, a technique called \acf{PM} can be used to calculate the complete antenna pattern out of the cardinal cuts. The problem here is that a symmetry is assumed which is always wrong if the direction of main beam and the orientation of the pattern is unknown. \cite{2018arXiv180310993F}\\
 An other spatial sampling approach is the Spiral Scan. It is developed by \ac{RS} and can be used for a pre scan to find the maximum \ac{EIRP} direction. Here elevation and azimuth is swept. \cite{ctiaat}
 
 \section{Total Radiated Power Quadratures}
@@ -307,7 +307,7 @@ The easiest way to derive the \ac{TRP} is if Cardinal cuts or a \ac{CDG} was tak
 
 \subsection{Sine Theta}
 
-The straight forward way is to transform the integral over a spherical surface $S$
+The straightforward way is to transform the integral over a spherical surface $S$
 
 \begin{equation}
 \text{TRP} = \frac{1}{4\pi}  \oiint_S \text{EIRP}\left(\theta,\phi\right)\cdot\sin\theta\cdot d\theta d\phi
@@ -331,7 +331,7 @@ $N$ is the number of angular intervals in $\theta=\left[0,\pi\right[$ (elevation
 
 \subsection{Clenshaw-Curtis}
 
-Because the sine theta quadrature is not accurate for spars measurements and the measurement points at the poles are neglected, an other weighting scheme is used, the \ac{CC}-quadrature. For the sine theta quadrature the integrating surface is constantly interpolated (compare equation \ref{eq:trpsumsin}). The \ac{CC} quadrature is more accurate using the weights W computed by expending the integrand with Chebyshev polynomials. With that formula \ref{eq:trpsumsin} develops to \cite{trp}
+Because the sine theta quadrature is not accurate for sparse measurements and the measurement points at the poles are neglected, another weighting scheme is used, the \ac{CC}-quadrature. For the sine theta quadrature the integrating surface is constantly interpolated (compare equation \ref{eq:trpsumsin}). The \ac{CC} quadrature is more accurate using the weights W computed by expending the integrand with Chebyshev polynomials. With that formula \ref{eq:trpsumsin} develops to \cite{trp}
 
 \begin{equation}
 \text{TRP}_{\text{CC}} = \frac{1}{2M}\sum^{N-1}_{i=1}\sum^{M-1}_{j=0}\left(\text{EIRP}_\theta\left(\theta_i,\phi_j\right)+\text{EIRP}_\phi\left(\theta_i,\phi_j\right)\right)\cdot\text{W}\left(\theta_i\right)\,.
@@ -353,18 +353,18 @@ In \cite{trp2} it is investigated which quadrature leads to the most accurate re
 
 \section{Statistics and Regression}
 
-This section shall give a brief introduction in the field of statistics and regression, which is necessary for the spatial sampling simulation. First statistical terms, than methods to display scatterings and multidimensional regressions are introduced.
+This section shall give a brief introduction in the field of statistics and regression, which is necessary for the spatial sampling simulation. First statistical terms, then methods to display scatterings and multidimensional regressions are introduced.
 
 \subsection{Metrics to Describe Distributions}
 
 To describe a one dimensional scattering $h$, with $N$ samples $x$ and the cumulative frequency $H$, these terms are regularly used: \cite{dffs}
 
 \begin{itemize}
-\item The commonly most used and known term is the \textbf{Arithmetic Mean}, which is vulnerable by outliers and computed as
+\item The commonly most used and known term is the \textbf{Arithmetic Mean}, which is sensitive with respect to outliers and computed as
 \begin{equation}
 \bar x = \frac{1}{N}\sum_{n=1}^N x_N\,.
 \end{equation}
-\item The \textbf{Median} is that value lying in the middle of a distribution, so that $H\left( x\right) = 0.5$. It is computed by sorting the samples by value and, if the number of samples is even, taking the mean of the two samples in the middle, or if the number of samples is odd taking the middle value.
+\item The \textbf{Median} is that value lying in the middle of a distribution, so that $H\left( x\right) = 0.5$. It is computed by sorting the samples by value and, if the number of samples is even, taking the mean of the two samples in the middle, or if the number of samples is odd taking the middle value. The Median is robust with respect to outliers.
 \item The \textbf{Variance} of a distribution is the sum of squared errors, normalized by the number of samples. This metric is strongly vulnerable by outliers. The computation is as follows
 \begin{equation}
 s^2 = \frac{1}{N-1}\sum_{n=1}^N\left( x_n-\bar{x}\right)^2\,.
@@ -378,7 +378,7 @@ s^2 = \frac{1}{N-1}\sum_{n=1}^N\left( x_n-\bar{x}\right)^2\,.
 The commonly known way to display a distribution is a bar diagram. There the value of range is split in $M$ bars displaying the values in the $x$-axis and the probability of each bucket on the $y$-axis. An other way to display a distribution is the box-plot, where only the minimal, maximal, $\SI{25}{\percent}$-quantile, median and $\SI{75}{\percent}$-quantile value is plotted.
 
 \subsection{Distribution Functions}
-There are all sorts of scattering distributions e.q. even distribution, Weibull distribution, Rayleigh distribution, ... but the most prominent distribution is the normal distribution by Gauss
+There are all sorts of scattering distributions e.g. uniform distribution, Weibull distribution, Rayleigh distribution, ... but the most prominent distribution is the normal distribution by Gauss
 
 \begin{equation}
 f\left( x \right) = \frac{1}{\sigma\sqrt{2\pi}}e^{-\frac{1}{2}\left(\frac{x-\mu}{\sigma}\right)^2}\,.
@@ -388,7 +388,7 @@ Assuming that $\sigma = s$ and $\mu = \bar{x}$ this function can also be plotted
 
 \subsection{Regression of multidimensional Datasets}
 \label{sec:regod} 
-Assuming a input variable vector $\vec{x}$, a coefficient set $\vec{b}$ and a result $y$ an arbitrary polynomial can be written as \cite{sip}
+Assuming an input variable vector $\vec{x}$, a coefficient set $\vec{b}$ and a result $y$ an arbitrary polynomial can be written as \cite{sip}
 
 \begin{equation}
 y\left(\vec{x}\right) = \vec{x}^{\mathsf T}\cdot\vec{b}=\begin{bmatrix}
@@ -398,7 +398,7 @@ b_0 \\ b_1 \\ b_2 \\ \vdots \\ b_M
 \end{bmatrix}\,.
 \end{equation}
 
-The regression is about estimating the coefficient vector $\vec{b}$. With $N$ samples this system is overdetermined which leads to an error vector $\vec{e}$. Than the resulting polynomial is
+The regression is about estimating the coefficient vector $\vec{b}$. With $N$ samples this system is overdetermined which leads to an error vector $\vec{e}$. Then the resulting polynomial is
 
 \begin{equation}
 \vec{y}=X\cdot \vec{b}+\vec{e}=\begin{bmatrix}
@@ -434,7 +434,7 @@ leading to the well known \ac{LS}-method
 \end{equation}
 
 The input matrix $X$ can also be optimized by taking combinations or powers of different dependent parameters.\\
-A frequent problem is that the significance of the parameters in $\vec{b}$ is unknown, hence to unnecessary high number of parameters and inaccurate regressions. Therefore the hypothesis that $b_m=0$ is checked. The parameters in vector $\vec{b}$ are t-distributed. First the covariance matrix of the independent variable $\vec{y}$ is estimated \cite{dffs}
+A frequent problem is that the significance of the parameters in $\vec{b}$ is unknown, causing unnecessary high number of parameters and inaccurate regressions. Therefore, the hypothesis that $b_m=0$ is checked. The parameters in vector $\vec{b}$ are t-distributed. First the covariance matrix of the independent variable $\vec{y}$ is estimated \cite{dffs}
 
 \begin{equation}
 C = \left(X^{\mathsf T} X\right)^{-1}\frac{1}{N-M-1}\cdot\left(\vec{y}^{\mathsf T}\cdot\vec{y}-\vec{b}^{\mathsf T}\cdot X^{\mathsf T}\cdot \vec{y}\right) = \begin{bmatrix}
