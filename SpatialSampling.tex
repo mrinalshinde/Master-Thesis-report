@@ -1,4 +1,4 @@
-\chapter{Statistical Simulation for Spatial Sampling}
+\chapter{Monte-Carlo-Simulation for Spatial Sampling}
 
 The angle increment was derived in section \ref{sec:spasa} and is presented in equation \ref{eq:angle}. To find a compromise between measurement speed and accuracy a perfect trade off in terms of aliasing error has to be found. For a perfect adjustment of the measurement uncertainty, dependent on the \ac{SF}, the measurement error shall be independent of the devices' aperture.
 
@@ -68,7 +68,7 @@ There are four input parameters: First the \ac{SF}, second the \ac{CTF} and thir
 \end{enumerate}
 \end{enumerate}
 
-A histogram and the resulting \ac{CDF} for one parameter set is plotted in fig. \ref{fig:rands} (a) and (b). In both diagrams additionally the \ac{PDF}, respectively \ac{CDF} of the normal distribution is plotted in orange. Because the normal distribution is not an accurate metric for the underlying distribution, the $\SI{90}{\percent}$ \ac{IQR}, from the $\SI{5}{\percent}$ quantile to the $\SI{95}{\percent}$ quantile, is used to describe the scattering. In fig. \ref{fig:rands} (b) the black lines are the $\SI{5}{\percent}$- and $\SI{95}{\percent}$- quantiles, the red lines the $\SI{25}{\percent}$- and $\SI{75}{\percent}$- quantiles and the mean is the green line.\\
+A histogram and the resulting \ac{CDF} for one parameter set is plotted in fig. \ref{fig:rands} (a) and (b). In both diagrams additionally the \ac{PDF}, respectively \ac{CDF} of the normal distribution is plotted in orange. Because the normal distribution is not an accurate metric for the underlying distribution, proofed by the Kolmogorov-Smirnov test,\todo{grund für normalverteilung kstest qqplot} the $\SI{90}{\percent}$ \ac{IQR}, from the $\SI{5}{\percent}$ quantile to the $\SI{95}{\percent}$ quantile, is used to describe the scattering. In fig. \ref{fig:rands} (b) the black lines are the $\SI{5}{\percent}$- and $\SI{95}{\percent}$- quantiles, the red lines the $\SI{25}{\percent}$- and $\SI{75}{\percent}$- quantiles and the mean is the green line.\\
 The statistical experimental design is based on a D-optimal design dependent on the parameter matrix
 
 \begin{equation}
@@ -117,7 +117,7 @@ X^\prime = \begin{bmatrix}
 \end{bmatrix}\,,
 \end{equation}
 
-where $1$ stands for the maximum value of the respective variable, analogue $-1$ for minimum and $0$ for middle. To generate a better regression and better possibilities of post processing, the experimental design was extended by sweeping every input parameter:
+where $1$ stands for the maximum value of the respective variable, analogue $-1$ for minimum and $0$ for middle. To generate a better regression and better possibilities of post processing, the experimental design was extended by sweeping every input parameter, this is called Monte Carlo method:
 
 \begin{itemize}
 \item The \ac{SF} is swept in the interval $\text{SF}=\left[0.5,1.5\right]$ using $23$ samples.

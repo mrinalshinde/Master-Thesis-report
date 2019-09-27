@@ -386,6 +386,34 @@ f\left( x \right) = \frac{1}{\sigma\sqrt{2\pi}}e^{-\frac{1}{2}\left(\frac{x-\mu}
 
 Assuming that $\sigma = s$ and $\mu = \bar{x}$ this function can also be plotted and used for predictions.
 
+\subsection{Testing the suitability of distributions for scattering}
+
+A possibility to check if a scattering has a certain distribution is the Kolmogorov-Smirnov Test \cite{kosmi}. The \ac{CDF} of the scattering $S\left( x_i\right)$, with the index $i=[1,N]$, where $N$ is the number of samples, is compared to the \ac{CDF} of the distribution, which is assumed to describe the observed random process $F_0\left( x_i\right)$. For every sample the absolute difference between those \ac{CDF}s is computed
+
+\begin{equation}
+d_i = |S\left( x_i\right)-F_0\left( x_i\right)|\,.
+\end{equation}
+
+The null hypothesis $H_0$ is that the distribution of the random process $F_X\left( x\right)$ is equal to the assumed distribution $F_0\left( x\right)$
+
+\begin{equation}
+H_0:\, F_X\left( x\right)=F_0\left( x\right)
+\end{equation}
+
+and the alternative hypothesis is
+
+\begin{equation}
+H_1:\, F_X\left( x\right)\neq F_0\left( x\right)\,.
+\end{equation}
+
+When $N>35$, the maximum difference $d_\alpha$ to approve $H_0$ with a significance of $\alpha$, can be calculated with
+
+\begin{equation}
+d_\alpha=\frac{\sqrt{-0.5\ln\left(\frac{\alpha}{2}\right)}}{\sqrt{N}}\,.
+\end{equation}
+
+If $d_\text{max}>d_\alpha$, $H_0$ is discarded and $H_1$ is approved and the random process is not distributed as described by $F_0\left( x\right)$.
+
 \subsection{Regression of multidimensional Datasets}
 \label{sec:regod} 
 Assuming an input variable vector $\vec{x}$, a coefficient set $\vec{b}$ and a result $y$ an arbitrary polynomial can be written as \cite{sip}
