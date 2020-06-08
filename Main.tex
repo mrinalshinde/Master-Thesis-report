@@ -1,9 +1,3 @@
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% Descr:       Vorlage für Berichte der DHBW-Karlsruhe
-%% Author:      Prof. Dr. Jürgen Vollmer, vollmer@dhbw-karlsruhe.de
-%% $Id: bericht.tex,v 1.19 2016/03/16 16:59:41 vollmer Exp $
-%%  -*- coding: utf-8 -*-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \documentclass[
    ngerman          % neue deutsche Rechtschreibung
@@ -17,55 +11,60 @@
 %  ,ngerman
 ]{scrreprt}
 
+%\usepackage{subcaption}
 \usepackage[onehalfspacing]{setspace} %Zeilenabstand
 %\usepackage[doublespacing]{setspace} %Zeilenabstand
 
 % Bitte die Codierung Ihrer Dateien auswählen:
 % \usepackage[latin1]{inputenc}    % Für UNIX mit ISO-LATIN-codierten Dateien
-% \usepackage[applemac]{inputenc}  % Für Apple Mac
+ \usepackage[applemac]{inputenc}  % Für Apple Mac
 % \usepackage[ansinew]{inputenc}   % Für Microsoft Windows
-\usepackage[utf8]{inputenc}        % UTF-8 codierte Dateien
+%\usepackage[utf8]{inputenc}        % UTF-8 codierte Dateien
                                    % Dieses Dokument ist unter Unix erstellt, daher
                                    % wird diese Input-Codierung benutzt.
-
+\usepackage{booktabs}
+\usepackage{array,multicol,booktabs,tabularx}
+\usepackage{graphicx}
 \usepackage{bericht}
 \usepackage[german,english]{babel}
 %\selectlanguage{english}
-
 \usepackage{amsmath,esint}
 \usepackage[binary-units = true]{siunitx}
 \sisetup{
-%  locale = DE ,
+  locale = DE ,
   per-mode = symbol
 }
 \DeclareSIUnit{\sqrthz}{\ensuremath{\sqrt{\text{\hertz}}}}
 \DeclareSIUnit{\voltnoise}{\volt\per\sqrthz}
 \DeclareSIUnit{\decibelm}{\ensuremath{\text{dBm}}}
 \DeclareSIUnit{\decibeli}{\ensuremath{\text{dBi}}}
-
+\usepackage{textcomp}
 \usepackage{xfrac}
 \usepackage{extarrows}
 \usepackage{xspace}
-
+\usepackage{listings}
+\lstset{basicstyle=\ttfamily,
+  showstringspaces=false,
+  commentstyle=\color{red},
+  keywordstyle=\color{blue}
+}
 \usepackage{enumitem}
 
-\graphicspath{{Bilder/}} %Setting the graphicspath
+\graphicspath{{./Images/}} %Setting the graphicspath
 % ============= Dokumentinformationen =======================================
 
 %\newcommand{\Bericht}{Laborbericht}
-\newcommand{\Titel}{Masterthesis}
-\newcommand{\Was}{Untersuchung und Beurteilung der OTA-RSE-Messmethode im Kontext von 3GPP 5G FR2}
-\newcommand{\WasEng}{Assessment of OTA RSE Measurement Method in the Context of 3GPP 5G FR2}
-\newcommand{\Referent}{Prof. Dr.-Ing. Manfred Litzenburger}
-\newcommand{\Korreferent}{Prof. Dr.-Ing. Hans Sapotta}
-\newcommand{\Betreuer}{Dipl.-Ing. Heinz Mellein}
-\newcommand{\Autor}{Fabian Michaelsen}
-\newcommand{\UNI}{Hochschule Karlsruhe - Technik und Wirtschaft}
-\newcommand{\firma}{Rohde \& Schwarz GmbH \& Co. KG}
-\newcommand{\Studiengang}{Fakultät für Elektro- und Informationstechnik}
-\newcommand{\MatrikelNummer}{62032}
-\newcommand{\ThesisNummer}{300}
-\newcommand{\Zeitraum}{01.05.2019 - 31.10.2019}
+\newcommand{\Titel}{Master Thesis}
+\newcommand{\Was}{Measurement uncertainty assessment for novel approach of wireless co-existence testing}
+\newcommand{\WasEng}{}
+\newcommand{\Referent}{Prof. Dr.-Ing. S. Peik}
+\newcommand{\Korreferent}{}
+\newcommand{\Betreuer}{MSc. Johannes Koebele}
+\newcommand{\Autor}{Mrinal Shinde}
+\newcommand{\UNI}{Hochschule Bremen}
+\newcommand{\Studiengang}{Faculty for Electrical Engineering and Computer Science}
+\newcommand{\MatrikelNummer}{5021349}
+\newcommand{\Zeitraum}{18.11.2019 - 18.07.2020}
 % Wird auf dem Deckblatt in der Erklärung benutzt
 
 \newcommand{\abs}[1]{\ensuremath{\left\vert#1\right\vert}}
@@ -102,68 +101,39 @@
 
 % Nur für Bachelorarbeiten einfügen:
 \setlength{\parindent}{0pt}
-\input{erklaerung.tex}
-\newpage
-\input{Kurzfassung.tex}
 \input{abstract.tex}
-\input{Vorwort.tex}
+\input{erklaerung.tex} %declaration
+\input{Vorwort.tex} %preamble
 
 \tableofcontents           % Inhaltsverzeichnis hier ausgeben
 \listoffigures             % Liste der Abbildungen
 \listoftables              % Liste der Tabellen
 %\lstlistoflistings         % Liste der Listings
 %\listofequations           % Liste der Formeln
-
 % Jetzt kommt der "eigentliche" Text
-\include{abk}              % Abkürzungsverzeichnis
+\include{abk}              
 \pagenumbering{arabic}
 
-%\include{src/Einleitung}
+%% uncocmment these
 \include{Introduction}
 \include{Theorie}
-\include{MeasurementBasics}
-\include{MeasurementDistance}
-\include{SpatialSampling}
-\include{conclusion}
-% Ab hier beginnt der Anhang
-%\appendix
-%\addcontentsline{toc}{chapter}{Anhang}
+\include{chapter3}
+\include{Chapter4}
+\include{Chapter5}
+\include{Chapter6}
 
-%\addcontentsline{toc}{chapter}{Index}
-%\printindex
-
-%\addcontentsline{toc}{chapter}{Literaturverzeichnis}
-
-% Haben Sie das "biblatex"-Paket nicht installiert, benutzen Sie folgendes:
-% Ohne das "biblatex"-Paket (s. bericht.sty) produziert folgendes
-% "deutsche" Zitate in Literaturverzeichnissen gemaß der Norm DIN 1505,
-% Teil 2 vom Jan. 1984.
-% Die Zitatmarken werden alphabetisch nach Verfassern
-% sortiert und sind durch abgekürzte Verfasserbuchstaben plus
-% Erscheinungsjahr in eckigen Klammern gekennzeichnet.
-
-% \bibliographystyle{alphadin}
-% \bibliography{literatur}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%5
-% BIBLATEX
-% Benutzt man das "biblatex"-Paket, muß man folgendes schreiben:
-%\def\refname{Literaturverzeichnis}
-%\printbibliography
+%\include{conclusion}
 \printbibliography
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%5
 
 
 
-\include{annex}
+%\include{annex}
 
 \begin{singlespace}
 
-%\include{changelog}
 
-\newpage
-\addcontentsline{toc}{chapter}{Liste der ToDo's}
-\listoftodos[Liste der ToDo's]
+
 
 \end{singlespace}
 \end{document}

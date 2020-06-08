@@ -1,503 +1,260 @@
-\chapter{Theoretical Background}
+%--------------------------------------------------------------------------------
+% ** Second Chapter: Theory
+\chapter{Theoretical Background} \label{chap:2}
+This chapter .... \textbf{NOT DONE}
+\section{Wireless Coexistence Testing}
 
-This chapter will give a brief overview about the underlying theoretical background in the fields of antenna theory and spatial sampling. It will introduce furthermore quadrature methods for deriving the \ac{TRP} out of spherical \ac{EIRP} data and will establish the needed stochastic for the used statistic.
+Wireless coexistence testing is defined as the method of measuring the ability of multiple devices to interact in a single environment with limited bandwidth. It ensures that one device is not impacting other wireless devices operating in the same band. Radio Frequency (RF) regulatory testing is done to demonstrate that the products will use the radio spectrum effectively and comply with local or regional requirements. 
 
-\section{Antenna Field Regions}
+Since the number of interconnected wireless devices operating in 2.4 GHz and 5 GHz ISM (Industrial, Scientific and Medical) band is increasing, it became necessary to control the use of these bands. For this reason, several regulations and local and regional standards are suggested worldwide. Automated test systems to check the compliance of devices with the standards became highly recommended. The quality of coexistence is characterized by the frequency separation, the distance, space and time separation between different users. As big is this separation as much as the Signal to Interference Ratio (SIR) increases. Fundamental coexistence testing approaches can be categorized as conducted testing, radiated controlled environment (e.g. anechoic chambers), or radiated open environment. Some test method may combine all the categories.
+Since conducted test methods make use of a configuration of RF cables, combiners or couplers in order to establish communication channels between the various wireless transceivers, this category is easy to setup and usually results in lower measurement uncertainty.
+Radiated controlled environments use non-reflective chambers such as anechoic chambers in order to achieve a calibrated field at the location of the DUT. This category is beneficial since the DUTs nowadays do not necessarily come with cable connectors. In addition the radiated measurements exploit the antenna impacts (antenna pattern, efficiency, mismatch) in the measurement which is not possible in conducted measurements.
 
-\begin{figure}[H]
-\centering
-\includegraphics[width=0.6\textwidth]{Matlab/AntennaFieldRegions.eps}
-\caption{Antenna field regions overview at $f=\SI{28}{\giga\hertz}$}
-\label{fig:antennafieldreg}
-\end{figure}
+The approach considered in this work is based on Rohde $\&$ Schwarz TS8997 regulatory test system for wireless coexistence testing. This system already includes vector signal generator, spectrum analyzer and switching modules which is required to perform conducted measurements for regulatory tests mentioned in ETSI and FCC standards. This work investigates the approach of radiated measurements, introduced as TS8997 Regulatory Test System,  uses an RF shielded box (R$\&$S TS7124M) equipped with probe antennas. The approach is described in detail in the later chapters.
 
-In literature there are three commonly known antenna field regions, the reactive \ac{NF}, the radiating \ac{NF} and the \ac{FF}, which are divided by two boundaries, the Fresnel distance (blue) and the Fraunhofer distance (yellow). These distances are shown in fig. \ref{fig:antennafieldreg}, where the aperture diameter of an arbitrary antenna denotes the $x$-axis respective distances are shown on the $y$-axis. The third line, the Derat distance (red), was introduced by Benoit Derat in \cite{8393926}.\\
-\ac{FF}-distance and \ac{NF}-distance are derivable from the phase fluctuation due to the maximum diameter of the antenna's aperture \cite{7942128} in a distance $r$ from the antennas phase center. The phase fluctuation is given by the different lengths of $r$ and $R$, as you can see in fig. \ref{fig:arbaperturexy}. The maximum runtime difference is found at the minimum radius of the circle enclosing the aperture at $\sfrac{D}{2}$. The field boundaries are derived from the Taylor series of the function of the phase in $P$. Fresnel and Fraunhofer distance, the boundaries between reactive \ac{NF}, radiating \ac{NF} (Fresnel-Region) and the \ac{FF} (Fraunhofer-Region), are analogue to their optical counterpart;\cite{7942128}, \cite{balanis}.
 
-\begin{figure}[H]
-\centering
-\def\svgwidth{0.6\textwidth}
-\input{Bilder/AntennaApature.pdf_tex}
-\caption{An arbitrary radiating aperture in the $yz$ plane. \cite{7942128}}
-\label{fig:arbaperturexy}
-\end{figure}
 
-$R$ is the distance from an arbitrary point on the aperture to another arbitrary point $P$ in the volume. With $r$, the distance from the phase center of the antenna to the point $P$, $R$ can be written as \cite{balanis}
 
-\begin{equation}
-R = \sqrt{\left(x^2+y^2+z^2\right)-\left(2zz'-z^{\prime\, 2}\right)}=\sqrt{r^2-\left(2rz'\sin \theta -z^{\prime\, 2}\right)}\,.
-\end{equation}
-
-Using the binomial expansion, $R$ can then be rewritten as
-
-\begin{equation}
-R = r - z'\sin\theta + \frac{1}{r}\left(\frac{z^{\prime\, 2}}{2}\cos ^2 \theta\right) + \frac{1}{r^2}\left(\frac{z^{\prime\, 3}}{2}\sin\theta\cos^2\theta\right) + \dots\,.
-\end{equation}
-
-\subsection{Far-Field}
-
-According to \cite{balanis} the \ac{FF}-distance is \glqq that region of the field of an antenna where the angular field distribution is essentially independent of the distance from the antenna.\grqq{ }
-This means that the antenna's pattern is mostly independent of the distance to the antenna.\\
-For the \ac{FF} assumption it is convenient to use the two most significant terms of the binomial expansion $R\approx r - z'\sin\theta$. Hence, the error of that truncation can be expressed as the maximum of the third most significant term
-
-\begin{equation}
-\frac{1}{r}\left(\frac{z^{\prime\, 2}}{2}\cos ^2 \theta\right)_\text{max} = \frac{z^{\prime\, 2}}{2r} \quad , \quad \theta = 0\,.
-\label{eq:dphi1}
-\end{equation}
-
-Introducing the wavelength $\lambda$, the angular wavenumber $k=\sfrac{2\pi}{\lambda}$ and $z'=\sfrac{D}{2}$, formula \ref{eq:dphi1} can be written as
-
-
-\begin{equation}
-\Delta\theta = \frac{k\cdot z^{\prime\, 2}}{2r} =\frac{\frac{2\pi}{\lambda}\cdot \left(\frac{D}{2}\right)^2}{2r} = \frac{\pi D^2}{4\lambda\, r}\,.
-\end{equation}
-
-With the typically tolerated phase error of $\Delta\theta = \sfrac{\pi}{8} \ \widehat{=}\  22.5^\circ$ the well known \ac{FF}-distance-formula $r_{\text{FF}}$ can be derived
-
-\begin{equation}
-\frac{\pi}{8} = \frac{\pi D^2}{4\lambda\, r_{\text{FF}}} \quad \Leftrightarrow \quad r_{\text{FF}} = \frac{2D^2}{\lambda}\,.
-\label{eq:ff}
-\end{equation}
-
-This equation is valid for $D > \lambda$. \cite{balanis}
-
-\subsection{Near-Field}
-
-The radiating \ac{NF} (Fresnel) -region is defined by \cite{balanis} as \glqq that region of the field of an antenna between the reactive near-field region and the far-field region wherein radiation fields predominate and wherein the angular field distribution is dependent upon the distance from the antenna.\grqq{ }This means that the antenna's pattern is dependent from the distance to the antenna.\\
-In the radiating \ac{NF} the deviation from the third most significant term is more than $\sfrac{\pi}{8}$, so it is no longer negligible. With the derivation of the next term the maximum deviation is found
-
-\begin{align}
-\frac{\partial}{\partial\theta}\left(\frac{1}{r^2}\left(\frac{z^{\prime\, 3}}{2}\sin\theta\cos^2\theta\right)\right) = \frac{z^{\prime\, 3}}{2r^2}\cos\theta\left(\cos^2\theta-2\sin^2\theta\right) = 0 \quad &\Leftrightarrow\\ 
-\theta_1 = \frac{\pi}{2},\ \theta_2=2\arctan\left(\sqrt{5-2\sqrt{6}}\right) \quad &\Leftrightarrow\,.
-\end{align}
-
-By introducing the angular wavenumber $k=\sfrac{2\pi}{\lambda}$, the minimum sphere diameter $D$, so that $z'=\sfrac{D}{2}$ and the phase error of $\Delta\phi = \sfrac{\pi}{8} \ \widehat{=}\  22.5^\circ$ the \ac{NF} (Fresnel)-distance-formula $r_{\text{NF}}$ can be derived
-
-\begin{equation}
-\Delta\phi = \frac{\pi}{8} = \frac{kz^{\prime\, 3}}{2r_{\text{NF}}^2}\sin\theta_2\cos^2\theta_2= \frac{\pi D^3}{12\sqrt{3}\,\lambda r_{\text{NF}}^2} \quad \Leftrightarrow \quad r_{\text{NF}}=0.62\sqrt{\frac{D^3}{\lambda}}\,.
-\end{equation}
-
-The region directly surrounding the antenna in front of this boundary is called reactive \ac{NF} and it is according to \cite{balanis} \glqq that portion of the near-field region immediately surrounding the antenna wherein the reactive field predominates.\grqq{ }Basically, the reactive \ac{NF} is that portion of an antennas field were direct coupling is expected.
-
-\subsection{Derat Distance}
-
-The Derat distance was introduced by Benoit Derat in \cite{8393926} and it is the distance, in which the main beam of an antenna is in \ac{FF} condition. For the understanding of the Derat distance $r_{\text{Dr}}$ other considerations need to take place: It is about spherical modes described by spherical Hankel functions  of the second kind. \cite{8393926} \cite{hansen}\\
-In \cite{8393926} it is shown that higher order modes than 
-
-\begin{equation}
-N = \Bigg\lceil 1.0252\,\left(\frac{\pi D}{\lambda}\right)^{0.8633} \Bigg\rceil
-\end{equation}
-
-have a maximum influence to the \ac{EIRP} in main direction of $\SI{0.5}{\decibel}$. $\lceil\cdot\rceil$ means rounding up to the next integer value. Taking this into account, the Derat distance may be derived as
-
-\begin{equation}
-r_{\text{Dr}} = \lambda\left(\frac{\pi D}{\lambda}\right)^{0.8633}\cdot\left(0.1673\left(\frac{\pi D}{\lambda}\right)^{0.8633}+0.1632\right)\,.
-\end{equation}
-
-\subsection{Example: Standard Gain Horn}
-
-\begin{figure}[h]
-\centering
-  \centering
-  \subfigure[Wave impedance]{\includegraphics[width=0.49\textwidth]{Matlab/NormWaveImpHorn.eps}}
-  \centering
-  \subfigure[Phase]{\includegraphics[width=0.49\textwidth]{Matlab/NormPhaseHorn.eps}}
-  \centering
-  \subfigure[EIRP]{\includegraphics[width=0.49\textwidth]{Matlab/NormEIRPHorn.eps}}
-  \centering
-  \subfigure[Antenna Pattern $E$-Plane]{\includegraphics[width=0.35\textwidth]{Matlab/ePlanePattern.eps}}
-\caption{Beam comparison of a $\SI{20}{\decibel}$ SGH at $\SI{28}{\giga\hertz}$}
-\label{fig:beamcpmp}
-\end{figure}
-
-To clarify the introduced distances they will be proved based on a $\SI{20}{\decibel}$ \ac{SGH} at $\SI{28}{\giga\hertz}$. The front view of this horn with the underlying field distribution is plotted in fig. \ref{fig:fielddist} in the annex. The polarization is in $y$-direction, so the $yz$-plane is called $E$-plane and the $xz$-plane is called $H$-plane from here on.\\
-In fig. \ref{fig:beamcpmp} the normalized wave impedance (a), the normalized phase between $E$- and $H$-field components (b) and the normalized \ac{EIRP} (c) over the distance to the phase center are plotted. To clarify the designations the directions are plotted in (d). The data have been generated by CST\texttrademark , a full wave simulation tool. Complex data in $x$, $y$, and $z$ direction was exported and post processed to Matlab\texttrademark{}.\\
-Also, the field boundaries from the sections above are plotted with dashed lines. For the derivation of the field boundaries only the opening of the horn in the $E$-plane was taken to account. This is reasonable because the field distribution and thus the usage of the aperture is known, refer to fig. \ref{fig:fielddist}. As it can be seen, in the $E$-plane the aperture is fully used. But if the field distribution is unknown, the smallest circle enclosing the aperture has to be taken.\\
-The main lobe (blue line in fig. \ref{fig:beamcpmp}) is from Derat-distance on in \ac{FF} condition. The wave impedance reached its end value of $120\pi\si{\ohm}\approx\SI{377}{\ohm}$, $E$- and $H$-fields are coherent and the \ac{EIRP} value converged. Considering the side lobes it can be seen that in the reactive \ac{NF} the field conditions are very unstable, whereas the fields in the radiating \ac{NF} become more stable. In the \ac{FF} the field values are continually decreasing the offset from their final value.\\
-In fig. \ref{fig:devantennap} in the annex the resulting antenna patterns in different radii are depicted as well in Cartesian coordinates (a) as in Polar coordinates (b). The assumption 
-
-\begin{equation}
-S = \frac{E^2}{Z_0}
-\label{eq:poynting}
-\end{equation}
-
-was taken to account. In addition, analogue to (a) and (b), in (c) the \ac{EIRP} computed in different radii is plotted in fig. \ref{fig:fielddist}. At Derat distance ($\approx\SI{100}{\milli\meter}$) the error in main beam direction is about $\SI{0.5}{\decibel}$ and the antenna pattern is further evolving after the Fraunhofer distance at about $\SI{200}{\milli\meter}$.
-
-\section{Spatial Sampling Approaches}
-\label{sec:spsa}
-
-\begin{figure}
-\centering
-\def\svgwidth{0.4\textwidth}
-\input{Bilder/KoordinateSystem.pdf_tex}
-\caption{The underlying coordinate system}
-\label{coordinates}
-\end{figure}
-
-In fig. \ref{coordinates} the used coordinate system is depicted. In comparison with a globe the latitude is described by the elevation with the symbol $\Theta$ and the longitude is described by the azimuth with the symbol $\Phi$. The value range of $\Theta$ and $\Phi$ is
-
-\begin{equation}
--\frac{\pi}{2} \leq \Theta <\frac{\pi}{2}\, ,\quad -\pi \leq \Phi < \pi\,.
-\end{equation}
-
-Below different spatial sampling approaches for this sphere are introduced. For the development of a sampling grid a sampling frequency is necessary and will be introduced in the next section.
-
-\subsection{Derivation of the Spatial Sampling considering the Array Factor}
-\label{sec:spasa}
-
-The \ac{AF} is \glqq the radiation pattern of an array antenna when each array element is considered to radiate isotropically\grqq{} \cite{ieeeantenna}. The sampling frequency in either elevation or in azimuth is dependent on the aperture of the \ac{DUT} and the wavelength. To investigate the necessary sampling frequency a one dimensional $\sfrac{\lambda}{2}$ array of isotropic radiators was taken in account. With the number of elements $N$, the element spacing $d = \sfrac{\lambda}{2}$ and the wavelength $\lambda$ the antenna pattern is derivable \cite{litze}
-
-\begin{equation}
-\begin{vmatrix}\Gamma\left(\theta\right)\end{vmatrix}^2 = \Biggl|\frac{\sin\left(\frac{\pi M d}{\lambda \sin\left(\theta\right)}\right)}{\sin\left(\frac{\pi d}{\lambda \sin\left(\theta\right)}\right)}\Biggl|^2 = \Biggl|\frac{\sin\left(\frac{\pi M}{2 \sin\left(\theta\right)}\right)}{\sin\left(\frac{\pi}{2 \sin\left(\theta\right)}\right)}\Biggl|^2\,.
-\end{equation}
-
-\begin{figure}[h]
-  \centering
-  \subfigure[Two elements: Pattern]{\includegraphics[width=0.32\textwidth]{Matlab/NoNumEl2.eps}}
-  \centering
-  \subfigure[Six elements: Pattern]{\includegraphics[width=0.32\textwidth]{Matlab/NoNumEl6.eps}}
-  \centering
-  \subfigure[100 elements: Pattern]{\includegraphics[width=0.32\textwidth]{Matlab/NoNumEl100.eps}}
-\caption{Pattern of $N$-element array with $\sfrac{\lambda}{2}$-spacing}
-\label{fig:evolvpattern2}
-\end{figure}
-
-\begin{figure}[h]
-  \centering
-  \subfigure[Two elements: Mode spectra]{\includegraphics[width=0.32\textwidth]{Matlab/SpNumEl2.eps}}
-  \centering
-  \subfigure[Six elements: Mode spectra]{\includegraphics[width=0.32\textwidth]{Matlab/SpNumEl6.eps}}
-  \centering
-  \subfigure[100 elements: Mode spectra]{\includegraphics[width=0.32\textwidth]{Matlab/SpNumEl100.eps}}
-\caption{Mode spectra of $N$-element array with $\sfrac{\lambda}{2}$-spacing}
-\label{fig:evolvpattern3}
-\end{figure}
-
-The resulting pattern is depicted in fig. \ref{fig:evolvpattern2} and in annex \ref{fig:evolvpattern} (a little larger).\\
-In \cite{hansen} it is suggested to use the sampling increment of
-
-\begin{equation}
-\Delta\Theta_\text{Hansen} = \frac{2\pi}{2N+1}\ , \quad \Delta\Phi_\text{Hansen}=\frac{2\pi}{2M+1}\,.
-\label{eq:refahansen}
-\end{equation}
-
-Where $N$ is the highest significant wave mode on the minimal sphere enclosing the antennas aperture and $M$ is the highest significant wave mode on the minimal cylinder. With the sphere radius $r_S$, the cylinder radius $r_C$ and the angular wavenumber $k = \sfrac{2\pi}{\lambda}$ they are calculated as follows
-
-\begin{equation}
-N = kr_S+10\ , \quad M = kr_C+10\,.
-\end{equation}
-
-For example, the resulting formula for the reference angle increment in elevation is calculated in \cite{2018arXiv180310993F} as
-
-\begin{equation}
-\Delta\Theta_{\text{ref}} = \lim_{r_S \to \infty}\Delta\Theta' = \lim_{r_S \to \infty} \frac{2\pi}{2\left(kr_S+10\right)+1} = \frac{\lambda}{2\cdot r_S}\,,
-\label{eq:hansenrefa}
-\end{equation}
-
-the reference angle increment in azimuth as
-
-\begin{equation}
-\Delta\Phi_{\text{ref}} = \frac{\lambda}{2\cdot r_C}\,.
-\end{equation}
-
-To illustrate these angle increments the one dimensional array of isotropic radiators is taken. Evaluating the \ac{AF} of a $d = \sfrac{\lambda}{n}$ -array with $N$ elements the reference angle becomes very short
-
-\begin{equation}
-\Delta\Phi_{\text{ref}} = \frac{n}{N-1}\,.
-\label{eq:1dinc}
-\end{equation}
-
-With the \ac{FFT} over the angle of the antenna patterns from fig. \ref{fig:evolvpattern2} the mode spectra can be derived and is seen in fig. \ref{fig:evolvpattern3} (or \ref{fig:evolvpattern} in annex). Also, the pattern evolution is depicted in fig. \ref{fig:evopattern}, with the corresponding mode spectra in \ref{fig:evopatternmode}.\\
-When an arbitrary signal is sampled, the spectrum is mirrored at the sampling frequency. Choosing a sampling frequency lower than twice the highest occurring frequency in the sampled signal causes an irreversible error. This is called the Nyquist-Shannon sampling theorem.\\
-For that sake the dashed lines are
-
-\begin{equation}
-\color{blue}\left(\Delta\Phi_{\text{ref}}\right)^{-1}\color{black},\ \color{cyan}\left(\Delta\Phi_\text{Hansen}\right)^{-1}\color{black}\ \text{and}\ \color{green}\text{first mode} > \SI{-40}{\decibel} \color{black}\,.
-\end{equation}
-
-Similar to that the dashed lines in fig. \ref{fig:evolvpattern2} are the first sampling points using the derived sampling frequency.\\
-The issue is now to find the sampling frequency at which the sampling error is independent of the aperture of the antenna. As depicted in fig. \ref{fig:evolvpattern3} the sampling frequency introduced by \cite{hansen} is to strict for small apertures. On the other hand the reference angle introduced by \cite{2018arXiv180310993F} is to inaccurate for small apertures. Because of that the new \ac{CrefA} is taken
-
-\begin{equation}
-\text{CrefA} = \left(\Delta\Phi_{\text{ref}}\cdot\left(\text{first mode} > \SI{-40}{\decibel}\right)\right)^{-1}\,.
-\end{equation} 
-
-\begin{figure}
-\centering
-\includegraphics[width=0.41\textwidth]{Matlab/CrefA.eps}
-\caption{Correction Factor Reference Angle}
-\label{fig:crefa}
-\end{figure}
-
-This factor is plotted in fig. \ref{fig:crefa}. It is dependent upon the aperture. With that the error due to sampling is independent of the antennas' aperture. Less than $\SI{-40}{\decibel}$ in the mode spectra is defined for the reference angle increment in \cite{2018arXiv180310993F}, compare fig. \ref{fig:evolvpattern3}.\\
-For further reduction of points a second factor is introduced, the \acf{SF}. At $\text{SF}=2$ every second measurement point is skipped. With all that the angle increments for spherical sampling is
-
-\begin{equation}
-\Delta\Theta = \text{SF}\cdot\text{CrefA}\left(\sfrac{2r_S}{\lambda}\right)\cdot\frac{\lambda}{2r_S}\ ,\quad\Delta\Phi = \text{SF}\cdot\text{CrefA}\left(\sfrac{2r_C}{\lambda}\right)\cdot\frac{\lambda}{2r_C}\,.
-\label{eq:angle}
-\end{equation}
-
-\subsection{Constant Step Size Grid}
-
-
-\begin{figure}[h]
-  \centering
-  \subfigure[$\text{CTF}=0$; spherical presentation]{\includegraphics[width=0.49\textwidth]{Matlab/GridCoStPolar.eps}}
-  \centering
-  \subfigure[$\text{CTF}=1$; spherical presentation]{\includegraphics[width=0.49\textwidth]{Matlab/GridCoStSinPolar.eps}}
-  \centering
-  \subfigure[$\text{CTF}=0$; Cartesian presentation]{\includegraphics[width=0.49\textwidth]{Matlab/GridCoStCart.eps}}
-  \centering
-  \subfigure[$\text{CTF}=1$; Cartesian presentation]{\includegraphics[width=0.49\textwidth]{Matlab/GridCoStSinCart.eps}}
-\caption{$\SI{15}{\degree}$ -Constant Step Size Grid}
-\label{fig:cssg}
-\end{figure}
-
-The most straightforward way to a spherical measurement is using a \ac{CSSG} depicted in fig. \ref{fig:cssg} (a). The advantage is the easy feasibility with any positioner. This is visual in \ref{fig:cssg} (c), where the angles are printed in Cartesian coordinates. Either the azimuth can be swept on every latitude circle or the elevation can be swept on every longitude circle. The measurement density is higher on the poles than on the equator.\\
-To meet that the theta dependent number of azimuth points was introduced e.g. by \cite{ctiaat}. It is applied as follows
-
-\begin{align*}
-N_{\text{max}} &= \frac{2\pi}{\Delta\Phi}\\
-N\left(\Theta\right)&=\lceil N_{\text{max}}\cdot\cos\left(\Theta\right)\rceil\\
-\Delta\Phi\left(\Theta\right) &= \frac{2\pi}{N\left(\Theta\right)}\,.
-\end{align*}
-
-It is only possible to sweep the azimuth when this type of grid is used. Here also the Cartesian coordinates are plotted in (d). The red line is a suggested sequence.
-
-\subsection{Constant Density}
-
-\begin{figure}[h]
-  \centering
-  \subfigure[Polar Coordinates]{\includegraphics[width=0.49\textwidth]{Matlab/GridCoDePolar.eps}}
-  \centering
-  \subfigure[Cartesian Coordinates]{\includegraphics[width=0.49\textwidth]{Matlab/GridCoDeCart.eps}}
-\caption{Constant Density Grid with 264 Measurement points}
-\label{fig:cdg}
-\end{figure}
-
-The \ac{CDG} depicted in fig. \ref{fig:cdg} was produced and generated by a charged particle algorithm. It works by minimizing the cumulated potential energy of all measurement dots considered as charged particles. The potential energy is minimal, when all points are uniformly distributed over the sphere.\\ 
-Deriving the optimal measurement sequence is a \ac{TSP}. It is solved by the Matlab toolbox introduced in \cite{tsp} viewing the angles as Cartesian coordinates. This path is optimized for the positioner to move as efficient as possible. Because the positioning in Azimuth is faster than in Elevation, the elevation distance is weighted five times more. Furthermore, the periodicity is taken to account, so that the distance between tow points $\text{P}_n$ and $\text{P}_m$ is
-
-\begin{equation}
-\Delta\Theta_{mn} = 5\left(\Theta_{\text{P}_n}-\Theta_{\text{P}_m}\right)\ ,\quad \Delta\Phi_{mn} = \text{min}\left(|\Phi_{\text{P}_n}-\Phi_{\text{P}_m}|\, ,\ 2\pi-|\Phi_{\text{P}_n}-\Phi_{\text{P}_m}|\right)\,.
-\end{equation}
-
-With that the quadratic distance Matrix $D$ can be derived using euclidean distance with $d_{mn} = \sqrt{\Delta\Theta_{mn}^2+\Delta\Phi_{mn}^2}$ out of $N$ Points
-
-\begin{equation}
-D = \begin{bmatrix}
- 0 & d_{12} & \dots & d_{1N}\\
- d_{21} & 0 & \dots & d_{2N}\\
- \vdots & \vdots & \ddots & \vdots\\
- d_{N1} & d_{N2} & \dots & 0
-\end{bmatrix}\,.
-\end{equation}
-
-The cumulated distance for $N = 264$ is converged after around one million iterations. The result is depicted in fig. \ref{fig:cdg} (b).
-
-\subsection{Other}
-
-There are other grid types, which are mainly based on the already introduced grids. First there are Cardinal cuts, here a measurement is carried out along the equator and one, two or more orthogonal meridians. If the alignment is right, a technique called \acf{PM} can be used to calculate the complete antenna pattern out of the cardinal cuts. The problem here is that a symmetry is assumed which is always wrong if the direction of main beam and the orientation of the pattern is unknown. \cite{2018arXiv180310993F}\\
-An other spatial sampling approach is the Spiral Scan. It is developed by \ac{RS} and can be used for a pre scan to find the maximum \ac{EIRP} direction. Here elevation and azimuth is swept. \cite{ctiaat}
-
-\section{Total Radiated Power Quadratures}
-\label{sec:quadrature}
-
-The easiest way to derive the \ac{TRP} is if Cardinal cuts or a \ac{CDG} was taken, to compute the mean of all \ac{EIRP} samples. For other grids the quadrature needs to be done as follows. \cite{trp}
-
-\subsection{Sine Theta}
-
-The straightforward way is to transform the integral over a spherical surface $S$
-
-\begin{equation}
-\text{TRP} = \frac{1}{4\pi}  \oiint_S \text{EIRP}\left(\theta,\phi\right)\cdot\sin\theta\cdot d\theta d\phi
-\label{eq:trpint}
-\end{equation}
-
-to a sum, this is called quadrature. The easiest approach is carried out by discretizing the integral Argument \cite{ctiaat}
-
-\begin{equation}
-\frac{1}{4\pi}\cdot\sin\theta\cdot d\theta\cdot d\phi \ \Rightarrow\ \frac{1}{4\pi}\cdot \Delta\theta\cdot \Delta\phi\cdot\sin\theta = \frac{1}{4\pi}\cdot \frac{\pi}{N}\cdot \frac{2\pi}{M}\cdot\sin\theta=\frac{\pi}{2NM}\cdot\sin\theta\,.
-\end{equation}
-
-With that the quadrature is
-
-\begin{equation}
-\text{TRP}_{\sin\theta} = \frac{\pi}{2NM}\sum^{N-1}_{i=1}\sum^{M-1}_{j=0}\left(\text{EIRP}_\theta\left(\theta_i,\phi_j\right)+\text{EIRP}_\phi\left(\theta_i,\phi_j\right)\right)\cdot\sin\left(\theta_i\right)\,.
-\label{eq:trpsumsin}
-\end{equation}
-
-$N$ is the number of angular intervals in $\theta=\left[0,\pi\right[$ (elevation), $M$ is the number of angular intervals in $\phi=\left[0,2\pi\right[$ (azimuth), the indices $i=\left[0,N\right]$, $j=\left[0,M\right]$ and the \ac{EIRP} is split in its horizontal ($\text{EIRP}_\phi$) and its vertical ($\text{EIRP}_\theta$) part. This quadrature is called sine theta.
-
-\subsection{Clenshaw-Curtis}
-
-Because the sine theta quadrature is not accurate for sparse measurements and the measurement points at the poles are neglected, another weighting scheme is used, the \ac{CC}-quadrature. For the sine theta quadrature the integrating surface is constantly interpolated (compare equation \ref{eq:trpsumsin}). The \ac{CC} quadrature is more accurate using the weights W computed by expending the integrand with Chebyshev polynomials. With that formula \ref{eq:trpsumsin} develops to \cite{trp}
-
-\begin{equation}
-\text{TRP}_{\text{CC}} = \frac{1}{2M}\sum^{N-1}_{i=1}\sum^{M-1}_{j=0}\left(\text{EIRP}_\theta\left(\theta_i,\phi_j\right)+\text{EIRP}_\phi\left(\theta_i,\phi_j\right)\right)\cdot\text{W}\left(\theta_i\right)\,.
-\label{eq:trpsumcc}
-\end{equation}
-
-\subsection{Jacobi}
-
-The Jacobi quadrature uses the area of triangles on the spherical surface between the measurement points. The average \ac{EIRP} of a triangle is computed and weighted by the area $A_i$ of it. The result is normed with the complete surface area. With that for every triangle $i=\left[1,N\right]$ the \ac{TRP} quadrature is \cite{trp}
-
-\begin{equation}
-\text{TRP}_{\text{J}} = \frac{\sum^N_{i=1}A_i\left(\frac{\text{EIRP}_{0,i}+\text{EIRP}_{1,i}+\text{EIRP}_{2,i}}{3}\right)}{\sum^N_{i=1}A_i}\,.
-\end{equation}
-
-\subsection{Comparing the Quadratures}
-
-Sine Theta- and \ac{CC} quadratures are only applicable for \acp{CDG} and with slight optimizations also for \acp{CDG} with less dense measurements at the poles. Whereas the Jacobi quadrature can be used for arbitrary grids.\\
-In \cite{trp2} it is investigated which quadrature leads to the most accurate result with the same number of points. The result is that \ac{CC}- and Jacobi quadratures are equally accurate.
-
-\section{Statistics and Regression}
-
-This section shall give a brief introduction in the field of statistics and regression, which is necessary for the spatial sampling simulation. First statistical terms, then methods to display scatterings and multidimensional regressions are introduced.
-
-\subsection{Metrics to Describe Distributions}
-
-To describe a one dimensional scattering $h$, with $N$ samples $x$ and the cumulative frequency $H$, these terms are regularly used: \cite{dffs}
-
+Some of the major regulatory bodies that have authority over many technology regulations around the world are the Federal Communications Commission (FCC) and the European Telecommunications Standards Institute (ETSI). This work focuses on tests conform to the criterias and test methodologies mentioned in the standards:
 \begin{itemize}
-\item The commonly most used and known term is the \textbf{Arithmetic Mean}, which is sensitive with respect to outliers and computed as
-\begin{equation}
-\bar x = \frac{1}{N}\sum_{n=1}^N x_N\,.
-\end{equation}
-\item The \textbf{Median} is that value lying in the middle of a distribution, so that $H\left( x\right) = 0.5$. It is computed by sorting the samples by value and, if the number of samples is even, taking the mean of the two samples in the middle, or if the number of samples is odd taking the middle value. The Median is robust with respect to outliers.
-\item The \textbf{Variance} of a distribution is the sum of squared errors, normalized by the number of samples. This metric is strongly vulnerable by outliers. The computation is as follows
-\begin{equation}
-s^2 = \frac{1}{N-1}\sum_{n=1}^N\left( x_n-\bar{x}\right)^2\,.
-\end{equation}
-\item The \textbf{$p$-Quantile} is analogue to the Median, that value of a sorted sample vector where $P$ percent of the distributions values is reached, hence $H\left( x\right) = p$.
-\item A more stable metric for scattering as the variance is the \textbf{\ac{IQR}}, this describes the range between two quantiles.
+	\item ETSI EN 300 328 V2.2.2 (2019-07): Wideband transmission systems. Data transmission equipment operating in the 2,4 GHz band; Harmonized Standard for access to radio spectrum.
+
+	\item ETSI EN 301 893 V2.1.1 (2017-05) 5 GHz RLAN; Harmonized Standard covering the essential requirements of article 3.2 of Directive 2014/53/EU.
 \end{itemize}
 
-\subsection{Display a Distribution}
-
-The commonly known way to display a distribution is a bar diagram. There the value of range is split in $M$ bars displaying the values in the $x$-axis and the probability of each bucket on the $y$-axis. An other way to display a distribution is the box-plot, where only the minimal, maximal, $\SI{25}{\percent}$-quantile, median and $\SI{75}{\percent}$-quantile value is plotted.
-
-\subsection{Distribution Functions}
-There are all sorts of scattering distributions e.g. uniform distribution, Weibull distribution, Rayleigh distribution, ... but the most prominent distribution is the normal distribution by Gauss
-
-\begin{equation}
-f\left( x \right) = \frac{1}{\sigma\sqrt{2\pi}}e^{-\frac{1}{2}\left(\frac{x-\mu}{\sigma}\right)^2}\,.
-\end{equation}
-
-Assuming that $\sigma = s$ and $\mu = \bar{x}$ this function can also be plotted and used for predictions.
-
-\subsection{Testing the suitability of distributions for scattering}
-
-A possibility to check if a scattering has a certain distribution is the Kolmogorov-Smirnov Test \cite{kosmi}. The \ac{CDF} of the scattering $S\left( x_i\right)$, with the index $i=[1,N]$, where $N$ is the number of samples, is compared to the \ac{CDF} of the distribution, which is assumed to describe the observed random process $F_0\left( x_i\right)$. For every sample the absolute difference between those \ac{CDF}s is computed
-
-\begin{equation}
-d_i = |S\left( x_i\right)-F_0\left( x_i\right)|\,.
-\end{equation}
-
-The null hypothesis $H_0$ is that the distribution of the random process $F_X\left( x\right)$ is equal to the assumed distribution $F_0\left( x\right)$
-
-\begin{equation}
-H_0:\, F_X\left( x\right)=F_0\left( x\right)
-\end{equation}
-
-and the alternative hypothesis is
-
-\begin{equation}
-H_1:\, F_X\left( x\right)\neq F_0\left( x\right)\,.
-\end{equation}
-
-When $N>35$, the maximum difference $d_\alpha$ to approve $H_0$ with a significance of $\alpha$, can be calculated with
-
-\begin{equation}
-d_\alpha=\frac{\sqrt{-0.5\ln\left(\frac{\alpha}{2}\right)}}{\sqrt{N}}\,.
-\end{equation}
-
-If $d_\text{max}>d_\alpha$, $H_0$ is discarded and $H_1$ is approved and the random process is not distributed as described by $F_0\left( x\right)$.
-
-\subsection{Regression of multidimensional Datasets}
-\label{sec:regod} 
-Assuming an input variable vector $\vec{x}$, a coefficient set $\vec{b}$ and a result $y$ an arbitrary polynomial can be written as \cite{sip}
-
-\begin{equation}
-y\left(\vec{x}\right) = \vec{x}^{\mathsf T}\cdot\vec{b}=\begin{bmatrix}
-1 & x_1 & x_2 & \dots & x_M
-\end{bmatrix} \cdot \begin{bmatrix}
-b_0 \\ b_1 \\ b_2 \\ \vdots \\ b_M
-\end{bmatrix}\,.
-\end{equation}
-
-The regression is about estimating the coefficient vector $\vec{b}$. With $N$ samples this system is overdetermined which leads to an error vector $\vec{e}$. Then the resulting polynomial is
-
-\begin{equation}
-\vec{y}=X\cdot \vec{b}+\vec{e}=\begin{bmatrix}
-y_1 \\ y_2 \\ \vdots \\ y_N
-\end{bmatrix} = \begin{bmatrix}
-1 & x_{11} & x_{12} & \dots & x_{1M} \\
-1 & x_{21} & x_{22} & \dots & x_{2M} \\
-\vdots & \vdots & \vdots & \ddots & \vdots \\
-1 & x_{N1} & x_{N2} & \dots & x_{NM}
-\end{bmatrix} \cdot \begin{bmatrix}
-b_0 \\ b_1 \\ b_2 \\ \vdots \\ b_M
-\end{bmatrix} + \begin{bmatrix}
-e_1 \\ e_2 \\ \vdots \\ e_N
-\end{bmatrix}\,.
-\end{equation}
-
-The sum square error
-
-\begin{equation}
-S = \vec{e}^{\mathsf T}\cdot\vec{e}=\left(\vec{y}-X\cdot\vec{b}\right)^{\mathsf T}\cdot\left(\vec{y}-X\cdot\vec{b}\right)
-\end{equation}
-
-is minimized by 
-
-\begin{equation}
-\nabla_{\vec{b}}\cdot S = 0
-\end{equation}
-
-leading to the well known \ac{LS}-method
-
-\begin{equation}
-\hat{b}_\text{LS}=\left(X^{\mathsf T} X\right)^{-1} X^{\mathsf T}\vec{y}\,.
-\end{equation}
-
-The input matrix $X$ can also be optimized by taking combinations or powers of different dependent parameters.\\
-A frequent problem is that the significance of the parameters in $\vec{b}$ is unknown, causing unnecessary high number of parameters and inaccurate regressions. Therefore, the hypothesis that $b_m=0$ is checked. The parameters in vector $\vec{b}$ are t-distributed. First the covariance matrix of the independent variable $\vec{y}$ is estimated \cite{dffs}
-
-\begin{equation}
-C = \left(X^{\mathsf T} X\right)^{-1}\frac{1}{N-M-1}\cdot\left(\vec{y}^{\mathsf T}\cdot\vec{y}-\vec{b}^{\mathsf T}\cdot X^{\mathsf T}\cdot \vec{y}\right) = \begin{bmatrix}
-c_{00} & c_{01} & \dots & c_{0M} \\
-c_{10} & c_{11} & \dots & c_{1M} \\
-\vdots & \vdots & \ddots & \vdots \\
-c_{M0} & c_{M1} & \dots & c_{MM}  
-\end{bmatrix}\,.
-\end{equation}
-
-With the variances $c_{mm}$ of each parameter and the variance of $\vec{y}$ $s$, the $p$-value can be computed with $F_t$, the \ac{CDF} of the t-distribution with $N-1$ degrees of freedom
-
-\begin{equation}
-p_m = F_t\left(\frac{b_m}{c_{mm}\cdot s}\right)\,.
-\end{equation}
-
-Normally a significance value of $\alpha = \SI{5}{\percent}$ is chosen. If the $p$-value is inside the interval $p_m=\left[\sfrac{\alpha}{2},\ 1-\sfrac{\alpha}{2}\right]$ the hypothesis is valid and parameter $m$ can be discarded.
-
-To estimate the confidence interval for the mean of a regression at a point $x_0$, the variance at dot $x_0$ must be computed \cite{dffs}
-
-\begin{equation}
-s_{\hat{y}_0}^2 = \frac{1}{N-M-1}\cdot\left(\vec{y}^{\mathsf T}\cdot\vec{y}-\vec{b}^{\mathsf T}\cdot X^{\mathsf T}\cdot \vec{y}\right)\cdot \vec{x}_0^{\mathsf T}\cdot \left(X^{\mathsf T} X\right)^{-1} \cdot \vec{x}_0\,.
-\end{equation}
-
-Choosing a confidence value $\gamma = \SI{95}{\percent}$, the two parameters $k_1$ and $k_2$ can be derived with the inverse \ac{CDF} $F_t^{-1}$ with $N-M-1$ degrees of freedom
-
-\begin{equation}
-k_1 = F^{-1}\left(\frac{1-\gamma}{2}\right),\ k_2 = F^{-1}\left(\frac{1+\gamma}{2}\right)\,.
-\end{equation}
-
-And the confidence interval is
-
-\begin{equation}
-\mu_y\left(\vec{x}_0\right) =\left[ y\left(\vec{x}_0\right)-k_2\cdot s_{\hat{y}_0},\ y\left(\vec{x}_0\right)-k_1\cdot s_{\hat{y}_0}\right]\,.
-\label{eq:conv}
-\end{equation}
 
 
+In this project, V2.1.1 of the mentioned ETSI standards is the reference to the implemented methodologies. There are about 7 to 8 tests per standard. However, due to the high amount of test cases, a specialized test system and special automated test procedures are of an advantage. The test cases that are explained and implemented in the following chapters for the investigation of the normalized measurements are:
+\begin{itemize}
+    \item Receiver Blocking
+    \item Power Spectral Density
+\end{itemize}
+
+Spurious measurements is not supported because normalization is done only for the in band frequencies of the used antennas and thus gain of antenna is not known. In order to perform these measurements, out of band calibration needs to be done for the test chamber. We define following in band test cases:\\
+
+\begin{enumerate}
+\item Receiver Blocking (Rx measurement) is a measure of the capability of the equipment to receive a wanted signal on its operating channel without exceeding a given degradation due to the presence of an unwanted input signal (blocking signal) on frequencies other than those of the operating bands provided in the standard. The minimum performance criterion is defined to be a Packet Error Rate (PER) of less than or equal to 10 \%.
+
+
+
+
+\item Power Spectral Density (PSD) is the mean Equivalent Isotropically Radiated Power (EIRP) spectral density in a 1 MHz bandwidth during a transmission burst. The limits depend on the specification of the DUT. The limits are taken from the reference standards.\\
+Both test cases and the needed steps are explained in a later chapter.
+\end{enumerate}
+
+\section{Antenna Fundamentals}
+
+For this work, a close understanding of the theory of the used antennas and their radiations is needed in order to explain and analyze the physics happening inside of the test system and influencing the measurements in the chamber. This is a main step for further investigations about the quality of the novel normalized wireless measurement approach inside of the test chamber . To describe the performance of antennas, the definition of various parameters is necessary. In the following some of these parameters are highlighted.
+
+
+
+
+\subsection{Radiation Patterns}
+
+One trace of the electric or magnetic field of a considered type of antenna at a constant radius is called the amplitude field pattern. In addition, the spatial variation of the power density along a constant radius can be studied on a graph called the amplitude power pattern. The field and power patterns are usually normalized with respect to their maximum value, yielding normalized field and power patterns. In order to accentuate more the details of the pattern with very low values, usually referred to as minor lobe (photo)the power pattern plot is computed on a logarithmic scale or more commonly in decibels (dB).
+
+A radiation pattern represents the three-dimensional variation of the power radiated by an antenna as a function of the direction away from the antenna. In most cases, the radiation pattern is determined in the far field region and is represented as a function of the directional coordinates (fig. \ref{spherical}). Radiation properties include power flux density, radiation intensity, field strength, directivity, phase or polarization (reference balanis + photos) Different antennas can be classified depending on the characteristics of their patterns. A pattern is called isotropic if the radiation is the same in all directions, which is not realizable in practice but useful for comparison to real antennas. Some antennas may also be described as omnidirectional, which means that the radiation pattern is isotropic in one single plane (photo)for example the dipole antenna and the slot antenna. The third category of antennas is the directional antennas, also called beam antennas The peak represents the direction where the bulk of the radiated power travels. Directional antennas are very common, examples of antennas with highly directional radiation patterns include the  dish antenna and the slotted waveguide antenna. The measurements achieved in this work use six R$\&$ S Vivaldi antennas as probe antennas, and a dipole single-antenna DUT and an omni-directional multi-antenna DUT (photo).
+
+While the radiation pattern is actually three-dimensional, it is common however to describe this behavior with two planar patterns, also called the principal plane patterns (photo). The horizontal pattern, which describes the field strength as a function of the azimuth angle \textit{$ \phi $ } with a fixed elevation angle \textit{$ \vartheta $ }. And the vertical pattern, which describes the field strength as a function of the elecation angle \textit{$ \vartheta $ } for a fixed azimuth angle \textit{$ \phi $ }. These patterns are commonly referred to as azimuth pattern and elevation pattern. The term azimuth describes the reference to the horizontal while the term elevation describes the reference to the vertical. Also, spherical coordinates as shown in Figure 10 are commonly used to describe a location in the three-dimensional space (photo).
+
+%%%%%%%%%%%%%%%%%%%% Figure Spherical %%%%%%%%%%%%%%%%%%%%
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.6\textwidth]{spherical.pdf}
+\caption{spherical coordinates for antena analysis}
+\label{fig:resP}
+\end{figure}
+
+\begin{figure}
+	\begin{center}
+		\includegraphics[width=4.92in,height=3.09in]{spherical.pdf}
+				\caption{\label{spherical}Spherical coordinates for antena analysis \cite{balanis}}
+	\end{center}
+
+\end{figure}
+
+
+\subsection{Directivity}
+
+Isotropic antennas are theoretical point sources that spread electromagnetic energy equally in all directions. The total radiated power is determined by integrating the power flux density over the surface of a sphere of radius r that surrounds the antenna. The integral represents the theoretical total radiated power. As the distance from the source increases, the surface area of the integrating sphere increases in proportion to the square of the radius of the sphere. The energy from isotropic emitters spreads out evenly to cover this increasingly larger area, and thus the electromagnetic power flux density decreases in proportion to the square of the distance from the source.
+The directivity  $D$  of an antenna is the maximal value of its directive gain. Directive gain is represented as  $D \left(  \theta , \varphi  \right)$  and compares the radiant intensity  $U \left(  \theta , \varphi  \right)$  defined as the power per unit solid angle that an antenna creates in a particular direction against the average value over all directions:
+
+$~D \left(  \theta , \varphi  \right) = \frac{ U \left(  \theta , \varphi  \right) }{P_{tot}/ \left( 4 \pi  \right) }$ with $P_{tot}= \int_{ \varphi =}^{ \varphi =2 \pi } \int_{ \theta =0}^{ \theta = \pi }U\sin  \theta d \theta d \varphi $
+
+Directivity is defined as the maximal directive gain value found among all possible solid angles, it is then the ratio of the power density of the physical antenna in its most concentrated direction to that of a theoretical isotropic emitter of the same total power transmission level. Since the directivity is a measure that describes only the directional properties of the antenna, controlled only by the pattern. For example, an antenna that radiated equally well in all directions would have a directivity of 1 (0 dB).
+
+
+
+$ D_{0}=max \left( \frac{~U \left(  \theta , \varphi  \right) }{\frac{P_{tot}}{4 \pi }} \right) ~=\frac{~  U \left(  \theta , \varphi  \right)  \vert_{\max }}{\frac{1}{4 \pi } \int_{0}^{2 \pi } \int _{0}^{ \pi }U \left(  \theta , \varphi  \right) \sin  \theta d \theta d \varphi } $
+
+
+%%%%%%%%%%%%%%%%%%%% Figure 2Dpattern %%%%%%%%%%%%%%%%%%%%
+
+
+
+
+
+\subsection{Efficiency}
+
+The total antenna efficiency considers losses at the input terminals and within the structure of the antenna. The total efficiency of an antenna is the radiation efficiency multiplied by the impedance mismatch loss of the antenna, when connected to a transmission line or receiver so that the total efficiency can be computed as:
+
+\begin{center}
+$ e_{total}= e_{ref}e_{cd}= e_{cd} \left( 1- \vert  \Gamma  \vert ^{2} \right)  $.
+\end{center}
+
+Where e\textsubscript{total} is the total efficiency, e\textsubscript{ref} is the reflection or mismatch efficiency, e\textsubscript{cd }is the radiation efficiency which is the product of the conduction efficiency and the dielectric efficiency. This antenna radiation efficiency quantifies the actual losses of a particular antenna design due to many factors such as manufacturing faults, impedance mismatch, surface coating losses, or other factors. It is computed as the ratio of the radiated power to the input power of the antenna and its value lies between 0 and 1 or as a percentage. $\Gamma$ is the voltage reflection coefficient at the input terminals of the antenna:  $\Gamma =\frac{ \left( Z_{in~}- Z_{0~} \right) }{ \left( Z_{in~}+ Z_{0~} \right) }$\  where  $Z_{in~}$ is the antenna’s input impedance and  $Z_{0~}$ is the characteristic impedance of the transmission line, The radiation efficiency, defined as the product of the conduction and the reflection mismatch is later mentioned again to relate the directivity with the gain. An antenna with a high total efficiency has most of the power present at the antenna's input radiated away. A low efficiency antenna has most of the power absorbed as losses within the antenna, or reflected away due to impedance mismatch.
+
+\subsection{Gain}
+
+The antenna gain describes how much power is transmitted in the direction of peak radiation to that of an isotropic source. If the antenna is supposed to have for example 3dB gain, this means that the received power should be 3dB higher than the power that is received at the same input power by an isotropic antenna.
+
+
+Antenna gain incorporates both directivity and antenna’s efficiency so that the gain is computed as the product of both values. As a result, while directivity is always greater than or equal to 1 (0 dB), antenna gain can be less than 1 (0 dB): 
+
+\begin{center}
+$G \left(  \theta , \varphi  \right) =e_{cd} \left[ \frac{~U \left(  \theta , \varphi  \right) }{\frac{P_{tot}}{4 \pi }} \right]$  
+\end{center}  
+
+
+\subsection{Field Regions}
+
+The space around an antenna is usually subdivided into three regions, reactive near-field region, radiating near-field also called Fresnel region and far-field also called Fraunhofer region as seen in figure \ref{field regions} shows changes of antenna amplitude pattern shape in the different field regions.
+
+The closest region to an antenna, with dimensions defined as following: $d \ll $ $ \lambda $ $d \ll $ $ \lambda $ , is termed the near field and is dominated by magnetic fields. A transition zone exists for one to two wavelengths, and then there is the far-field region of an antenna, for which the dimensions are: $d>2\lambda $  , where the electric field becomes dominant.
+
+In far field RF link the ratio between the received and transmitted power can be defined as \textcolor[HTML]{A6A6A6}{(reference):}
+
+$\frac{P_{Rx}}{P_{Tx}}=\frac{G_{Tx}G_{Rx}}{4 \left( kr \right) ^{2}}=\frac{G_{Tx}A_{Rx}}{4 \pi r^{2}}=\frac{A_{Tx}A_{Rx}}{ \lambda ^{2}r^{2}} $
+
+
+The effective area A, also called aperture of an antenna, is related to gain as follows:  $ A=\frac{ \lambda ^{2}G}{4 \pi } $.
+
+In the near-field, the formula diverges into two different formulas, one for links that are the same (like), either both magnetic or both electric, and one different formula that describes different links (unlike) (reference + figure). In the experiments in this work we only consider electric antennas (like). The ratio is than expressed as following:
+
+
+ $\frac{P_{Rx}}{P_{Tx}}=\frac{G_{Tx}G_{Rx}}{4} \begin{array}{c}
+	 \left( \frac{1}{ \left( kr \right) ^{6}}-\frac{1}{ \left( kr \right) ^{4}}+\frac{1}{ \left( kr \right) ^{2}} \right) ~like~\\
+	 \left( \frac{1}{ \left( kr \right) ^{4}}+\frac{1}{ \left( kr \right) ^{2}} \right) ~unlike\\
+	\end{array}  $
+
+
+%%%%%%%%%%%%%%%%%%%% Figure/Image No: 4 starts here %%%%%%%%%%%%%%%%%%%%
+%
+%\begin{figure}[H]
+%	\begin{Center}
+%		\includegraphics[width=4.43in,height=2.7in]{./media/image4.png}
+%		\caption{\label{regions} Field regions of an antenna \cite{}}
+%	\end{Center}
+%\end{figure}
+
+
+%%%%%%%%%%%%%%%%%%%% Figure/Image No: 4 Ends here %%%%%%%%%%%%%%%%%%%%
+
+
+\subsection{Free-space Path Loss}
+
+When there is an unobstructed direct line of-sight path between the antennas for transmitting and receiving, it is possible to estimate the received signal and the link budget. The characterization of the average path loss experienced in a wireless channel helps
+
+to estimate the received signal. The average path loss is defined as$"$  the amount of loss experienced in a propagation
+
+environment as a function of the transmitter-receiver distance$"$  \textcolor[HTML]{A6A6A6}{(reference). }The received
+
+power for free-space propagation can be expressed by the Friis free space equation (reference) expressed by the following formula:
+
+$P_{r} \left( d \right) = P_{t}\frac{G_{t}G_{r} \lambda ^{2}}{ \left( 4 \pi  \right) ^{2}d^{2}} $, where d is the separation distance between the antennas,  $P_{t}$ is the transmitter power, $P_{r}$ is the received power as a function of the distance,  $G_{t}$ the transmitter antenna gain,  $G_{r}$the receiver antenna gain and  $\lambda$ the signal's wavelength in meters.
+
+
+The path loss which represents the signal attenuation is the ratio between the transmitted power and the received power and are usually measured in dB. The path loss in free-space in dB is given as the following sum, this formula means that higher separation and higher frequency result in higher attenuation:
+
+
+\subsection{EIRP}
+
+Effective Isotropic Radiated Power (EIRP) is the measured radiated power in a single direction for a fixed angle, so that for antenna radiation pattern measurement the EIRP is considered the maximum value over all measured angles.\\
+Based on measurements the EIRP can be computed as following, using the out power at the transmitter $P_{t}$ (in dBm), the cable signal loss $Loss_{c}$ caused by the cable from the transmitter circuit to the antenna and possibly including antenna mismatch (in dB) and the antenna gain $Gain_{a}$ (in dBi):
+
+$EIRP= P_{t} - Loss_{c}+  Gain_{a}$ 
+
+
+\subsection{Polarization and polarization mismatch}
+
+ The direction of oscillation of the electric field component of an electromagnetic wave describes the polarization of an antenna, when a radio wave is propagating in a medium, is called the polarization of the radio wave. Linear polarization means that the electric field’s vector remains on the same plane all the time, it is considered a special case of elliptical polarization. There are horizontally or vertically polarized radiations, for example omnidirectional are always vertically polarized. Circular polarization means that the electric field’s vector is rotating circularly about the direction of propagation for each RF cycle. The polarization is a design choice during the RF system design.
+
+
+The difference between the polarization of the receiving antenna and the polarization of the incident wave result in the polarization mismatch, also characterized by the polarization loss factor ( $PLF$) or the polarization efficiency which is the loss of the electromagnetic power due to this polarization mismatch. When receiver’s and transmitters antennas are not aligned\textcolor[HTML]{BFBFBF}{ }there will be a reduction in power transfer between the two antennas and the amount of extracted power from the incoming signal will not be at its maximum. The $PLF$ has a maximum of 1 ( $\text{0 dB}$ ) which means there is no polarization loss and that the receiver antenna receives all the intended incident power of the wave. While a $PLF$ of 0 ( $ -\infty dB$) means that there is a total polarization loss and the antenna at the receiver is unable to capture the incident power. Thus  $0<PLF<1$. In order to calculate the  \( PLF \)  we first look at the far zone of the transmitting antenna, and consider its transmitted electromagnetic field by its components in the transmitter's local spherical coordinate system. The direction of the field is specified by the azimuth and elevation of the receiving antenna in the transmitter's local coordinate system. So that the polarization of the transmitter's antennas may be expressed as following:
+
+$E_{i}= E_{i,H}\hat{e}_{az}+ E_{i,V}\hat{e}_{el}= \widehat{ \rho _{w}}E_{i}$
+
+
+Where  $E_{i,H}$ and  $E_{i,V}$  are the horizontal and vertical components and  $\widehat{ \rho _{w}}$ is the unit vector of the incident wave. Equivalently, we express the polarization of the receiving antennas with respect to the spherical basis vectors at the receiver's local coordinate system:  $E_{r}= E_{r,H}\widehat{e^{'}}_{az}+ E_{r,V}\widehat{e^{'}}_{el}= \widehat{ \rho _{a}}E_{r}$.
+
+
+
+Where  $E_{r,H}$ and $E_{r,V}$ are the horizontal and vertical components and $\widehat{ \rho _{a}}$ is the unit vector of the receiving antenna.
+
+
+The  $PLF$ may be computed as the dot product of the normalized transmitted and the received polarization vectors in the corresponding coordinates systems after being converted to the global coordinate system:
+
+
+
+$\rho =\frac{ \vert E_{i}E_{r} \vert ^{2}}{ \vert E_{i} \vert ^{2} \vert E_{r} \vert ^{2}}=  \vert \widehat{ \rho _{w}}\widehat{ \cdot  \rho _{a}} \vert ^{2}=  \vert \cos  \varphi _{P} \vert ^{2}$ , where $\varphi _{P}$ is the angle between the two polarization unit vectors.
+
+
+
+
+
+
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[width=3.22in,height=1.82in]{image5.png}
+		\caption{\label{2Dpattern} Local coordinates systems of tranmitter's and receiver's antennas for polarization loss calculation \cite{balanis}}
+	\end{center}
+\end{figure}
+
+
+
+
+\subsection{Link Budget}
+
+ The link budget is a summary of the transmitted power considering all the gains and losses in the system and this enables the strength of the received signal to be estimated. The knowledge of the link budget is helpful for survey tools and measurements, because the expected values and the measured or observed value may differ from the originally transmitted or expected value. The link budget explains the values of the signal strength at the receiver input.
+
+$\text{Received Power } \left( dBm \right) =Transmitted Power  \left( dBm \right) +Gains  \left( dB \right) -Losses  \left( dB \right)$
+
+A typical link budget formula for radio communications is:
+
+$P_{Rx}= P_{Tx~}+G_{Tx}+ G_{Rx}-L_{Tx}-L_{Rx}-L_{FSPL}-L_{P}$
+
+
+
+Where $P_{Rx}$ is the received power in dBm, $P_{Tx}$ is the transmitter output power in dBm, $G_{Tx}$ and $G_{Rx}$ the transmitter and receiver antenna gain in dBi, $L_{Tx}$ and $L_{Rx}$ the transmit and receiver feeder losses, $L_{FSPL}$ the free space path loss in dB and $L_{P}$ describes the propagation losses including polarization mismatch, medium losses \ldots
+
+\subsection{Bandwidth}
+
+The bandwidth of an antenna is the range of frequencies over which the antenna can operate correctly, in other words the performance of the antenna conforms to some standard with respect to certain specified characteristics, such as input impedance, beam width, gain, radiation efficiency and beam direction which all should be within an acceptable value of that of the center frequency. The antenna’s bandwidth can also be described in terms of percentage of the center frequency $F_{C}$ of the band or a ratio between the upper and lower frequencies $F_{H}$  and $F_{L}$ for broadband antennas.
+
+{\fontsize{12pt}{14.4pt}\selectfont $BW=100  \times \frac{F_{H}-F_{L}}{F_{C}} $}
+
+\textbf{2.2.12 Diversity and Beamforming and max ratio combining }
+
+
+\section{Measurement Uncertainty}
+
+Measurement Uncertainty (MU) is a quantitative indication of measurement results quality which allows values comparison among the same measurement or to reference values. This work investigates the novel approach of normalized measurements, and compares it, in terms of accuracy to its conducted alternatives. For the sake of making the results of measurements of physical quantities easy to asses and evaluate with respect to its reliability, we need some indications so that measurement results can be compared, either among themselves or with respect to values specified in standards and this is what we refer to as measurement uncertainties. 
+
+In this section the most used methodologies for the evaluation of measurement uncertainty are explained. There are two different types of MU evaluation: Type A which is defined as $``$the method of evaluation of uncertainty by the statistical analysis of series of observations$"$  (reference the Guide to the Expression of Uncertainty in Measurement).
+
+The purpose of the Type A and Type B classification is to indicate the two different ways of evaluating uncertainty components and is for convenience of discussion only. Both types of evaluation are based on probability distributions and the uncertainty components are usually quantified by variances or standard deviations.
+
+Evaluating type, A uncertainty is achieved using:
+
+\begin{itemize}
+	\item Arithmetic mean:  $\overline{x}=\frac{1}{n} \sum _{i=1}^{n}x_{i}$
+
+	\item Standard deviation: $\sigma = \sqrt[]{\frac{1}{n-1} \sum _{i=1}^{n} \left( \overline{x}-x_{i} \right) ^{2}}$
+
+	\item Standard uncertainty:
+
+	\item Degrees of Freedom: $``$The number of values in the final calculation of a statistic that are free to vary$"$  with the form  $\vartheta =n-1$
+\end{itemize}
+
+
+Type B evaluation of uncertainty is defined as $``$the method of evaluation of uncertainty by means other than the statistical analysis of series of observations$"$ . Essentially, type B uncertainty is data collected from anything other than an experiment performed by you. For example, datasheets, white papers, industry guides, calibration reports or other available information.

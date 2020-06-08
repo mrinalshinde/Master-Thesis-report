@@ -1,65 +1,31 @@
 \chapter{Introduction}
-
-In this chapter the motivation and aim of this work are phrased. Furthermore, the current emission limits and the necessary terms are presented.
+Investigating adequate test methodologies to allow innovative use of wireless technologies while addressing wireless coexistence concerns is the goal of this novel wireless normalized measurement approach. Interference to intended communications grows with the number of wireless users, which poses a risk to the proper operation of safety-critical devices for example in the health-care industry. Wireless coexistence testing helps to mitigate the risk of interference. \acs{ETSI} and \acs{FCC} standards for example have defined a methodology for testing the ability of a device to operate in a congested radio environment. Since new communication devices don't have external connectors to their antennas we try to achieve wireless measurement that does not require connecting the \acs{DUT} to the instruments. Our goal is to implement some standards methodologies, in a normalized way, so that we achieve accurate results and minimize measurement uncertainties between the conducted and the normalized approach and discuss the most important considerations for a meaningful coexistence test. In this chapter, the motivation, aim and the outline of this work are phrased.
 
 \section{Motivation}
+Until now, nearly all coexistence measurements in 2.4 GHz and 5 GHz \ac{ISM}  bands are done connecting the device under test to the test system using cables. In the future, many \acsp{DUT} will not have cable connectors. Therefore, we need to do these measurements radiated, over the air. Besides, many devices utilize embedded antennas that may not have an auxiliary \acs{RF} connector. Therefore, it is convenient to put the \acs{DUT} in the chamber without the requirement of any cables. \\
 
-\ac{3GPP} \ac{5G} is occupying \acp{mmW} in \ac{FR2} with frequencies $\ge\SI{28}{\giga\hertz}$ \cite{trp}. With this development big and highly integrated  \acp{AAS} will be needed. That makes the conducted conformance test approach with antenna connectors in the \ac{UE} impossible. The equivalent metric to conducted measurements for \ac{RSE} is now \ac{TRP} and the measurement is carried out \ac{OTA}.
+In addition, the big  \acp{AC} have high path losses and thus if the \acs{DUT} measurements are done in it, it would result in higher path losses. For example, if we have specific blocker power at the \acs{DUT}, we would need very high output power from the \acs{DUT} due to high path losses inside the big chamber. However, since the output power is limited, amplifiers would be required. Classical \ac{OTA} measurements are difficult and costly to implement. Therefore, a new approach has been developed in this thesis which allows an uncomplicated coexistence testing in the absence of cable connectors. 
 
-%Higher frequencies imply shorter wavelengths. Multi-antenna arrays at mmWave frequencies will help overcome signal propagation issues and deliver directional antennas with higher gain. With shorter wavelengths, antenna elements can be spaced more tightly, resulting in extremely compact arrays. Many vendors even opt to develop arrays that integrate into ICs. Of course, highly integrated ICs have no place to probe and no place to put connectors. A consequence of this integration is it has become impractical to use traditional RF connectors between the radio circuit and the antenna, bringing the need for OTA tests. https://www.testandmeasurementtips.com/why-5g-is-going-to-over-the-air-testing-faq/
 
-\section{Aim}
-
-The aim of this work is to find an optimal solution for conformance  \ac{TRP}-measurements using \acp{AC}. In dependence of the dimension of the \ac{DUT} an ideal grid and measurement distance for a wanted precision shall be found. To achieve that, theoretical knowledge shall be projected on simulations and the outcome shall be proofed in real measurements.
-
-\section{Legal Emission Limits}
-\label{sec:legem}
-
-In this section the official \ac{EM} emission limits are acknowledged by the example of the regulation in the \ac{USA} and the \ac{EU}. The \ac{ITU} provides a recommendation \cite{seitur} about the emission limits for the national regulators. These regulators, in the \ac{EU} the \ac{CEPT} and in the \ac{USA} the \ac{FCC}, publish with the help of dedicated standardization organizations, e.g. \ac{ETSI} (\ac{EU}), \ac{ANSI} (\ac{USA}) or other \acp{SDO}, limits which become law; \cite{ceptercrec}, \cite{ansi}. The \ac{3GPP}, the \ac{IEEE} or other \acp{SDO} develop a new telecommunication standard and adapt to these laws.\\
-To quantify emission limits the following terms are declared regarding \cite{seitur} and \cite{ctiaat}:
-
+\section{Objective}
+This work aims to investigate a novel approach for wireless coexistence testing of \acsp{DUT} with integrated antenna using radiated measurements. The study objectives include:
 \begin{itemize}
-\item An \textbf{\acf{UnE}} consists of \ac{SE} and \ac{OOBE}.
-\item A \textbf{\acf{SE}} is an emission on a frequency or frequencies, which are outside the necessary bandwidth and the level of which may be reduced without affecting the corresponding transmission of information. \acl{SE} include harmonic
-emissions, parasitic emissions, intermodulation products and frequency conversion products but exclude \ac{OOBE}.
-\item An \textbf{\acf{OOBE}} is an emission on a frequency or frequencies immediately outside the necessary bandwidth which results from the modulation process, excluding \aclp{SE}.
-\item The \textbf{\acf{OBW}} is the bandwidth wherein $\SI{99}{\percent}$ of the power is radiated.
-\item The \textbf{\acf{EBW}} is used by the \ac{FCC} and describes a bandwidth which is surrendered out of that tow points in the spectra lying $\SI{26}{\decibel}$ under the power of the \ac{OBW}. 
-\item \textbf{\acf{TRP}} is the \ac{OTA} equivalent for measuring connected and describes all power radiated by a device. It is the average spherical \ac{EIRP}.
+\item Normalized measurement of exemplary \acsp{DUT} within \ac{RS} TS7124 chamber
+\item Influence of multi-antenna \acsp{DUT} on the reproducibility of measurement results
+\item Study of an algorithm to select the best probe antenna within the chamber
+\item Assessment of dynamic range of the measurement system
+\item Identification of specific measurement uncertainities \acsp{MU} for exemplary test cases and \acs{DUT} assumptions
+\item Study of applicability required for radiated measurements in a larger chamber
+\item MATLAB simulations regarding the effect of \acs{DUT} placement within the test chamber
+\item Radiation pattern measurements for exemplary \acsp{DUT} within the test chamber
 \end{itemize}
+To achieve this, theoretical knowledge shall be projected using conducted measurements and the outcome shall be proofed in radiated measurements using single antenna \acs{DUT} as well as multi-antenna \acs{DUT}. 
+
+\section{Thesis Outline}
+This thesis is composed of 9 chapters. First of all, chapter \ref{chap:2} introduces a concise description of wireless coexistence testing, antenna fundamentals, and measurement uncertainty. Then, an introduction about the regulatory test system and a brief overview of the software package which comes with the system shall be given in chapter \ref{chap:3}. Chapter  \ref{chap:test} describes the test cases used in this thesis. The following chapters  \ref{chap:5} and  \ref{chap:normalized} explain the test setup and the test procedure for both conducted and normalized measurements. Additionally, this chapter also includes the software design for the test implementation. In the next chapter, chapter  \ref{chap:7} shows the study focuses and the measurement uncertainty analysis by using two different \acsp{DUT}. After the data evaluation, the thesis shall be concluded in chapter 8. The final chapter outlines research needs to further develop coexistence testing.
 
 
-In table \ref{tab:legusa} the emission limits from \cite{ceptercrec}, \cite{ansi} and \cite{fcc} are summarized. The used terms are illustrated in fig. \ref{fig:sem}.
 
-\begin{table}
-\centering
-\caption{Legal Emission Limits}
-\label{tab:legusa}
-\begin{tabular}{|c|c|c|c|}
-\hline
-$f_c$  &  $f_l$ & $f_h$ & $p_e$ \\\hline
-\multicolumn{4}{|c|}{\textbf{USA}} \\\hline
-$\SI{9}{\kilo\hertz}-\SI{10}{\giga\hertz}$ & $\SI{9}{\kilo\hertz}$ & $10f_c\ \text{or}\ \SI{40}{\giga\hertz}$ & $\SI{-13}{\decibelm\per\mega\hertz}$ \\\hline
-$\SI{10}{\giga\hertz}-\SI{30}{\giga\hertz}$ & $\SI{9}{\kilo\hertz}$ & $5f_c\ \text{or}\ \SI{100}{\giga\hertz}$ & $\SI{-13}{\decibelm\per\mega\hertz}\ \text{or}\ 1\% \text{EBW}$ \\\hline
-$\SI{30}{\giga\hertz}-\dots$ & $\SI{9}{\kilo\hertz}$ & $5f_c\ \text{or}\ \SI{200}{\giga\hertz}$ & $\SI{-13}{\decibelm\per\mega\hertz}\ \text{or}\ 1\% \text{EBW}$ \\\hline
-\multicolumn{4}{|c|}{\textbf{EU}} \\\hline
-$\SI{9}{\kilo\hertz}-\SI{100}{\mega\hertz}$ & $\SI{9}{\kilo\hertz}$ & $\SI{1}{\giga\hertz}$ & $\SI{-36}{\decibelm\per \SI{100}{\kilo\hertz}}$ \\\hline
-$\SI{100}{\mega\hertz}-\SI{300}{\mega\hertz}$ & $\SI{9}{\kilo\hertz}$ & $10f_c$ & $\SI{-36}{\decibelm\per \SI{100}{\kilo\hertz}}$ \\\hline
-$\SI{300}{\mega\hertz}-\SI{600}{\mega\hertz}$ & $\SI{30}{\mega\hertz}$ & $\SI{3}{\giga\hertz}$ & $\SI{-36}{\decibelm\per \SI{100}{\kilo\hertz}}$ \\\hline
-$\SI{600}{\mega\hertz}-\SI{1}{\giga\hertz}$ & $\SI{30}{\mega\hertz}$ & $5f_c$ & $\SI{-36}{\decibelm\per \SI{100}{\kilo\hertz}}$ \\\hline
-$\SI{1}{\giga\hertz}-\SI{5.2}{\giga\hertz}$ & $\SI{30}{\mega\hertz}$ & $5f_c$ & $\SI{-30}{\decibelm\per\mega\hertz}$ \\\hline
-$\SI{5.2}{\giga\hertz}-\SI{7.25}{\giga\hertz}$ & $\SI{30}{\mega\hertz}$ & $\SI{26}{\giga\hertz}$ & $\SI{-30}{\decibelm\per\mega\hertz}$ \\\hline
-$\SI{7.25}{\giga\hertz}-\dots$ & $\SI{30}{\mega\hertz}$ & $2f_c$ & $\SI{-13}{\decibelm\per\mega\hertz}\ \text{and}\ \SI{-10}{\decibelm\per \SI{100}{\mega\hertz}}$ \\\hline
-\end{tabular}
-\end{table}
-
-\begin{figure}
-\centering
-\def\svgwidth{0.9\textwidth}
-\input{Bilder/EmissionMask.pdf_tex}
-\caption{Spurious Emissions Mask}
-\label{fig:sem}
-\end{figure}
 
 
 
