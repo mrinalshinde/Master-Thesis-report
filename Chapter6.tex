@@ -126,10 +126,57 @@ Suppose the calculated power (i.e. a maximum of an average of \acs{RMS} burst po
 Antenna Gain is already taken care of since the standard defined the power levels in front of the \acs{DUT} Antenna. Assume that the attenuation for this path is 18 dB. Therefore, by using the above formula, the power at the generator is 1 dBm. Attenuations are frequency-dependent and for the coupling loss, we can only rely on the used frequencies of the \acs{DUT}. Nevertheless, for the paths within the switching modules and the cables, the available calibration data for the specific frequency is used. The exact value of attenuation could otherwise also be measured with the signal generator and the \acs{DUT} Antenna. As the blocker frequencies are not too far away (image of analyzer from chap 7 link) from the in-band frequencies, the same coupling loss is considered.
 
 \section{Optimization of Antenna Pair}
+Optimization of the probe antenna pairs is essential to ensure that the measurements are realized in optimal connections configurations with minimal losses and cabling again is not intended. The best selection of antenna pair is first implemented by performing a simulation on MATLAB\textregistered{} and later checking if the result coincides with the result from actual measurements. The later is also performed using the same algorithm. An important aspect to remember is that, as it is seen from the internal circuit diagram of OSPWN (\ref{fig:ospwn}) the antennas are arranged in pairs. And therefore, there are 15 possibilities for the optimum antenna pair selection.
 
 \subsection{Simulation} 
+To correctly perform the \acs{OTA} measurements in the \acs{RF} shielded box, a simulation for the link-budget analysis inside of the test chamber is required. This simulation, which is developed in MATLAB\textregistered{} environment will enable the choice of the best combinations of probe antenna pairs. For this purpose, a simulation of the transmission between the \acs{DUT} and all of the 6 probe antennas within the chamber, will allow a decision on the best associations between the instruments used for every test case/measurement. The simulation also visualizes the effect of the positioning of a single-antenna \acs{DUT} within the chamber. The following parameters are considered in the simulation.
+\begin{itemize}
+  \item Configuration
+  \noindent The parameters of the chamber in the simulation for e.g. the dimension of the chamber, antennas and, grid which holds the DUT, placement of the antennas are tried to meet the existing system (Figure \ref{fig:room}). 
+  \begin{figure}[H]
+\centering
+\includegraphics[scale = 0.55]{room.png}
+\caption{Simulation diagram for the RF shielded box}
+\label{fig:lroom} 
+\end{figure}
+
+  \item \acf{FSPL}
+  \noindent This loss, which is given by the near field formula for path loss (link), is caused because of the distance separating the antennas and the frequency of the \acs{DUT} (2412 MHz). Theoretically, we are not supposed to perform measurements in near-field but since for we only have single-antenna pair in this case and we don't bother about the phase offset and phase curvature of the signal, the measurements are possible. Incase of multi-antenna \acsp{DUT} with antenna arrays, this is theoretically not possible due to the large antenna size resulting to perform measurements in the far-field. The test system is officially proposed for the use of single-antenna \acsp{DUT}. Nevertheless, we performed the tests with multi-antenna \acs{DUT} to examine if the theoretical effects play an important role.
+ 
+  \item Antenna Polarization Loss
+  \noindent Antenna polarization loss has not been considered in experimental measurements. The polarization loss is due to the difference in positioning the antennas that directly influences the results of the choice of the best probe antenna pairs. We use the theory in (reference) and the matlab functions to first compute the electromagnetic fields of each transmitter and receiver antenna in its local coordinates system based on their positions and types, then we find the horizontal and vertical components of the electric fields, which are needed for the matlab function ?pollos? to compute the polarization loss between each two antennas (reference to formula).
+  
+  \item Antenna Gain
+  \noindent For each used antenna, we compute and save its antenna pattern and gain?s array. For the room?s configuration we can locate a transmitter?s coordinates in the local?s coordinates system of the receiver and vice versa, so that from the gains look up table, we can use the local coordinates to find the gain of both the DUT and the considered probe antenna. These gains are added in the final formula to compute the final loss between each probe antenna and the DUT
+  
+  \item Total Loss
+   \( PL \left( k,r \right)  \)   \( =FSPL + Polarization Loss = 10log\frac{4}{ \left( \frac{1}{ \left( kr \right) ^{6}}-\frac{1}{ \left( kr \right) ^{4}}+\frac{1}{ \left( kr \right) ^{2}} \right) }-G_{Tx}-G_{Rx}+\text{Polarization Loss}~ \)
+   
+   
+   \end{itemize}
+   
+   
+   
+   
+The simulation runs over 3000 random positions of the DUT on the grid inside of the chamber with randomly one of the three different orientation of its antenna as illustrated in the picture. For each position the total loss between the DUT and each probe antenna is computed. Since for each instrument (Spectrum analyzer, companion or signal generator) a pair of probe antennas should be assigned for the connection, from which only one with the lowest path loss should be used for the measurement. Since we have 6 different probe antennas, and 3 instruments, there are 15 distinct different possibilities of combinations of 3 pairs of antennas, one pair for each instrument with one active probe antennas. From these 15 possibilities, the simulation allows a choice of the best combination with the lowest mean path loss, i.e. the mean of the minima of every 3 pairs out of the 15 is computed and then the best combination is found.
+
+
+Reflection Loss
+  \noindent The small chamber in use is TS7124M which is a \acs{RF} shielding box with flat absorbers, which are used in order to minimize the effect of reflections. \acs{RF} shielded boxes are essential for reliably testing radio interfaces. The \acs{RS}\textregistered{} TS7124M \acs{RF} test boxes enable reliable and reproducible measurements when a shielded test environment is needed. You only have flat absorbers and the small size doesnt allow good anechoic performance.
 
 \subsection{Actual Measurement} 
+The small chamber in use is TS7124M which is a \acs{RF} shielding box with flat absorbers, which are used in order to minimize the effect of reflections. \acs{RF} shielded boxes are essential for reliably testing radio interfaces. The \acs{RS}\textregistered{} TS7124M \acs{RF} test boxes enable reliable and reproducible measurements when a shielded test environment is needed.
+
+Normalization measurement is performed at 23 different positions (why these positions) inside the RF shielded box to find the range in which the coupling loss lies. The coupling loss must be less than 30 dB so that an additional amplifier is not required in the hardware setup. (Can you support this statement with a budget calculation of a corresponding test case? Otherwise I would rewrite this sentence that this limit was defined by us)
+
+Once the coupling loss at all six antenna ports are calculated, the best antenna pair arrangement is selected based on minimum mean coupling loss. You also do not mention that only the minimum coupling loss of each pair is relevant. In-order to do this, combinations of 6 antennas in pairs of 2 are found and plot for all 15 combination are compared. The 15 combinations are found by using recursive functions. All 15 plots can be found in the appendix. 
+The two graphs show that Antenna 1 and 6, Antenna 2 and 3 and Antenna 4 and 5 result in minimum mean coupling loss as well as almost all bins as seen in the plot are below 30 dB of coupling loss.
+
+
+
+
+
+
 
 \section{Selection of Best Probe Antenna}
 The selection of the best probe antenna for each device depends on the coupling loss and the measurement test case. Isolation between the used probe antennas could be an additional parameter that may be important but this thesis does not consider it. The presence of test leads (not associated with the DUT under normal operation) in the radiated field may cause a disturbance of that field and lead to additional measurement uncertainty. These disturbances can be minimized by using suitable coupling methods, offering signal isolation, and minimum field disturbance (e.g. optical coupling). \\
