@@ -90,9 +90,12 @@ goto start
 
 The script copies a big file in a loop and it makes sure to overwrite the existing destination file and hence deleting of the file is not necessary. Since the file is large, the duty cycle of the signal is high and it results in \ac{PSD} measurement having lower measurement uncertainty. 
 
-%%%
-\textbf{(fritz box image)}
-%%%%
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.55\textwidth]{fritz.pdf}
+\caption{\acs{RS}\textregistered{} Golden device (\acs{CMW})}
+\label{fig:cmwGUI}
+\end{figure}
 
 \section{Switching Units}
 These Open Switch and Control Platform can be used to perform \acs{RF} switch and control tasks. This thesis uses two of these switching units. It is convenient to have a dedicated device instead of changing the setup for every test case like in the case of splitters and attenuators. The description and usage are explained below.
@@ -137,11 +140,23 @@ This device switches between the Signal Generator and Signal Analyzer depending 
 
 
 \section{\acs{RF} Shielded Box}
-\acs{RS}\textregistered{} TS7124M features high shielding effectiveness over a wide frequency range (300 MHz to 6 GHz), the \acs{RF} test boxes allow measurements on different standards due to the supported frequency range. For radiation testing, the \acs{DUT} is inserted into the chamber using a drawer, which is closed by a tightly sealed door. Antennas installed on the inside of the \acs{RF} Shielded Box then interact with the \acs{DUT} by emitting or receiving electromagnetic radiation. The antennas can be placed and oriented in a customer-specific geometrical arrangement. The box contains a full antenna ring where antennas can be mounted at 0$^{\circ}$, 45$^{\circ}$, and 90$^{\circ}$ tilt.  Submitting a \acs{DUT} to conducted instead of radiated RF signals via feedthroughs for \acs{RF} cables (or guiding conducted \acs{RF} signals away from the \acs{DUT}) can be applied as an alternative or supplement to antennas. The figure below shows the antenna configuration used in this thesis.
+\acs{RS}\textregistered{} TS7124M features high shielding effectiveness over a wide frequency range (300 MHz to 6 GHz), the \acs{RF} test boxes allow measurements on different standards due to the supported frequency range. For radiation testing, the \acs{DUT} is inserted into the chamber using a drawer, which is closed by a tightly sealed door. Antennas installed on the inside of the \acs{RF} Shielded Box then interact with the \acs{DUT} by emitting or receiving electromagnetic radiation. The DUT is placed on a tray (Figure \ref{fig:yry}) within the RF shielded box.
 
-%%%
-\textbf{(chamber image)}
-%%%%
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.55\textwidth]{tray.pdf}
+\caption{ DUT holder tray (\acs{RS}\textregistered{} TS-F24P1)}
+\label{fig:try}
+\end{figure}
+
+The antennas can be placed and oriented in a customer-specific geometrical arrangement. The box contains a full antenna ring where antennas can be mounted at 0$^{\circ}$, 45$^{\circ}$, and 90$^{\circ}$ tilt.  Submitting a \acs{DUT} to conducted instead of radiated RF signals via feedthroughs for \acs{RF} cables (or guiding conducted \acs{RF} signals away from the \acs{DUT}) can be applied as an alternative or supplement to antennas. The Figure \ref{fig:box} shows the antenna configuration used in this thesis.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.55\textwidth]{chamber.pdf}
+\caption{Full antenna ring with 6 vivaldi antennas}
+\label{fig:box}
+\end{figure}
 
 In this thesis, broadband Vivaldi antennas are being used. The specification of the probe antennas (\acs{RS}\textregistered{} TS-F24-V2) are as follows: 
 
