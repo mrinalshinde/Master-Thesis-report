@@ -51,7 +51,7 @@ Detector & \ac{RMS}\\
 \label{tab:analyzer}
 \end{center}
 \end{table}
-The sweep time of 10 seconds is used instead of 1 second which is mentioned in the standard. This is because of the low duty cycle. There is nothing wrong with the standard, but by increasing the sweep time produces a better result that is more stable and reproducible. The standard suggests setting the trace mode to \acs{Max-Hold} and then waiting for the trace to stabilize. Another way to stabilize the trace when the duty cycle of the signal is small is by using the trace mode as Clear / Write and increasing the sweep time.
+The sweep time of 10 seconds is used instead of 1 second which is mentioned in the standard. This is because of the low duty cycle. There is nothing wrong with the standard, but by increasing the sweep time produces a better result that is more stable and reproducible. The standard suggests setting the trace mode to Max-Hold and then waiting for the trace to stabilize. Another way to stabilize the trace when the duty cycle of the signal is small is by using the trace mode as Clear / Write and increasing the sweep time.
 
 \item Find the \ac{OBW}. This is well explained in the Figure \ref{tab:tracebw}.
 \begin{figure}[H]
@@ -118,7 +118,7 @@ The standard suggests the number of sweep points to be greater than 8350. If the
 \end{figure}
   
   
- \section{\acl{RxBlocking} measurement}
+ \section{Receiver Blocking measurement}
 \label{sec:rxmeas} 
 Receiver blocking is a measure of the ability of the equipment to receive a wanted signal on its operating channel without exceeding a given degradation in the presence of an unwanted signal (blocking signal) at frequencies other than those of the operating band. The minimum performance criterion shall be a \ac{PER} less than or equal to 10 \%. The manufacturer may declare alternative performance criteria as long as that is appropriate for the intended use of the equipment. The procedure for this measurement is explained in the Fig \ref{fig:flowchartrxvlock}.
 
