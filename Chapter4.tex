@@ -1,6 +1,6 @@
 \chapter{Test Cases}\label{chap:test}
 
-This thesis carries out tests for \acf{OBW} measurement, \acf{PSD} measurement, and \acf{RxBlocking} measurement. The definition, limits and the procedure for each test case are mentioned in the subtopics below.
+This thesis carries out tests for \acf{OBW} measurement, \acf{PSD} measurement, and Receiver Blocking measurement. The definition, limits and the procedure for each test case are mentioned in the subtopics below.
 
 \section{\acl{OBW} measurement}
 \label{sec:obw}
@@ -23,26 +23,26 @@ Receive & 2400 MHz to 2483.5 MHz \\
 \end{table}
 The methodologies for this measurement are as follows:
 \begin{enumerate}
-  \item Associate the DUT with the companion device. This step is explained in section \ref{sec:cmw}.
-   \item Enable the Packet Generator with protocol Internet Control Message Protocol (ICMP / ping ). The companion device (\acs{RS}\textregistered{} \acs{CMW}) supports the generation of \acs{ICMP} echo requests (Ping) packets. These packets are targeted at the \acsp{DUT} \acs{IP} stack. Ping operates by sending \acs{ICMP} echo request packets to the \acs{DUT} and waiting for an \acs{ICMP} echo reply back. The \acs{DUT} is expected to answer with a well-defined echo reply packet whose payload is identical to the payload of the corresponding request. These packets are generated so that the bandwidth of the \acs{DUT} signal can be measured. Pinging triggers the \acs{DUT} to transmit a burst of a certain length which is useful for combined signal path measurements.
+  \item Associate the \acs{DUT} with the companion device. This step is explained in section \ref{sec:cmw}.
+   \item Enable the Packet Generator with \acs{ICMP} or also known as ping packets. The companion device (\acs{RS}\textregistered{} wireless connectivity tester) supports the generation of \acs{ICMP} echo requests (ping) packets. These packets are targeted at the \acsp{DUT} \acs{IP} stack. Ping operates by sending \acs{ICMP} echo request packets to the \acs{DUT} and waiting for an \acs{ICMP} echo reply back. The \acs{DUT} is expected to answer with a well-defined echo reply packet whose payload is identical to the payload of the corresponding request. These packets are generated so that the bandwidth of the \acs{DUT} signal can be measured. Pinging triggers the \acs{DUT} to transmit a burst of a certain length which is useful for combined signal path measurements.
 
 \textbf{image of ping packet}
 
 
 \item Change the settings of the spectrum analyzer. The table \ref{tab:analyzer} below contains important analyzer settings.
-\begin{table}[ht]
+\begin{table}[H]
 \begin{center}
 \begin {tabular} {|c|c|} 
 \toprule
 Function & Value \\ 
 \midrule 
 Center frequency & The centre frequency of the channel under test \\
-Frequency span &2 * Nominal Channel Bandwidth \\
+Frequency span &2 $\times$ Nominal Channel Bandwidth \\
 \ac{RBW} & (Span / 100) + 100e3 \\
-\ac{VBW} & (3 * RBW) + 500e3\\
+\ac{VBW} & (3 $\times$ RBW) + 500e3\\
 Time on each sweep point & 0.05 sec\\
-Sweep points & ((2 * Span) /RBW + 1) * 10\\
-Sweep time & Time on each sweep point * Sweep Points \\
+Sweep points & ((2 $\times$ Span) /RBW + 1) $\times$ 10\\
+Sweep time & Time on each sweep point $\times$ Sweep Points \\
 Trace mode & Clear / Write\\
 Detector & \ac{RMS}\\
 \bottomrule
@@ -53,7 +53,7 @@ Detector & \ac{RMS}\\
 \end{table}
 The sweep time of 10 seconds is used instead of 1 second which is mentioned in the standard. This is because of the low duty cycle. There is nothing wrong with the standard, but by increasing the sweep time produces a better result that is more stable and reproducible. The standard suggests setting the trace mode to Max-Hold and then waiting for the trace to stabilize. Another way to stabilize the trace when the duty cycle of the signal is small is by using the trace mode as Clear / Write and increasing the sweep time.
 
-\item Find the \ac{OBW}. This is well explained in the Figure \ref{tab:tracebw}.
+\item Find the \ac{OBW}. This is well explained in the Figure \ref{fig:tracebw}.
 \begin{figure}[H]
 \centering
 \includegraphics[width=0.65\textwidth]{TraceBandwidth.png}
@@ -68,10 +68,10 @@ To locate the occupied channel bandwidth of the signal from the trace produced b
 The \acl{PSD} is the mean \acf{EIRP} spectral density in a 1 MHz bandwidth during a transmission burst. For equipment using wide band modulations other than \acs{FHSS}, the maximum \acf{PSD} is limited to 10 dBm per MHz. This test, like the occupied channel bandwidth measurement, requires the \acs{DUT} to transmit data so that the analyzer can save the trace for the calculation of \acf{PSD}. The steps for this measurement are as follows:
 
 \begin{enumerate}
-  \item Associate the DUT with the companion device. Fritz Box acts as a companion device for this measurement. 
+  \item Associate the \acs{DUT} with the companion device. Fritz Box acts as a companion device for this measurement. 
 \item Run the batch (.BAT) file on the computer connected to the \acs{DUT}. This file uploads data to the \ac{NAS} which is connected to the USB stick on the companion device so that the power spectral density of the \acs{DUT} signal can be measured. Refer section \ref{sec:golden} for the procedure.
 \item Change the settings of the spectrum analyzer. The table \ref{tab:analyzerpsd} below contains important analyzer settings.
-\begin{table}[ht]
+\begin{table}[H]
 \begin{center}
 \begin {tabular} {|c|c|} 
 \toprule
@@ -83,8 +83,8 @@ Stop Frequency  & 2483.5 MHz\\
 \ac{VBW} & 30 KHz\\
 Sweep points & 8500 \\
 Channel Occupancy Time & 10 ms \\
-Sweep time & Time on each sweep point * Sweep Points \\
-Trace mode & \acs{Max-Hold} \\
+Sweep time & Time on each sweep point $\times$ Sweep Points \\
+Trace mode & Max-Hold \\
 Detector & \ac{RMS}\\
 \bottomrule
 \end{tabular} 
@@ -92,14 +92,14 @@ Detector & \ac{RMS}\\
 \label{tab:analyzerpsd}
 \end{center}
 \end{table}
-The standard suggests the number of sweep points to be greater than 8350. If the analyzers are not supporting this number of sweep points then the frequency band may be segmented. The measurement device used supports maximum of 15000 sweep points, but sweep points was set to 8500 in this case. Our aim being to reduce \acl{MU}, the sweep count is increased to 10 rather than using a single sweep. The maximum value of trace is saved with the help of \acs{Max-Hold} trace mode.
+The standard suggests the number of sweep points to be greater than 8350. If the analyzers are not supporting this number of sweep points then the frequency band may be segmented. The measurement device used supports maximum of 15000 sweep points, but sweep points was set to 8500 in this case. Our aim being to reduce \acf{MU}, the sweep count is increased to 10 rather than using a single sweep. The maximum value of trace is saved with the help of Max-Hold trace mode.
   
 \item Since the signal from the \acs{DUT} is non-continuous, wait for the trace to stabilize and save the trace data to a mat file.
  
  \item Use the following formula to add up the values of power for all sample points.
   $$ P_{sum} = \sum_{n=1}^{k} P_{sample}(n) $$ where k is the total number of samples and n is the actual sample number
   
- \item  Convert the power values from mW scale to dBm scale and then normalize the individual values for power so that the sum is equal to the RF Output Power (\acs{EIRP}) measured in the big anechoic chamber and finally save the corrected data. The following formulas can be used:
+ \item  Convert the power values from mW scale to dBm scale and then normalize the individual values for power so that the sum is equal to the \acs{RF} Output Power (\acs{EIRP}) measured in the big anechoic chamber and finally save the corrected data. The following formulas can be used:
   $$C_{corr} = P_{sum} - P_{EIRP}   $$ 
   $$P_{samplecorr}(n) = P_{sample}(n) - C_corr $$ where n is the actual sample number.
   
@@ -107,7 +107,7 @@ The standard suggests the number of sweep points to be greater than 8350. If the
   
   \item Shift the starting point of the samples by one sample summed up in step 7 and repeat the procedure in step 8. (i.e. sample 2 to sample 101)
   
-  \item Repeat step 8 until the end of the data set and record the Power Spectral Density values for each 1 MHz segments. From all the recorded results, the highest value is the maximum Power Spectral Density of the DUT. This value shall be recorded in the test report.
+  \item Repeat step 8 until the end of the data set and record the Power Spectral Density values for each 1 MHz segments. From all the recorded results, the highest value is the maximum Power Spectral Density of the \acs{DUT}. This value shall be recorded in the test report.
     \end{enumerate}
   
  \begin{figure}[H]
@@ -120,12 +120,12 @@ The standard suggests the number of sweep points to be greater than 8350. If the
   
  \section{Receiver Blocking measurement}
 \label{sec:rxmeas} 
-Receiver blocking is a measure of the ability of the equipment to receive a wanted signal on its operating channel without exceeding a given degradation in the presence of an unwanted signal (blocking signal) at frequencies other than those of the operating band. The minimum performance criterion shall be a \ac{PER} less than or equal to 10 \%. The manufacturer may declare alternative performance criteria as long as that is appropriate for the intended use of the equipment. The procedure for this measurement is explained in the Fig \ref{fig:flowchartrxvlock}.
+Receiver blocking is a measure of the ability of the equipment to receive a wanted signal on its operating channel without exceeding a given degradation in the presence of an unwanted signal (blocking signal) at frequencies other than those of the operating band. The minimum performance criterion shall be a \ac{PER} less than or equal to 10 \%. The manufacturer may declare alternative performance criteria as long as that is appropriate for the intended use of the equipment. The procedure for this measurement is explained in the Figure \ref{fig:flowchartrxvlock}.
 
  \begin{figure}[H]
 \centering
 \includegraphics[width=0.9\textwidth]{flowchart.pdf}
-\caption{Flowchart for \ac{RxBlocking} measurement}
+\caption{Flowchart for Receiver Blocking measurement}
 \label{fig:flowchartrxvlock}
 \end{figure}
 

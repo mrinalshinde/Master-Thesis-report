@@ -1,5 +1,5 @@
 \chapter{Data Evaluation}\label{chap:de}
-This chapter is a consequence of the conducted and normalized measurements performed using a single-antenna \acs{DUT} and a multi-antenna \acs{DUT}. Each test is run for many times in-order to assess the \acs{MU}. 
+This chapter is a consequence of the conducted and normalized measurements performed using a single-antenna \acs{DUT} and a multi-antenna \acs{DUT}. Each test is run for many times in-order to assess the \acf{MU}. 
 
 \section{Measurement Analysis}
 This section is sub-divided into two other sections: first when the \acs{DUT} behaves as a transmitter and second when \acs{DUT} is a receiver. This sections also explains the reasons for using the fritz box as a companion device for \acs{PSD} measurement and for using some different spectrum analyzer settings from the settings mentioned by the standard.
@@ -11,7 +11,8 @@ The procedure for the \acf{OBW} measurement and \acf{PSD} are explained in detai
 
 \begin{figure}[H]
 \centering
-\includegraphics[scale = 0.5]{normalized_dut_transmitter.pdf}
+\includegraphics[scale = 0.46]{normalized_dut_transmitter.pdf}
+\vspace{-0.5cm}
 \caption{Normalized measurement when the \acs{DUT} functions as a transmitter}
 \label{fig:nt} 
 \end{figure}
@@ -30,7 +31,7 @@ Attenuation in the signal analyzer settings is kept to 10 dB and the pre-amplifi
 The settings for the analyzer mentioned above also applies to \acf{PSD} measurement. In-addition to that, after running the \acs{PSD} measurement only for few times, there is a difference in the result every single time. This can be clearly seen from Figure \ref{fig:psdpsd}. The maximum value is 8.64 dBm and minimum is 7.12 dBm and hence there difference between the two is around 1 dBm which does not look very good. Therefore fritz box is used as a companion device for this measurement instead of the connectivity tester.
 \begin{figure}[H]
 \centering
-\includegraphics[scale = 0.5]{PSD_trace_differnce.png}
+\includegraphics[scale = 0.65]{PSD_trace_differnce.png}
 \caption{\acf{MU} in the \acs{PSD} measurement caused due to low duty cycle of the signal}
 \label{fig:psdpsd} 
 \end{figure}
@@ -42,15 +43,16 @@ Figure \ref{fig:nr} pictures the \acs{DUT} as a receiver. This is achieved by us
 
 \begin{figure}[H]
 \centering
-\includegraphics[scale = 0.5]{normalized_dut_receiver.pdf}
+\includegraphics[scale = 0.46]{normalized_dut_receiver.pdf}
+\vspace{-1.1cm}
 \caption{Normalized measurement when the \acs{DUT} functions as a receiver}
 \label{fig:nr} 
 \end{figure}
 
-The spectrum analyzer shows the DUT signal and the blocking signal. It can be see
+The spectrum analyzer shows the DUT signal and the blocking signal. It can be seen that the signal from the blocker is not very far from the in-band frequency of the \acs{DUT}.
 \begin{figure}[H]
 \centering
-\includegraphics[scale = 0.3]{analyzer_rx.PNG}
+\includegraphics[scale = 0.24]{analyzer_rx.PNG}
 \caption{Trace on the spectrum analyzer \acs{GUI}}
 \label{fig:ax} 
 \end{figure}

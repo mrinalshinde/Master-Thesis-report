@@ -1,6 +1,6 @@
 \chapter{Regulatory Test System}  \label{chap:3}
 
-The standard Regulatory Test System (TS8997) by \acs{RS}\textregistered{} verifies technologies typically used in wideband wireless devices, i.e. devices with a radio interface, in the 2.4 GHz and 5 GHz band: \acs{WLAN} \acs{IEEE} 802.11a/b/g/n/ac, Bluetooth\textregistered, wireless video transmission and radio remote control. The test system consists of a Signal Generator, Spectrum Analyzer,  \acf{CMW}, and a Switching Unit (OSP-B157W8). My thesis investigates the approach of normalized measurements using the \acs{RF} Shielded Box and a Switching Unit (OSP-B157WN), which is an extension to the current standard regulatory test system. This extension is required for the normalized measurements.
+The standard Regulatory Test System (TS8997) by \acs{RS}\textregistered{} verifies technologies typically used in wideband wireless devices, i.e. devices with a radio interface, in the 2.4 GHz and 5 GHz band: \acs{WLAN} \acs{IEEE} 802.11a/b/g/n/ac, Bluetooth\textregistered, wireless video transmission and radio remote control. The test system consists of a Signal Generator, Spectrum Analyzer,  \acf{CMW}, and a Switching Unit (\acs{OSP}-B157W8). My thesis investigates the approach of normalized measurements using the \acs{RF} Shielded Box and a Switching Unit (OSP-B157WN), which is an extension to the current standard regulatory test system. This extension is required for the normalized measurements.
 
 \begin{figure}[H]
 \centering
@@ -9,7 +9,7 @@ The standard Regulatory Test System (TS8997) by \acs{RS}\textregistered{} verifi
 \label{fig:testsystem}
 \end{figure}
 
-This chapter includes all the instruments / equipments required for this thesis. Each section describes in brief about the instrument / software.
+This chapter includes all the instruments/equipments required for this thesis. Each section describes in brief about the instrument/software.
 
 \section{WMS32 Software Suite}
 \label{sec:wms32}
@@ -26,20 +26,20 @@ WMS32 software suite comes with the standard regulatory test system (TS8997). Th
 The analyzer measures the signal either in the frequency domain or in the time domain (zero span). A MATLAB\textregistered{} script is written to remotely access the instrument. The MATLAB\textregistered{} code then calculates the power and bandwidth. The \acf{SCPI} commands for each task (i.e. changing the frequency, span, etc.) are provided in the manual. Few important functions used in this thesis are explained below.
 
 \subsection{Trace Mode}
-Signals that are varying are dealt with by setting the trace mode in the spectrum analyzer. The available modes are Clear/Write, \acs{Max-Hold}, or Average.
+Signals that are varying are dealt with by setting the trace mode in the spectrum analyzer. The available modes are Clear/Write, Maximum-Hold (Max-Hold), or Average.
 \begin{enumerate}
   \item Clear/Write is used when new overwritten values are needed on every sweep. It shows what is coming in, as it happens. The change in the signal during the sweep causes the trace level to change. 
-  \item \acs{Max-Hold} stores the sweep only when the new value is greater than the previous one. The maximum value of the signal can be thus determined over several sweeps. This makes the trace continue to increase as various signals come and go. If a signal shows up once, it is saved on the Max-Hold trace. Setting trace 1 to normal, and trace 2 to \acs{Max-Hold} is useful in many situations, as it shows both the current power level and the excursion limits.  
+  \item Max-Hold stores the sweep only when the new value is greater than the previous one. The maximum value of the signal can be thus determined over several sweeps. This makes the trace continue to increase as various signals come and go. If a signal shows up once, it is saved on the Max-Hold trace. Setting trace 1 to normal, and trace 2 to Max-Hold is useful in many situations, as it shows both the current power level and the excursion limits.  
   \item Average Mode activates the averaging function of the trace. The average is formed over several sweeps. The number of sweeps is selected by the user. The average model is good, but a slow, tool to remove random noise and highlight constant signals. It is great when the signal you are interested in is near the noise floor of the instrument.  
   \end{enumerate}
 
 \subsection{Detector Settings}
 Spectrum analyzers normally sample many more data points than they can display on the screen - tens, hundreds, or thousands of times more. This implies that the displayed trace needs to be summarized in some manner to choose the value to be displayed on each pixel of the screen. This is done by the detectors. The six main detectors settings are:
 \begin{enumerate}
-  \item Max Peak / Min Peak: They determine the largest of all positive (max peak) or the smallest of all negative (min peak) peak values of the levels measured at the individual frequencies which are displayed on one sample point (or within a pixel). Even if wide spans are displayed with very narrow resolution bandwidth (span/\acs{RBW} >> number of pixels on the frequency axis), no input signals are lost. Therefore this type of detector is particularly useful for \acs{EMC} measurements. This detection method is a good complement to a acs{Max-Hold} trace.
+  \item Max Peak / Min Peak: They determine the largest of all positive (max peak) or the smallest of all negative (min peak) peak values of the levels measured at the individual frequencies which are displayed on one sample point (or within a pixel). Even if wide spans are displayed with very narrow resolution bandwidth (span/\acs{RBW} >> number of pixels on the frequency axis), no input signals are lost. Therefore this type of detector is particularly useful for \acs{EMC} measurements. This detection method is a good complement to a Max-Hold trace.
   \item Auto Peak: This detector combines the peak detectors. The maximum peak detector and the minimum peak detector simultaneously determine the maximum and the minimum level within a displayed test point and display it as a single measured value. 
   \item Sample: The detector routes through the sampled data without any further evaluation and either displays them directly or, for reasons of speed in case of short sweep times, first writes them into memory and processes them subsequently. If the span to be displayed is much greater than the resolution bandwidth (span/\acs{RBW} >> number of pixels on the frequency axis), input signals are no longer reliably detected. The same unreliability applies when too large tuning steps of the local oscillator are chosen. In this case, signals may not be displayed at the correct level or may be completely lost. This is required by some standards but is not so useful for spectrum monitoring. 
-  \item \ac{RMS}: This detector forms the acs{RMS} value of the measured values within a pixel. To do so, the instrument uses the linear voltage after envelope detection. The sampled linear values are squared, summed and the sum is divided by the number of samples (= \acs{RMS}). For logarithmic display, the logarithm is formed from the square sum. For linear display, the root mean square value is displayed. Each sweep point thus corresponds to the power of the measured values summed up in the sweep point. 
+  \item \ac{RMS}: This detector forms the \acs{RMS} value of the measured values within a pixel. To do so, the instrument uses the linear voltage after envelope detection. The sampled linear values are squared, summed and the sum is divided by the number of samples (= \acs{RMS}). For logarithmic display, the logarithm is formed from the square sum. For linear display, the root mean square value is displayed. Each sweep point thus corresponds to the power of the measured values summed up in the sweep point. 
   \item Average: The average detector calculates the linear average of all samples contained in a sweep point. To this effect, the instrument uses the linear voltage after envelope detection. The sampled linear values are summed up and the sum is divided by the number of samples (= linear average value). For logarithmic display, the logarithm is formed from the average value. For linear display, the average value is displayed. Each sweep point thus corresponds to the average of the measured values summed up in the sweep point. The average detector supplies the average value of the signal irrespective of the waveform (\acs{CW} carrier, modulated carrier, white noise, or impulsive signal). 
   \end{enumerate}
   
@@ -80,7 +80,7 @@ Configuration of \acs{WLAN} signaling is done by sending commands remotely via a
 
 \subsection{Golden Device} \label{sec:golden}
 
-Fritz Box 7590 can be used as a companion device to receive data from the \acs{DUT}. The \acf{NAS} functionality is used to upload data from \acs{DUT} permanently to a pen drive which is attached to the Fritz Box. First, storage is set up on the computer as a network drive. The procedure to mount the network drive is explained on the website of Fritz Box. A windows batch file is written to continuously upload a big file from the DUT to the network drive. The code in the batch (.BAT) file is shown below.
+Fritz Box 7590 can be used as a companion device to receive data from the \acs{DUT}. The \acf{NAS} functionality is used to upload data from \acs{DUT} permanently to a pen drive which is attached to the Fritz Box. First, storage is set up on the computer as a network drive. The procedure to mount the network drive is explained on the website of Fritz Box. A windows batch file is written to continuously upload a big file from the \acs{DUT} to the network drive. The code in the batch (.BAT) file is shown below.
 
 \begin{lstlisting}[language=bash]
 :start
@@ -88,7 +88,7 @@ copy "C:\source" "Z:\General-UDisk-01" /Y
 goto start
 \end{lstlisting}
 
-The script copies a big file in a loop and it makes sure to overwrite the existing destination file and hence deleting of the file is not necessary. Since the file is large, the duty cycle of the signal is high and it results in \ac{PSD} measurement having lower measurement uncertainty. 
+The script copies a big file in a loop and it makes sure to overwrite the existing destination file and hence deleting of the file is not necessary. Since the file is large, the duty cycle of the signal is high and it results in \ac{PSD} measurement having lower \acf{MU}. 
 
 \begin{figure}[H]
 \centering
@@ -140,7 +140,7 @@ This device switches between the Signal Generator and Signal Analyzer depending 
 
 
 \section{\acs{RF} Shielded Box}
-\acs{RS}\textregistered{} TS7124M features high shielding effectiveness over a wide frequency range (300 MHz to 6 GHz), the \acs{RF} test boxes allow measurements on different standards due to the supported frequency range. For radiation testing, the \acs{DUT} is inserted into the chamber using a drawer, which is closed by a tightly sealed door. Antennas installed on the inside of the \acs{RF} Shielded Box then interact with the \acs{DUT} by emitting or receiving electromagnetic radiation. The DUT is placed on a tray (Figure \ref{fig:yry}) within the RF shielded box.
+\acs{RS}\textregistered{} TS7124M features high shielding effectiveness over a wide frequency range (300 MHz to 6 GHz), the \acs{RF} test boxes allow measurements on different standards due to the supported frequency range. For radiation testing, the \acs{DUT} is inserted into the chamber using a drawer, which is closed by a tightly sealed door. Antennas installed on the inside of the \acs{RF} Shielded Box then interact with the \acs{DUT} by emitting or receiving electromagnetic radiation. The \acs{DUT} is placed on a tray (Figure \ref{fig:try}) within the \acs{RF} shielded box.
 
 \begin{figure}[H]
 \centering
@@ -149,7 +149,7 @@ This device switches between the Signal Generator and Signal Analyzer depending 
 \label{fig:try}
 \end{figure}
 
-The antennas can be placed and oriented in a customer-specific geometrical arrangement. The box contains a full antenna ring where antennas can be mounted at 0$^{\circ}$, 45$^{\circ}$, and 90$^{\circ}$ tilt.  Submitting a \acs{DUT} to conducted instead of radiated RF signals via feedthroughs for \acs{RF} cables (or guiding conducted \acs{RF} signals away from the \acs{DUT}) can be applied as an alternative or supplement to antennas. The Figure \ref{fig:box} shows the antenna configuration used in this thesis.
+The antennas can be placed and oriented in a customer-specific geometrical arrangement. The box contains a full antenna ring where antennas can be mounted at 0$^{\circ}$, 45$^{\circ}$, and 90$^{\circ}$ tilt.  Submitting a \acs{DUT} to conducted instead of radiated \acs{RF} signals via feedthroughs for \acs{RF} cables (or guiding conducted \acs{RF} signals away from the \acs{DUT}) can be applied as an alternative or supplement to antennas. The Figure \ref{fig:box} shows the antenna configuration used in this thesis.
 
 \begin{figure}[H]
 \centering
@@ -185,7 +185,7 @@ Polarization & Linear (norm.)\\
 \end{figure}      
 
 \section{\ac{DUT}}
-This thesis uses two DUTs (single antenna DUT and multi-antenna DUT) to investigate the measurement uncertainties introduced by conducted and normalized measurements. 
+This thesis uses two \acsp{DUT} (single antenna \acs{DUT} and multi-antenna \acs{DUT}) to investigate the measurement uncertainties introduced by conducted and normalized measurements. 
 
 \begin{figure}[h]
     \begin{minipage}[c]{.7\textwidth}% or {.6\linewidth}, it's the same here
