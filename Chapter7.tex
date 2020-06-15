@@ -58,12 +58,116 @@ The spectrum analyzer shows the DUT signal and the blocking signal. It can be se
 \end{figure}
 
 
-
 \section{\acf{MU}}
-The test was run for 300 times and the result using signal antenna DUT and multi antenna DUT are shown as follows. The figure in the left shows result from single antenna DUT and the one in the right is result from multi antenna DUT.
-From the plots it is obvious that the measurement uncertainty is higher when using a DUT with multiple antennas. Is this expected? And is this really due to multiple antennas or something else (e.g. lower output power)?
+\acf{MU} is evaluated by running each test case (i.e. \acf{OBW}, \acf{PSD}, and Receiver Blocking) several times and then comparing the results (i.e. standard deviation and mean) of conducted and normalized measurements. Computation of \acs{MU} is done using two \acsp{DUT} (i.e. single-antenna \acs{DUT} and multi-antenna \acs{DUT}). Since the multi-antenna \acs{DUT} does not have a cable connector, we do the measurements only radiated (i.e normalized) and comparing it with conducted is not possible. 
+
+\subsection{Single-Antenna \acs{DUT}}
+This section gathers the information of \acf{MU} for each test case for both conducted and normalized type. The following reveals the results of the long-term measurements.
+
+\subsubsection{\acf{OBW} Measurement}
+The \acs{OBW} test is run 300 times for each conducted and normalized type of measurement. Figure \ref{fig:otavscond} potrays the result from the long-term measurements.
+
+\begin{figure}[H]
+\centering
+\subfigure[Conducted measurement]{\includegraphics[scale=0.55]{bandwidth_conducted_single_300.PNG}} 
+\subfigure[Normalized measurement]{\includegraphics[scale = 0.55]{bandwidth_OTA_single_300.PNG}}  
+\caption{Histogram of \acs{OBW} test-case resulting from 300 measurements }
+\label{fig:otavscond} 
+\end{figure}
+
+From the plots it is clear that the \acf{MU} is almost equal in both conducted and normalized type of measurements. The table \ref{tab:tab1} arranges the results from the Figure \ref{fog:otavscond} to a tabular form. 
+
+\begin{table}[H]
+  \centering
+\begin {tabular} {|c|c|c|} 
+\toprule
+ & \textbf{Conducted Measurement} & \textbf{Normalized Measurement} \\ 
+\midrule 
+\textbf{Mean} & 16.43 MHz & 16.42 MHz\\
+\textbf{Standard Deviation} & 0.01 MHz & 0.01 MHz\\
+\bottomrule
+ \end{tabular}
+  \caption{\acf{MU} results for \acs{OBW} measurement} \label{tab:tab1}
+\end{table}
+
+\subsubsection{\acf{PSD} Measurement}
+
+\begin{figure}[H]
+\centering
+\subfigure[Conducted measurement]{\includegraphics[scale=0.55]{PSD_conducted_single_60.PNG}}
+\subfigure[Normalized measurement]{\includegraphics[scale = 0.55]{PSD_OTA_single_60.PNG}}
+\caption{Histogram of \acs{PSD} test-case resulting from 60 measurements }
+\label{fig:otavscond} 
+\end{figure}
+
+\begin{table}[H]
+  \centering
+\begin {tabular} {|c|c|c|} 
+\toprule
+ & \textbf{Conducted Measurement} & \textbf{Normalized Measurement} \\ 
+\midrule 
+\textbf{Mean} & 3.15 dBm & 3.03 dBm\\
+\textbf{Standard Deviation} & 0.08 dBm & 0.18 dBm\\
+\bottomrule
+ \end{tabular}
+  \caption{\acf{MU} results for \acs{PSD} measurement} \label{tab:tab2}
+\end{table}
+
+
+\subsubsection{Receiver Blocking Measurement}
+
+\begin{figure}[H]
+\centering
+\subfigure[Conducted measurement]{\includegraphics[scale=0.55]{RxBlocking_conducted_singleAntenna_2300_60.PNG}}
+\subfigure[Normalized measurement]{\includegraphics[scale=0.55]{RxBlocking2300.PNG}} \\
+\subfigure[Conducted measurement]{\includegraphics[scale=0.55]{RxBlocking_conducted_singleAntenna_2330.PNG}}
+\subfigure[Normalized measurement]{\includegraphics[scale=0.55]{RxBlocking2330.PNG}} \\
+\subfigure[Conducted measurement]{\includegraphics[scale=0.55]{RxBlocking_conducted_singleAntenna_2360.PNG}}
+\subfigure[Normalized measurement]{\includegraphics[scale=0.55]{RxBlocking2360.PNG}} \\
+\subfigure[Conducted measurement]{\includegraphics[scale=0.55]{RxBlocking_conducted_singleAntenna_2380.PNG}}
+\subfigure[Normalized measurement]{\includegraphics[scale=0.55]{RxBlocking2380.PNG}} \\
+\caption{Histogram of Receiver Blocking test-case resulting from 60 measurements }
+\label{fig:otavscond} 
+\end{figure}
+
+\begin{table}[H]
+\resizebox{\textwidth}{!}
+{
+        \begin{tabular}{|c|c|c|c|}\toprule
+         \textbf{Blocker Frequency} & \textbf{MU Parameters} &\textbf{Conducted Measurement} & \textbf{Normalized Measurement} \\
+            \midrule
+            \textbf{2300 MHz} & Mean                      & -36.63 dBm & -36.71 dBm \\
+                             & Standard Deviation & 0.08 dBm    & 0.13 dBm  \\
+                             \midrule
+            \textbf{2330 MHz} & Mean                      & -37.54 dBm & -37.52 dBm       \\
+                             & Standard Deviation & 0.09 dBm    & 0.16 dBm       \\
+                             \midrule
+            \textbf{2360 MHz} & Mean                      & -39.15 dBm & -39.10 dBm     \\
+                             & Standard Deviation & 0.06 dBm    & 0.13 dBm      \\
+                             \midrule
+            \textbf{2380 MHz} & Mean                      & -49.82 dBm & -49.73 dBm       \\
+                             & Standard Deviation & 0.09 dBm    & 0.18 dBm \\
+           \bottomrule
+        \end{tabular}}
+        \caption{\acf{MU} results for Receiver Blocking measurement}\label{Tab3}
+ \end{table} 
 
 
 
 
+\subsection{Multi-Antenna \acs{DUT}}
 The receiver blocking test is run 21 times and the histogram depicts the occurrence of the blocker level which results in 10\% PER at each frequency. The calculation of mean is done by converting the power level from dBm scale to linear scale because it is physically correct to use mean from the linear scale. The standard deviation is calculated by using the power values in dBm scale. 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
