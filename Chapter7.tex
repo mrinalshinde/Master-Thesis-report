@@ -31,7 +31,7 @@ Attenuation in the signal analyzer settings is kept to 10 dB and the pre-amplifi
 The settings for the analyzer mentioned above also applies to \acf{PSD} measurement. In-addition to that, after running the \acs{PSD} measurement only for few times, there is a difference in the result every single time. This can be clearly seen from Figure \ref{fig:psdpsd}. The maximum value is 8.64 dBm and minimum is 7.12 dBm and hence there difference between the two is around 1 dBm which does not look very good. Therefore fritz box is used as a companion device for this measurement instead of the connectivity tester.
 \begin{figure}[H]
 \centering
-\includegraphics[scale = 0.65]{PSD_trace_differnce.png}
+\includegraphics[scale = 0.75]{PSD_trace_differnce.png}
 \caption{\acf{MU} in the \acs{PSD} measurement caused due to low duty cycle of the signal}
 \label{fig:psdpsd} 
 \end{figure}
@@ -59,7 +59,9 @@ The spectrum analyzer shows the DUT signal and the blocking signal. It can be se
 
 
 \section{\acf{MU}}
-\acf{MU} is evaluated by running each test case (i.e. \acf{OBW}, \acf{PSD}, and Receiver Blocking) several times and then comparing the results (i.e. standard deviation and mean) of conducted and normalized measurements. Computation of \acs{MU} is done using two \acsp{DUT} (i.e. single-antenna \acs{DUT} and multi-antenna \acs{DUT}). Since the multi-antenna \acs{DUT} does not have a cable connector, we do the measurements only radiated (i.e normalized) and comparing it with conducted is not possible. 
+\acf{MU} is evaluated by running each test case (i.e. \acf{OBW}, \acf{PSD}, and Receiver Blocking) several times and then comparing the results (i.e. standard deviation and mean) of conducted and normalized measurements. Computation of \acs{MU} is done using two \acsp{DUT} (i.e. single-antenna \acs{DUT} and multi-antenna \acs{DUT}). Since the multi-antenna \acs{DUT} does not have a cable connector, we do the measurements only radiated (i.e normalized) and comparing it with conducted is not possible. \\
+
+For the \acs{PSD} and Receiver Blocking measurement, the calculation of mean is done by converting the power level from dBm scale to linear scale because it is physically correct to use mean from the linear scale. The standard deviation is calculated by using the power values in dBm scale. 
 
 \subsection{Single-Antenna \acs{DUT}}
 This section gathers the information of \acf{MU} for each test case for both conducted and normalized type. The following reveals the results of the long-term measurements.
@@ -75,7 +77,7 @@ The \acs{OBW} test is run 300 times for each conducted and normalized type of me
 \label{fig:otavscond} 
 \end{figure}
 
-From the plots it is clear that the \acf{MU} is almost equal in both conducted and normalized type of measurements. The table \ref{tab:tab1} arranges the results from the Figure \ref{fog:otavscond} to a tabular form. 
+From the plots it is clear that the \acf{MU} is almost equal in both conducted and normalized type of measurements. The table \ref{tab:tab1} arranges the results from the Figure \ref{fig:otavscond} to a tabular form. 
 
 \begin{table}[H]
   \centering
@@ -91,15 +93,16 @@ From the plots it is clear that the \acf{MU} is almost equal in both conducted a
 \end{table}
 
 \subsubsection{\acf{PSD} Measurement}
-
+The \acs{PSD} measurement is run 60 times for each conducted and normalzed type of measurement. Figure
+\ref{fig:otavscond2} shows the result from the long-term measurement.
 \begin{figure}[H]
 \centering
 \subfigure[Conducted measurement]{\includegraphics[scale=0.55]{PSD_conducted_single_60.PNG}}
 \subfigure[Normalized measurement]{\includegraphics[scale = 0.55]{PSD_OTA_single_60.PNG}}
 \caption{Histogram of \acs{PSD} test-case resulting from 60 measurements }
-\label{fig:otavscond} 
+\label{fig:otavscond2} 
 \end{figure}
-
+It is comprehensible from the figure \ref{fig:otavscond2} as well as the table \ref{tab:tab2} that the results achieved by using conducted measurements have lower \acs{MU} compared to the ones using normalized measurements.
 \begin{table}[H]
   \centering
 \begin {tabular} {|c|c|c|} 
@@ -115,7 +118,7 @@ From the plots it is clear that the \acf{MU} is almost equal in both conducted a
 
 
 \subsubsection{Receiver Blocking Measurement}
-
+The Receiver Blocking measurement is run 60 times for each conducted and normalzed type of measurement. Figure \ref{fig:otavscond3} presents the occurrence of the blocker level which results in 10\% PER at each frequency in a long-term measurement.
 \begin{figure}[H]
 \centering
 \subfigure[Conducted measurement]{\includegraphics[scale=0.55]{RxBlocking_conducted_singleAntenna_2300_60.PNG}}
@@ -127,9 +130,10 @@ From the plots it is clear that the \acf{MU} is almost equal in both conducted a
 \subfigure[Conducted measurement]{\includegraphics[scale=0.55]{RxBlocking_conducted_singleAntenna_2380.PNG}}
 \subfigure[Normalized measurement]{\includegraphics[scale=0.55]{RxBlocking2380.PNG}} \\
 \caption{Histogram of Receiver Blocking test-case resulting from 60 measurements }
-\label{fig:otavscond} 
+\label{fig:otavscond3} 
 \end{figure}
 
+Also in this test-case, the conducted measurement results appear to have lower \acs{MU}. In all the three test-cases, the measurement results by normalized measurements are close to the ones performed by performing the measurements in a conducted way.
 \begin{table}[H]
 \resizebox{\textwidth}{!}
 {
@@ -149,21 +153,54 @@ From the plots it is clear that the \acf{MU} is almost equal in both conducted a
                              & Standard Deviation & 0.09 dBm    & 0.18 dBm \\
            \bottomrule
         \end{tabular}}
-        \caption{\acf{MU} results for Receiver Blocking measurement}\label{Tab3}
+        \caption{\acf{MU} results for Receiver Blocking measurement}\label{tab:Tab3}
  \end{table} 
 
 
 
 
 \subsection{Multi-Antenna \acs{DUT}}
-The receiver blocking test is run 21 times and the histogram depicts the occurrence of the blocker level which results in 10\% PER at each frequency. The calculation of mean is done by converting the power level from dBm scale to linear scale because it is physically correct to use mean from the linear scale. The standard deviation is calculated by using the power values in dBm scale. 
+The same three measurements are performed using multi-antenna \acs{DUT}. The measurements are run for the same number of times as the previously depicted single-antenna \acs{DUT}. Table \ref{tab:tab4} lays out the results for mean and standard deviation from the test-cases.
+\begin{table}[H]
+\resizebox{\textwidth}{!}
+{
+        \begin{tabular}{|c|c|c|c|}\toprule
+         \textbf{Test-Case} & Parameters & \textbf{MU Parameters} & \textbf{Normalized Measurement} \\
+            \midrule
+           Receiver Blocking & 2300 MHz & Mean     & -33.03 dBm \\
+                         &    & Standard Deviation & 0.14 dBm     \\
 
+          &  2330 MHz & Mean     & -31.16 dBm       \\
+                     &        & Standard Deviation & 0.12 dBm    \\
 
+          &  2360 MHz & Mean       & -29.01 dBm    \\
+                          &   & Standard Deviation & 0.13 dBm      \\
+                           
+          &  2380 MHz & Mean      & -35.64 dBm    \\
+                       &      & Standard Deviation & 0.09 dBm     \\
+                       \midrule
+                      
+          Occupied Channel Bandwidth & 99\% bandwidth & Mean & 16.50 MHz \\
+           &  & Standard Deviation & 0.02 MHz \\
+           
+           \midrule
+           Power Spectral Density &   maximum (mean(EIRP)) & Mean &  3.20 dBm \\
+           & & Standard Deviation & 0.11 dBm \\          
+           \bottomrule
+        \end{tabular}}
+        \caption{\acf{MU} results for measurements using Multi-Antenna \acs{DUT}}\label{tab:Tab4}
+ \end{table} 
 
+The specification sheet of this \acs{DUT} mentions that the device uses beam-forming. In-order to examine whether the \acs{DUT} performs beam-forming, a long-term power measurement to calculate the coupling loss (refer section \ref{sec:11}) is done. Measurements were performed after with random time gaps between the two measurements to investigate if the results differ due to beam-forming. The Figure \ref{fig:11} shows the result of coupling loss for 70 measurements with random time gap. 
 
+\begin{figure}[H]
+\centering
+\includegraphics[scale = 0.75]{Beamforming_all_new.PNG}
+\caption{Investigating beam-forming performance of the \acs{DUT}}
+\label{fig:11} 
+\end{figure}
 
-
-
+Since the measurement values are almost the same, this proves that the \acs{DUT} does not perform beam-forming at 2.4 GHz.
 
 
 
