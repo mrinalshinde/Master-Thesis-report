@@ -2,26 +2,9 @@
 
 The achieved findings of this work shall be described in this chapter. Furthermore, an outlook for future work will be drawn.
 
-\section{OTA Basics}
+\section{Achievements}
 
-Every part of an \acf{OTA} \acf{TRP} measurement contributes to the resulting measurement error. The very first step is to define a tolerable error. With that the \acf{QZ} size of the \ac{OTA} chamber can be determined. This depends on the probe antenna and the chamber itself.\\
-The next error source is thermal noise, which leads to a needed dynamic range and thereby to a \acf{LB}. The measurement error induced by noise can be computed as 
 
-\begin{equation}
-e = 10\log_{10}\left(1+10^{\frac{\text{SNR}}{10}}\right)\,.
-\end{equation}
-
-For example a \acf{SNR} of $>\SI{10}{\decibel}$ leads to a measurement error $<\SI{0.5}{\decibel}$. The received power depends on the radiated power, the \acf{FSPL} and the probe's realized gain. To increase dynamic range, a \acf{LNA} and/or a mixer at the probe can be used. The \ac{SNR} is further determined by the noise figure of the used measurement equipment. A typical modern spectrum analyzer has a noise figure of $\approx\SI{15}{\decibel}$ at $\SI{30}{\giga\hertz}$. To maximize the \ac{SNR} the \ac{FSPL} should be minimized by using the shortest possible measurement range.
-
-\section{Measurement Distance}
-
-In the framework of this thesis, the minimum measurement distance for \acf{TRP} measurements is examined. The simulation shows that \ac{TRP} measurements can be done using low directivity probe antennas in the radiating \acf{NF} at already about Derat distance. Furthermore, it is shown that the \ac{TRP} measurement error is positively correlated with the directivity of the probe antenna. Using low directivity probe antennas leads to smaller \ac{OTA}-measurement-chambers and results in higher dynamic range and lower costs. This is also shown in a real measurement campaign.
-
-\section{Spatial Sampling}
-
-Spatial sampling error is produced by aliasing. In this thesis this subject is addressed and it is shown that the ideal spherical sampling grid is the \acf{CSSG}; due to its flexibility and its efficient realization with sparse sampling at the poles and continuous azimuth movement. It is further demonstrated that the introduced \ac{CrefA} factor is the ideal compromise between the two sampling approaches from \cite{hansen} and \cite{2018arXiv180310993F} with a \acf{SF} of one.
 
 \section{Outlook}
 
-To generate more data to support the statement that low directivity probes enable closer sampling at the same error, more measurements should be done. Furthermore, the mounting of the patch antenna could be optimized, so that it is slightly tilted and the reflected \acf{EM}-wave is scattered towards the absorber. Additionally, \ac{TRP} measurements with a dedicated \ac{OEWG} instead of a WR28 waveguide adapter should be done, to have less scattering from the probe antenna.\\
-Moreover, the spatial sampling simulation should be done with the measurement data from several real antenna arrays with random steering vectors to get an empirical proof of the findings. However, measurement campaigns should be planed carefully because of the time consuming and exhaustive measurement repetitions to gain statistical relevance.
