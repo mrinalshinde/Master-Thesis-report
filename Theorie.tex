@@ -6,9 +6,9 @@ this chapter presents the theory and equations of antenna properties and \acf{MU
 \section{ Wireless Coexistence Testing  } 
 Wireless devices mainly operate either in 2.4 GHz or 5 GHz \acf{ISM} band. Since the number of these interconnected devices is increasing, it becomes necessary to control the use of these bands. All wide-band transmission systems using these bands need to ensure their compliance with certain standards.  It ensures that one device is not impacting other wireless devices operating in the same band. \\
 
-The method of measuring the ability of multiple devices to interact in a single environment with limited bandwidth is known as wireless coexistence testing. Coexistence, which is a natural outgrowth of \acf{EMC}, refers to ensuring one user's wireless device will not impact another wireless device and cope with the presence of signals from other devices (i.e. blocking signal). To comply with local and regional requirements, \acs{RF} regulatory testing is done to demonstrate that the products will use the radio spectrum effectively. Coexistence among wireless devices depends upon separation distance, frequency, space and time. The probability of coexistence increases as the frequency separation of channels increases between wireless networks, signal to interference ration (SIR) increases, overall channel occupancy of the two wireless networks decreases. \\
+The method of measuring the ability of multiple devices to interact in a single environment with limited bandwidth is known as wireless coexistence testing. Coexistence, which is a natural outgrowth of \acf{EMC}, refers to ensuring one user's wireless device will not impact another wireless device and cope with the presence of signals from other devices (i.e. blocking signal). To comply with local and regional requirements, \acs{RF} regulatory testing is done to demonstrate that the products will use the radio spectrum effectively. Coexistence among wireless devices depends upon separation distance, frequency, space and time. The probability of coexistence increases as the frequency separation of channels increases between wireless networks, \acf{SIR} increases, overall channel occupancy of the two wireless networks decreases. \\
 
-All countries in the world today have the authority to create and enforce technology regulations specific unto itself but most of the countries adopt such regulations that are uniform with other larger or technologically advanced countries. Countries sharing common borders share a common set of regulations and referred to in the 802.11 specification as regulatory domains. All of these domains have different parameters for antenna gain, transmit power, channel selection, etc. that must be followed. Additionally, many countries may follow a single standard in its entirety, or may use one of the standards set as a guideline and apply their own unique changes. Fortunately , only a few countries fall in the latter category today. Out of the vast technology regulations governing over the world, the only 4 major regulatory bodies that exercise authority over the world's technology regulations are mentioned in the following sub-sections.
+All countries in the world today have the authority to create and enforce technology regulations specific unto itself but most of the countries adopt such regulations that are uniform with other larger or technologically advanced countries. Countries sharing common borders share a common set of regulations and referred to in the 802.11 specification as regulatory domains. All of these domains have different parameters for antenna gain, transmit power, channel selection, etc. that must be followed. Additionally, many countries may follow a single standard in its entirety, or may use one of the standards set as a guideline and apply their own unique changes. Fortunately , only a few countries fall in the latter category today. Out of the vast technology regulations governing over the world, the only 4 major regulatory bodies that exercise authority over the world's technology regulations are mentioned in the following sub-sections (referred from \cite{ppr_2020}).
 
 \subsection{\acf{FCC}}
 The first regulatory bodies to police spread spectrum and \acsp{WLAN} were the \acf{FCC} and  \acf{IC}, which have jurisdiction over the United States and Canadian \acs{RF} regulations, respectively. Although referred to as the \acs{FCC} domain in the 802.11 specifications, the \acs{FCC} and \acs{IC} are commonly called the North American regulatory domain. \\
@@ -18,15 +18,15 @@ Geographical areas where the \acs{FCC} regulatory domain is used are: North Amer
 \subsection{\acf{ETSI}}
 \acs{ETSI} is more of an advisory body than a regulatory body (unlike the \acs{FCC} and\acs{TELEC}), and makes recommendations for regulations instead of enacting them itself. As the name implies, the \acs{ETSI} was developed with the European countries in mind; however, many other countries worldwide follow the \acs{ETSI} recommendations. Geographical areas where the \acs{FCC} regulatory domain is used are: Europe, Middle East, Africa, China, Indonesia, Singapore, Thailand, Vietnam and Parts of the Russian Federation. \\
 
-\acs{ETSI} EN 300 328 is a European harmonized standard that specifies the regulatory requirement for data transmission equipment operating in the 2.4 GHz \acs{ISM} band and using wide band modulation techniques in Europe. The standard specifies key performance indicators (KPIs) that can be used to assess the ability of the \acs{DUT} to coexist with other device in the intended operational environment. This standard covers technology such as Wi-Fi\texttrademark{}, Bluetooth\textregistered{} and ZigBee but also other proprietary transmission systems that use the 2.4 GHz \acs{ISM} band.  \\
+\acs{ETSI} EN 300 328 is a European harmonized standard that specifies the regulatory requirement for data transmission equipment operating in the 2.4 GHz \acs{ISM} band and using wide-band modulation techniques in Europe. The standard specifies \acfp{KPI} that can be used to assess the ability of the \acs{DUT} to coexist with other device in the intended operational environment (\cite{7927764}). This standard covers technology such as Wi-Fi\texttrademark{}, Bluetooth\textregistered{} and ZigBee but also other proprietary transmission systems that use the 2.4 GHz \acs{ISM} band.  \\
 
 In this thesis, I would use V2.1.1 of the mentioned standard. There are about 7 to 8 tests per standards. However, the test cases that I planned to use for the normalized measurements are:
 \begin{itemize}
-\item \acf{OBW}: It is defined as the bandwidth that contains 99 \% of the power of the signal. The limits depend on the specification of the \acs{DUT}. The limits are taken from the respected standards.
-\item Receiver Blocking:  Measure of the capability of the equipment to receive a wanted signal on its operating channel without exceeding a given degradation due to the presence of an unwanted input signal (blocking signal) on frequencies other than those of the operating bands provided in the standard. The minimum performance criterion is defined to be a \acf{PER} of less than or equal to 10 \%.
-\item \acf{PSD}: It is the mean equivalent isotropically radiated power (\acs{EIRP}) spectral density in a 1 MHz bandwidth during a transmission burst. The limits depend on the specification of the \acs{DUT}. The limits are taken from the respected standards.
+\item \acf{OBW} \cite{etsi300328}: It is defined as the bandwidth that contains 99 \% of the power of the signal. The limits depend on the specification of the \acs{DUT}. The limits are taken from the respected standards.
+\item Receiver Blocking \cite{etsi300328}:  Measure of the capability of the equipment to receive a wanted signal on its operating channel without exceeding a given degradation due to the presence of an unwanted input signal (blocking signal) on frequencies other than those of the operating bands provided in the standard. The minimum performance criterion is defined to be a \acf{PER} of less than or equal to 10 \%.
+\item \acf{PSD} \cite{etsi300328}: It is the mean equivalent isotropically radiated power (\acs{EIRP}) spectral density in a 1 MHz bandwidth during a transmission burst. The limits depend on the specification of the \acs{DUT}. The limits are taken from the respected standards.
 \end{itemize}
-The other measurements are not considered because for example, power measurement is illogical as only one antenna probe will be used and that also would be normalized. Spurious measurements is not supported because normalization is done for the in band frequencies and thus gain of antenna is not known. In-order to perform these measurements, out of band calibration needs to be done for the test system. 
+The other measurements are not considered because for example, power measurement is illogical as only one antenna probe will be used and that also would be normalized. Spurious measurements are not supported because normalization is done for the in-band frequencies and thus gain of antenna is not known. In-order to perform these measurements, out-of-band calibration needs to be done for the test system. 
 
 
 \subsection{\acf{TELEC}}
@@ -38,7 +38,7 @@ In Japan, the \acf{TELEC}, part of the Japanese Ministry of Posts and Telecommun
  
 
 \section{Fundamental Coexistence Test Methods}
-Coexistence testing approaches are mainly categorized into three approaches: conducted testing, radiated controlled environment (e.g. \acsp{AC}), or radiated open environment. The test method selected can be a combination of all the 3 categories above, but the location of the \acs{DUT} will determine one of these three approaches as the distinguishing feature. Some of the advantages and disadvantages of the Coexistence testing approaches are described as below.
+Coexistence testing approaches are mainly categorized into three approaches: conducted testing, radiated controlled environment (e.g. \acsp{AC}), or radiated open environment. The test method selected can be a combination of all the 3 categories above, but the location of the \acs{DUT} will determine one of these three approaches as the distinguishing feature. Some of the advantages and disadvantages of the coexistence testing approaches are described as below (referred from \cite{gonzalez}).
 
 \subsection{Conducted Testing}
 Conducted test methods comprises of a configuration of \acs{RF} cables, combiners, couplers, etc. to establish communication channels between the various wireless transceivers. Conducted measurements are cost effective, easy to setup and have a lower \acf{MU}.
@@ -47,7 +47,7 @@ Conducted test methods comprises of a configuration of \acs{RF} cables, combiner
 A radiated controlled environment consists of non-reflective chambers (e.g. \acsp{AC}) which provides a calibrated field at the location of the \acs{DUT}. The main advantage of this approach is that antennas used during actual operation are included in the test, radiated path loss is well controlled and shielding effectively eliminates chances of potential interference. Most \acsp{DUT} these days come with an integrated antenna and hence options of cable connectors may not be available anymore. Even if such a connection port do exists, then the use of a radiated controlled environment might be beneficial as the setup will include the antenna impacts, such as pattern, mismatch, and efficiency in the test which is not included in conducted method.
 
 \subsection{Radiated Open Environment}
-The radiated open environment approach performs a coexistence test by using a deployed system in an actual room. In this approach, ambient \acs{RF} conditions are monitored during testing to ensure the test is not corrupted by extraneous signals. This configuration enables testing without the need for a chamber. It also represents a non-line-of-site (NOLS) configuration that is not directly achievable in either of the two previously discussed methods. Thus, it is possible to realize a time delay spread in communication channel. While the average path loss impacts of the NLOS can be accounted for by the attenuation in the two previous methods, this third method can be viewed as a more realistic setup for \acs{RF} propagation considerations. Similar to the radiated controlled environment, the \acs{DUT} antennas are included in the test. 
+The radiated open environment approach performs a coexistence test by using a deployed system in an actual room. In this approach, ambient \acs{RF} conditions are monitored during testing to ensure the test is not corrupted by extraneous signals. This configuration enables testing without the need for a chamber. It also represents a \acf{NLOS} configuration that is not directly achievable in either of the two previously discussed methods. Thus, it is possible to realize a time delay spread in communication channel. While the average path loss impacts of the \acs{NLOS} can be accounted for by the attenuation in the two previous methods, this third method can be viewed as a more realistic setup for \acs{RF} propagation considerations. Similar to the radiated controlled environment, the \acs{DUT} antennas are included in the test. 
 
  
 
@@ -67,7 +67,7 @@ For this work, a close understanding of the theory of the used antennas and thei
 \subsection{Radiation Patterns}
 One trace of the electric or magnetic field of a considered type of antenna at a constant radius is called the amplitude field pattern. In addition, the spatial variation of the power density along a constant radius can be studied on a graph called the amplitude power pattern. The field and power patterns are usually normalized with respect to their maximum value, yielding normalized field, and power patterns. To accentuate more the details of the pattern with very low values, usually referred to as minor lobe (Figure \ref{spherical}) the power pattern plot is computed on a logarithmic scale or more commonly in decibels (dB). \\
 
-A radiation pattern represents the three-dimensional variation of the power radiated by an antenna as a function of the direction away from the antenna. In most cases, the radiation pattern is determined in the far-field region and is represented as a function of the directional coordinates (Figure \ref{spherical}). Radiation properties include power flux density, radiation intensity, field strength, directivity, phase, or polarization. Different antennas can be classified depending on the characteristics of their patterns. A pattern is called isotropic if the radiation is the same in all directions, which is not realizable in practice but useful for comparison to real antennas. Some antennas may also be described as omnidirectional, which means that the radiation pattern is isotropic in one single plane, for example, the dipole antenna and the slot antenna. The third category of antennas is the directional antennas, also called beam antennas The peak represents the direction where the bulk of the radiated power travels. Directional antennas are very common, examples of antennas with highly directional radiation patterns include the dish antenna and the slotted waveguide antenna. The measurements achieved in this work use six \acs{RS}\textregistered{} vivaldi antennas as probe antennas, and a dipole single-antenna \acs{DUT} and an Omni-directional multi-antenna \acs{DUT}. \\
+A radiation pattern represents the three-dimensional variation of the power radiated by an antenna as a function of the direction away from the antenna. In most cases, the radiation pattern is determined in the \acs{FF} region and is represented as a function of the directional coordinates (Figure \ref{spherical}). Radiation properties include power flux density, radiation intensity, field strength, directivity, phase, or polarization. Different antennas can be classified depending on the characteristics of their patterns. A pattern is called isotropic if the radiation is the same in all directions, which is not realizable in practice but useful for comparison to real antennas. Some antennas may also be described as omnidirectional, which means that the radiation pattern is isotropic in one single plane, for example, the dipole antenna and the slot antenna. The third category of antennas is the directional antennas, also called beam antennas The peak represents the direction where the bulk of the radiated power travels. Directional antennas are very common, examples of antennas with highly directional radiation patterns include the dish antenna and the slotted waveguide antenna. The measurements achieved in this work use six \acs{RS}\textregistered{} vivaldi antennas as probe antennas, and omni-directional antennas for the \acs{DUT}. \\
 
 While the radiation pattern is actually three-dimensional, it is common however to describe this behaviour with two planar patterns, also called the principal plane patterns. The horizontal pattern, which describes the field strength as a function of the azimuth angle $\phi$  with a fixed elevation angle $ \vartheta$. And the vertical pattern, which describes the field strength as a function of the elevation angle $\vartheta$  for a fixed azimuth angle $\phi$. These patterns are commonly referred to as azimuth pattern and elevation pattern. The term azimuth describes the reference to the horizontal while the term elevation describes the reference to the vertical. The spherical coordinates as shown in figure \ref{spherical} are commonly used to describe a location in the three-dimensional space.
 
@@ -75,8 +75,8 @@ While the radiation pattern is actually three-dimensional, it is common however 
 \begin{figure}[H]
 	\begin{center}
 	\vspace{-1cm}
-		\includegraphics[width=0.9\textwidth]{spherical.pdf}
-			\vspace{-1cm} 	\caption{\label{spherical}Spherical coordinates for antenna analysis \cite{balanis}}
+		\includegraphics[width=0.95\textwidth]{spherical.pdf}
+			\vspace{-1cm} 	\caption{\label{spherical}Spherical co-ordinates for antenna analysis \cite{balanis}}
 	\end{center}
 \end{figure}
 
@@ -132,7 +132,7 @@ The space around an antenna is usually sub-divided into three regions, reactive 
 
 The closest region to an antenna, with dimensions defined as following: $d \ll $ $ \lambda $  , is termed the near field and is dominated by magnetic fields. A transition zone exists for one to two wavelengths, and then there is the far-field region of an antenna, for which the dimensions are: $d>2\lambda $  , where the electric field becomes dominant.
 
-In far field \acs{RF} link the ratio between the received and transmitted power can be defined as:
+In far field \acs{RF} link the ratio between the received and transmitted power can be defined as \cite{schantz}:
 \begin{equation}
 \frac{P_{RX}}{P_{TX}}=\frac{G_{TX}G_{RX}}{4 \left( kr \right) ^{2}}=\frac{G_{TX}A_{RX}}{4 \pi r^{2}}=\frac{A_{TX}A_{RX}}{ \lambda ^{2}r^{2}} \quad %\cite{schantz}.
 \end{equation}
@@ -141,7 +141,7 @@ The effective area A, also called aperture of an antenna, is related to gain as 
 A=\frac{ \lambda ^{2}G}{4 \pi }
 \end{equation}
 
-In the near-field, the formula diverges into two different formulas, one for links that are the same (like), either both magnetic or both electric, and one different formula that describes different links (unlike) \cite{schantz}. In the experiments in this work we only consider electric antennas (like). The ratio is than expressed as following:
+In the near-field, the formula diverges into two different formulas, one for links that are the same (like), either both magnetic or both electric, and one different formula that describes different links (unlike). In the experiments in this work we only consider electric antennas (like). The ratio is than expressed as following \cite{schantz}:
 
 \begin{equation} \label{eq:near}
 \frac{P_{Rx}}{P_{Tx}}=\frac{G_{Tx}G_{Rx}}{4} \begin{array}{c}
@@ -154,8 +154,8 @@ In the near-field, the formula diverges into two different formulas, one for lin
 %
 \begin{figure}[H]
 \centering
-\includegraphics[scale = 0.7]{fields_regions.pdf}
-\vspace{-12cm}\caption{\label{regions} Field regions of an antenna}
+\includegraphics[scale = 0.5]{image4.png}
+\caption{\label{regions} Field regions of an antenna \cite{balanis}}
 \end{figure}
 
 
@@ -163,13 +163,13 @@ In the near-field, the formula diverges into two different formulas, one for lin
 
 
 \subsection{\acf{FSPL}}
-When there is an unobstructed direct line-of-sight path between the antennas for transmitting and receiving, it is possible to estimate the received signal and the link budget. The characterization of the average path loss experienced in a wireless channel helps to estimate the received signal. The average path loss is defined as the amount of loss experienced in a propagation environment as a function of the transmitter-receiver distance \cite{schantz}. The received power for free-space propagation can be expressed by the Friis free space equation expressed by the following formula:
+When there is an unobstructed direct line-of-sight path between the antennas for transmitting and receiving, it is possible to estimate the received signal and the link budget. The characterization of the average path loss experienced in a wireless channel helps to estimate the received signal. The average path loss is defined as the amount of loss experienced in a propagation environment as a function of the transmitter-receiver distance. The received power for free-space propagation can be expressed by the Friis free space equation expressed by the following formula \cite{schantz}:
 \begin{equation}
 P_{r} \left( d \right) = P_{t}\frac{G_{t}G_{r} \lambda ^{2}}{ \left( 4 \pi  \right) ^{2}d^{2}} 
 \end{equation}
 where, $d$ is the separation distance between the antennas,  $P_{t}$ is the transmitter power, $P_{r}$ is the received power as a function of the distance, $G_{t}$ the transmitter antenna gain, $G_{r}$ the receiver antenna gain and $\lambda$ the wavelength of the signal in meters. \\
 
-The path loss which represents the signal attenuation is the ratio between the transmitted power and the received power and are usually measured in dB. The path loss in free-space in dB is given as the following sum, this formula means that higher separation and higher frequency result in higher attenuation:
+The path loss ($PL$) which represents the signal attenuation is the ratio between the transmitted power and the received power and are usually measured in dB. The path loss in free-space in dB is given as the following sum, this formula means that higher separation and higher frequency result in higher attenuation:
 
 \begin{equation} 
 PL \left( d \right) =10\log(\frac{P_{t}}{P_{r}})  =20\log \left( \frac{4 \pi d}{ \lambda } \right) -G_{t}-G_{r}.

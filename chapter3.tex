@@ -1,11 +1,12 @@
 \chapter{Regulatory Test System}  \label{chap:3}
 
-The standard Regulatory Test System (TS8997) by \acs{RS}\textregistered{} verifies technologies typically used in wideband wireless devices, i.e. devices with a radio interface, in the 2.4 GHz and 5 GHz band: \acs{WLAN} \acs{IEEE} 802.11a/b/g/n/ac, Bluetooth\textregistered, wireless video transmission and radio remote control. The test system consists of a Signal Generator, Spectrum Analyzer,  \acf{CMW}, and a Switching Unit (\acs{OSP}-B157W8). My thesis investigates the approach of normalized measurements using the \acs{RF} Shielded Box and a Switching Unit (OSP-B157WN), which is an extension to the current standard regulatory test system. This extension is required for the normalized measurements.
+The standard Regulatory Test System (TS8997) by \acs{RS}\textregistered{} verifies technologies typically used in wideband wireless devices, i.e. devices with a radio interface, in the 2.4 GHz and 5 GHz band: \acs{WLAN} \acs{IEEE} 802.11a/b/g/n/ac, Bluetooth\textregistered, wireless video transmission and radio remote control. %\cite{ts8997}. 
+The test system consists of a Signal Generator, Spectrum Analyzer,  \acf{CMW}, and a Switching Unit (\acs{OSP}-B157W8). My thesis investigates the approach of normalized measurements using the \acs{RF} Shielded Box and a Switching Unit (OSP-B157WN), which is an extension to the current standard regulatory test system. This extension is required for the normalized measurements.
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.5\textwidth]{TestSystem.jpg}
-\caption{\acs{RS}\textregistered{} Test System - TS8997}
+\includegraphics[width=0.51\textwidth]{TestSystem.jpg}
+\caption{\acs{RS}\textregistered{} Test System - TS8997 \cite{ts8997}}
 \label{fig:testsystem}
 \end{figure}
 
@@ -17,7 +18,7 @@ WMS32 software suite comes with the standard regulatory test system (TS8997). Th
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.8\textwidth]{wms32.pdf}
+\includegraphics[width=0.97\textwidth]{wms32.pdf}
 \caption{\acs{RS} software suite - WMS32}
 \label{fig:softwaresuite}
 \end{figure}
@@ -45,7 +46,7 @@ Spectrum analyzers normally sample many more data points than they can display o
   
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.7\textwidth]{detectorSetting.pdf}
+\includegraphics[width=0.76\textwidth]{detectorSetting.pdf}
 \caption{Selection of sample to be displayed as a function of detector used}
 \label{fig:detectorSettings}
 \end{figure}
@@ -58,13 +59,13 @@ The choice of detector setting depends on the expected signal. If the signal has
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.55\textwidth]{Generator.pdf}
+\includegraphics[width=0.5\textwidth]{Generator.pdf}
 \caption{Signal Generator \acs{GUI}}
 \label{fig:gen}
 \end{figure}
 
 \section{Companion Device}
-In this thesis, a wireless connectivity tester is mainly used as a companion device to communicate with the \acs{DUT} for most of the functions (i.e. power measurement, receiver blocking measurement, occupied channel bandwidth measurement). The wireless connectivity tester can force the \acs{DUT} to be either in transmitter mode or receiver mode. For the \acs{DUT} to be in transmitter mode, the tester sends \acf{ICMP} (ping) packets to the \acs{DUT} and waits for the echo replies from the \acs{DUT}. Because of the low duty cycle (\acs{ICMP} consists of only header data) of the signal from the \acs{DUT}, the results for the power spectral density measurement have a high \ac{MU} explained in later chapter with images). Therefore, a golden device (fritz box) is used as a companion device for this measurement. All the measurements can also be done using this second device but in this thesis, only \ac{PSD} measurement uses the fritz box.
+In this thesis, a wireless connectivity tester is mainly used as a companion device to communicate with the \acs{DUT} for most of the functions (i.e. power measurement, receiver blocking measurement, occupied channel bandwidth measurement). The wireless connectivity tester can force the \acs{DUT} to be either in transmitter mode or receiver mode. For the \acs{DUT} to be in transmitter mode, the tester sends \acf{ICMP} (ping) packets to the \acs{DUT} and waits for the echo replies from the \acs{DUT}. Because of the low duty cycle (\acs{ICMP} consists of only header data) of the signal from the \acs{DUT}, the results for the \acs{PSD} measurement have a high \ac{MU} explained in Figure \ref{fig:psdpsd}. Therefore, a golden device (fritz box) is used as a companion device for this measurement. All the measurements can also be done using this second device but in this thesis, only \ac{PSD} measurement uses the fritz box.
 
 \subsection{Wireless Connectivity Tester} \label{sec:cmw}
 \acs{RS}\textregistered{} CMW 270 acts as a base station for mobile communication, Wi-Fi\texttrademark{} \acs{AP}, Wi-Fi\texttrademark{} client, Bluetooth\textregistered{} devices, etc. In this thesis, this device is used as a Wi-Fi\texttrademark{} \acs{AP} because it allows us to perform the required measurements (i.e. \acf{PER}). \acs{WLAN} Signaling mode allows us to associate the \acs{DUT} to the companion device for subsequent tests
