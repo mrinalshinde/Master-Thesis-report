@@ -17,7 +17,7 @@ The procedure for the \acf{OBW} measurement and \acf{PSD} are explained in detai
 \label{fig:nt} 
 \end{figure}
 
-Attenuation in the signal analyzer settings is kept to 10 dB and the pre-amplification is switched-off for conducted measurements because of the need of the signal to have a  high dynamic-range, i.e. to make sure that the power envelope is sufficiently above the noise floor of the analyser and to avoid the noise signals left and right from the power envelope being taken into account by this measurement. But, during radiated measurements, the pre-amplification is switched-on and the attenuation is brought down to 0 dB. This is because if the same conducted measurement settings are applied to radiated measurements, the dynamic-range and the noise floor of the signal is low which therefore increases the bandwidth of the signal (Figure \ref{fig:o}). 
+Attenuation in the signal analyzer settings is kept to 10~dB and the pre-amplification is switched-off for conducted measurements because of the need of the signal to have a  high dynamic-range, i.e. to make sure that the power envelope is sufficiently above the noise floor of the analyser and to avoid the noise signals left and right from the power envelope being taken into account by this measurement. But, during radiated measurements, the pre-amplification is switched-on and the attenuation is brought down to 0~dB. This is because if the same conducted measurement settings are applied to radiated measurements, the dynamic-range and the noise floor of the signal is low which therefore increases the bandwidth of the signal (Figure \ref{fig:o}). 
 
 \begin{figure}[H]
   \centering
@@ -85,8 +85,8 @@ From the plots it is clear that the \acf{MU} is almost equal in both conducted a
 \toprule
  & \textbf{Conducted Measurement} & \textbf{Normalized Measurement} \\ 
 \midrule 
-\textbf{Mean} & 16.43 MHz & 16.42 MHz\\
-\textbf{Standard Deviation} & 0.01 MHz & 0.01 MHz\\
+\textbf{Mean} & 16.43~MHz & 16.42~MHz\\
+\textbf{Standard Deviation} & 0.01~MHz & 0.01~MHz\\
 \bottomrule
  \end{tabular}
   \caption{\acf{MU} results for \acs{OBW} measurement} \label{tab:tab1}
@@ -109,8 +109,8 @@ It is comprehensible from the figure \ref{fig:otavscond2} as well as the table \
 \toprule
  & \textbf{Conducted Measurement} & \textbf{Normalized Measurement} \\ 
 \midrule 
-\textbf{Mean} & 3.15 dBm/MHz & 3.03 dBm/MHz\\
-\textbf{Standard Deviation} & 0.08 dBm/MHz & 0.18 dBm/MHz\\
+\textbf{Mean} & 3.15~dBm/MHz & 3.03~dBm/MHz\\
+\textbf{Standard Deviation} & 0.08~dBm/MHz & 0.18~dBm/MHz\\
 \bottomrule
  \end{tabular}
   \caption{\acf{MU} results for \acs{PSD} measurement} \label{tab:tab2}
@@ -118,7 +118,7 @@ It is comprehensible from the figure \ref{fig:otavscond2} as well as the table \
 
 
 \subsubsection{Receiver Blocking Measurement}
-The Receiver Blocking measurement is run 60 times for each conducted and normalzed type of measurement. Figure \ref{fig:otavscond3} presents the occurrence of the blocker level which results in 10\% PER at each frequency in a long-term measurement.
+The Receiver Blocking measurement is run 60 times for each conducted and normalized type of measurement. Figure \ref{fig:otavscond3} presents the occurrence of the blocker level which results in 10\% PER at each frequency in a long-term measurement.
 \begin{figure}[H]
 \centering
 \subfigure[Conducted measurement]{\includegraphics[scale=0.55]{RxBlocking_conducted_singleAntenna_2300_60.PNG}}
@@ -140,17 +140,17 @@ Also in this test-case, the conducted measurement results appear to have lower \
         \begin{tabular}{|c|c|c|c|}\toprule
          \textbf{Blocker Frequency} & \textbf{MU Parameters} &\textbf{Conducted Measurement} & \textbf{Normalized Measurement} \\
             \midrule
-            \textbf{2300 MHz} & Mean                      & -36.63 dBm & -36.71 dBm \\
-                             & Standard Deviation & 0.08 dBm    & 0.13 dBm  \\
+            \textbf{2300 MHz} & Mean                      & -36.63~dBm & -36.71~dBm \\
+                             & Standard Deviation & 0.08~dBm    & 0.13~dBm  \\
                              \midrule
-            \textbf{2330 MHz} & Mean                      & -37.54 dBm & -37.52 dBm       \\
-                             & Standard Deviation & 0.09 dBm    & 0.16 dBm       \\
+            \textbf{2330 MHz} & Mean                      & -37.54~dBm & -37.52~dBm       \\
+                             & Standard Deviation & 0.09~dBm    & 0.16~dBm       \\
                              \midrule
-            \textbf{2360 MHz} & Mean                      & -39.15 dBm & -39.10 dBm     \\
-                             & Standard Deviation & 0.06 dBm    & 0.13 dBm      \\
+            \textbf{2360 MHz} & Mean                      & -39.15~dBm & -39.10~dBm     \\
+                             & Standard Deviation & 0.06~dBm    & 0.13~dBm      \\
                              \midrule
-            \textbf{2380 MHz} & Mean                      & -49.82 dBm & -49.73 dBm       \\
-                             & Standard Deviation & 0.09 dBm    & 0.18 dBm \\
+            \textbf{2380 MHz} & Mean                      & -49.82~dBm & -49.73~dBm       \\
+                             & Standard Deviation & 0.09~dBm    & 0.18~dBm \\
            \bottomrule
         \end{tabular}}
         \caption{\acf{MU} results for Receiver Blocking measurement}\label{tab:Tab3}
@@ -191,7 +191,7 @@ The same three measurements are performed using multi-antenna \acs{DUT}. The mea
         \caption{\acf{MU} results for measurements using Multi-Antenna \acs{DUT}}\label{tab:Tab4}
  \end{table} 
 
-The specification sheet of this \acs{DUT} mentions that the device uses beam-forming. In-order to examine whether the \acs{DUT} performs beam-forming, a long-term power measurement to calculate the coupling loss (refer section \ref{sec:11}) is done. Measurements were performed after with random time gaps between the two measurements to investigate if the results differ due to beam-forming. The Figure \ref{fig:11} shows the result of coupling loss for 70 measurements with random time gap. 
+The specification sheet of this \acs{DUT} mentions that the device uses beam-forming. In-order to examine whether the \acs{DUT} performs beam-forming, a long-term power measurement to calculate the coupling loss (refer section \ref{sec:11}) is done. Measurements were performed after with random time gaps between the two measurements to investigate if the results differ due to beam-forming. The Figure \ref{fig:11} shows the result of coupling loss for 70 measurements with random time-gap. 
 
 \begin{figure}[H]
 \centering
@@ -200,7 +200,7 @@ The specification sheet of this \acs{DUT} mentions that the device uses beam-for
 \label{fig:11} 
 \end{figure}
 
-Since the measurement values are almost the same, this proves that the \acs{DUT} does not perform beam-forming at 2.4 GHz.
+Since the measurement values are almost the same, this proves that the \acs{DUT} does not perform transmitter beam-forming at 2.4 GHz.
 
 
 
