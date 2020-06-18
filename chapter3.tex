@@ -24,7 +24,7 @@ WMS32 software suite comes with the standard regulatory test system (TS8997). Th
 \end{figure}
 
 \section{Spectrum Analyzer}
-The analyzer measures the signal either in the frequency domain or in the time domain (zero span). A MATLAB\textregistered{} script is written to remotely access the instrument. The MATLAB\textregistered{} code then calculates the power and bandwidth. The \acf{SCPI} commands for each task (i.e. changing the frequency, span, etc.) are provided in the manual. Few important functions used in this thesis are explained below.
+The analyzer measures the signal either in the frequency domain or in the time domain (zero span). A MATLAB\textregistered{} script is written to remotely access the instrument. The MATLAB\textregistered{} code then calculates the power and bandwidth. The \acf{SCPI} commands for each task (i.e. changing the frequency, span, etc.) are provided in the manual. Few important functions used in this thesis are explained below (referred from \cite{funsspec}).
 
 \subsection{Trace Mode}
 Signals that are varying are dealt with by setting the trace mode in the spectrum analyzer. The available modes are Clear/Write, Maximum-Hold (Max-Hold), or Average.
@@ -47,7 +47,7 @@ Spectrum analyzers normally sample many more data points than they can display o
 \begin{figure}[H]
 \centering
 \includegraphics[width=0.76\textwidth]{detectorSetting.pdf}
-\caption{Selection of sample to be displayed as a function of detector used}
+\caption{Selection of sample to be displayed as a function of detector used \cite{funsspec}}
 \label{fig:detectorSettings}
 \end{figure}
 
@@ -60,7 +60,7 @@ The choice of detector setting depends on the expected signal. If the signal has
 \begin{figure}[H]
 \centering
 \includegraphics[width=0.5\textwidth]{Generator.pdf}
-\caption{Signal Generator \acs{GUI}}
+\caption{Signal Generator \acs{GUI} \cite{rssmb}}
 \label{fig:gen}
 \end{figure}
 
@@ -68,7 +68,7 @@ The choice of detector setting depends on the expected signal. If the signal has
 In this thesis, a wireless connectivity tester is mainly used as a companion device to communicate with the \acs{DUT} for most of the functions (i.e. power measurement, receiver blocking measurement, occupied channel bandwidth measurement). The wireless connectivity tester can force the \acs{DUT} to be either in transmitter mode or receiver mode. For the \acs{DUT} to be in transmitter mode, the tester sends \acf{ICMP} (ping) packets to the \acs{DUT} and waits for the echo replies from the \acs{DUT}. Because of the low duty cycle (\acs{ICMP} consists of only header data) of the signal from the \acs{DUT}, the results for the \acs{PSD} measurement have a high \ac{MU} explained in Figure \ref{fig:psdpsd}. Therefore, a golden device (fritz box) is used as a companion device for this measurement. All the measurements can also be done using this second device but in this thesis, only \ac{PSD} measurement uses the fritz box.
 
 \subsection{Wireless Connectivity Tester} \label{sec:cmw}
-\acs{RS}\textregistered{} CMW 270 acts as a base station for mobile communication, Wi-Fi\texttrademark{} \acs{AP}, Wi-Fi\texttrademark{} client, Bluetooth\textregistered{} devices, etc. In this thesis, this device is used as a Wi-Fi\texttrademark{} \acs{AP} because it allows us to perform the required measurements (i.e. \acf{PER}). \acs{WLAN} Signaling mode allows us to associate the \acs{DUT} to the companion device for subsequent tests
+\acs{RS}\textregistered{} CMW 270 acts as a base station for mobile communication, Wi-Fi\texttrademark{} \acs{AP}, Wi-Fi\texttrademark{} client, Bluetooth\textregistered{} devices, etc. In this thesis, this device is used as a Wi-Fi\texttrademark{} \acs{AP} because it allows us to perform the required measurements (i.e. \acf{PER}). \acs{WLAN} Signaling mode allows us to associate the \acs{DUT} to the companion device for subsequent tests \cite{cmw}.
 
 \begin{figure}[H]
 \centering
@@ -81,7 +81,7 @@ Configuration of \acs{WLAN} signaling is done by sending commands remotely via a
 
 \subsection{Golden Device} \label{sec:golden}
 
-Fritz Box 7590 can be used as a companion device to receive data from the \acs{DUT}. The \acf{NAS} functionality is used to upload data from \acs{DUT} permanently to a pen drive which is attached to the Fritz Box. First, storage is set up on the computer as a network drive. The procedure to mount the network drive is explained on the website of Fritz Box. A windows batch file is written to continuously upload a big file from the \acs{DUT} to the network drive. The code in the batch (.BAT) file is shown below.
+Fritz Box 7590 can be used as a companion device to receive data from the \acs{DUT}. The \acf{NAS} functionality is used to upload data from \acs{DUT} permanently to a pen drive which is attached to the Fritz Box. First, storage is set up on the computer as a network drive. The procedure to mount the network drive is explained on \cite{fritz} of Fritz Box. A windows batch file is written to continuously upload a big file from the \acs{DUT} to the network drive. The code in the batch (.BAT) file is shown below.
 
 \begin{lstlisting}[language=bash]
 :start
@@ -102,11 +102,11 @@ The script copies a big file in a loop and it makes sure to overwrite the existi
 These Open Switch and Control Platform can be used to perform \acs{RF} switch and control tasks. This thesis uses two of these switching units. It is convenient to have a dedicated device instead of changing the setup for every test case like in the case of splitters and attenuators. The description and usage are explained below.
 
 \subsection{\acs{RS}\textregistered{} \ac{OSP}-B157WN} \label{sec:wn}
-This device switches between conducted measurements and normalized measurements. It allows us to select the appropriate/best antennas when performing normalized measurements and allows us to apply attenuation to the companion device (e.g. in case a real device instead of a \acs{CMW} test equipment is used). In the case of normalized measurements, it is programmed to automatically select the best probe antenna. The block diagram of the switching unit allows us to remotely control the device. The ANT ports are used for normalized measurements are connected to the antennas. The \acs{DUT} ports are used in case of conducted measurements. GEN W(8) is connected to the SMB 100A port of the \acs{OSP}-B157W8 which further connects the signal generator. The companion device can be connected to COMP 1 or COMP 2 but because reconnection is not possible during automation, the companion device is connected to the COMP 1 port of this switching module. The OUT ports are connected to \acs{OSP}-157W8 PORT ports.
+This device switches between conducted measurements and normalized measurements. It allows us to select the appropriate/best antennas when performing normalized measurements and allows us to apply attenuation to the companion device (e.g. in case a real device instead of a \acs{CMW} test equipment is used). In the case of normalized measurements, it is programmed to automatically select the best probe antenna. The block diagram of the switching unit allows us to remotely control the device. The ANT ports are used for normalized measurements are connected to the antennas. The \acs{DUT} ports are used in case of conducted measurements. GEN W(8) is connected to the SMB 100A port of the \acs{OSP}-B157W8 module which further connects the signal generator. The companion device can be connected to COMP 1 or COMP 2 but because reconnection is not possible during automation, the companion device is connected to the COMP 1 port of this switching module. The OUT ports are connected to \acs{OSP}-157W8 PORT ports.
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.74\textwidth]{ospwn.pdf}
+\includegraphics[width=1.0\textwidth]{ospwn.pdf}
 \caption{Circuit diagram of the \acs{OSP}-B157WN board}
 \label{fig:ospwn}
 \end{figure}
@@ -121,7 +121,7 @@ where, 602 stands for the name of the switch (i.e. K602) and 0 stands for the sw
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.65\textwidth]{ktool.pdf}
+\includegraphics[width=0.75\textwidth]{ktool.pdf}
 \caption{K-Tool \acs{GUI}}
 \label{fig:ktool}
 \end{figure}
@@ -129,24 +129,24 @@ where, 602 stands for the name of the switch (i.e. K602) and 0 stands for the sw
 Further, I wrote a MATLAB\textregistered{} script to get the calibration values for each path switched. The calibration procedure uses the instrument to be calibrated (i.e. \acs{OSP}), signal generator, signal analyzer, and cables. Frequency response is generated for each path after measuring the power values for frequencies starting from 10 MHz up to 6 GHz with a step size of 10 MHz The cables are calibrated separately and subtracted from the final value to get the correct attenuation of the instrument. The frequency response is compared to the factory calibration values to check if the class which switches the instrument works fine. These calibration values are required at the later stage for normalization.
 
 \subsection{\acs{RS}\textregistered{} \ac{OSP}-B157W8}
-This device switches between the Signal Generator and Signal Analyzer depending on the test case (i.e. Receiver Blocking, Occupied Channel Bandwidth, Power, etc.). WMS32 software allows us to read out the calibration files from this switching module. It can also be done by using the correct \acs{SCPI} commands. The signal analyzer is connected to the Rx port of this device. The signal generator is connected to SMB 100A.
+This device not only switches between the Signal Generator and Signal Analyzer depending on the test case (i.e. Receiver Blocking, Occupied Channel Bandwidth, Power, etc.) but also contains couplers and power detectors (Figure \ref{fig:ospw8}). WMS32 software allows us to read out the calibration files from this switching module. It can also be done by using the correct \acs{SCPI} commands. The signal analyzer is connected to the Rx port of this device. The signal generator is connected to SMB 100A.
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.74\textwidth]{OSPW8.pdf}
-\caption{Circuit diagram of \acs{OSP}-B157W8 diagram}
-\label{fig:ospw8l}
+\includegraphics[width=0.95\textwidth]{OSPW8.pdf}
+\caption{Circuit diagram of \acs{OSP}-B157W8 diagram \cite{ospw8}}
+\label{fig:ospw8}
 \end{figure}
 
 
 
 \section{\acs{RF} Shielded Box}
-\acs{RS}\textregistered{} TS7124M features high shielding effectiveness over a wide frequency range (300 MHz to 6 GHz), the \acs{RF} test boxes allow measurements on different standards due to the supported frequency range. For radiation testing, the \acs{DUT} is inserted into the chamber using a drawer, which is closed by a tightly sealed door. Antennas installed on the inside of the \acs{RF} Shielded Box then interact with the \acs{DUT} by emitting or receiving electromagnetic radiation. The \acs{DUT} is placed on a tray (Figure \ref{fig:try}) within the \acs{RF} shielded box.
+\acs{RS}\textregistered{} TS7124M features high shielding effectiveness over a wide frequency range (300 MHz to 6 GHz), the \acs{RF} test boxes allow measurements on different standards due to the supported frequency range \cite{ts7124}. For radiation testing, the \acs{DUT} is inserted into the chamber using a drawer, which is closed by a tightly sealed door. Antennas installed on the inside of the \acs{RF} Shielded Box then interact with the \acs{DUT} by emitting or receiving electromagnetic radiation. The \acs{DUT} is placed on a tray (Figure \ref{fig:try}) within the \acs{RF} shielded box.
 
 \begin{figure}[H]
 \centering
 \includegraphics[width=0.55\textwidth]{tray.pdf}
-\caption{ DUT holder tray (\acs{RS}\textregistered{} TS-F24P1)}
+\caption{ DUT holder tray (\acs{RS}\textregistered{} TS-F24P1) \cite{ts7124}}
 \label{fig:try}
 \end{figure}
 
@@ -154,7 +154,7 @@ The antennas can be placed and oriented in a customer-specific geometrical arran
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.55\textwidth]{chamber.pdf}
+\includegraphics[width=0.7\textwidth]{chamber.pdf}
 \caption{Full antenna ring with 6 vivaldi antennas}
 \label{fig:box}
 \end{figure}
@@ -181,7 +181,7 @@ Polarization & Linear (norm.)\\
     \begin{minipage}[c]{.2\textwidth}
         \includegraphics[width=\linewidth]{ProbeAntenna.jpg}
     \end{minipage}
-    \caption{Specification of the Probe Antenna (\acs{RS}\textregistered{} - TS-F24-V2)}
+    \caption{Specification of the Probe Antenna (\acs{RS}\textregistered{} - TS-F24-V2) \cite{ts7124}}
 \label{fig:probes}
 \end{figure}      
 
@@ -205,7 +205,7 @@ Frequency & 2.4 and 5 GHz \\
     \begin{minipage}[c]{.2\textwidth}
         \includegraphics[width=\linewidth]{SingleAntennaDUT.pdf}
     \end{minipage}
-    \caption{Specification of the single-antenna \acs{DUT} (AC600 High Gain Wireless Dual Band USB Adapter, Archer T2UH)}
+    \caption{Specification of the single-antenna \acs{DUT} (AC600 High Gain Wireless Dual Band USB Adapter, Archer T2UH) \cite{tplinksingle}}
 \label{fig:singleAntennaDUT}
 \end{figure}     
 
@@ -226,6 +226,6 @@ Frequency & 2.4 and 5 GHz \\
     \begin{minipage}[c]{.2\textwidth}
         \includegraphics[width=\linewidth]{MultiAntennaDUT.pdf}
     \end{minipage}
-    \caption{Specification of the multi-antenna \acs{DUT} (AC1900 High Gain Wireless Dual Band USB Adapter, Archer T9UH)}
+    \caption{Specification of the multi-antenna \acs{DUT} (AC1900 High Gain Wireless Dual Band USB Adapter, Archer T9UH)\cite{tplinkmulti}}
 \label{fig:multiAntennaDUT}
 \end{figure}     

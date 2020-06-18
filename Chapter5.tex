@@ -1,6 +1,6 @@
 \chapter{Conducted Measurements} \label{chap:5}
 
-The term Conducted Measurements refers to measurements performed using \acs{RF} cables connected between the antenna of the \acs{DUT} and the instruments (off-air). Most \acs{WLAN} regulatory compliance mandate that conducted measurements shall be used for most compliance tests (transmit power, in-band spectrum density, bandwidth, and parts of the spurious scan) for a \acs{DUT} with antenna connector(s) and using a dedicated external antenna(s), or for a \acs{DUT} with integrated antenna(s) but with temporary antenna connector(s) provided. As mentioned in the chapter \ref{chap:test}, this thesis implements tests for \acf{OBW} measurement, \acf{PSD} measurement, and Receiver Blocking measurement.
+The term Conducted Measurements refers to measurements performed using \acs{RF} cables connected between the antenna port of the \acs{DUT} and the instruments (off-air). Most \acs{WLAN} regulatory compliance mandate that conducted measurements shall be used for most compliance tests (transmit power, in-band spectrum density, bandwidth, and parts of the spurious scan) for a \acs{DUT} with antenna connector(s) and using a dedicated external antenna(s), or for a \acs{DUT} with integrated antenna(s) but with temporary antenna connector(s) provided \cite{conducted}. As mentioned in the chapter \ref{chap:test}, this thesis implements tests for \acf{OBW} measurement, \acf{PSD} measurement, and Receiver Blocking measurement.
 
 \section{Using Attenuator and Splitter}
 \label{sec:att}
@@ -8,8 +8,8 @@ Figures \ref{fig:Ng1} and \ref{fig:Ng2} show the block diagram of the connection
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.65\textwidth]{conductedtx.pdf}
-\vspace{-0.2cm}  \caption{Conducted measurements using attenuators and splitters: \acs{DUT} behaves as a transmitter}
+\includegraphics[width=0.8\textwidth]{conductedtx.pdf}
+\vspace{-0.5cm}  \caption{Conducted measurements using attenuators and splitters: \acs{DUT} behaves as a transmitter}
  \label{fig:Ng1} 
 \end{figure}
 
@@ -17,8 +17,8 @@ The hardware setup shown in Figure \ref{fig:Ng1} performs the \acf{OBW} and \acf
 
 \begin{figure}[H]
 \centering
-   \includegraphics[width=0.65\textwidth]{conductedrx.pdf}
- \vspace{-0.2cm} \caption{Conducted measurements using attenuators and splitters: \acs{DUT} behaves as a receiver}
+   \includegraphics[width=0.8\textwidth]{conductedrx.pdf}
+ \vspace{-0.5cm} \caption{Conducted measurements using attenuators and splitters: \acs{DUT} behaves as a receiver}
    \label{fig:Ng2}
 \end{figure}
 
@@ -40,7 +40,7 @@ For the receiver blocking test case, the blocker power level at the signal gener
 \end{aligned}
 \end{equation}
 
-For example, the standard mentions that at blocker frequency of 2360 MHz, the required blocker level in front of the \acs{DUT} is -53 dBm. Assume the total attenuation is 40 dB and the antenna gain of the \acs{DUT} is 3 dBi. Then,
+For example, the standard mentions that at blocker frequency of 2380 MHz, the required blocker level in front of the \acs{DUT} is -53 dBm. Assume the total attenuation is 40 dB and the antenna gain of the \acs{DUT} is 3 dBi. Then,
 $$\mbox{Blocker Level at the Generator} = -53 \mbox{dBm} + 40 \mbox{dB}+ 3 \mbox{dBi} = -10 \mbox{dBm}$$ 
 The results from Receiver Blocking and \acf{OBW} measurements are compared with the implementation in the WMS32 software suite. The results match and therefore the next step is to perform normalized measurements, which is explained in the chapter \ref{chap:normalized}.
 

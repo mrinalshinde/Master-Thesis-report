@@ -7,8 +7,8 @@ The flow chart in Figure \ref{fig:1} explains the procedure for normalized measu
 
 \begin{figure}[H]
 \centering
-\includegraphics[scale = 0.6]{normflowchart.pdf}
-\vspace{-0.5cm} \caption{Flowchart explaining the novel approach for wireless coexistence testing}
+\includegraphics[scale = 0.65]{normflowchart.pdf}
+\vspace{-2cm} \caption{Flowchart explaining the novel approach for wireless coexistence testing}
 \label{fig:1} 
 \end{figure}
 
@@ -21,7 +21,7 @@ This section also gives a brief overview of the implementation of the developed 
 \begin{figure}[H]
 \centering
 \includegraphics[scale = 0.6]{arrow.pdf}
-\caption{Flow of the automation software}
+\vspace{-2cm}\caption{Flow of the automation software}
 \label{fig:2} 
 \end{figure}
 
@@ -35,8 +35,8 @@ The steps for implementation of radiated measurements are explained as follows:
 
 \begin{figure}[H]
 \centering
-\includegraphics[scale = 0.16]{hwdesign.png}
-\caption{Design for the implementation of the system}
+\includegraphics[scale = 0.18]{hwdesign.png}
+\caption{Design for the implementation of the wireless coexistence system}
 \label{fig:3} 
 \end{figure}
 
@@ -63,7 +63,7 @@ Also, one wouldn't necessarily need output arguments for the methods of the hand
 
 \begin{figure}[H]
 \centering
-\includegraphics[scale = 0.55]{ClassDiagram.pdf}
+\includegraphics[scale = 0.65]{ClassDiagram.pdf}
 \caption{UML Class Diagram}
 \label{fig:cd} 
 \end{figure}
@@ -71,9 +71,9 @@ Also, one wouldn't necessarily need output arguments for the methods of the hand
 The seven classes build the core of the developed software tool . For better overview and understanding some attributes and methods are omitted in this class diagram (Figure \ref{fig:cd}). Each of these classes is derived from the base class Handle. The CAutomation class instantiates objects from all the other six classes. Five of those classes are the instruments used in this thesis, i.e., Spectrum Analyzer, Signal Generator, Connectivity Tester, two Switching modules, and the last class named CDUT, specifies the \acs{DUT} standard, operating frequency, bandwidth, \acs{EIRP}, and so on.
 
 \section{\acs{EIRP} Measurement}
-\acs{EIRP} is measured once for every \acs{DUT} used. This is done in a conducted manner. The Figure \ref{fig:Ng1} explains the implementation of this measurement. The \acs{DUT} is associated with the companion device via a \acs{WLAN} signaling mode. The \acs{DUT} is set to transmitter mode by configuring \acs{ICMP} packets on the companion device. The spectrum analyzer therefore, measures the power of the signal from the \acs{DUT}. The \acs{EIRP} is then measured using the formula \ref{eq:eirp}.
+\acs{EIRP} is measured once for every \acs{DUT} used. Maximum \acs{EIRP} is generally measured using \acs{OTA} measurements.  But, in this case the \acs{EIRP} estimation is done by measuring the conducted output power and applying the stated antenna gain. The Figure \ref{fig:Ng1} explains the implementation of this measurement. The \acs{DUT} is associated with the companion device via a \acs{WLAN} signaling mode. The \acs{DUT} is set to transmitter mode by configuring \acs{ICMP} packets on the companion device. The spectrum analyzer therefore, measures the power of the signal from the \acs{DUT}. The \acs{EIRP} is then measured using the formula \ref{eq:eirp}.
 \begin{equation}
-\mbox{EIRP}  = \mbox{Power}_{\mbox{analyzer}} - \mbox{Attenuation}_{\mbox{cable}} - \mbox{Antenna Gain} \label{eq:eirp}
+\mbox{EIRP}  = \mbox{Power}_{\mbox{analyzer}} - \mbox{Attenuation}_{\mbox{cable}} + \mbox{Antenna Gain} \label{eq:eirp}
 \end{equation}
 This measurement can also be done in an \acf{AC} and would give a better result by providing us the radiation pattern of the \acs{DUT} antenna.
 

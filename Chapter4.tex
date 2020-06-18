@@ -17,14 +17,14 @@ Transmit & 2400 MHz to 2483.5 MHz \\
 Receive & 2400 MHz to 2483.5 MHz \\
 \bottomrule
 \end{tabular} 
-\caption{Service frequency bands}
+\caption{Service frequency bands \cite{etsi300328}}
 \label{tab:bands}
 \end{center}
 \end{table}
 The methodologies for this measurement are as follows:
 \begin{enumerate}
-  \item Associate the \acs{DUT} with the companion device. This step is explained in section \ref{sec:cmw}.
-   \item Enable the Packet Generator with \acs{ICMP} or also known as ping packets. The companion device (\acs{RS}\textregistered{} wireless connectivity tester) supports the generation of \acs{ICMP} echo requests (ping) packets. These packets are targeted at the \acsp{DUT} \acs{IP} stack. Ping operates by sending \acs{ICMP} echo request packets to the \acs{DUT} and waiting for an \acs{ICMP} echo reply back. The \acs{DUT} is expected to answer with a well-defined echo reply packet whose payload is identical to the payload of the corresponding request. These packets are generated so that the bandwidth of the \acs{DUT} signal can be measured. Pinging triggers the \acs{DUT} to transmit a burst of a certain length which is useful for combined signal path measurements.
+  \item Associate the \acs{DUT} with the companion device (wireless connectivity tester). This step is explained in section \ref{sec:cmw}.
+   \item Enable the Packet Generator with \acf{ICMP} or also known as ping packets. The companion device (\acs{RS}\textregistered{} wireless connectivity tester) supports the generation of \acs{ICMP} echo requests (ping) packets. These packets are targeted at the \acsp{DUT} \acs{IP} stack. Ping operates by sending \acs{ICMP} echo request packets to the \acs{DUT} and waiting for an \acs{ICMP} echo reply back. The \acs{DUT} is expected to answer with a well-defined echo reply packet whose payload is identical to the payload of the corresponding request. These packets are generated so that the bandwidth of the \acs{DUT} signal can be measured. Pinging triggers the \acs{DUT} to transmit a burst of a certain length which is useful for combined signal path measurements.
 
 \textbf{image of ping packet}
 
@@ -56,7 +56,7 @@ The sweep time of 10 seconds is used instead of 1 second which is mentioned in t
 \item Find the \ac{OBW}. This is well explained in the Figure \ref{fig:tracebw}.
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.65\textwidth]{TraceBandwidth.png}
+\includegraphics[width=0.75\textwidth]{TraceBandwidth.png}
 \caption{Trace of the signal from the analyzer after post processing. The \acs{OBW} is 99\% (dark blue) of the total bandwidth of the signal}
 \label{fig:tracebw}
 \end{figure}
@@ -65,7 +65,7 @@ To locate the occupied channel bandwidth of the signal from the trace produced b
   
 \section{\acl{PSD} measurement}
 \label{sec:psdmeas}
-The \acl{PSD} is the mean \acf{EIRP} spectral density in a 1 MHz bandwidth during a transmission burst. For equipment using wide band modulations other than \acs{FHSS}, the maximum \acf{PSD} is limited to 10 dBm per MHz. This test, like the occupied channel bandwidth measurement, requires the \acs{DUT} to transmit data so that the analyzer can save the trace for the calculation of \acf{PSD}. The steps for this measurement are as follows:
+The \acl{PSD} is the mean \acf{EIRP} spectral density in a 1 MHz bandwidth during a transmission burst. For equipment using wide band modulations other than \acs{FHSS}, the maximum \acf{PSD} is limited to 10 dBm/MHz \cite{etsi300328}. This test, like the occupied channel bandwidth measurement, requires the \acs{DUT} to transmit data so that the analyzer can save the trace for the calculation of \acf{PSD}. The steps for this measurement are as follows:
 
 \begin{enumerate}
   \item Associate the \acs{DUT} with the companion device. Fritz Box acts as a companion device for this measurement. 
@@ -92,9 +92,10 @@ Detector & \ac{RMS}\\
 \label{tab:analyzerpsd}
 \end{center}
 \end{table}
-The standard suggests the number of sweep points to be greater than 8350. If the analyzers are not supporting this number of sweep points then the frequency band may be segmented. The measurement device used supports maximum of 15000 sweep points, but sweep points was set to 8500 in this case. Our aim being to reduce \acf{MU}, the sweep count is increased to 10 rather than using a single sweep. The maximum value of trace is saved with the help of Max-Hold trace mode.
+The standard suggests the number of sweep points to be greater than 8350. If the analyzers are not supporting this number of sweep points then the frequency band may be segmented. The measurement device used supports maximum of 15000 sweep points, but sweep points was set to 8500 in this case. The maximum value of trace is saved with the help of Max-Hold trace mode. 
   
-\item Since the signal from the \acs{DUT} is non-continuous, wait for the trace to stabilize and save the trace data to a mat file.
+\item Since the signal from the \acs{DUT} is non-continuous, wait for the trace to stabilize and save the trace data to a mat file. In this thesis, sweep count is kept constant and is equal to 10. This is because it was seen that the trace was usually stable after 10 sweeps.
+
  
  \item Use the following formula to add up the values of power for all sample points.
   $$ P_{sum} = \sum_{n=1}^{k} P_{sample}(n) $$ where k is the total number of samples and n is the actual sample number
@@ -112,8 +113,8 @@ The standard suggests the number of sweep points to be greater than 8350. If the
   
  \begin{figure}[H]
 \centering
-\includegraphics[width=0.75\textwidth]{PSD_trace.png}
-\caption{Trace of the signal from the analyzer after post processing. The \acs{PSD} is 3.3015 dBm at 2418 MHz}
+\includegraphics[width=0.85\textwidth]{PSD_trace.png}
+\caption{Trace of the signal from the analyzer after post processing. The \acs{PSD} is 3.3015 dBm/MHz at 2418 MHz}
 \label{fig:psdtraceI}
 \end{figure}
   
@@ -124,23 +125,23 @@ Receiver blocking is a measure of the ability of the equipment to receive a want
 
  \begin{figure}[H]
 \centering
-\includegraphics[width=0.9\textwidth]{flowchart.pdf}
+\includegraphics[width=0.99\textwidth]{flowchart.pdf} \vspace{-1.2cm}
 \caption{Flowchart for Receiver Blocking measurement}
 \label{fig:flowchartrxvlock}
 \end{figure}
 
-The association of the \acs{DUT} with the companion is talked about in all other test procedures as well as in the previous chapter. A \acf{PER} measurement is configured on the companion device. The \acs{PER} measurement transmits user data to the \acs{DUT} and calculates the \acs{PER} of acknowledged packets to transmitted packets. The number of MAC test packets to be transmitted is configurable. Each of the test packets carries the same amount of user data to the \acs{DUT}. The test packets can be separated by unused packets. The diagram in the lower part of the dialog shows the \acs{PER} vs time/transmitted packets.
+The association of the \acs{DUT} with the companion (wireless connectivity tester) is talked about in all other test procedures as well as in the previous chapter. A \acf{PER} measurement is configured on the companion device. The \acs{PER} measurement transmits user data to the \acs{DUT} and calculates the \acs{PER} of acknowledged packets to transmitted packets. The number of \acs{MAC} test packets to be transmitted is configurable. Each of the test packets carries the same amount of user data to the \acs{DUT}. The test packets can be separated by unused packets. The diagram in the lower part of the dialog shows the \acs{PER} vs time/transmitted packets.
 
  \begin{figure}[H]
 \centering
-\includegraphics[width=0.75\textwidth]{PER_CMW.jpeg}
-\caption{\ac{PER} measurement on the \acs{RS} \acs{CMW}}
+\includegraphics[width=0.85\textwidth]{PER_CMW.jpeg} 
+\caption{\ac{PER} measurement on the \acs{RS} Wireless Connectivity Tester}
 \label{fig:per}
 \end{figure}
 
-The next phase is to find the minimum wanted signal ($P_{min}$) without the blocker (signal generator). To do this, the power of the transmitted bursts is kept reducing until the \acs{PER} reaches just below 10\%. In order to increase the speed of the measurement, the program first does coarse precision (i.e. reduces power by steps of 1 dBm and sets the transmitted packets to as low as 200). Then for precise measurement, the power is reduced in steps of 0.1 dBm and 2000 packets are transmitted. The \acs{PER} window in the figure above shows the \acs{PER} measurement taking place. \\
+The next phase is to find the minimum wanted signal ($P_{min}$) without the blocker (signal generator). To do this, the power of the transmitted bursts is kept reducing until the \acs{PER} reaches just below 10\%. In order to increase the speed of the measurement, the program first does coarse precision (i.e. reduces power by steps of 1 dB and sets the transmitted packets to as low as 200). Then for precise measurement, the power is reduced in steps of 0.1 dB and 2000 packets are transmitted. The \acs{PER} window in the figure above shows the \acs{PER} measurement taking place. \\
   
-This is followed by keeping the wanted Signal ($P_{min}$ + 6 dB) constant and injecting a blocker signal using a signal generator at the frequency mentioned in the standard. \acs{PER} measurement then checks for the resulting \acs{PER}. The blocking signal of -34 dBm is applied in front of the \acs{DUT} as mentioned by the standard. Then, the transmitted burst power is kept constant thought-out the measurement by adding 6 dBm to the minimum unwanted signal. The blocker level is kept increasing until the 10\% criterion is reached. This is not required by the standard but it shows us by how much we can take the power level above the value mentioned in the standard. It also gives us an impression of how good the \acs{DUT} performs and allows us to assess the \acf{MU}.
+This is followed by keeping the wanted Signal ($P_{min}$ + 6 dB) constant and injecting a blocker signal using a signal generator at the frequency mentioned in the standard. \acs{PER} measurement then checks for the resulting \acs{PER}. The blocking signal of -34 dBm is applied in front of the \acs{DUT} as mentioned by the standard. Then, the transmitted burst power is kept constant thought-out the measurement by adding 6 dB to the minimum unwanted signal. The blocker level is kept increasing until the 10\% criterion is reached. This is not required by the standard but it shows us by how much we can take the power level above the value mentioned in the standard. It also gives us an impression of how good the \acs{DUT} performs and allows us to assess the \acf{MU}.
 
 
 
