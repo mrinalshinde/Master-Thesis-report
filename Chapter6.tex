@@ -81,7 +81,7 @@ This measurement can also be done in an \acf{AC} and would give a better result 
 \section{Normalization} \label{sec:11}
 Normalization aims at finding the coupling loss at each antenna port. This data further aids in finding the best probe antenna. The steps for normalized measurement is explained as follows:
 \begin{enumerate}
-\item As mentioned in the section \ref{sec:wn}, the companion device is connected to the COMP1 port of the OSPWN. Therefore, switch the path between ANT1 and COMP1 and establish a \acs{WLAN} connection between the two devices (\acs{DUT} and the \acs{CMW}). 
+\item As mentioned in the section \ref{sec:wn}, the companion device (wireless connectivity tester) is connected to the COMP1 port of the OSPWN. Therefore, switch the path between ANT1 and COMP1 and establish a \acs{WLAN} connection between the two devices (\acs{DUT} and the \acs{CMW}). 
 \item Configure the Packet Generator (explained in section \ref{sec:obw}) on the companion device to measure the signal from the \acs{DUT}. This thesis focuses on using the CMW as a companion device but this will also work for using other companion devices (e.g. Access Point).
 \item Switch paths in a loop: ANT 2 to OUT2, ANT 3 to OUT 3, and so on (refer to Figure \ref{fig:ospwn}). Save the trace of the signal for each path from the \acs{DUT} by using the spectrum analyzer. Thus, we get the traces for ANT 2 to ANT5 ports.
 \item To measure the signal at ANT1, switch path ANT2 to COMP1 and save the trace at ANT1. Attenuation for each path inside each switching module is taken from the calibration files provided with the switching modules. The coupling loss is measured using the equation \ref{eq:bl}.
@@ -112,20 +112,20 @@ Each trace is as short as 20 ms. For each trace, the maximum power is found by t
 
 
 \subsection{Link Budget} \label{sec:lb}
-The link-budget is necessary to design the complete end to an end measurement system. Consider receiver blocking measurement and hence we would require a blocking signal from the signal generator. Figure \ref{fig:link} explains the calculation of the levels within the system.
+The link-budget is necessary to design the complete end-to-end measurement system. Consider receiver blocking measurement and hence we require a blocking signal from the signal generator. Figure \ref{fig:link} explains the calculation of the levels within the system.
 
 \begin{figure}[H]
 \centering
-\includegraphics[scale = 0.55]{link_budget.pdf}
+\includegraphics[scale = 0.6]{link_budget.pdf}
 \caption{Link Budget diagram}
 \label{fig:link} 
 \end{figure}
 
-Suppose the calculated power (i.e. a maximum of an average of \acs{RMS} burst power) at the analyzer is -38 dBm, total attenuation (switching modules and cables) is 25 dB and maximum \acs{EIRP} is 15 dBm. Then, by using the formula from the previous section, the coupling loss at ANT 5 is 28 dB. According to the standard, receiver blocking measurement requires a blocker level of -47 dBm in front of the \acs{DUT} port. Then, to find the value of the level at the generator, we need to calculate backward. Therefore the value at the generator would be given by equation \ref{eq:BL}.
+Suppose the calculated power (i.e. a maximum of an average of \acs{RMS} burst power) at the analyzer is -38~dBm, total attenuation (switching modules and cables) is 25~dB and maximum \acs{EIRP} is 15~dBm. Then, by using the formula from the previous section \ref{eq:bl}, the coupling loss at ANT 5 is 28~dB. According to the standard, receiver blocking measurement requires a blocker level of -47~dBm in front of the \acs{DUT} port. Then, to find the value of the level at the generator, we need to calculate backward. Therefore the value at the generator would be given by equation \ref{eq:BL}.
 \begin{equation}
 \mbox{Blocker Level}_{\mbox{generator}}  = \mbox{Blocker Level}_{\mbox{DUT}} + \mbox{Attenuation}_{\mbox{total}} + \mbox{Coupling Loss} \label{eq:BL}
 \end{equation}
-Antenna Gain is already taken care of since the standard defined the power levels in front of the \acs{DUT} Antenna. Assume that the attenuation for this path is 18 dB. Therefore, by using the above formula, the power at the generator is 1 dBm. Attenuations are frequency-dependent and for the coupling loss, we can only rely on the used frequencies of the \acs{DUT}. Nevertheless, for the paths within the switching modules and the cables, the available calibration data for the specific frequency is used. The exact value of attenuation could otherwise also be measured with the signal generator and the \acs{DUT} Antenna. As the blocker frequencies are not too far away (Figure \ref{fig:ax} ) from the in-band frequencies, the same coupling loss is considered.
+Antenna Gain is already taken care of since the standard defined the power levels in front of the \acs{DUT} Antenna. Assume that the attenuation for this path is 18~dB. Therefore, by using the above formula, the power at the generator is 1~dBm. Attenuations are frequency-dependent and for the coupling loss, we can only rely on the used frequencies of the \acs{DUT}. Nevertheless, for the paths within the switching modules and the cables, the available calibration data for the specific frequency is used. As the blocker frequencies are not too far away (Figure \ref{fig:ax} ) from the in-band frequencies, the same coupling loss is considered.
 
 \section{Optimization of Antenna Pair} \label{sec:opti}
 Optimization of the probe antenna pairs is essential to ensure that the measurements are realized in optimal connections configurations with minimal losses and cabling again is not intended. The best selection of antenna pair is first implemented by performing a simulation on MATLAB\textregistered{} and later checking if the result coincides with the result from actual measurements. The later is also performed using the same algorithm. An important aspect to remember is that, as it is seen from the internal circuit diagram of OSPWN (\ref{fig:ospwn}) the antennas are arranged in pairs. And therefore, there are 15 possibilities for the optimum antenna pair selection.
@@ -136,14 +136,14 @@ To correctly perform the \acs{OTA} measurements in the \acs{RF} shielded box, a 
   \item Configuration: The parameters of the chamber in the simulation e.g. the dimension of the chamber, antennas and, grid which holds the \acs{DUT}, placement of the antennas are tried to meet the existing system (Figure \ref{fig:room}). 
   \begin{figure}[H]
 \centering
-\includegraphics[scale = 0.55]{room.png}
+\includegraphics[scale = 0.53]{room.png}
 \caption{Simulation diagram for the \acs{RF} shielded box}
 \label{fig:room} 
 \end{figure}
 
-  \item \acf{FSPL}: This loss, which is given by the near field formula for path loss (section \ref{eq:near}), is caused because of the distance separating the antennas and the frequency of the \acs{DUT} (2412 MHz). Theoretically, we are not supposed to perform measurements in near-field but since for we only have single-antenna pair in this case and we don't bother about the phase offset and phase curvature of the signal, the measurements are possible. Incase of multi-antenna \acsp{DUT} with antenna arrays, this is theoretically not possible due to the large antenna size resulting to perform measurements in the far-field. The test system is officially proposed for the use of single-antenna \acsp{DUT}. Nevertheless, we performed the tests with multi-antenna \acs{DUT} to examine if the theoretical effects play an important role.
+  \item \acf{FSPL}: This loss, which is given by the near field formula for path loss \cite{schantz}, is caused because of the distance separating the antennas and the frequency of the \acs{DUT} (2412 MHz). Theoretically, we are not supposed to perform measurements in \acf{NF} but since for we only have single-antenna pair in this case and we don't bother about the phase offset and phase curvature of the signal, the measurements are possible. Incase of multi-antenna \acsp{DUT} with antenna arrays, this is theoretically not possible due to the large antenna size resulting to perform measurements in the far-field. The test system is officially proposed for the use of single-antenna \acsp{DUT}. Nevertheless, we performed the tests with multi-antenna \acs{DUT} to examine if the theoretical effects play an important role.
  
-  \item Antenna Polarization Loss: The polarization loss is due to the difference in positioning the antennas that directly influences the results of the choice of the best probe antenna pairs. We use the theory (section \ref{sec:pol}) and the MATLAB\textregistered{} functions to first compute the electromagnetic fields of each transmitter and receiver antenna in its local coordinates system based on their positions and types, then we find the horizontal and vertical components of the electric fields, which are needed for the MATLAB\textregistered{} function \textit{pollos} to compute the polarization loss between each two antennas (reference to formula).
+  \item Antenna Polarization Loss: The polarization loss is due to the difference in positioning the antennas that directly influences the results of the choice of the best probe antenna pairs. We use the theory (section \ref{sec:pol}) and the MATLAB\textregistered{} functions to first compute the electromagnetic fields of each transmitter and receiver antenna in its local coordinates system based on their positions and types, then we find the horizontal and vertical components of the electric fields, which are needed for the MATLAB\textregistered{} function \textit{pollos} to compute the polarization loss between each two antennas (refer coordinates system \ref{pollos}).
   
   \item Antenna Gain (Transmitter gain ($\mbox{G}_{\mbox{TX}}$) and Receiver Gain ($\mbox{G}_{\mbox{RX}}$): For each used antenna, we compute and save its antenna pattern. Radiation patter for the vivaldi (probe) as well as dipole (\acs{DUT}) antenna is used from the MATLAB\textregistered{} antenna toolbox. Therefore the values are not exactly the same as the actual antennas used in the experimental setup. For the configuration for the room, we can locate a transmitter's coordinates in the local's coordinates system of the receiver and vice versa, so that from the look up table of the gain, we can use the local coordinates to find the gain of both the \acs{DUT} and the considered probe antenna. These values for the gain are added in the final formula  (\ref{eq:pl}) to compute the final loss between each probe antenna and the \acs{DUT}.
   
@@ -159,7 +159,7 @@ To correctly perform the \acs{OTA} measurements in the \acs{RF} shielded box, a 
    \end{itemize}
    
    
-The simulation runs over 4000 random positions of the \acs{DUT} on the grid (\ref{fig:try}) inside of the chamber with randomly one of the three different orientation of its antenna as illustrated in the picture (link). For each position the total loss between the \acs{DUT} and each probe antenna is computed. Since for each instrument (Spectrum analyzer, companion or signal generator) a pair of probe antennas should be assigned for the connection, from which only one with the lowest path loss should be used for the measurement. Since we have 6 different probe antennas, and 3 instruments, there are 15 distinct different possibilities of combinations of 3 pairs of antennas, one pair for each instrument with one active probe antennas. From these 15 possibilities, the simulation allows a choice of the best combination with the lowest mean path loss, i.e. the mean of the minima of every 3 pairs out of the 15 is computed and then the best combination is found. 
+The simulation runs over 4000 random positions of the \acs{DUT} on the grid (\ref{fig:try}) inside of the chamber with randomly one of the three different orientation of its antenna as illustrated in the picture (link). For each position the total loss between the \acs{DUT} and each probe antenna is computed. Since for each instrument (Spectrum analyzer, companion or signal generator) a pair of probe antennas should be assigned for the connection, from which only one with the lowest path loss should be used for the measurement. Since we have 6 different probe antennas, and 3 instruments, there are 15 distinct different possibilities of combinations of 3 pairs of antennas, one pair for each instrument with one active probe antennas. From these 15 possibilities, the simulation allows a choice of the best combination with the lowest mean path loss, i.e. the mean of the minima of every 3 pairs out of the 15 is computed and then the best combination is found. Refer Figure \ref{fig:s} for the results from  15 antenna pair possibilities.
 
 \begin{figure}[H]
 \vspace{-3cm}
@@ -174,20 +174,18 @@ The simulation runs over 4000 random positions of the \acs{DUT} on the grid (\re
 
 
 
-
-
 \subsection{Experimental Measurement} 
 The small chamber in use is TS7124M which is a \acs{RF} shielding box with flat absorbers, which are used in order to minimize the effect of reflections. \acs{RF} shielded boxes are essential for reliably testing radio interfaces. The \acs{RS}\textregistered{} TS7124M \acs{RF} shielded boxes enable reliable and reproducible measurements when a shielded test environment is needed. \\
 
-Normalization measurement is performed at 23 different positions (link) inside the RF shielded box to find the range in which the coupling loss lies. The \acs{DUT} antenna is oriented in three different directions :horizontal, vertical and slant (Figure link). Since the DUT tray is small, it is enough to place the \acs{DUT} at 9 locations in horizontal and vertical orientation. And the remaining 5 locations are acquired when the \acs{DUT} antenna is in slant orientation. The coupling loss must be less than 35 dB so that an additional amplifier is not required in the hardware setup. For example, consider receiver blocking measurement. The equation \ref{eq:BL} explains the procedure to find the level of the blocking signal at the signal generator given the blocker level  infront of the \acs{DUT}. Now, if the coupling loss is more than 35 dB (i.e 45 dB) then, the level at the blocker would be:
-\begin{equation}
+Normalization measurement is performed at 23 different positions (refer Figure \ref{fig:m}) inside the RF shielded box to find the range in which the coupling loss lies. The \acs{DUT} antenna is oriented in three different directions :horizontal, vertical and slant. Since the \acs{DUT} tray is small, it is enough to place the \acs{DUT} at 9 locations in horizontal and vertical orientation. And the remaining 5 locations are acquired when the \acs{DUT} antenna is in slant orientation. The limit of the coupling loss is defined by us and it states that the coupling loss must be less than 35~dB (refer \ref{eq:egBL}) so that an additional amplifier is not required in the hardware setup. For example, consider receiver blocking measurement. The equation \ref{eq:BL} explains the procedure to find the level of the blocking signal at the signal generator given the blocker level infront of the \acs{DUT}. Now, if the coupling loss is more than 35~dB (i.e 40~dB) then, the level at the blocker would be:
+\begin{equation} 
 \begin{split}
 \mbox{Blocker Level}_{\mbox{generator}}  &= \mbox{Blocker Level}_{\mbox{DUT}} + \mbox{Attenuation}_{\mbox{total}} + \mbox{Coupling Loss} \label{eq:egBL} \\
-& = -47 \mbox{dBm} + 18 \mbox{dB} + 40 \mbox{dBm} \\
-& = 16 \mbox{dBm}
+& = -47 \mbox{~dBm} + 18 \mbox{~dB} + 40 \mbox{~dB} \\
+& = 11 \mbox{~dBm} 
 \end{split}
 \end{equation}
-Since we keep increasing the blocker level from this value to check for 10\% \acs{PER}, limit of the level from the signal generator will soon be reached. And therefore we would require additional amplifiers. The figure \ref{fig:man} shows that Antenna 1 and 6, Antenna 2 and 3 and Antenna 4 and 5 result in minimum mean coupling loss as well as almost all bins as seen in the plot are below 30 dB of coupling loss.
+Since we keep increasing the blocker level by steps of 1~dB from this value to check for 10\% \acs{PER}, the increase is usually around 15~dB from the value which is calculated (11~dBm). Thus, the limit of the level from the signal generator, which is +26~dBm will soon be reached. And therefore we would require additional amplifiers. In-order to not complicate the system by the use of additional amplifiers, the limit of 35~dB is set for the coupling loss. The figure \ref{fig:man} shows that Antenna 1 and 6, Antenna 2 and 3 and Antenna 4 and 5 result in minimum mean coupling loss as well as almost all bins as seen in the plot are below 35~dB of coupling loss. The remaining plots from the possible combinations are in Figure \ref{fig:n}.
 
 \begin{figure}[H]
   \subfigure {\includegraphics[width=0.5\textwidth]{manual_best.png}} 
@@ -198,19 +196,14 @@ Since we keep increasing the blocker level from this value to check for 10\% \ac
 
 Comparing the simulation to the actual measurement, it can be noted that the range in which the coupling loss lies is approximately the same. Unfortunately the optimum pair does not match with pair resulting from the actual measurement. This can have several reasons: 
 \begin{itemize}
-\item Simulations take no charge of the reflections within the chamber. The reflections can be due to the antenna mounting/holder and housing of the chamber .Because of the small size and flat absorbers of the \acs{RF} shielded box, the shielded box does not allow good anechoic performance.
-\item The radiation pattern of the actual antennas might be different from the simulated antennas. This is because, simulation considered the radiation pattern from the MATLAB\textregistered{} antenna toolbox and not the actual used probe antennas which are manufactured at \acs{RS}\textregistered{}. In reality it can also happen that one probe antenna is 2 dB worse than the others. 
-\item At some points in the chamber, there can be constructive or destructive interference. This increases the standard deviation because at some points we will see less power than simulations and at other we will see more power.
+\item Simulations take no charge of the reflections within the chamber. At some points in the chamber, there can be constructive or destructive interference. This increases the standard deviation because at some points we will see less power than simulations and at other we will see more power. These reflections can be due to the antenna mounting/holder and housing of the chamber. Because of the small size and flat absorbers of the \acs{RF} shielded box, the shielded box does not allow good anechoic performance.
+\item The radiation pattern of the actual antennas might be different from the simulated antennas. This is because, simulation considered the radiation pattern from the MATLAB\textregistered{} antenna toolbox and not the actual used probe antennas which are manufactured at \acs{RS}\textregistered{}. In reality it can also happen that one probe antenna is 2~dB worse than the others. 
 \end{itemize}
 
 
 
-
-
-
-
 \section{Selection of Best Probe Antenna} \label{sec:sba}
-The selection of the best probe antenna for each device depends on the coupling loss and the measurement test case. Isolation between the used probe antennas could be an additional parameter that may be important but this thesis does not consider it. The presence of test leads (not associated with the DUT under normal operation) in the radiated field may cause a disturbance of that field and lead to additional measurement uncertainty. These disturbances can be minimized by using suitable coupling methods, offering signal isolation, and minimum field disturbance (e.g. optical coupling). \\
+The selection of the best probe antenna for each device depends on the coupling loss and the measurement test case. Isolation between the used probe antennas could be an additional parameter that may be important but this thesis does not consider it.  \\
 
 Receiver blocking requires a signal generator and a companion device. The companion device is connected to COMP1 of the switching module OSPWN (refer Figure \ref{fig:ospwn}) and hence only antenna 1 and antenna 2 can be used for the companion device. The one with lower coupling loss would be considered as the best probe antenna. For the signal generator, only antenna 5 and 6 can be used since these paths go to GEN W(8) of the OSPWN. Again the one with less coupling loss will be the best probe antenna. Similarly, \acf{OBW} and \acf{PSD} measurements require a companion device and the spectrum analyzer. The best probe antenna is selected for the companion device from antenna 1 and antenna 2. The analyzer can then use any of the five remaining antennas.
 
