@@ -1,7 +1,7 @@
 \chapter{Regulatory Test System}  \label{chap:3}
 
-The standard Regulatory Test System (TS8997) by \acs{RS}\textregistered{} verifies technologies typically used in wideband wireless devices, i.e. devices with a radio interface, in the 2.4 GHz and 5 GHz band: \acs{WLAN} \acs{IEEE} 802.11a/b/g/n/ac, Bluetooth\textregistered, wireless video transmission and radio remote control. %\cite{ts8997}. 
-The test system consists of a Signal Generator, Spectrum Analyzer,  \acf{CMW}, and a Switching Unit (\acs{OSP}-B157W8). My thesis investigates the approach of normalized measurements using the \acs{RF} Shielded Box and a Switching Unit (OSP-B157WN), which is an extension to the current standard regulatory test system. This extension is required for the normalized measurements.
+The standard Regulatory Test System (TS8997) by \acs{RS}\textregistered{} verifies technologies typically used in wideband wireless devices, i.e. devices with a radio interface, in the 2.4 GHz and 5 GHz band: \acs{WLAN} \acs{IEEE} 802.11a/b/g/n/ac, Bluetooth\textregistered, wireless video transmission and radio remote control.\cite{ts8997}. 
+The test system consists of a Signal Generator, Spectrum Analyzer,  \acf{CMW}, and a Switching Unit (\acs{OSP}-B157W8). This thesis investigates the approach of normalized measurements using the \acs{RF} Shielded Box and a Switching Unit (OSP-B157WN), which is an add-on to the current standard regulatory test system. This extension is required for the normalized measurements.
 
 \begin{figure}[H]
 \centering
@@ -65,7 +65,7 @@ The choice of detector setting depends on the expected signal. If the signal has
 \end{figure}
 
 \section{Companion Device}
-In this thesis, a wireless connectivity tester is mainly used as a companion device to communicate with the \acs{DUT} for most of the functions (i.e. power measurement, receiver blocking measurement, occupied channel bandwidth measurement). The wireless connectivity tester can force the \acs{DUT} to be either in transmitter mode or receiver mode. For the \acs{DUT} to be in transmitter mode, the tester sends \acf{ICMP} (ping) packets to the \acs{DUT} and waits for the echo replies from the \acs{DUT}. Because of the low duty cycle (\acs{ICMP} consists of only header data) of the signal from the \acs{DUT}, the results for the \acs{PSD} measurement have a high \ac{MU} explained in Figure \ref{fig:psdpsd}. Therefore, a golden device (fritz box) is used as a companion device for this measurement. All the measurements can also be done using this second device but in this thesis, only \ac{PSD} measurement uses the fritz box.
+In this thesis, a wireless connectivity tester is mainly used as a companion device to communicate with the \acs{DUT} for most of the functions (i.e. power measurement, receiver blocking measurement, occupied channel bandwidth measurement). The wireless connectivity tester can force to access the \acs{DUT} either for its transmitter or receiver capabilities. For the \acs{DUT} to be accessed for its transmitter capabilities, the tester sends \acf{ICMP} (ping) packets to the \acs{DUT} and waits for the echo replies from the \acs{DUT}. Because of the low duty cycle (\acs{ICMP} consists of only header data) of the signal from the \acs{DUT}, the results for the \acs{PSD} measurement have a high \ac{MU} explained in Figure \ref{fig:psdpsd}. Therefore, a Fritz box is used as a companion device for this measurement. All the measurements can also be done using this second device but in this thesis, only \ac{PSD} measurement uses the fritz box.
 
 \subsection{Wireless Connectivity Tester} \label{sec:cmw}
 \acs{RS}\textregistered{} CMW 270 acts as a base station for mobile communication, Wi-Fi\texttrademark{} \acs{AP}, Wi-Fi\texttrademark{} client, Bluetooth\textregistered{} devices, etc. In this thesis, this device is used as a Wi-Fi\texttrademark{} \acs{AP} because it allows us to perform the required measurements (i.e. \acf{PER}). \acs{WLAN} Signaling mode allows us to associate the \acs{DUT} to the companion device for subsequent tests \cite{cmw}.
@@ -79,7 +79,7 @@ In this thesis, a wireless connectivity tester is mainly used as a companion dev
 
 Configuration of \acs{WLAN} signaling is done by sending commands remotely via a MATLAB\textregistered{} script.  The signaling application is configured as \acf{AP}, companion device simulates a \acs{WLAN} \acf{AP} in infrastructure mode. The \acs{DUT} is a \acs{WLAN} station. To establish a \acs{WLAN} association, \acs{WLAN} standard (i.e. \acs{IEEE} 802.11a,g,n), scenario selection (i.e. \acs{SISO} or \acs{MIMO}), Operation Mode (i.e. \acs{AP}), used \acs{RF} connectors, \acs{RF} frequency/channel, power of a transmitted signal (\acs{RF} TX Burst Power) and Expected power of the \acs{DUT} Signal (\acs{RF} Exp. Peak Envelope Power) are set. \acs{RF} TX Burst Power must be sufficient so that the \acs{DUT} can receive the transmitted signal. The \acs{RF} Exp. Peak Envelope Power must be in accordance with the received signal power. The external attenuation is calculated depending on the attenuation from the cable and other devices and is set to the resulted value. To automatize this process, a loop in the MATLAB\textregistered{} script keeps increasing the value of \acs{RF} Exp. Peak Envelope Power until the device connection status says authenticated.
 
-\subsection{Golden Device} \label{sec:golden}
+\subsection{Fritz Box} \label{sec:golden}
 
 Fritz Box 7590 can be used as a companion device to receive data from the \acs{DUT}. The \acf{NAS} functionality is used to upload data from \acs{DUT} permanently to a pen drive which is attached to the Fritz Box. First, storage is set up on the computer as a network drive. The procedure to mount the network drive is explained on \cite{fritz} of Fritz Box. A windows batch file is written to continuously upload a big file from the \acs{DUT} to the network drive. The code in the batch (.BAT) file is shown below.
 
@@ -216,7 +216,7 @@ Frequency & 2.4 and 5 GHz \\
 Parameters & Value \\ 
 \midrule 
 Antenna type & Omni-directional \\
-Beamforming & Yes \\
+Diversity & Yes \\
 Transmit Power &  $<$20 dBm (\acs{EIRP})\\ 
 Wireless Standards & \acs{IEEE} 802.11ac,a,n,g,b \\
 Frequency & 2.4 and 5 GHz \\

@@ -4,7 +4,7 @@ Investigating adequate test methodologies to allow innovative use of wireless te
 \section{Motivation}
 Until now, nearly all coexistence measurements in 2.4 GHz and 5 GHz \ac{ISM}  bands are done connecting the \acs{DUT} to the test system using cables. In the future, many \acsp{DUT} will not have cable connectors. Therefore, we need to do these measurements radiated, over the air. Besides, many devices utilize embedded antennas that may not have an auxiliary \acs{RF} connector. Therefore, it is convenient to put the \acs{DUT} in the chamber without the requirement of any cables. \\
 
-In addition, the big  \acp{AC} have high path losses and thus if the \acs{DUT} measurements are done in it, it would result in higher path losses. For example, if we have specific blocker power at the \acs{DUT}, we would need very high output power from the \acs{DUT} due to high path losses inside the big chamber. However, since the output power is limited, amplifiers would be required. Classical \ac{OTA} measurements are difficult and costly to implement. Therefore, a new approach has been developed in this thesis which allows an uncomplicated coexistence testing in the absence of cable connectors. 
+In addition, the big  \acp{AC} have high \acfp{FSPL} and thus if the \acs{DUT} measurements are done in it, it would result in higher path losses. If we want to be in the \acf{FF}, we would need a large measurement distance and therefore \acfp{AC} are required and this results in higher path losses. For example, if we have specific blocker power at the \acs{DUT}, we would need very high output power from the \acs{DUT} due to high path losses inside the big chamber. However, since the output power is limited, amplifiers would be required. Classical \ac{OTA} measurements are difficult and costly to implement. Therefore, a new approach has been developed in this thesis which allows an uncomplicated coexistence testing in the absence of cable connectors. 
 
 
 \section{Objective}
@@ -15,11 +15,11 @@ This work aims to investigate a novel approach for wireless coexistence testing 
 \item Study of an algorithm to select the best probe antenna within the chamber
 \item Assessment of dynamic range of the measurement system
 \item Identification of specific measurement uncertainities \acsp{MU} for exemplary test cases and \acs{DUT} assumptions
-\item Study of applicability required for radiated measurements in a larger chamber
+%\item Study of applicability required for radiated measurements in a larger chamber
 \item MATLAB simulations regarding the effect of \acs{DUT} placement within the test chamber
-\item Radiation pattern measurements for exemplary \acsp{DUT} within the test chamber
+%\item Radiation pattern measurements for exemplary \acsp{DUT} within the test chamber
 \end{itemize}
-To achieve this, theoretical knowledge shall be projected using conducted measurements and the outcome shall be proofed in radiated measurements using single antenna \acs{DUT} as well as multi-antenna \acs{DUT}. 
+To achieve this, theoretical knowledge shall be projected using conducted measurements and the outcome shall be proofed in normalized measurements using single antenna \acs{DUT} as well as multi-antenna \acs{DUT}. 
 
 \section{Thesis Outline}
 This thesis is composed of 8 chapters. First of all, chapter \ref{chap:theorie} introduces a concise description of wireless coexistence testing, antenna fundamentals, and \acf{MU}. Then, an introduction about the regulatory test system and a brief overview of the software package which comes with the system shall be given in chapter \ref{chap:3}. Chapter  \ref{chap:test} describes the test cases used in this thesis. The following chapters  \ref{chap:5} and  \ref{chap:normalized} explain the test setup and the test procedure for both conducted and normalized measurements. Additionally, this chapter also includes the software design for the test implementation. Chapter \ref{chap:de} shows the study focuses and the measurement uncertainty analysis by using two different \acsp{DUT}. After the data evaluation, the thesis shall be concluded in chapter \ref{chap:8}. 

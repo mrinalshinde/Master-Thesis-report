@@ -6,14 +6,14 @@ This section is sub-divided into two other sections: first when the \acs{DUT} is
 
 
 \subsection{\acs{DUT} assessment for transmitter capabilities} 
-The procedure for the \acf{OBW} measurement and \acf{PSD} are explained in detail in chapter \ref{chap:test}. Figure \ref{fig:nt} depicts the measurement when the \acs{DUT} sends echo packets and is checked for is transmitter capabilities. The spectrum analyzer saves the traces so that we can measure the bandwidth and the \acf{PSD} of the signal from the \acs{DUT}. When using a golden device or fritz box (section \ref{sec:golden}) as a companion device, data is transmitted and not just \acs{ICMP} packets.
+The procedure for the \acf{OBW} measurement and \acf{PSD} are explained in detail in chapter \ref{chap:test}. Figure \ref{fig:nt} depicts the measurement when the \acs{DUT} sends echo packets and is checked for is transmitter capabilities. The spectrum analyzer saves the traces so that we can measure the bandwidth and the \acf{PSD} of the signal from the \acs{DUT}. When using a fritz box (section \ref{sec:golden}) as a companion device, data is transmitted and not just \acs{ICMP} packets.
 
 
 \begin{figure}[H]
 \centering
 \includegraphics[scale = 0.46]{normalized_dut_transmitter.pdf}
 \vspace{-1.3cm}
-\caption{Normalized measurement of \acs{DUT} for its transmitter capabilities}
+\caption{Normalized measurement of \acs{DUT} assessed for its transmitter capabilities}
 \label{fig:nt} 
 \end{figure}
 
@@ -28,10 +28,10 @@ Attenuation in the signal analyzer settings is kept to 10~dB and the pre-amplifi
 \label{fig:o}
 \end{figure}
 
-The settings for the analyzer mentioned above also applies to \acf{PSD} measurement. In-addition to that, after running the \acs{PSD} measurement only for few times, there is a difference in the result every single time. This can be clearly seen from Figure \ref{fig:psdpsd}. The maximum value is 8.64~dBm and minimum is 7.12~dBm and hence there difference between the two is around 1~dBm which does not look very good. Therefore fritz box is used as a companion device for this measurement instead of the connectivity tester.
+The settings for the analyzer mentioned above also applies to \acf{PSD} measurement. In-addition to that, after running the \acs{PSD} measurement only for few times, there is a difference in the result every single time. This can be clearly seen from Figure \ref{fig:psdpsd}. The maximum value is 8.64~dBm and minimum is 7.12~dBm and hence there difference between the two is around 1~dBm which does not look very good. \acf{MU} is high due to low duty-cycle of the signal from \acf{CMW} due to \acs{ICMP} packets. The \acf{MU} is high for low duty-cycle signals because when we use \acs{RMS} detector and Max-Hold over all traces, it means if the burst is very short, it would be maximum only when the measurement time for that particular frequency is aligned with the burst.  If suppose it is shifted by 50\% then the values would be 3dB lower. This means it will take forever to stabilize this measurement. Measurement works better with high duty-cycle signals. Therefore, fritz box is used as a companion device for this measurement instead of the connectivity tester.
 \begin{figure}[H]
 \centering
-\includegraphics[scale = 0.75]{PSD_trace_differnce.png}
+\includegraphics[scale = 0.85]{PSD_trace_differnce.png}
 \caption{\acf{MU} in the \acs{PSD} measurement caused due to low duty cycle of the signal}
 \label{fig:psdpsd} 
 \end{figure}
@@ -45,7 +45,7 @@ Figure \ref{fig:nr} pictures the measurement of \acs{DUT} for its receiver abili
 \centering
 \includegraphics[scale = 0.46]{normalized_dut_receiver.pdf}
 \vspace{-1.3cm}
-\caption{Normalized measurement of \acs{DUT} for its receiver capabilities}
+\caption{Normalized measurement of \acs{DUT} assessed for its receiver capabilities}
 \label{fig:nr} 
 \end{figure}
 
@@ -191,16 +191,18 @@ The same three measurements are performed using multi-antenna \acs{DUT}. The mea
         \caption{\acf{MU} results for measurements using Multi-Antenna \acs{DUT}}\label{tab:Tab4}
  \end{table} 
 
-The specification sheet of this \acs{DUT} mentions that the device uses beam-forming. In-order to examine whether the \acs{DUT} performs beam-forming, a long-term power measurement to calculate the coupling loss (refer section \ref{sec:11}) is done. Measurements were performed after with random time gaps between the two measurements to investigate if the results differ due to beam-forming. The Figure \ref{fig:11} shows the result of coupling loss for 70 measurements with random time-gap. 
+The specification sheet of this \acs{DUT} mentions that the device uses diversity to primarily to improve performance over a fading radio channel. In such a system, the receiver is provided with multiple copies of the same information signal which are transmitted over two or more real or virtual communication channels. Thus the basic idea of diversity is repetition or redundancy of information. In virtually all the applications, the diversity decisions are made by the receiver and are unknown to the transmitter. \\
 
 \begin{figure}[H]
 \centering
-\includegraphics[scale = 0.75]{Beamforming_all_new.PNG}
-\caption{Investigating beam-forming performance of the \acs{DUT}}
+\includegraphics[scale = 0.85]{Beamforming_all_new.PNG}
+\caption{Investigating diversity performance of the \acs{DUT}}
 \label{fig:11} 
 \end{figure}
 
-Since the measurement values are almost the same, this proves that the \acs{DUT} does not perform transmitter beam-forming at 2.4 GHz.
+To prove that the \acs{DUT} does-not perform diversity when assessed for its transmitter capabilities, a long-term power measurement to calculate the coupling loss (refer section \ref{sec:11}) is done. Measurements were performed after with random time gaps between the two measurements to investigate if the results differ due to beam-forming. The Figure \ref{fig:11} shows the result of coupling loss for 70 measurements with random time-gap. The companion device is first connected to ANT 1 port of the switching module (OSP-B157WN) and then the coupling loss is found at other antenna ports. In the next step, the companion device is connected to ANT 2 port and the coupling loss is again found at all the other ports. If diversity was done when the \acs{DUT} is assessed for its transmitter capability, the antenna pattern would change when connecting the companion device to port ANT 2. Since it is not the case as seen from the Figure \ref{fig:op}, we know that diversity is applicable only for receiver measurements.
+
+
 
 
 

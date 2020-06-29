@@ -5,7 +5,7 @@ This thesis carries out tests for \acf{OBW} measurement, \acf{PSD} measurement, 
 \section{\acl{OBW} measurement}
 \label{sec:obw}
 
-The \acf{OBW} is the bandwidth that contains 99 \% of the power of the signal. The standard EN 300328 mentions that the \acf{OBW} shall fall completely within the band (Table \ref{tab:bands}) for all types of equipment using wideband modulations other than \acs{FHSS}.  Besides, the limit shall be less than 20 MHz for non-adaptive equipment using wideband modulations other than \acs{FHSS} and with \acs{EIRP} greater than 10 dBm.
+The \acf{OBW} is the bandwidth that contains 99 \% of the power of the signal. The standard EN 300328 V2.1.1 \cite{etsi300328} mentions that the \acf{OBW} shall fall completely within the band (Table \ref{tab:bands}) for all types of equipment using wideband modulations other than \acs{FHSS}.  Besides, the limit shall be less than 20 MHz for non-adaptive equipment using wideband modulations other than \acs{FHSS} and with \acs{EIRP} greater than 10 dBm.
 
 \begin{table}[ht]
 \begin{center}
@@ -26,7 +26,12 @@ The methodologies for this measurement are as follows:
   \item Associate the \acs{DUT} with the companion device (wireless connectivity tester). This step is explained in section \ref{sec:cmw}.
    \item Enable the Packet Generator with \acf{ICMP} or also known as ping packets. The companion device (\acs{RS}\textregistered{} wireless connectivity tester) supports the generation of \acs{ICMP} echo requests (ping) packets. These packets are targeted at the \acsp{DUT} \acs{IP} stack. Ping operates by sending \acs{ICMP} echo request packets to the \acs{DUT} and waiting for an \acs{ICMP} echo reply back. The \acs{DUT} is expected to answer with a well-defined echo reply packet whose payload is identical to the payload of the corresponding request. These packets are generated so that the bandwidth of the \acs{DUT} signal can be measured. Pinging triggers the \acs{DUT} to transmit a burst of a certain length which is useful for combined signal path measurements.
 
-\textbf{image of ping packet}
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.75\textwidth]{ping.png}
+\caption{Parameters for \acs{ICMP} packets}
+\label{fig:pingping}
+\end{figure}
 
 
 \item Change the settings of the spectrum analyzer. The table \ref{tab:analyzer} below contains important analyzer settings.
@@ -60,7 +65,8 @@ The sweep time of 10 seconds is used instead of 1 second which is mentioned in t
 \caption{Trace of the signal from the analyzer after post processing. The \acs{OBW} is 99\% (dark blue) of the total bandwidth of the signal}
 \label{fig:tracebw}
 \end{figure}
-To locate the occupied channel bandwidth of the signal from the trace produced by the analyzer, we first convert the power value to a linear scale and find the total power. Since we need 99\% of the power, we go in a loop from both sides of the signal (start and stop frequency) and find the value of the frequency on both sides when the power value is 0.5\% of total power. And the difference between the frequency values gives us the 99\% occupied channel bandwidth.
+To locate the occupied channel bandwidth of the signal from the trace produced by the analyzer, we first convert the power value to a linear scale and find the total power. Since we need 99\% of the power, we go in a loop from both sides of the signal (start and stop frequency) and find the value of the frequency on both sides when the power value is 0.5\% of total power. And the difference between the frequency values gives us the 99\% occupied channel bandwidth. A min \acf{SNR} of beyond 30 dB or so is needed to avoid wrong measurements and thus influencing the 99\% bandwidth. This is explained in the later sections in Figure \ref{fig:o}.
+
 \end{enumerate}
   
 \section{\acl{PSD} measurement}

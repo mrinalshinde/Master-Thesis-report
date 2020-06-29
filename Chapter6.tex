@@ -89,12 +89,14 @@ Normalization aims at finding the coupling loss at each antenna port. This data 
 \mbox{Power}_{\mbox{analyzer}}  = \mbox{EIRP} - \mbox{Coupling Loss} - \mbox{Attenuation}_{\mbox{total}}  \label{eq:bl}
 \end{equation}
 \end{enumerate}
-The total attenuation comprises attenuation within the switching modules as well as the attenuation from the cables. The coupling loss accounts for the free space path loss, antenna gain, and polarization mismatch. The post- processing required to measure the power from the trace acquired at the spectrum analyzer and the link budget to calculate the power required at the signal generator is explained with the help of an example in the following sub-section \ref{sec:abc}.
+The total attenuation comprises attenuation within the switching modules as well as the attenuation from the cables. The coupling loss accounts for the free space path loss, antenna gain, and polarization mismatch. The post-processing required to measure the power from the trace acquired at the spectrum analyzer and the link budget to calculate the power required at the signal generator is explained with the help of an example in the following sub-section \ref{sec:abc}.
 
 \subsection{Post Processing for Power measurement} \label{sec:abc}
+The \acs{DUT} is actually transmitting signals as bursts and the standard mentions that burst power is the limit for the power measurements. This is also the reason why we use burst power detection also for the \acs{EIRP} measurement in an \acf{AC}. And therefore, also use it for normalization to calculate the coupling loss. \\
+
 For each power measurement for each antenna, 20 traces are saved. The measurement is done in the time domain (i.e. zero span) because a single frequency is of interest to us and also due to the very low duty cycle of the signal from the \acs{DUT}. The purpose of the zero span is to specifically turn off the sweep function, as the sweep sometimes really ruin the measurement. If you have a pulsed source, if the pulse happens when the sweep is not on that one frequency, it misses the pulse power.\\
 
-Each trace is as short as 20 ms. For each trace, the maximum power is found by taking the maximum of the average of each burst.  The burst detection is done due to the low duty cycle of the signal from the \acs{DUT}. Short trace is used because if the sweep time was increased e.g. to 100 ms then, there would be fewer points per burst to take an average. Since the sweep points considered are already maximum (32000), the only option remaining is to reduce the sweep time so that a better average can be done.  
+Each trace is as short as 20 ms. For each trace, the maximum power is found by taking the maximum of the average of each burst. Short trace is used because if the sweep time was increased e.g. to 100 ms then, there would be fewer points per burst to take an average. Since the sweep points considered are already maximum (32000), the only option remaining is to reduce the sweep time so that a better average can be done.  
 
 \begin{figure}[H]
   \centering
@@ -115,7 +117,7 @@ Each trace is as short as 20 ms. For each trace, the maximum power is found by t
 The link-budget is necessary to design the complete end-to-end measurement system. Consider receiver blocking measurement and hence we require a blocking signal from the signal generator. Figure \ref{fig:link} explains the calculation of the levels within the system.
 
 \begin{figure}[H]
-\centering
+\centering67890`
 \includegraphics[scale = 0.6]{link_budget.pdf}
 \caption{Link Budget diagram}
 \label{fig:link} 
@@ -141,7 +143,7 @@ To correctly perform the \acs{OTA} measurements in the \acs{RF} shielded box, a 
 \label{fig:room} 
 \end{figure}
 
-  \item \acf{FSPL}: This loss, which is given by the near field formula for path loss \cite{schantz}, is caused because of the distance separating the antennas and the frequency of the \acs{DUT} (2412 MHz). Theoretically, we are not supposed to perform measurements in \acf{NF} but since for we only have single-antenna pair in this case and we don't bother about the phase offset and phase curvature of the signal, the measurements are possible. Incase of multi-antenna \acsp{DUT} with antenna arrays, this is theoretically not possible due to the large antenna size resulting to perform measurements in the far-field. The test system is officially proposed for the use of single-antenna \acsp{DUT}. Nevertheless, we performed the tests with multi-antenna \acs{DUT} to examine if the theoretical effects play an important role.
+  \item \acf{FSPL}: This loss, which is given by the \acf{NF} formula for path loss \cite{schantz}, is caused because of the distance separating the antennas and the frequency of the \acs{DUT} (2412 MHz). The \acs{NF} model used is not very accurate and therefore can result in wrong solutions. Theoretically, we are not supposed to perform measurements in \acf{NF} but since for we only have single-antenna pair in this case and we don't bother about the phase offset and phase curvature of the signal, the measurements are possible. Incase of multi-antenna \acsp{DUT} with antenna arrays, this is theoretically not possible due to the large antenna size resulting to perform measurements in the far-field. The test system is officially proposed for the use of single-antenna \acsp{DUT}. Nevertheless, we performed the tests with multi-antenna \acs{DUT} to examine if the theoretical effects play an important role.
  
   \item Antenna Polarization Loss: The polarization loss is due to the difference in positioning the antennas that directly influences the results of the choice of the best probe antenna pairs. We use the theory (section \ref{sec:pol}) and the MATLAB\textregistered{} functions to first compute the electromagnetic fields of each transmitter and receiver antenna in its local coordinates system based on their positions and types, then we find the horizontal and vertical components of the electric fields, which are needed for the MATLAB\textregistered{} function \textit{pollos} to compute the polarization loss between each two antennas (refer coordinates system \ref{pollos}).
   
@@ -198,6 +200,9 @@ Comparing the simulation to the actual measurement, it can be noted that the ran
 \begin{itemize}
 \item Simulations take no charge of the reflections within the chamber. At some points in the chamber, there can be constructive or destructive interference. This increases the standard deviation because at some points we will see less power than simulations and at other we will see more power. These reflections can be due to the antenna mounting/holder and housing of the chamber. Because of the small size and flat absorbers of the \acs{RF} shielded box, the shielded box does not allow good anechoic performance.
 \item The radiation pattern of the actual antennas might be different from the simulated antennas. This is because, simulation considered the radiation pattern from the MATLAB\textregistered{} antenna toolbox and not the actual used probe antennas which are manufactured at \acs{RS}\textregistered{}. In reality it can also happen that one probe antenna is 2~dB worse than the others. 
+\item The antenna pattern used is the pattern from \acf{FF} measurements and therefore the pattern in \acf{NF} may look very different
+\item The \acf{NF} model which is used to find the formula for \acf{FSPL} might be inaccurate.
+\item Due to the small size and flat absorbers of the RF shielded box, it does not allow good anechoic performance.
 \end{itemize}
 
 
