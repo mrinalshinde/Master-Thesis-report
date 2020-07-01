@@ -3,15 +3,13 @@
    ngerman          % neue deutsche Rechtschreibung
   ,a4paper          % Papiergrösse
 % ,twoside          % Zweiseitiger Druck (rechts/links)
-% ,10pt             % Schriftgrösse
-% ,11pt
  ,12pt
   ,pdftex
   ,disable         % Todo-Markierungen auschalten
 %  ,ngerman
 ]{scrreprt}
 
-%\usepackage{subcaption}
+
 \usepackage[onehalfspacing]{setspace} %Zeilenabstand
 %\usepackage[doublespacing]{setspace} %Zeilenabstand
 
@@ -22,6 +20,7 @@
 %\usepackage[utf8]{inputenc}        % UTF-8 codierte Dateien
                                    % Dieses Dokument ist unter Unix erstellt, daher
                                    % wird diese Input-Codierung benutzt.
+                                
 \usepackage{booktabs}
 \usepackage{array,multicol,booktabs,tabularx}
 \usepackage{graphicx}
@@ -90,6 +89,7 @@
 % Benutzt man das "biblatex"-Paket, dann muß das hier stehen:
 % siehe auch die mit BIBLATEX markierten Zeilen in bericht.sty
 \bibliography{literatur}
+%\appendix{annex}
 
 \begin{document}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -123,15 +123,8 @@
 \include{Chapter6}
 \include{Chapter7}
 \include{conclusion}
-\printbibliography
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%5
-\appendix
+\printbibliography 
+\nopagebreak
+\appendix 
 \include{annex}
-
-%\begin{singlespace}
-
-
-
-
-%\end{singlespace}
 \end{document}
