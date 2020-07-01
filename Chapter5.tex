@@ -8,8 +8,8 @@ Figures \ref{fig:Ng1} and \ref{fig:Ng2} show the block diagram of the connection
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.8\textwidth]{conductedtx.pdf}
-\vspace{-0.5cm}  \caption{Conducted measurements using attenuators and splitters: \acs{DUT} behaves as a transmitter}
+\includegraphics[width=0.9\textwidth]{conductedtx.pdf}
+\vspace{-1.2cm}  \caption{Conducted measurements using attenuators and splitters: \acs{DUT} is assessed for its transmitter capabilities}
  \label{fig:Ng1} 
 \end{figure}
 
@@ -17,8 +17,8 @@ The hardware setup shown in Figure \ref{fig:Ng1} performs the \acf{OBW} and \acf
 
 \begin{figure}[H]
 \centering
-   \includegraphics[width=0.8\textwidth]{conductedrx.pdf}
- \vspace{-0.5cm} \caption{Conducted measurements using attenuators and splitters: \acs{DUT} behaves as a receiver}
+   \includegraphics[width=0.9\textwidth]{conductedrx.pdf}
+ \vspace{-1.2cm} \caption{Conducted measurements using attenuators and splitters: \acs{DUT} is assessed for its receiver capabilities}
    \label{fig:Ng2}
 \end{figure}
 
@@ -35,13 +35,13 @@ For the receiver blocking test case, the blocker power level at the signal gener
 \mbox{Blocker level}_ {\mbox{Gen}}  &= \mbox{Required blocker level in front of the DUT} \\
 &+ \mbox{Attenuation}_{\mbox{cables}} \\
 &+ \mbox{Attenuation}_{\mbox{switchingUnits}}  \\
-&+ \mbox{Antenna Gain}_{\mbox{ DUT}}
+&- \mbox{Antenna Gain}_{\mbox{ DUT}}
 \label{eq:1}
 \end{aligned}
 \end{equation}
 
 For example, the standard mentions that at blocker frequency of 2380 MHz, the required blocker level in front of the \acs{DUT} is -53 dBm. Assume the total attenuation is 40 dB and the antenna gain of the \acs{DUT} is 3 dBi. Then,
-$$\mbox{Blocker Level at the Generator} = -53 \mbox{dBm} + 40 \mbox{dB}+ 3 \mbox{dBi} = -10 \mbox{dBm}$$ 
+$$\mbox{Blocker Level at the Generator} = -53 \mbox{dBm} + 40 \mbox{dB}- 3 \mbox{dBi} = -16 \mbox{dBm}$$ 
 The results from Receiver Blocking and \acf{OBW} measurements are compared with the implementation in the WMS32 software suite. The results match and therefore the next step is to perform normalized measurements, which is explained in the chapter \ref{chap:normalized}.
 
 

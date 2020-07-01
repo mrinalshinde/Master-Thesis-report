@@ -51,11 +51,22 @@ The radiated open environment approach performs a coexistence test by using a de
 
  
 
-\section{Radiation test sites (cylindrical and spherical)}
+\section{Radiation Test Sites}
+The dimensions of a conventional test range can be reduced by making measurements in the \acf{NF} of the Antenna under Test (AUT), and then using analytical methods to transform the measured Near-Field data to compute the Far-Field radiation characteristics. Such techniques are usually used to measure patterns and gain. \cite{balanis} \\
 
-To Do
+There are three types of \acf{NF} set-ups; planar, cylindrical and spherical. A probe is used to scan the field over this preselected geometrical surface and thus the \acf{NF} data is measured. The \acf{NF} to \acf{FF} transformation is performed using analytical methods. The complexity of the analytical transformations increases from the planar to the cylindrical, and then to the spherical surfaces. \\
 
+In the cylindrical scanning technique, illustrated in Figure \ref{fig:cs}(a). The azimuthal location of the antenna is held constant while the fields are probed at discrete locations in the vertical direction at some fixed distance from the antenna. At the completion of each vertical scan, the test antenna is rotated to the next angular position. A spherical scan is accomplished by fixing the location and orientation of the probe and varying the angular orientation of the test antenna with a dual-axis positioner, as shown in Figure \ref{fig:cs}(b) \cite{balanis}. 
 
+\begin{figure}[H]
+\centering
+  \subfigure[Cylindrical]{\includegraphics[width=0.45\textwidth]{cyl_grid.png}} 
+  \subfigure[Spherical]{\includegraphics[width=0.45\textwidth]{spherical_grid.png}}
+\caption{Schematic representation of typical cylindrical and spherical surface positioning systems \cite{balanis}}
+\label{fig:cs}
+\end{figure}
+
+According to the standard, for the reference (\acs{EIRP}) measurement, a cylindrical grid should be used. This in my opinion is irrational because depending on the placement of the \acs{DUT}, the maximum \acs{EIRP} peak can be easily missed. Therefore a spherical grid is more logical instead of using a cylindrical grid mentioned in the standard \cite{etsi300328}. This measurement can be done using \acs{RS} ATS1000 antenna test chamber or \acs{RS} Wireless Performance Test Chambers (WPTC).
 
 
 \section{Wireless Coexistence Testing using \acs{RS}\textregistered{} Regulatory Test System}
@@ -204,7 +215,7 @@ where $\varphi _{P}$ is the angle between the two polarization unit vectors.
 \vspace{-1cm} 
 	\begin{center}
 		\includegraphics[width=1\textwidth]{pollos.pdf}
-	\vspace{-1cm} 	\caption{\label{pollos} Local coordinates systems of tranmitter's and receiver's antennas for polarization loss calculation}
+	\vspace{-2cm} 	\caption{\label{pollos} Local coordinates systems of tranmitter's and receiver's antennas for polarization loss calculation}
 	\end{center}
 \end{figure}
 

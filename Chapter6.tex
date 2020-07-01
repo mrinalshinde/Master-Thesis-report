@@ -7,8 +7,8 @@ The flow chart in Figure \ref{fig:1} explains the procedure for normalized measu
 
 \begin{figure}[H]
 \centering
-\includegraphics[scale = 0.65]{normflowchart.pdf}
-\vspace{-2cm} \caption{Flowchart explaining the novel approach for wireless coexistence testing}
+\includegraphics[scale = 0.6]{normflowchart.pdf}
+\vspace{-2.2cm} \caption{Flowchart explaining the novel approach for wireless coexistence testing}
 \label{fig:1} 
 \end{figure}
 
@@ -35,7 +35,7 @@ The steps for implementation of radiated measurements are explained as follows:
 
 \begin{figure}[H]
 \centering
-\includegraphics[scale = 0.18]{hwdesign.png}
+\includegraphics[scale = 0.25]{hwdesign.png}
 \caption{Design for the implementation of the wireless coexistence system}
 \label{fig:3} 
 \end{figure}
@@ -59,16 +59,18 @@ When one creates a class in MATLAB\textregistered{}, it is by default a value cl
 \begin{lstlisting}[language=MATLAB]
 classdef testClass < handle
 \end{lstlisting}
-Also, one wouldn't necessarily need output arguments for the methods of the handle class which is one of the main reasons for using this class. 
+Also, one wouldn't necessarily need output arguments for the methods of the handle class which is one of the main reasons for using this class. \\
+
+The seven classes build the core of the developed software tool . For better overview and understanding some attributes and methods are omitted in this class diagram (Figure \ref{fig:cd}). Each of these classes is derived from the base class Handle. The CAutomation class instantiates objects from all the other six classes. Five of those classes are the instruments used in this thesis, i.e., Spectrum Analyzer, Signal Generator, Connectivity Tester, two Switching modules, and the last class named CDUT, specifies the \acs{DUT} standard, operating frequency, bandwidth, \acs{EIRP}, and so on.
 
 \begin{figure}[H]
 \centering
-\includegraphics[scale = 0.65]{ClassDiagram.pdf}
+\includegraphics[scale = 0.75]{ClassDiagram.pdf}
 \caption{UML Class Diagram}
 \label{fig:cd} 
 \end{figure}
 
-The seven classes build the core of the developed software tool . For better overview and understanding some attributes and methods are omitted in this class diagram (Figure \ref{fig:cd}). Each of these classes is derived from the base class Handle. The CAutomation class instantiates objects from all the other six classes. Five of those classes are the instruments used in this thesis, i.e., Spectrum Analyzer, Signal Generator, Connectivity Tester, two Switching modules, and the last class named CDUT, specifies the \acs{DUT} standard, operating frequency, bandwidth, \acs{EIRP}, and so on.
+
 
 \section{\acs{EIRP} Measurement}
 \acs{EIRP} is measured once for every \acs{DUT} used. Maximum \acs{EIRP} is generally measured using \acs{OTA} measurements.  But, in this case the \acs{EIRP} estimation is done by measuring the conducted output power and applying the stated antenna gain. The Figure \ref{fig:Ng1} explains the implementation of this measurement. The \acs{DUT} is associated with the companion device via a \acs{WLAN} signaling mode. The \acs{DUT} is set to transmitter mode by configuring \acs{ICMP} packets on the companion device. The spectrum analyzer therefore, measures the power of the signal from the \acs{DUT}. The \acs{EIRP} is then measured using the formula \ref{eq:eirp}.
@@ -112,22 +114,23 @@ Each trace is as short as 20 ms. For each trace, the maximum power is found by t
 
 
 
-
 \subsection{Link Budget} \label{sec:lb}
-The link-budget is necessary to design the complete end-to-end measurement system. Consider receiver blocking measurement and hence we require a blocking signal from the signal generator. Figure \ref{fig:link} explains the calculation of the levels within the system.
-
-\begin{figure}[H]
-\centering67890`
-\includegraphics[scale = 0.6]{link_budget.pdf}
-\caption{Link Budget diagram}
-\label{fig:link} 
-\end{figure}
+The link-budget is necessary to design the complete end-to-end measurement system. Consider receiver blocking measurement and hence we require a blocking signal from the signal generator. Figure \ref{fig:link} explains the calculation of the levels within the system. \\
 
 Suppose the calculated power (i.e. a maximum of an average of \acs{RMS} burst power) at the analyzer is -38~dBm, total attenuation (switching modules and cables) is 25~dB and maximum \acs{EIRP} is 15~dBm. Then, by using the formula from the previous section \ref{eq:bl}, the coupling loss at ANT 5 is 28~dB. According to the standard, receiver blocking measurement requires a blocker level of -47~dBm in front of the \acs{DUT} port. Then, to find the value of the level at the generator, we need to calculate backward. Therefore the value at the generator would be given by equation \ref{eq:BL}.
 \begin{equation}
 \mbox{Blocker Level}_{\mbox{generator}}  = \mbox{Blocker Level}_{\mbox{DUT}} + \mbox{Attenuation}_{\mbox{total}} + \mbox{Coupling Loss} \label{eq:BL}
 \end{equation}
 Antenna Gain is already taken care of since the standard defined the power levels in front of the \acs{DUT} Antenna. Assume that the attenuation for this path is 18~dB. Therefore, by using the above formula, the power at the generator is 1~dBm. Attenuations are frequency-dependent and for the coupling loss, we can only rely on the used frequencies of the \acs{DUT}. Nevertheless, for the paths within the switching modules and the cables, the available calibration data for the specific frequency is used. As the blocker frequencies are not too far away (Figure \ref{fig:ax} ) from the in-band frequencies, the same coupling loss is considered.
+
+\begin{figure}[H]
+%\centering
+\includegraphics[scale = 0.57]{link_budget.pdf}\vspace{-1.6cm}
+\caption{Link Budget diagram}
+\label{fig:link} 
+\end{figure}
+
+
 
 \section{Optimization of Antenna Pair} \label{sec:opti}
 Optimization of the probe antenna pairs is essential to ensure that the measurements are realized in optimal connections configurations with minimal losses and cabling again is not intended. The best selection of antenna pair is first implemented by performing a simulation on MATLAB\textregistered{} and later checking if the result coincides with the result from actual measurements. The later is also performed using the same algorithm. An important aspect to remember is that, as it is seen from the internal circuit diagram of OSPWN (\ref{fig:ospwn}) the antennas are arranged in pairs. And therefore, there are 15 possibilities for the optimum antenna pair selection.
@@ -137,8 +140,8 @@ To correctly perform the \acs{OTA} measurements in the \acs{RF} shielded box, a 
 \begin{itemize}
   \item Configuration: The parameters of the chamber in the simulation e.g. the dimension of the chamber, antennas and, grid which holds the \acs{DUT}, placement of the antennas are tried to meet the existing system (Figure \ref{fig:room}). 
   \begin{figure}[H]
-\centering
-\includegraphics[scale = 0.53]{room.png}
+%\centering
+\includegraphics[scale = 0.45]{room.png}
 \caption{Simulation diagram for the \acs{RF} shielded box}
 \label{fig:room} 
 \end{figure}
@@ -153,7 +156,7 @@ To correctly perform the \acs{OTA} measurements in the \acs{RF} shielded box, a 
   The total path loss is given by the formula \ref{eq:pl},
   \begin{equation}  \label{eq:pl}
   \begin{split}
-  \mbox{Path Loss (k,r)}  & = \mbox{FSPL} + \mbox{Polarization Loss} \\
+  \mbox{Path Loss (k,r)}  & = \mbox{FSPL} - \mbox{Antenna Gains} + \mbox{Polarization Loss} \\
   &= 10 \log\frac{4}{\frac{1}{(kr)^6}-\frac{1}{(kr)^4}+\frac{1}{(kr)^2}} - \mbox{G}_{\mbox{TX}} - \mbox{G}_{\mbox{RX}} + \mbox{Polarization Loss}
  \end{split}
  \end{equation}
@@ -165,11 +168,12 @@ The simulation runs over 4000 random positions of the \acs{DUT} on the grid (\re
 
 \begin{figure}[H]
 \vspace{-3cm}
-  \subfigure {\includegraphics[width=0.65\textwidth]{simulation_best.pdf}} 
+  \hspace{-1.7cm}
+  \subfigure {\includegraphics[width=0.67\textwidth]{simulation_best.pdf}} 
   \hspace{-3cm}
  % \centering
-  \subfigure{\includegraphics[width=0.65\textwidth]{simulation_worst.pdf}}
-   \vspace{-3.9cm}
+  \subfigure{\includegraphics[width=0.67\textwidth]{simulation_worst.pdf}}
+   \vspace{-4.8cm}
 \caption{Figure in the left and right display the best and worst selection of probe antenna pairs after the simulation respectively}
 \label{fig:simu}
 \end{figure}
@@ -200,7 +204,7 @@ Comparing the simulation to the actual measurement, it can be noted that the ran
 \begin{itemize}
 \item Simulations take no charge of the reflections within the chamber. At some points in the chamber, there can be constructive or destructive interference. This increases the standard deviation because at some points we will see less power than simulations and at other we will see more power. These reflections can be due to the antenna mounting/holder and housing of the chamber. Because of the small size and flat absorbers of the \acs{RF} shielded box, the shielded box does not allow good anechoic performance.
 \item The radiation pattern of the actual antennas might be different from the simulated antennas. This is because, simulation considered the radiation pattern from the MATLAB\textregistered{} antenna toolbox and not the actual used probe antennas which are manufactured at \acs{RS}\textregistered{}. In reality it can also happen that one probe antenna is 2~dB worse than the others. 
-\item The antenna pattern used is the pattern from \acf{FF} measurements and therefore the pattern in \acf{NF} may look very different
+\item The antenna pattern which is used is the pattern from \acf{FF} measurements and therefore the pattern in \acf{NF} may look very different
 \item The \acf{NF} model which is used to find the formula for \acf{FSPL} might be inaccurate.
 \item Due to the small size and flat absorbers of the RF shielded box, it does not allow good anechoic performance.
 \end{itemize}
@@ -208,9 +212,7 @@ Comparing the simulation to the actual measurement, it can be noted that the ran
 
 
 \section{Selection of Best Probe Antenna} \label{sec:sba}
-The selection of the best probe antenna for each device depends on the coupling loss and the measurement test case. Isolation between the used probe antennas could be an additional parameter that may be important but this thesis does not consider it.  \\
-
-Receiver blocking requires a signal generator and a companion device. The companion device is connected to COMP1 of the switching module OSPWN (refer Figure \ref{fig:ospwn}) and hence only antenna 1 and antenna 2 can be used for the companion device. The one with lower coupling loss would be considered as the best probe antenna. For the signal generator, only antenna 5 and 6 can be used since these paths go to GEN W(8) of the OSPWN. Again the one with less coupling loss will be the best probe antenna. Similarly, \acf{OBW} and \acf{PSD} measurements require a companion device and the spectrum analyzer. The best probe antenna is selected for the companion device from antenna 1 and antenna 2. The analyzer can then use any of the five remaining antennas.
+The selection of the best probe antenna for each device depends on the coupling loss and the measurement test case. Isolation between the used probe antennas could be an additional parameter that may be important but this thesis does not consider it. Receiver blocking requires a signal generator and a companion device. The companion device is connected to COMP1 of the switching module OSPWN (refer Figure \ref{fig:ospwn}) and hence only antenna 1 and antenna 2 can be used for the companion device. The one with lower coupling loss would be considered as the best probe antenna. For the signal generator, only antenna 5 and 6 can be used since these paths go to GEN W(8) of the OSPWN. Again the one with less coupling loss will be the best probe antenna. Similarly, \acf{OBW} and \acf{PSD} measurements require a companion device and the spectrum analyzer. The best probe antenna is selected for the companion device from antenna 1 and antenna 2. The analyzer can then use any of the five remaining antennas.
 
 
 
