@@ -2,7 +2,7 @@
 \documentclass[
    ngerman          % neue deutsche Rechtschreibung
   ,a4paper          % Papiergrösse
-% ,twoside          % Zweiseitiger Druck (rechts/links)
+% ,oneside          % Zweiseitiger Druck (rechts/links)
  ,12pt
   ,pdftex
   ,disable         % Todo-Markierungen auschalten
@@ -89,7 +89,6 @@
 % Benutzt man das "biblatex"-Paket, dann muß das hier stehen:
 % siehe auch die mit BIBLATEX markierten Zeilen in bericht.sty
 \bibliography{literatur}
-%\appendix{annex}
 
 \begin{document}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -124,7 +123,6 @@
 \include{Chapter7}
 \include{conclusion}
 \printbibliography 
-\nopagebreak
 \appendix 
 \include{annex}
 \end{document}
