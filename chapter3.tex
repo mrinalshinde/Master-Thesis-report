@@ -27,11 +27,11 @@ WMS32 software suite comes with the standard regulatory test system (TS8997). Th
 The analyzer measures the signal either in the frequency domain or in the time domain (zero span). A MATLAB\textregistered{} script is written to remotely access the instrument. The MATLAB\textregistered{} code then calculates the power and bandwidth. The \acf{SCPI} commands for each task (i.e. changing the frequency, span, etc.) are provided in the manual. Few important functions used in this thesis are explained below (referred from \cite{funsspec}).
 
 \subsection{Trace Mode}
-Signals that are varying are dealt with by setting the trace mode in the spectrum analyzer. The available modes are Clear/Write, Maximum-Hold (Max-Hold), or Average.
+The available modes are Clear/Write, Maximum-Hold (Max-Hold), or Average.
 \begin{enumerate}
   \item Clear/Write is used when new overwritten values are needed on every sweep. It shows what is coming in, as it happens. The change in the signal during the sweep causes the trace level to change. 
   \item Max-Hold stores the sweep only when the new value is greater than the previous one. The maximum value of the signal can be thus determined over several sweeps. This makes the trace continue to increase as various signals come and go. If a signal shows up once, it is saved on the Max-Hold trace. Setting trace 1 to normal, and trace 2 to Max-Hold is useful in many situations, as it shows both the current power level and the excursion limits.  
-  \item Average Mode activates the averaging function of the trace. The average is formed over several sweeps. The number of sweeps is selected by the user. The average model is good, but a slow, tool to remove random noise and highlight constant signals. It is great when the signal you are interested in is near the noise floor of the instrument.  
+  \item Average Mode activates the averaging function of the trace. The average is formed over several sweeps. The number of sweeps is selected by the user. Since the number of sweeps and the sweep time will be more to calculate the average of the signal, this measurement is therefore slow but is great when the signal you are interested in is near the noise floor of the instrument.  
   \end{enumerate}
 
 \subsection{Detector Settings}
@@ -40,7 +40,7 @@ Spectrum analyzers normally sample many more data points than they can display o
   \item Max Peak / Min Peak: They determine the largest of all positive (max peak) or the smallest of all negative (min peak) peak values of the levels measured at the individual frequencies which are displayed on one sample point (or within a pixel). Even if wide spans are displayed with very narrow resolution bandwidth (span/\acs{RBW} >> number of pixels on the frequency axis), no input signals are lost. Therefore this type of detector is particularly useful for \acs{EMC} measurements. This detection method is a good complement to a Max-Hold trace.
   \item Auto Peak: This detector combines the peak detectors. The maximum peak detector and the minimum peak detector simultaneously determine the maximum and the minimum level within a displayed test point and display it as a single measured value. 
   \item Sample: The detector routes through the sampled data without any further evaluation and either displays them directly or, for reasons of speed in case of short sweep times, first writes them into memory and processes them subsequently. If the span to be displayed is much greater than the resolution bandwidth (span/\acs{RBW} >> number of pixels on the frequency axis), input signals are no longer reliably detected. The same unreliability applies when too large tuning steps of the local oscillator are chosen. In this case, signals may not be displayed at the correct level or may be completely lost. This is required by some standards but is not so useful for spectrum monitoring. 
-  \item \ac{RMS}: This detector forms the \acs{RMS} value of the measured values within a pixel. To do so, the instrument uses the linear voltage after envelope detection. The sampled linear values are squared, summed and the sum is divided by the number of samples (= \acs{RMS}). For logarithmic display, the logarithm is formed from the square sum. For linear display, the root mean square value is displayed. Each sweep point thus corresponds to the power of the measured values summed up in the sweep point. 
+  \item \ac{RMS}: This detector forms the \acs{RMS} value of the measured values within a pixel. To do so, the instrument uses the linear voltage after envelope detection. The sampled linear values are squared, summed and the sum is divided by the number of samples. \acs{RMS} is then the square root of ths calculated value. For logarithmic display, the logarithm is formed from the square sum. For linear display, the root mean square value is displayed. Each sweep point thus corresponds to the power of the measured values summed up in the sweep point. 
   \item Average: The average detector calculates the linear average of all samples contained in a sweep point. To this effect, the instrument uses the linear voltage after envelope detection. The sampled linear values are summed up and the sum is divided by the number of samples (= linear average value). For logarithmic display, the logarithm is formed from the average value. For linear display, the average value is displayed. Each sweep point thus corresponds to the average of the measured values summed up in the sweep point. The average detector supplies the average value of the signal irrespective of the waveform (\acs{CW} carrier, modulated carrier, white noise, or impulsive signal). 
   \end{enumerate}
   
@@ -51,11 +51,10 @@ Spectrum analyzers normally sample many more data points than they can display o
 \label{fig:detectorSettings}
 \end{figure}
 
-The choice of detector setting depends on the expected signal. If the signal has a stochastic signal (noise), then the \acs{RMS}-detector is always the best option. This is because the \acs{RMS} detector allows measurement of the actual power of an input signal irrespective of its temporal characteristic. If the crest factor is unknown, the power of random signals (whose instantaneous values are not in line with the Gaussian distribution) can only be determined using an \acs{RMS} detector. When using a sample or max peak detector, the relationship between \acs{RMS} value and peak value must be precisely known for determining the power of signals with random instantaneous value. This knowledge is not required when using an \acs{RMS} detector. The \acs{RMS} value displayed by a specific pixel is calculated from all samples pertaining to this pixel. By increasing the sweep time, the number of samples available for the calculation is increased, thus allowing smoothing of the displayed trace. Smoothing by reducing the video bandwidth or by averaging over several traces is neither permissible nor necessary with the \acs{RMS} detector. The measurement results would be falsified since the displayed values would be too low (max. 2.51 dB). To avoid any falsification of results, the video bandwidth should be at least three times the resolution bandwidth when using the \acs{RMS} detector. If the signal is harmonic, the Max Peak-detector is the correct choice. 
-
+The choice of detector setting depends on the expected signal. If the signal has a stochastic signal (noise), then the \acs{RMS}-detector is always the best option. This is because the \acs{RMS} detector allows measurement of the actual power of an input signal irrespective of its temporal characteristic. If the crest factor is unknown, the power of random signals (whose instantaneous values are not in line with the Gaussian distribution) can only be determined using an \acs{RMS} detector. When using a sample or max peak detector, the relationship between \acs{RMS} value and peak value must be precisely known for determining the power of signals with random instantaneous value. This knowledge is not required when using an \acs{RMS} detector. The \acs{RMS} value displayed by a specific pixel is calculated from all samples pertaining to this pixel. By increasing the sweep time, the number of samples available for the calculation is increased, thus allowing smoothing of the displayed trace. 
 
 \section{Signal Generator}
-\acs{RS}\textregistered{} SMB100A acts as a blocker instrument in this research topic. It is, like other instruments also remotely accessed using \acs{SCPI} commands via a MATLAB\textregistered{} script. It operates in the frequency range of 100 kHz to 40 GHz. The maximum output power is +27 dBm which is sufficient for this thesis. There are better models of signal generators having higher power levels and thus would relax all the limitations caused due to the attenuations in the switching matrix, cables, and isolation between probe antennas. This thesis uses a basic model because it proved to be sufficient for the measurements and also this model is present in almost all test systems. The instrument is used only for the receiver blocking measurement and is used in \acs{CW} signal mode. This means the \acs{RF} signal is generated with the frequency and level set by the user.
+The basic model of \acs{RS}\textregistered{} SMB100A acts as a blocker instrument in this research topic. It is, like other instruments also remotely accessed using \acs{SCPI} commands via a MATLAB\textregistered{} script. It operates in the frequency range of 100~kHz to 12.75~GHz. The maximum output power is +18~dBm for frequencies lying between 1~MHz and 12.75~GHz which is sufficient for this thesis. There are better models of signal generators having higher power levels and thus would relax all the limitations caused due to the attenuations in the switching matrix, cables, and isolation between probe antennas. This thesis uses a basic model because it proved to be sufficient for the measurements and also this model is present in almost all test systems. The instrument is used only for the receiver blocking measurement and is used in \acs{CW} signal mode. This means the \acs{RF} signal is generated with the frequency and level set by the user.
 
 \begin{figure}[H]
 \centering
@@ -65,7 +64,9 @@ The choice of detector setting depends on the expected signal. If the signal has
 \end{figure}
 
 \section{Companion Device}
-In this thesis, a wireless connectivity tester is mainly used as a companion device to communicate with the \acs{DUT} for most of the functions (i.e. power measurement, receiver blocking measurement, occupied channel bandwidth measurement). The wireless connectivity tester can force to access the \acs{DUT} either for its transmitter or receiver capabilities. For the \acs{DUT} to be accessed for its transmitter capabilities, the tester sends \acf{ICMP} (ping) packets to the \acs{DUT} and waits for the echo replies from the \acs{DUT}. Because of the low duty cycle (\acs{ICMP} consists of only header data) of the signal from the \acs{DUT}, the results for the \acs{PSD} measurement have a high \ac{MU} explained in Figure \ref{fig:psdpsd}. Therefore, a Fritz box is used as a companion device for this measurement. All the measurements can also be done using this second device but in this thesis, only \ac{PSD} measurement uses the fritz box.
+In this thesis, a wireless connectivity tester is mainly used as a companion device to communicate with the \acs{DUT} for most of the functions (i.e. power measurement, receiver blocking measurement, occupied channel bandwidth measurement). The \acs{DUT} can be assessed for its transmitter or receiver capabilities using the wireless connectivity tester. For the \acs{DUT} to be accessed for its transmitter capabilities, the tester sends \acf{ICMP} (ping) packets to the \acs{DUT} and waits for the echo replies from the \acs{DUT}. 
+
+An extremely long measurement time is necessary to get stable results and since this was not accomplished in \acf{PSD} measurement, there exist high variations from measurement to measurement (refer Figure \ref{fig:psdpsd}). Therefore, a Fritz box is used as a companion device for this measurement. All the measurements can also be done using this second device but in this thesis, only \ac{PSD} measurement uses the fritz box.
 
 \subsection{Wireless Connectivity Tester} \label{sec:cmw}
 \acs{RS}\textregistered{} CMW 270 acts as a base station for mobile communication, Wi-Fi\texttrademark{} \acs{AP}, Wi-Fi\texttrademark{} client, Bluetooth\textregistered{} devices, etc. In this thesis, this device is used as a Wi-Fi\texttrademark{} \acs{AP} because it allows us to perform the required measurements (i.e. \acf{PER}). \acs{WLAN} Signaling mode allows us to associate the \acs{DUT} to the companion device for subsequent tests \cite{cmw}.
@@ -79,9 +80,8 @@ In this thesis, a wireless connectivity tester is mainly used as a companion dev
 
 Configuration of \acs{WLAN} signaling is done by sending commands remotely via a MATLAB\textregistered{} script.  The signaling application is configured as \acf{AP}, companion device simulates a \acs{WLAN} \acf{AP} in infrastructure mode. The \acs{DUT} is a \acs{WLAN} station. To establish a \acs{WLAN} association, \acs{WLAN} standard (i.e. \acs{IEEE} 802.11a,g,n), scenario selection (i.e. \acs{SISO} or \acs{MIMO}), Operation Mode (i.e. \acs{AP}), used \acs{RF} connectors, \acs{RF} frequency/channel, power of a transmitted signal (\acs{RF} TX Burst Power) and Expected power of the \acs{DUT} Signal (\acs{RF} Exp. Peak Envelope Power) are set. \acs{RF} TX Burst Power must be sufficient so that the \acs{DUT} can receive the transmitted signal. The \acs{RF} Exp. Peak Envelope Power must be in accordance with the received signal power. The external attenuation is calculated depending on the attenuation from the cable and other devices and is set to the resulted value. To automatize this process, a loop in the MATLAB\textregistered{} script keeps increasing the value of \acs{RF} Exp. Peak Envelope Power until the device connection status says authenticated.
 
-\subsection{Fritz Box} \label{sec:golden}
-
-Fritz Box 7590 can be used as a companion device to receive data from the \acs{DUT}. The \acf{NAS} functionality is used to upload data from \acs{DUT} permanently to a pen drive which is attached to the Fritz Box. First, storage is set up on the computer as a network drive. The procedure to mount the network drive is explained on \cite{fritz} of Fritz Box. A windows batch file is written to continuously upload a big file from the \acs{DUT} to the network drive. The code in the batch (.BAT) file is shown below.
+\subsection{Commercial Access Point} \label{sec:golden}
+Fritz Box 7590 is an example of the commercial access point used in this thesis. It can be used as a companion device to associate with the \acs{DUT} and receive data from the \acs{DUT}. The \acf{NAS} functionality is used to upload data from \acs{DUT} permanently to a pen drive which is attached to the Fritz Box. First, storage is set up on the computer as a network drive. The procedure to mount the network drive is explained on \cite{fritz} of Fritz Box. A windows batch file is written to continuously upload a big file from the \acs{DUT} to the network drive. The code in the batch (.BAT) file is shown below.
 
 \begin{lstlisting}[language=bash]
 :start
@@ -89,12 +89,12 @@ copy "C:\source" "Z:\General-UDisk-01" /Y
 goto start
 \end{lstlisting}
 
-The script copies a big file in a loop and it makes sure to overwrite the existing destination file and hence deleting of the file is not necessary. Since the file is large, the duty cycle of the signal is high and it results in \ac{PSD} measurement having lower \acf{MU}. 
+The script copies a big file in a loop and it makes sure to overwrite the existing destination file and hence deleting of the file is not necessary. Since the file is large, the duty cycle of the signal is high and it results in \acf{PSD} measurement become stable faster. 
 
 \begin{figure}[H]
 \centering
 \includegraphics[width=0.65\textwidth]{fritz.pdf}
-\caption{Fritz Box as a \acs{CMW}}
+\caption{Modified commercial access point used as a \acf{CMW} device}
 \label{fig:cmwGUI}
 \end{figure}
 
@@ -102,7 +102,8 @@ The script copies a big file in a loop and it makes sure to overwrite the existi
 These Open Switch and Control Platform can be used to perform \acs{RF} switch and control tasks. This thesis uses two of these switching units. It is convenient to have a dedicated device instead of changing the setup for every test case like in the case of splitters and attenuators. The description and usage are explained below.
 
 \subsection{\acs{RS}\textregistered{} \ac{OSP}-B157WN} \label{sec:wn}
-This device switches between conducted measurements and normalized measurements. It allows us to select the appropriate/best antennas when performing normalized measurements and allows us to apply attenuation to the companion device (e.g. in case a real device instead of a \acs{CMW} test equipment is used). In the case of normalized measurements, it is programmed to automatically select the best probe antenna. The block diagram of the switching unit allows us to remotely control the device. The ANT ports are used for normalized measurements are connected to the antennas. The \acs{DUT} ports are used in case of conducted measurements. GEN W(8) is connected to the SMB 100A port of the \acs{OSP}-B157W8 module which further connects the signal generator. The companion device can be connected to COMP 1 or COMP 2 but because reconnection is not possible during automation, the companion device is connected to the COMP 1 port of this switching module. The OUT ports are connected to \acs{OSP}-157W8 PORT ports.
+This device switches between conducted measurements and normalized measurements. It allows us to select the appropriate/best antennas when performing normalized measurements and allows us to apply attenuation to the companion device (e.g. in case a real device instead of a \acs{CMW} test equipment is used). In the case of normalized measurements, it is programmed to automatically select the best probe antenna. The block diagram of the switching unit allows us to remotely control the device. The ANT ports are used for normalized measurements and are connected to the antennas. The \acs{DUT} ports are used in case of conducted measurements. GEN W(8) is connected to the SMB100A port of the \acs{OSP}-B157W8 module which further connects the signal generator. The companion device can be connected to COMP 1 or COMP 2 but because reconnection is not possible during automation, the companion device is connected to the COMP 1 port of this switching module. However, if transmitter and receiver paths are required to split, port COMP 2 is needed and therefore is available in the device.
+The OUT ports are connected to \acs{OSP}-157W8 PORT ports.
 
 \begin{figure}[H]
 \centering
@@ -117,7 +118,7 @@ I used the K-Tool at first to send \acs{SCPI} commands to the instrument to remo
 ROUTE: CLOSE(@F01M07(0602))
 \end{lstlisting}
 
-where, 602 stands for the name of the switch (i.e. K602) and 0 stands for the switch number (i.e. port 1 or 0). This command switches the path from OUT8 to DUT8. 
+where, 602 stands for the name of the switch (i.e. K602) and 0 stands for the switch state (i.e. port 1 or 0). This command switches the path from OUT8 to DUT8. 
 
 \begin{figure}[H]
 \centering
@@ -126,10 +127,10 @@ where, 602 stands for the name of the switch (i.e. K602) and 0 stands for the sw
 \label{fig:ktool}
 \end{figure}
 
-Further, I wrote a MATLAB\textregistered{} script to get the calibration values for each path switched. The calibration procedure uses the instrument to be calibrated (i.e. \acs{OSP}), signal generator, signal analyzer, and cables. Frequency response is generated for each path after measuring the power values for frequencies starting from 10 MHz up to 6 GHz with a step size of 10 MHz The cables are calibrated separately and subtracted from the final value to get the correct attenuation of the instrument. The frequency response is compared to the factory calibration values to check if the class which switches the instrument works fine. These calibration values are required at the later stage for normalization.
+Further, I wrote a MATLAB\textregistered{} script to get the calibration values for each path switched. The calibration procedure uses the instrument to be calibrated (i.e. \acs{OSP}), signal generator, signal analyzer, and cables. Frequency response is generated for each path after measuring the power values for frequencies starting from 10~MHz up to 6~GHz with a step size of 10~MHz The cables are calibrated separately and subtracted from the final value to get the correct attenuation of the instrument. The frequency response is compared to the factory calibration values to check if the class which switches the instrument works fine. These calibration values are required at the later stage for normalization.
 
 \subsection{\acs{RS}\textregistered{} \ac{OSP}-B157W8}
-This device not only switches between the Signal Generator and Signal Analyzer depending on the test case (i.e. Receiver Blocking, Occupied Channel Bandwidth, Power, etc.) but also contains couplers and power detectors (Figure \ref{fig:ospw8}). WMS32 software allows us to read out the calibration files from this switching module. It can also be done by using the correct \acs{SCPI} commands. The signal analyzer is connected to the Rx port of this device. The signal generator is connected to SMB 100A.
+This device not only switches between the Signal Generator and Signal Analyzer depending on the test case (i.e. Receiver Blocking, Occupied Channel Bandwidth, Power, etc.) but also contains couplers and power detectors (Figure \ref{fig:ospw8}). WMS32 software allows us to read out the calibration files from this switching module. It can also be done by using the correct \acs{SCPI} commands. The signal analyzer is connected to the Rx port of this device. The signal generator is connected to SMB 100A port.
 
 \begin{figure}[H]
 \centering
@@ -141,7 +142,7 @@ This device not only switches between the Signal Generator and Signal Analyzer d
 
 
 \section{\acs{RF} Shielded Box}
-\acs{RS}\textregistered{} TS7124M features high shielding effectiveness over a wide frequency range (300 MHz to 6 GHz), the \acs{RF} test boxes allow measurements on different standards due to the supported frequency range \cite{ts7124}. For radiation testing, the \acs{DUT} is inserted into the chamber using a drawer, which is closed by a tightly sealed door. Antennas installed on the inside of the \acs{RF} Shielded Box then interact with the \acs{DUT} by emitting or receiving electromagnetic radiation. The \acs{DUT} is placed on a tray (Figure \ref{fig:try}) within the \acs{RF} shielded box.
+\acs{RS}\textregistered{} TS7124M features high shielding effectiveness over a wide frequency range (300~MHz to 6~GHz), the \acs{RF} test boxes allow measurements on different standards due to the supported frequency range \cite{ts7124}. For radiation testing, the \acs{DUT} is inserted into the chamber using a drawer, which is closed by a tightly sealed door. Antennas installed on the inside of the \acs{RF} Shielded Box then interact with the \acs{DUT} by emitting or receiving electromagnetic radiation. The \acs{DUT} is placed on a tray (Figure \ref{fig:try}) within the \acs{RF} shielded box.
 
 \begin{figure}[H]
 \centering
@@ -150,7 +151,7 @@ This device not only switches between the Signal Generator and Signal Analyzer d
 \label{fig:try}
 \end{figure}
 
-The antennas can be placed and oriented in a customer-specific geometrical arrangement. The box contains a full antenna ring where antennas can be mounted at 0$^{\circ}$, 45$^{\circ}$, and 90$^{\circ}$ tilt.  Submitting a \acs{DUT} to conducted instead of radiated \acs{RF} signals via feedthroughs for \acs{RF} cables (or guiding conducted \acs{RF} signals away from the \acs{DUT}) can be applied as an alternative or supplement to antennas. The Figure \ref{fig:box} shows the antenna configuration used in this thesis.
+The antennas can be placed and oriented in a customer-specific geometrical arrangement. The box contains a full antenna ring where antennas can be mounted at 0$^{\circ}$, 45$^{\circ}$, and 90$^{\circ}$ tilt. Figure \ref{fig:box} shows the antenna configuration used in this thesis.
 
 \begin{figure}[H]
 \centering

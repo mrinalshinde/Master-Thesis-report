@@ -1,6 +1,6 @@
 \chapter{Test Cases}\label{chap:test}
 
-This thesis carries out tests for \acf{OBW} measurement, \acf{PSD} measurement, and Receiver Blocking measurement. The definition, limits and the procedure for each test case are mentioned in the subtopics below.
+This thesis investigates tests for \acf{OBW} measurement, \acf{PSD} measurement, and Receiver Blocking measurement. The definition, limits and the procedure for each test case are mentioned in the subtopics below.
 
 \section{\acl{OBW} measurement}
 \label{sec:obw}
@@ -24,7 +24,7 @@ Receive & 2400 MHz to 2483.5 MHz \\
 The methodologies for this measurement are as follows:
 \begin{enumerate}
   \item Associate the \acs{DUT} with the companion device (wireless connectivity tester). This step is explained in section \ref{sec:cmw}.
-   \item Enable the Packet Generator with \acf{ICMP} or also known as ping packets. The companion device (\acs{RS}\textregistered{} wireless connectivity tester) supports the generation of \acs{ICMP} echo requests (ping) packets. These packets are targeted at the \acsp{DUT} \acs{IP} stack. Ping operates by sending \acs{ICMP} echo request packets to the \acs{DUT} and waiting for an \acs{ICMP} echo reply back. The \acs{DUT} is expected to answer with a well-defined echo reply packet whose payload is identical to the payload of the corresponding request. These packets are generated so that the bandwidth of the \acs{DUT} signal can be measured. Pinging triggers the \acs{DUT} to transmit a burst of a certain length which is useful for combined signal path measurements.
+   \item Enable the Packet Generator with \acf{ICMP} or also known as ping packets. The companion device (\acs{RS}\textregistered{} wireless connectivity tester) supports the generation of \acs{ICMP} echo requests (ping) packets. These packets are targeted at the \acsp{DUT} \acs{IP} stack. Ping operates by sending \acs{ICMP} echo request packets to the \acs{DUT} and waiting for an \acs{ICMP} echo reply back. The \acs{DUT} is expected to answer with a well-defined echo reply packet whose payload is identical to the payload of the corresponding request. These packets are generated so that the bandwidth of the \acs{DUT} signal can be measured. Pinging triggers the \acs{DUT} to transmit a burst of a certain length which is useful for measurements.
 
 \begin{figure}[H]
 \centering
@@ -56,7 +56,7 @@ Detector & \ac{RMS}\\
 \label{tab:analyzer}
 \end{center}
 \end{table}
-The sweep time of 10 seconds is used instead of 1 second which is mentioned in the standard. This is because of the low duty cycle. There is nothing wrong with the standard, but by increasing the sweep time produces a better result that is more stable and reproducible. The standard suggests setting the trace mode to Max-Hold and then waiting for the trace to stabilize. Another way to stabilize the trace when the duty cycle of the signal is small is by using the trace mode as Clear / Write and increasing the sweep time.
+The sweep time of 10 seconds is used instead of 1 second which is mentioned in the standard. This is because of the low duty cycle. There is nothing wrong with the standard, but by increasing the sweep time produces a better result that is more stable and reproducible. Alternatively using a higher duty cycle (e.g. with the Fritz Box) would be also possible without increasing the sweep time. The standard suggests setting the trace mode to Max-Hold and then waiting for the trace to stabilize. Another way to stabilize the trace when the duty cycle of the signal is small is by using the trace mode as Clear / Write and increasing the sweep time. In this case, lower values will be achieved since the averaging is done over a very long time and not just over the burst. This may also decrease the dynamic range of the signal.
 
 \item Find the \ac{OBW}. This is well explained in the Figure \ref{fig:tracebw}.
 \begin{figure}[H]
@@ -65,7 +65,7 @@ The sweep time of 10 seconds is used instead of 1 second which is mentioned in t
 \caption{Trace of the signal from the analyzer after post processing. The \acs{OBW} is 99\% (dark blue) of the total bandwidth of the signal}
 \label{fig:tracebw}
 \end{figure}
-To locate the occupied channel bandwidth of the signal from the trace produced by the analyzer, we first convert the power value to a linear scale and find the total power. Since we need 99\% of the power, we go in a loop from both sides of the signal (start and stop frequency) and find the value of the frequency on both sides when the power value is 0.5\% of total power. And the difference between the frequency values gives us the 99\% occupied channel bandwidth. A min \acf{SNR} of beyond 30 dB or so is needed to avoid wrong measurements and thus influencing the 99\% bandwidth. This is explained in the later sections in Figure \ref{fig:o}.
+To locate the occupied channel bandwidth of the signal from the trace produced by the analyzer, we first convert the power value to a linear scale and find the total power. Since we need 99\% of the power, we go in a loop from both sides of the signal (start and stop frequency) and find the value of the frequency on both sides when the power value is 0.5\% of total power. And the difference between the frequency values gives us the 99\% occupied channel bandwidth. Low \acf{SNR} may influence the results because the 99\% bandwidth is reached earlier. This is explained in the later sections in Figure \ref{fig:o}.
 
 \end{enumerate}
   
@@ -103,7 +103,7 @@ The standard suggests the number of sweep points to be greater than 8350. If the
 \item Since the signal from the \acs{DUT} is non-continuous, wait for the trace to stabilize and save the trace data to a mat file. In this thesis, sweep count is kept constant and is equal to 10. This is because it was seen that the trace was usually stable after 10 sweeps.
 
  
- \item Use the following formula to add up the values of power for all sample points.
+ \item Use the following formula to add up the values of power for all sample points. The power values from the analyzer are in dBm and must be converted to linear in-order to add the total power.
   $$ P_{sum} = \sum_{n=1}^{k} P_{sample}(n) $$ where k is the total number of samples and n is the actual sample number
   
  \item  Convert the power values from mW scale to dBm scale and then normalize the individual values for power so that the sum is equal to the \acs{RF} Output Power (\acs{EIRP}) measured in the big anechoic chamber and finally save the corrected data. The following formulas can be used:
@@ -120,7 +120,7 @@ The standard suggests the number of sweep points to be greater than 8350. If the
  \begin{figure}[H]
 \centering
 \includegraphics[width=0.9\textwidth]{PSD_trace.png}
-\caption{Trace of the signal from the analyzer after post processing. The \acs{PSD} is 3.3015 dBm/MHz at 2418 MHz}
+\caption{Trace of the signal from the analyzer after post processing. The \acs{PSD} is 3.30~dBm/MHz at 2418~MHz}
 \label{fig:psdtraceI}
 \end{figure}
   
@@ -145,9 +145,9 @@ The association of the \acs{DUT} with the companion (wireless connectivity teste
 \label{fig:per}
 \end{figure}
 
-The next phase is to find the minimum wanted signal ($P_{min}$) without the blocker (signal generator). To do this, the power of the transmitted bursts is kept reducing until the \acs{PER} reaches just below 10\%. In order to increase the speed of the measurement, the program first does coarse precision (i.e. reduces power by steps of 1 dB and sets the transmitted packets to as low as 200). Then for precise measurement, the power is reduced in steps of 0.1 dB and 2000 packets are transmitted. The \acs{PER} window in the figure above shows the \acs{PER} measurement taking place. \\
+The next phase is to find the minimum wanted signal ($P_{min}$) without the blocker (signal generator). To do this, the power of the transmitted bursts is kept reducing until the \acs{PER} reaches just below 10\%. In order to increase the speed of the measurement, the program first does coarse precision (i.e. reduces power by steps of 1 dB and sets the transmitted packets to as low as 200). Then for precise measurement, the power is reduced in steps of 0.1 dB and 2000 packets are transmitted. The \acs{PER} window in the figure above shows the \acs{PER} measurement taking place. This is not described in the standard but a precision of 0.1 dB was decided in-order to get a better basis for the \acf{MU} assessment. And this algorithm of coarse/fine precision was the fastest way to achieving this result. \\
   
-This is followed by keeping the wanted Signal ($P_{min}$ + 6 dB) constant and injecting a blocker signal using a signal generator at the frequency mentioned in the standard. \acs{PER} measurement then checks for the resulting \acs{PER}. The blocking signal of -34 dBm is applied in front of the \acs{DUT} as mentioned by the standard. Then, the transmitted burst power is kept constant thought-out the measurement by adding 6 dB to the minimum unwanted signal. The blocker level is kept increasing until the 10\% criterion is reached. This is not required by the standard but it shows us by how much we can take the power level above the value mentioned in the standard. It also gives us an impression of how good the \acs{DUT} performs and allows us to assess the \acf{MU}.
+This is followed by keeping the wanted Signal ($P_{min}$ + 6 dB) constant and injecting a blocker signal using a signal generator at the frequency mentioned in the standard. \acs{PER} measurement then checks for the resulting \acs{PER}. The blocking signal of -34 dBm is applied in front of the \acs{DUT} as mentioned by the standard. Then, the transmitted burst power is kept constant through-out the measurement by adding 6 dB to the minimum unwanted signal. The blocker level is kept increasing until the 10\% criterion is reached. This is not required by the standard but it shows us by how much we can take the power level above the value mentioned in the standard. It also gives us an impression of how good the \acs{DUT} performs and allows us to assess the \acf{MU}.
 
 
 

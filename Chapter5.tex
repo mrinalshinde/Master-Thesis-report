@@ -4,8 +4,7 @@ The term Conducted Measurements refers to measurements performed using \acs{RF} 
 
 \section{Using Attenuator and Splitter}
 \label{sec:att}
-Figures \ref{fig:Ng1} and \ref{fig:Ng2} show the block diagram of the connections of the instruments during conducted measurements. To not complicate things, the \acs{DUT} is connected via a Wi-Fi\texttrademark{} connection to a laptop. The \acs{DUT} in this case is a single antenna \acs{DUT} (Archer T2UH \ref{fig:singleAntennaDUT}). This \acs{DUT} is further associated with the \ac{CMW} (wireless connectivity tester). The companion device acts as an access point. The splitter is used to split a single \acs{RF} line into two different \acs{RF} lines. The attenuator of 20 dB is required to reduce the signal strength. When using a spectrum analyzer, the attenuator benefits by not allowing the spectrum analyzer to measure the power coming from the companion device. The dark blue lines in the Figure \ref{fig:Ng1} and Figure \ref{fig:Ng2} indicate a strong signal in the direction while the light blue line shows the weaker signals. 
-
+Figures \ref{fig:Ng1} and \ref{fig:Ng2} show the block diagram of the connections of the instruments during conducted measurements. To not complicate things, the \acs{DUT} is connected via a Wi-Fi\texttrademark{} connection to a laptop. The \acs{DUT} in this case is a single antenna \acs{DUT} (Archer T2UH \ref{fig:singleAntennaDUT}). This \acs{DUT} is further associated with the \ac{CMW} (wireless connectivity tester). The companion device acts as an access point. The splitter is used to split a single \acs{RF} line into two different \acs{RF} lines. The attenuator of 20 dB is required to reduce the signal strength. When using a spectrum analyzer, the attenuator benefits by not allowing the spectrum analyzer to measure the power coming from the companion device. The light blue lines in the Figure \ref{fig:Ng1} and Figure \ref{fig:Ng2} indicate the signals for association of the \acs{DUT} with the companion.
 \begin{figure}[H]
 \centering
 \includegraphics[width=0.9\textwidth]{conductedtx.pdf}
@@ -32,15 +31,12 @@ For the receiver blocking test case, the blocker power level at the signal gener
 
 \begin{equation}
 \begin{aligned}
-\mbox{Blocker level}_ {\mbox{Gen}}  &= \mbox{Required blocker level in front of the DUT} \\
-&+ \mbox{Attenuation}_{\mbox{cables}} \\
-&+ \mbox{Attenuation}_{\mbox{switchingUnits}}  \\
-&- \mbox{Antenna Gain}_{\mbox{ DUT}}
+\mbox{BL}_ {\mbox{Gen}}  &= \mbox{BL}_ {\mbox{DUT}} + \mbox{ATT}_{\mbox{cables}} 
++ \mbox{ATT}_{\mbox{OSP}}  - \mbox{Gain}_{\mbox{ DUT}}
 \label{eq:1}
 \end{aligned}
 \end{equation}
-
-For example, the standard mentions that at blocker frequency of 2380 MHz, the required blocker level in front of the \acs{DUT} is -53 dBm. Assume the total attenuation is 40 dB and the antenna gain of the \acs{DUT} is 3 dBi. Then,
+BL stands for blocker level, ATT for attenuation, and OSP for \acf{OSP}. For example, the standard mentions that at blocker frequency of 2380 MHz, the required blocker level in front of the \acs{DUT} is -53 dBm. Assume the total attenuation is 40 dB and the antenna gain of the \acs{DUT} is 3 dBi. Then,
 $$\mbox{Blocker Level at the Generator} = -53 \mbox{dBm} + 40 \mbox{dB}- 3 \mbox{dBi} = -16 \mbox{dBm}$$ 
 The results from Receiver Blocking and \acf{OBW} measurements are compared with the implementation in the WMS32 software suite. The results match and therefore the next step is to perform normalized measurements, which is explained in the chapter \ref{chap:normalized}.
 
