@@ -2,22 +2,24 @@
 This chapter is a consequence of the conducted and normalized measurements performed using a single-antenna \acs{DUT} and a multi-antenna \acs{DUT}. Each test is run for many times in-order to assess the \acf{MU}. 
 
 \section{Measurement Analysis}
-This section is sub-divided into two other sections: first when the \acs{DUT} is assessed for its transmitter capabilities and second for measurement of \acs{DUT} for its receiver capabilities. This sections also explains the reasons for using the fritz box as a companion device for \acs{PSD} measurement and for using some different spectrum analyzer settings from the settings mentioned by the standard.
+This section is sub-divided into two other sections: \acs{DUT} assessed for its transmitter capabilities; \acs{DUT} assessed for its receiver capabilities. This sections also explains the advantages of using an access point as a companion device for the \acf{PSD} measurement and for using some different spectrum analyzer settings from the settings mentioned by the standard.
 
 
 \subsection{\acs{DUT} assessment for transmitter capabilities} 
-The procedure for the \acf{OBW} measurement and \acf{PSD} are explained in detail in chapter \ref{chap:test}. Figure \ref{fig:nt} depicts the measurement when the \acs{DUT} sends echo packets and is checked for is transmitter capabilities. The spectrum analyzer saves the traces so that we can measure the bandwidth and the \acf{PSD} of the signal from the \acs{DUT}. When using a fritz box (section \ref{sec:golden}) as a companion device, data is transmitted and not just \acs{ICMP} packets.
+The procedure for the \acf{OBW} measurement and \acf{PSD} are explained in detail in chapter \ref{chap:test}. Figure \ref{fig:nt} depicts the measurement when the \acs{DUT} sends echo packets and is checked for its transmitter capabilities. \\
 
+The spectrum analyzer saves the traces so that we can measure the bandwidth and the \acf{PSD} of the signal from the \acs{DUT}. When using a fritz box (section \ref{sec:golden}) as a companion device, data is transmitted and not just \acs{ICMP} packets resulting in higher duty cycle. \\
 
 \begin{figure}[H]
 \centering
 \includegraphics[scale = 0.46]{normalized_dut_transmitter.pdf}
-\vspace{-1.3cm}
+\vspace{-2.3cm}
 \caption{Normalized measurement of \acs{DUT} assessed for its transmitter capabilities}
 \label{fig:nt} 
 \end{figure}
 
-Attenuation in the signal analyzer settings is kept to 10~dB and the pre-amplification is switched-off for conducted measurements because of the need of the signal to have a  high dynamic-range, i.e. to make sure that the power envelope is sufficiently above the noise floor of the analyser and to avoid the noise signals left and right from the power envelope being taken into account by this measurement. But, during radiated measurements, the pre-amplification is switched-on and the attenuation is brought down to 0~dB. This is because if the same conducted measurement settings are applied to radiated measurements, the dynamic-range and the noise floor of the signal is low which therefore increases the bandwidth of the signal (Figure \ref{fig:o}). 
+Attenuation in the signal analyzer settings is kept to 10~dB and the pre-amplification is switched-off for conducted measurements because the high input power is causing IF overload, i.e. to make sure that the power envelope is sufficiently above the noise floor of the analyser and to avoid the noise signals left and right from the power envelope being taken into account by this measurement. But, during radiated measurements, the pre-amplification is switched-on and the attenuation is brought down to 0~dB. This is because if the same conducted measurement settings are applied to radiated measurements, the dynamic-range and the noise floor of the signal is low which therefore increases the bandwidth of the signal (Figure \ref{fig:o}). The settings for the analyzer mentioned above also applies to \acf{PSD} measurement.
+
 
 \begin{figure}[H]
   \centering
@@ -28,7 +30,9 @@ Attenuation in the signal analyzer settings is kept to 10~dB and the pre-amplifi
 \label{fig:o}
 \end{figure}
 
-The settings for the analyzer mentioned above also applies to \acf{PSD} measurement. In-addition to that, after running the \acs{PSD} measurement only for few times, there is a difference in the result every single time. This can be clearly seen from Figure \ref{fig:psdpsd}. The maximum value is 8.64~dBm and minimum is 7.12~dBm and hence there difference between the two is around 1~dBm which does not look very good. \acf{MU} is high due to low duty-cycle of the signal from \acf{CMW} due to \acs{ICMP} packets. The \acf{MU} is high for low duty-cycle signals because when we use \acs{RMS} detector and Max-Hold over all traces, it means if the burst is very short, it would be maximum only when the measurement time for that particular frequency is aligned with the burst.  If suppose it is shifted by 50\% then the values would be 3dB lower. This means it will take forever to stabilize this measurement. Measurement works better with high duty-cycle signals. Therefore, fritz box is used as a companion device for this measurement instead of the connectivity tester.
+ In-addition to that, after running the \acs{PSD} measurement only for few times, there is a difference in the result every single time. This can be clearly seen from Figure \ref{fig:psdpsd}. The maximum value is 8.64~dBm and minimum is 7.12~dBm and hence there difference between the two is around 1~dBm which does not look very good. \acf{MU} is high due to low duty-cycle of the signal from \acf{CMW} due to \acs{ICMP} packets. \\
+ 
+ The \acf{MU} is high for low duty-cycle signals because when we use \acs{RMS} detector and Max-Hold over all traces, it means if the burst is very short, it would be maximum only when the measurement time for that particular frequency is aligned with the burst.  If suppose it is shifted by 50\% then the values would be 3dB lower. This means it will take forever to stabilize this measurement. Measurement works better with high duty-cycle signals. Therefore, fritz box is used as a companion device for this measurement instead of the connectivity tester.
 \begin{figure}[H]
 \centering
 \includegraphics[scale = 0.85]{PSD_trace_differnce.png}
@@ -44,7 +48,7 @@ Figure \ref{fig:nr} pictures the measurement of \acs{DUT} for its receiver abili
 \begin{figure}[H]
 \centering
 \includegraphics[scale = 0.46]{normalized_dut_receiver.pdf}
-\vspace{-1.3cm}
+\vspace{-2.3cm}
 \caption{Normalized measurement of \acs{DUT} assessed for its receiver capabilities}
 \label{fig:nr} 
 \end{figure}
@@ -59,9 +63,7 @@ The spectrum analyzer shows the DUT signal and the blocking signal. It can be se
 
 
 \section{\acf{MU}}
-\acf{MU} is evaluated by running each test case (i.e. \acf{OBW}, \acf{PSD}, and Receiver Blocking) several times and then comparing the results (i.e. standard deviation and mean) of conducted and normalized measurements. Computation of \acs{MU} is done using two \acsp{DUT} (i.e. single-antenna \acs{DUT} and multi-antenna \acs{DUT}). Since the multi-antenna \acs{DUT} does not have a cable connector, we do the measurements only radiated (i.e normalized) and comparing it with conducted is not possible. \\
-
-For the \acs{PSD} and Receiver Blocking measurement, the calculation of mean is done by converting the power level from dBm scale to linear scale because it is physically correct to use mean from the linear scale. The standard deviation is calculated by using the power values in dBm scale. 
+\acf{MU} is evaluated by running each test case (i.e. \acf{OBW}, \acf{PSD}, and Receiver Blocking) several times and then comparing the results (i.e. standard deviation and mean) of conducted and normalized measurements. Computation of \acs{MU} is done using two \acsp{DUT} (i.e. single-antenna \acs{DUT} and multi-antenna \acs{DUT}). Since the multi-antenna \acs{DUT} does not have a cable connector, we do the measurements only radiated (i.e normalized) and comparing it with conducted is not possible. For the \acs{PSD} and Receiver Blocking measurement, the calculation of mean is done by converting the power level from dBm scale to linear scale because it is physically correct to use mean from the linear scale. The standard deviation is calculated by using the power values in dBm scale. 
 
 \subsection{Single-Antenna \acs{DUT}}
 This section gathers the information of \acf{MU} for each test case for both conducted and normalized type. The following reveals the results of the long-term measurements.

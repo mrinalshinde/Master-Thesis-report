@@ -66,10 +66,13 @@ The basic model of \acs{RS}\textregistered{} SMB100A acts as a blocker instrumen
 \section{Companion Device}
 In this thesis, a wireless connectivity tester is mainly used as a companion device to communicate with the \acs{DUT} for most of the functions (i.e. power measurement, receiver blocking measurement, occupied channel bandwidth measurement). The \acs{DUT} can be assessed for its transmitter or receiver capabilities using the wireless connectivity tester. For the \acs{DUT} to be accessed for its transmitter capabilities, the tester sends \acf{ICMP} (ping) packets to the \acs{DUT} and waits for the echo replies from the \acs{DUT}. 
 
-An extremely long measurement time is necessary to get stable results and since this was not accomplished in \acf{PSD} measurement, there exist high variations from measurement to measurement (refer Figure \ref{fig:psdpsd}). Therefore, a Fritz box is used as a companion device for this measurement. All the measurements can also be done using this second device but in this thesis, only \ac{PSD} measurement uses the fritz box.
+An extremely long measurement time is necessary to get stable results and since this was not accomplished in \acf{PSD} measurement, there exist high variations from measurement to measurement (refer Figure \ref{fig:psdpsd}). Therefore, a commercial \acf{AP} is used as a companion device for this measurement. All the measurements can also be done using this second device but in this thesis, only \acf{PSD} measurement uses the fritz box, which is an example of a commercial \acf{AP}.
 
 \subsection{Wireless Connectivity Tester} \label{sec:cmw}
-\acs{RS}\textregistered{} CMW 270 acts as a base station for mobile communication, Wi-Fi\texttrademark{} \acs{AP}, Wi-Fi\texttrademark{} client, Bluetooth\textregistered{} devices, etc. In this thesis, this device is used as a Wi-Fi\texttrademark{} \acs{AP} because it allows us to perform the required measurements (i.e. \acf{PER}). \acs{WLAN} Signaling mode allows us to associate the \acs{DUT} to the companion device for subsequent tests \cite{cmw}.
+\acs{RS}\textregistered{} CMW 270 acts as a base station for mobile communication, Wi-Fi\texttrademark{} \acs{AP}, Wi-Fi\texttrademark{} client, Bluetooth\textregistered{} devices, etc. In this thesis, this device is used as a Wi-Fi\texttrademark{} \acs{AP} because it allows us to perform the required measurements (i.e. \acf{PER}). \acs{WLAN} Signaling mode allows us to associate the \acs{DUT} to the companion device for subsequent tests \cite{cmw}. \\
+
+Configuration of \acs{WLAN} signaling is done by sending commands remotely via a MATLAB\textregistered{} script.  The signaling application is configured as \acf{AP}, companion device simulates a \acs{WLAN} \acf{AP} in infrastructure mode. The \acs{DUT} is a \acs{WLAN} station. To establish a \acs{WLAN} association, \acs{WLAN} standard (i.e. \acs{IEEE} 802.11a,g,n), scenario selection (i.e. \acs{SISO} or \acs{MIMO}), Operation Mode (i.e. \acs{AP}), used \acs{RF} connectors, \acs{RF} frequency/channel, power of a transmitted signal (\acs{RF} TX Burst Power) and Expected power of the \acs{DUT} Signal (\acs{RF} Exp. Peak Envelope Power) are set. \acs{RF} TX Burst Power must be sufficient so that the \acs{DUT} can receive the transmitted signal. The \acs{RF} Exp. Peak Envelope Power must be in accordance with the received signal power. The external attenuation is calculated depending on the attenuation from the cable and other devices and is set to the resulted value. To automatize this process, a loop in the MATLAB\textregistered{} script keeps increasing the value of \acs{RF} Exp. Peak Envelope Power until the device connection status says authenticated.
+
 
 \begin{figure}[H]
 \centering
@@ -78,9 +81,8 @@ An extremely long measurement time is necessary to get stable results and since 
 \label{fig:cmwGUI}
 \end{figure}
 
-Configuration of \acs{WLAN} signaling is done by sending commands remotely via a MATLAB\textregistered{} script.  The signaling application is configured as \acf{AP}, companion device simulates a \acs{WLAN} \acf{AP} in infrastructure mode. The \acs{DUT} is a \acs{WLAN} station. To establish a \acs{WLAN} association, \acs{WLAN} standard (i.e. \acs{IEEE} 802.11a,g,n), scenario selection (i.e. \acs{SISO} or \acs{MIMO}), Operation Mode (i.e. \acs{AP}), used \acs{RF} connectors, \acs{RF} frequency/channel, power of a transmitted signal (\acs{RF} TX Burst Power) and Expected power of the \acs{DUT} Signal (\acs{RF} Exp. Peak Envelope Power) are set. \acs{RF} TX Burst Power must be sufficient so that the \acs{DUT} can receive the transmitted signal. The \acs{RF} Exp. Peak Envelope Power must be in accordance with the received signal power. The external attenuation is calculated depending on the attenuation from the cable and other devices and is set to the resulted value. To automatize this process, a loop in the MATLAB\textregistered{} script keeps increasing the value of \acs{RF} Exp. Peak Envelope Power until the device connection status says authenticated.
 
-\subsection{Commercial Access Point} \label{sec:golden}
+\subsection{Commercial \acf{AP}} \label{sec:golden}
 Fritz Box 7590 is an example of the commercial access point used in this thesis. It can be used as a companion device to associate with the \acs{DUT} and receive data from the \acs{DUT}. The \acf{NAS} functionality is used to upload data from \acs{DUT} permanently to a pen drive which is attached to the Fritz Box. First, storage is set up on the computer as a network drive. The procedure to mount the network drive is explained on \cite{fritz} of Fritz Box. A windows batch file is written to continuously upload a big file from the \acs{DUT} to the network drive. The code in the batch (.BAT) file is shown below.
 
 \begin{lstlisting}[language=bash]
@@ -94,6 +96,7 @@ The script copies a big file in a loop and it makes sure to overwrite the existi
 \begin{figure}[H]
 \centering
 \includegraphics[width=0.65\textwidth]{fritz.pdf}
+\vspace{-0.4cm}
 \caption{Modified commercial access point used as a \acf{CMW} device}
 \label{fig:cmwGUI}
 \end{figure}
@@ -156,7 +159,7 @@ The antennas can be placed and oriented in a customer-specific geometrical arran
 \begin{figure}[H]
 \centering
 \includegraphics[width=0.7\textwidth]{chamber.pdf}
-\caption{Full antenna ring with 6 vivaldi antennas}
+\vspace{-0.4cm} \caption{Full antenna ring with 6 vivaldi antennas}
 \label{fig:box}
 \end{figure}
 

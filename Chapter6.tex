@@ -3,7 +3,7 @@ This chapter explains the procedure for normalized measurements. The first secti
 
 
 \section{Implementation}
-The flow chart in Figure \ref{fig:1} explains the procedure for normalized measurements. Each step in the flowchart is further explained in detail in the further sections of this chapter. For the normalization measurements, the first step is to find the \acs{EIRP} of the \acs{DUT}. This can be done by a conducted measurement or by simply measuring the \acs{EIRP} in an \acf{AC}. The later provides us with the radiation pattern of the \acs{DUT}.  The \acs{EIRP} measurement is just done once for each \acs{DUT} and the results are normalized using this \acs{EIRP} value of the \acs{DUT}. Before performing the normalized measurements, it is important to find the best configuration for the cables and connections. This step is also done only once and all other measurements are done using the same configuration of the instruments and cables. This step also includes the calibration of all the cables within the system.  The section \ref{sec:opti} explains the above procedure.
+The flow chart in Figure \ref{fig:1} explains the procedure for normalized measurements. Each step in the flowchart is further explained in detail in the further sections of this chapter. For the normalization measurements, the first step is to find the \acs{EIRP} of the \acs{DUT}. This can be done by a conducted measurement or by simply measuring the \acs{EIRP} in an \acf{AC}. The \acs{EIRP} measurement is just done once for each \acs{DUT} and the results from normalized measurements as well as the power levels required by the blocker (signal generator) are calibrated using this \acs{EIRP} value of the \acs{DUT}. Before performing the normalized measurements, it is important to find the best configuration for the cables and connections. This step is also done only once and all other measurements are done using the same configuration of the instruments and cables. This step also includes the calibration of all the cables within the system.  The section \ref{sec:opti} explains the above procedure.
 
 \begin{figure}[H]
 \centering
@@ -20,8 +20,8 @@ This section also gives a brief overview of the implementation of the developed 
 
 \begin{figure}[H]
 \centering
-\includegraphics[scale = 0.6]{arrow.pdf}
-\vspace{-2cm}\caption{Flow of the automation software}
+\includegraphics[scale = 0.5]{arrow.pdf}
+\vspace{-1.5cm}\caption{Flow of the automation software}
 \label{fig:2} 
 \end{figure}
 
@@ -40,7 +40,7 @@ The steps for implementation of radiated measurements are explained as follows:
 \label{fig:3} 
 \end{figure}
 
-There are six probe antennas inside the \acs{RF} shielded box. They work in pairs of 2. i.e. 2 antennas for spectrum analyzer which is used for measuring the power, bandwidth, etc. 2 other antennas are used for injecting a signal which is used in case of receiver blocking or adaptivity test case. And finally, the last pair of antennas are used for communicating with the \acs{DUT} by the companion device.
+There are six probe antennas inside the \acs{RF} shielded box. They work in pairs of 2. i.e. 2 antennas can be used for spectrum analyzer which is used for measuring the power, bandwidth, etc. 2 other antennas can be used for injecting a signal which is used in case of receiver blocking or adaptivity test case. And finally, the last pair of antennas are used for communicating with the \acs{DUT} by the companion device.
 
 \item Perform Normalization: Power, which is found by calculating the average of each burst of the \acs{DUT} signal and finding the maximum of all bursts, is measured at all six antennas. The difference between the measured \acs{EIRP} in step 1 and the power measured at each antenna is defined as the coupling loss for that particular path. This step is explained in detail in the next section.
 
@@ -53,15 +53,11 @@ There are six probe antennas inside the \acs{RF} shielded box. They work in pair
 
 
 \subsection{Software Design}
-After the conducted measurement analysis was fundamentally verified in the experimental setup, the software implementation was restructured. Since the complexity of the implementation grew over time, an object-oriented programming style is used in the current implementation to account for this development. The object-oriented design improves the understanding of the code because the structure represents the real nature of the data well.
-
-When one creates a class in MATLAB\textregistered{}, it is by default a value class. I prefer having to update objects by reference, therefore the class uses a handle class. This can made a handle class by changing the first line to:
+After the conducted measurement analysis was fundamentally verified in the experimental setup, the software implementation was restructured. Since the complexity of the implementation grew over time, an object-oriented programming style is used in the current implementation to account for this development. The object-oriented design improves the understanding of the code because the structure represents the real nature of the data well. When one creates a class in MATLAB\textregistered{}, it is by default a value class. I prefer having to update objects by reference, therefore the class uses a handle class. This can made a handle class by changing the first line to:
 \begin{lstlisting}[language=MATLAB]
 classdef testClass < handle
 \end{lstlisting}
-Also, one wouldn't necessarily need output arguments for the methods of the handle class which is one of the main reasons for using this class. \\
-
-The seven classes build the core of the developed software tool . For better overview and understanding some attributes and methods are omitted in this class diagram (Figure \ref{fig:cd}). Each of these classes is derived from the base class Handle. The CAutomation class instantiates objects from all the other six classes. Five of those classes are the instruments used in this thesis, i.e., Spectrum Analyzer, Signal Generator, Connectivity Tester, two Switching modules, and the last class named CDUT, specifies the \acs{DUT} standard, operating frequency, bandwidth, \acs{EIRP}, and so on.
+Also, one wouldn't necessarily need output arguments for the methods of the handle class which is one of the main reasons for using this class. The seven classes build the core of the developed software tool. For better overview and understanding some attributes and methods are omitted in this class diagram (Figure \ref{fig:cd}). Each of these classes is derived from the base class Handle. The CAutomation class instantiates objects from all the other six classes. Five of those classes are the instruments used in this thesis, i.e., Spectrum Analyzer, Signal Generator, Connectivity Tester, two Switching modules, and the last class named CDUT, specifies the \acs{DUT} standard, operating frequency, bandwidth, \acs{EIRP}, and so on.
 
 \begin{figure}[H]
 \centering
@@ -77,13 +73,12 @@ The seven classes build the core of the developed software tool . For better ove
 \begin{equation}
 \mbox{EIRP}  = \mbox{Power}_{\mbox{analyzer}} - \mbox{Attenuation}_{\mbox{cable}} + \mbox{Antenna Gain} \label{eq:eirp}
 \end{equation}
-This measurement can also be done in an \acf{AC} and would give a better result by providing us the radiation pattern of the \acs{DUT} antenna.
-
+This measurement can also be done in an \acf{AC} and would give a better result because of using the real antenna gain with all losses instead of the stated antenna gain from the manufacturer.
 
 \section{Normalization} \label{sec:11}
 Normalization aims at finding the coupling loss at each antenna port. This data further aids in finding the best probe antenna. The steps for normalized measurement is explained as follows:
 \begin{enumerate}
-\item As mentioned in the section \ref{sec:wn}, the companion device (wireless connectivity tester) is connected to the COMP1 port of the OSPWN. Therefore, switch the path between ANT1 and COMP1 and establish a \acs{WLAN} connection between the two devices (\acs{DUT} and the \acs{CMW}). 
+\item As mentioned in the section \ref{sec:wn}, the companion device (wireless connectivity tester) is connected to the COMP1 port of the OSP-B157WN. Therefore, switch the path between ANT1 and COMP1 and establish a \acs{WLAN} connection between the two devices (\acs{DUT} and the \acs{CMW}). 
 \item Configure the Packet Generator (explained in section \ref{sec:obw}) on the companion device to measure the signal from the \acs{DUT}. This thesis focuses on using the CMW as a companion device but this will also work for using other companion devices (e.g. Access Point).
 \item Switch paths in a loop: ANT 2 to OUT2, ANT 3 to OUT 3, and so on (refer to Figure \ref{fig:ospwn}). Save the trace of the signal for each path from the \acs{DUT} by using the spectrum analyzer. Thus, we get the traces for ANT 2 to ANT5 ports.
 \item To measure the signal at ANT1, switch path ANT2 to COMP1 and save the trace at ANT1. Attenuation for each path inside each switching module is taken from the calibration files provided with the switching modules. The coupling loss is measured using the equation \ref{eq:bl}.
@@ -96,7 +91,7 @@ The total attenuation comprises attenuation within the switching modules as well
 \subsection{Post Processing for Power measurement} \label{sec:abc}
 The \acs{DUT} is actually transmitting signals as bursts and the standard mentions that burst power is the limit for the power measurements. This is also the reason why we use burst power detection also for the \acs{EIRP} measurement in an \acf{AC}. And therefore, also use it for normalization to calculate the coupling loss. \\
 
-For each power measurement for each antenna, 20 traces are saved. The measurement is done in the time domain (i.e. zero span) because a single frequency is of interest to us and also due to the very low duty cycle of the signal from the \acs{DUT}. The purpose of the zero span is to specifically turn off the sweep function, as the sweep sometimes really ruin the measurement. If you have a pulsed source, if the pulse happens when the sweep is not on that one frequency, it misses the pulse power.\\
+For each power measurement for each antenna, 20 traces are saved. The measurement is done in the time domain (i.e. zero span) because a single frequency is of interest to us and also due to the very low duty cycle of the signal from the \acs{DUT}. The purpose of the zero span is to specifically turn off the sweep function, and perform a time domain measurement. If you have a pulsed source, if the pulse happens when the sweep is not on that one frequency, it misses the pulse power.\\
 
 Each trace is as short as 20 ms. For each trace, the maximum power is found by taking the maximum of the average of each burst. Short trace is used because if the sweep time was increased e.g. to 100 ms then, there would be fewer points per burst to take an average. Since the sweep points considered are already maximum (32000), the only option remaining is to reduce the sweep time so that a better average can be done.  
 
@@ -133,10 +128,14 @@ Antenna Gain is already taken care of since the standard defined the power level
 
 
 \section{Optimization of Antenna Pair} \label{sec:opti}
-Optimization of the probe antenna pairs is essential to ensure that the measurements are realized in optimal connections configurations with minimal losses and cabling again is not intended. The best selection of antenna pair is first implemented by performing a simulation on MATLAB\textregistered{} and later checking if the result coincides with the result from actual measurements. The later is also performed using the same algorithm. An important aspect to remember is that, as it is seen from the internal circuit diagram of OSPWN (\ref{fig:ospwn}) the antennas are arranged in pairs. And therefore, there are 15 possibilities for the optimum antenna pair selection.
+Optimization of the probe antenna pairs is essential to ensure that the measurements are realized in optimal connections configurations with minimal losses and cabling again is not intended. The best selection of antenna pair is first implemented by performing a simulation on MATLAB\textregistered{} and later checking if the result coincides with the result from actual measurements. The later is also performed using the same algorithm. An important aspect to remember is that, as it is seen from the internal circuit diagram of OSP-B157WN (\ref{fig:ospwn}) the antennas are arranged in pairs. And therefore, there are 15 possibilities for the optimum antenna pair selection.
 
 \subsection{Simulation} 
-To correctly perform the \acs{OTA} measurements in the \acs{RF} shielded box, a simulation for the link-budget analysis inside of the test chamber is required. This simulation, which is developed in MATLAB\textregistered{} environment will enable the choice of the best combinations of probe antenna pairs. For this purpose, a simulation of the transmission between the \acs{DUT} and all of the 6 probe antennas within the chamber, will allow a decision on the best associations between the instruments used for every test-case/measurement. The simulation also visualizes the effect of the positioning of a single-antenna \acs{DUT} within the chamber. The following parameters are considered in the simulation.
+To correctly perform the \acs{OTA} measurements in the \acs{RF} shielded box, a simulation for the link-budget analysis inside of the test chamber is required. This simulation, which is developed in MATLAB\textregistered{} environment will enable the choice of the best combinations of probe antenna pairs. \\
+
+ For this purpose, a simulation of the transmission between the \acs{DUT} and all of the 6 probe antennas within the chamber, will allow a decision on the best associations between the instruments used for every test-case/measurement. The simulation also visualizes the effect of the positioning of a single-antenna \acs{DUT} within the chamber. \\
+ 
+  The following parameters are considered in the simulation.
 \begin{itemize}
   \item Configuration: The parameters of the chamber in the simulation e.g. the dimension of the chamber, antennas and, grid which holds the \acs{DUT}, placement of the antennas are tried to meet the existing system (Figure \ref{fig:room}). 
   \begin{figure}[H]
@@ -164,7 +163,7 @@ To correctly perform the \acs{OTA} measurements in the \acs{RF} shielded box, a 
    \end{itemize}
    
    
-The simulation runs over 4000 random positions of the \acs{DUT} on the grid (\ref{fig:try}) inside of the chamber with randomly one of the three different orientation of its antenna as illustrated in the picture (link). For each position the total loss between the \acs{DUT} and each probe antenna is computed. Since for each instrument (Spectrum analyzer, companion or signal generator) a pair of probe antennas should be assigned for the connection, from which only one with the lowest path loss should be used for the measurement. Since we have 6 different probe antennas, and 3 instruments, there are 15 distinct different possibilities of combinations of 3 pairs of antennas, one pair for each instrument with one active probe antennas. From these 15 possibilities, the simulation allows a choice of the best combination with the lowest mean path loss, i.e. the mean of the minima of every 3 pairs out of the 15 is computed and then the best combination is found. Refer Figure \ref{fig:s} for the results from  15 antenna pair possibilities.
+The simulation runs over 4000 random positions of the \acs{DUT} on the grid (\ref{fig:try}) inside of the chamber with randomly one of the three different orientation of its antenna. For each position the total loss between the \acs{DUT} and each probe antenna is computed. Since for each instrument (Spectrum analyzer, companion or signal generator) a pair of probe antennas should be assigned for the connection, from which only one with the lowest path loss should be used for the measurement. Since we have 6 different probe antennas, and 3 instruments, there are 15 distinct different possibilities of combinations of 3 pairs of antennas, one pair for each instrument with one active probe antennas. From these 15 possibilities, the simulation allows a choice of the best combination with the lowest mean path loss, i.e. the mean of the minima of every 3 pairs out of the 15 is computed and then the best combination is found. Refer Figure \ref{fig:s} for the results from  15 antenna pair possibilities.
 
 \begin{figure}[H]
 \vspace{-3cm}
